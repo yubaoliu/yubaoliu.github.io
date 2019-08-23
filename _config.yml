@@ -1,0 +1,79 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Blog of Liu Yubao
+email: yubaoliu89@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+        This blog is build using Jekyll and Emacs ORG.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://yubaoliu.github.io" # the base hostname & protocol for your site
+twitter_username: yubaoliu
+github_username:  yubaoliu
+linkedin: https://www.linkedin.com/in/yubao-liu-1022b7120/
+instagram:
+
+# Build settings
+markdown: kramdown
+
+
+#Plugin Setting
+plugins_dir:
+  - jekyll-feed
+  - jekyll-admin
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-toc
+  - jekyll-figure
+  - jekyll-gist
+  - jekyll-coffeescript
+
+
+
+jekyll-figure:
+  paragraphs: false
+
+# disqus config
+disqus:
+  shortname: https-yubaoliu-github-io
+  page_path: https://yubaoliu.github.io
+  page_title: yubao-blog
+comments: true
+#disqus: https-yubaoliu-github-io
+
+# google analytics config
+ga:
+  id: UA-131527698-1
+  url: yubaoliu.github.io
+
+sass:
+  style: compressed
+
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: Liu Yubao
+      csl: ../../assets/pandoc/ieee.cls
+      bibliography: ../../assets/bibliography/bibliography.bib
+
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

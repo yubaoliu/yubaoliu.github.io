@@ -1,0 +1,13 @@
+#+STARTUP: showall
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:t
+#+LAYOUT: post
+#+CATEGORIES: hello
+#+AUTHOR: Yubao Liu
+#+DATE: 2019-08-23 Fri 19:26
+#+TITLE: hello
+#+DESCRIPTION: describe
+#+TAGS: 
+
+* H1
+$$a^2-2$$
