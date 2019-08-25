@@ -1,0 +1,23 @@
+* Overview
+  :PROPERTIES:
+  :CUSTOM_ID: overview
+  :END:
+
+- [[http://pages.cs.wisc.edu/~dyer/ai-qual/irani-visalg00.pdf][PDF-paper]]
+- Cite:
+
+Irani, Michal, and P. Anandan. "About direct methods." International
+Workshop on Vision Algorithms. Springer, Berlin, Heidelberg, 1999.
+
+#+BEGIN_SRC latex
+    @inproceedings{irani1999direct,
+      title={About direct methods},
+      author={Irani, Michal and Anandan, P},
+      booktitle={International Workshop on Vision Algorithms},
+      pages={267--277},
+      year={1999},
+      organization={Springer}
+    }
+#+END_SRC
+
+- 

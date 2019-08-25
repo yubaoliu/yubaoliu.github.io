@@ -1,0 +1,766 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestar
+#+OPTIONS: H:3 num:t tags:t toc:t timestamps:t
+#+LAYOUT: post
+#+CATEGORIES: ROBOT
+#+DATE: 2019-08-25
+#+TITLE: ROS Development
+#+DESCRIPTION: how to use ros, Turtlebot ...
+#+TAGS: robot, ros, turtlebot
+
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+** 中国大学MOOC---《机器人操作系统入门》
+   :PROPERTIES:
+   :CUSTOM_ID: 中国大学mooc机器人操作系统入门
+   :END:
+
+- [[https://www.bilibili.com/video/av24585414/?p=7&t=231][ROS机器人操作系统入门-中国大学MOOC]]
+
+- [[https://github.com/sychaichangkun/ROS-Academy-for-Beginners.git][《机器人操作系统入门》课程讲义-Github]]
+- [[https://github.com/DroidAITech][重德智能-github]]
+- [[https://www.bilibili.com/video/av24585414/?p=7][Bilibili Vedio]]
+- [[https://github.com/ethz-asl/programming_guidelines/wiki][ethz-asl/programming_guidelines]]
+  [[https://www.youtube.com/watch?v=0BxVPCInS3M][Youtube]]
+- [[https://github.com/leggedrobotics/ros_best_practices][leggedrobotics/ros_best_practices]]
+
+** Projects
+   :PROPERTIES:
+   :CUSTOM_ID: projects
+   :END:
+
+- [[https://bitbucket.org/osrf/servicesim][servicesim]]
+- [[https://bitbucket.org/osrf/][OpenSourceRoboticsFoundation OSRF]]
+
+* ROS master and slave
+** Firewall Setting
+#+begin_src sh
+sudo ufw allow 22
+sudo ufw allow 11311
+#+end_src
+
+** Problem: no contents in topic
+slave:
+
+#+begin_src sh
+ rostopic pub -r10 /hello std_msgs/String "hello world"
+#+end_src
+
+master:
+#+begin_src sh
+rostopic echo /hello
+#+end_src
+
+No contents received. 
+
+**Solution**:
+Disable firewall:
+#+begin_src sh
+sudo ufw disable
+#+end_src
+or
+#+begin_src sh
+sudo ufw reset
+sudo ufw default allow
+#+end_src
+
+* Turtlebot
+** References
++ [[https://www.ncnynl.com/archives/201609/793.html][Turtlebot入门教程]]
++ [[http://wiki.ros.org/turtlebot/Tutorials/indigo/Network%20Configuration][turtlebotTutorialsindigoNetwork Configuration]]
++ [[http://wiki.ros.org/ROS/NetworkSetup][ROSNetworkSetup]]
+
+** Install Turtlebot ROS Packages
+#+begin_src sh
+sudo apt install ros-kinetic-turtlebot-*
+#+end_src
+** Network Configuration
+Config Turtlebot robot as the master machine.
+My PC as the slave machine.
+*** Install ssh
+#+begin_src sh
+sudo apt-get install openssh-server
+ps -e|grep ssh
+
+ssh [user_name]@[ROBOT_IP]
+#+end_src
+
+*** Network Time Protocol
+#+begin_src sh
+sudo apt-get install chrony
+sudo ntpdate ntp.ubuntu.com
+
+ntpdate -q other_computer_ip
+#+end_src
+
+*** Add host name
+#+begin_src sh
+ sudo vim /etc/hosts
+#+end_src
+Add:
+#+begin_example
+133.15.23.26    yubao-pc
+133.15.23.206   kobuki
+#+end_example
+
+Restart Network
+#+begin_src sh
+sudo /etc/init.d/networking restart
+#+end_src
+
+*** Modify bash file to config ROS
+Kobuki:
+#+begin_src sh
+> echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/turtlebot/devel/setup.sh
+> echo export ROS_HOSTNAME=IP_OF_TURTLEBOT >> ~/turtlebot/devel/setup.sh
+#+end_src
+
+Remote PC Setup:
+#+begin_src sh
+> echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc
+> echo export ROS_HOSTNAME=IP_OF_PC >> ~/.bashrc
+#+end_src
+
+or add these lines to ~/.bashrc
+
+#+begin_src sh
+export ROS_MASTER_URI=http://[kobuki-ip]:11311
+export ROS_HOSTNAME=<PC_IP>
+export ROS_IP=<PC_IP>
+#+end_src
+Example:
+#+begin_example
+export ROS_MASTER_URI=http://kobuki:11311
+export ROS_HOSTNAME=133.15.23.26
+export ROS_IP=133.15.23.26
+#+end_example
+
+** Verify from TurtleBot to Remote PC
+*** Hello Message
+On remote pc run:
+#+begin_src sh
+> rostopic pub -r10 /hello std_msgs/String "hello"
+#+end_src
+
+On TurtleBot run
+
+#+begin_src sh
+> rostopic echo /hello
+#+end_src
+
+*** Turtlesim Example
+koboki:
+#+begin_src sh
+roscore
+
+rosrun turtlesim turtlesim_node
+#+end_src
+
+PC:
+#+begin_src sh
+rosrun turtlesim turtle_teleop_key
+#+end_src
+
+#+begin_src sh
+yubao@yubao-Z370M-S01:~$ rosrun turtlesim turtle_teleop_key
+Reading from keyboard
+---------------------------
+Use arrow keys to move the turtle.
+#+end_src
+** Start Turtlebot
+kobuki:
+#+begin_example sh
+roslaunch turtlebot_bringup minimal.launch --screen
+#+end_example
+
+Remote:
+#+begin_src sh
+roslaunch turtlebot_teleop keyboard_teleop.launch
+
+rosrun turtlesim draw_square
+#+end_src
+
+检查底座信息
+#+begin_src sh
+rqt -s kobuki_dashboard
+#+end_src
+** Mapping using gmapping and Kinect
+**turtlebot**
+
+#+begin_src sh
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation gmapping_demo.launch
+#+end_src
+**Remote**
+#+begin_src sh
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+roslaunch turtlebot_teleop keyboard_teleop.launch
+#+end_src
+
+**Save Map**
+#+begin_src sh
+rosrun map_server map_saver -f /tmp/my_map
+ls /tmp/
+#+end_src
+
+**Result**
+<iframe width="640" height="480" src="https://www.youtube.com/embed/QYpm-t-76T8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+** Autonomous Driving
+**turtlebot**:
+#+begin_src sh
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation amcl_demo.launch map_file:=/tmp/my_map.yaml
+#+end_src
+
+**Remote**
+#+begin_src sh
+roslaunch turtlebot_rviz_launchers view_navigation.launch --screen
+#+end_src
+** Turtlebot充电桩：自主充电
+**turtlebot**:
+#+begin_src sh
+roslaunch turtlebot_bringup minimal.launch
+#+end_src
+
+**Removte**
+#+begin_src sh
+roslaunch kobuki_auto_docking minimal.launch --screen
+roslaunch kobuki_auto_docking activate.launch --screen
+#+end_src
+** ROS turtlebot_follower 
+**Turtlebot**
+#+begin_example
+roslaunch turtlebot_bringup minimal.launch
+#+end_example
+
+**PC**
+#+begin_example
+roslaunch turtlebot_follower follower.launch
+#+end_example
+
+**Config Parameters**
+#+begin_example
+rosrun rqt_reconfigure rqt_reconfigure
+#+end_example
+
+**Rviz Setting**
+-Frame: camera_rgb_frame
+- Add marker topics
+
+References:
+1. ROS turtlebot_follower ：让机器人跟随我们移动, https://blog.csdn.net/yiranhaiziqi/article/details/53085096
+
+
+* ROS foundationals
+  :PROPERTIES:
+  :CUSTOM_ID: ros-foundationals
+  :END:
+
+** *Important Notes*
+   :PROPERTIES:
+   :CUSTOM_ID: important-notes
+   :END:
+
+- make sure *anaconda* is not installed, it may cause uncertain errors
+  later. I encountered many unkown problems when compile SLAM and
+  kinetic. And not use anaconda to install Python. Then install anaconda
+  after everything works fun (not add anaconda to $PATH is
+  renewcommand).
+
+- Select proper Linux Version
+
+According to [[http://wiki.ros.org/kinetic/Installation][ROS Kinetic
+installation instructions]],
+
+#+BEGIN_QUOTE
+  ROS Kinetic installation instructions
+
+  These instructions will install the *ROS Kinetic Kame* distribution,
+  which is available for Ubuntu Wily (15.10) and Ubuntu Xenial (16.04
+  LTS), among other platform options.
+#+END_QUOTE
+
+** Install ROS Kinetic
+   :PROPERTIES:
+   :CUSTOM_ID: install-ros-kinetic
+   :END:
+
+#+BEGIN_SRC sh
+    sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+    sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+    sudo apt-get install ros-kinetic-desktop-full
+
+    sudo rosdep init
+    rosdep update
+
+    echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+
+    sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
+#+END_SRC
+
+** gazebo
+   :PROPERTIES:
+   :CUSTOM_ID: gazebo
+   :END:
+
+Upgrade gazebo:
+
+#+BEGIN_SRC sh
+    sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+    wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+    sudo apt-get update
+    sudo apt-get install gazebo7
+#+END_SRC
+
+** Shell Environment
+   :PROPERTIES:
+   :CUSTOM_ID: shell-environment
+   :END:
+
+#+BEGIN_SRC sh
+    #ROS
+    source /opt/ros/kinetic/setup.bash
+    source ~/catkin_ws/devel/setup.sh
+#+END_SRC
+
+** Commands
+   :PROPERTIES:
+   :CUSTOM_ID: commands
+   :END:
+
+*** catkin_create_pkg
+    :PROPERTIES:
+    :CUSTOM_ID: catkin_create_pkg
+    :END:
+
+#+BEGIN_SRC sh
+    cd src/
+    catkin_create_pkg Test roscpp rospy std_msgs nav_msgs
+#+END_SRC
+
+*** rospack list
+    :PROPERTIES:
+    :CUSTOM_ID: rospack-list
+    :END:
+
+#+BEGIN_SRC sh
+    rospack list | grep catkin_ws
+    source devel/setup.sh
+#+END_SRC
+
+*** rospack
+    :PROPERTIES:
+    :CUSTOM_ID: rospack
+    :END:
+
+#+BEGIN_SRC sh
+    rospack find robot_sim_demo
+#+END_SRC
+
+*** rosls
+    :PROPERTIES:
+    :CUSTOM_ID: rosls
+    :END:
+
+#+BEGIN_SRC sh
+    rosls topic_demo
+#+END_SRC
+
+*** rosed
+    :PROPERTIES:
+    :CUSTOM_ID: rosed
+    :END:
+
+#+BEGIN_SRC sh
+    rosed topic_demo CMakeLists.txt
+#+END_SRC
+
+*** roscd
+    :PROPERTIES:
+    :CUSTOM_ID: roscd
+    :END:
+
+#+BEGIN_SRC sh
+    roscd topic_demo
+#+END_SRC
+
+*** roslaunch
+    :PROPERTIES:
+    :CUSTOM_ID: roslaunch
+    :END:
+
+#+BEGIN_SRC sh
+    roslaunch [pkg_name] [file_name.launch]
+#+END_SRC
+
+*** master
+    :PROPERTIES:
+    :CUSTOM_ID: master
+    :END:
+
+start ros master, rosout, parameter server:
+
+#+BEGIN_SRC sh
+    roscore
+#+END_SRC
+
+*** node
+    :PROPERTIES:
+    :CUSTOM_ID: node
+    :END:
+
+#+BEGIN_SRC sh
+    rosrun [pkg_name] [node_name]
+    rosnode list
+    rosnode info [node_name]
+    rosnode kill [node_name]
+#+END_SRC
+
+*** rostopic
+    :PROPERTIES:
+    :CUSTOM_ID: rostopic
+    :END:
+
+#+BEGIN_SRC sh
+    rostopic list
+    rostopic info /topic_name
+    rostopic echo /topic_name
+    rostopic pub /topic_name
+#+END_SRC
+
+*** rosmsg
+    :PROPERTIES:
+    :CUSTOM_ID: rosmsg
+    :END:
+
+#+BEGIN_SRC sh
+    rosmsg list
+    rosmsg show /msg_name
+#+END_SRC
+
+*** rosservice
+    :PROPERTIES:
+    :CUSTOM_ID: rosservice
+    :END:
+
+#+BEGIN_SRC sh
+    rosservice list
+    rosservice info service_name
+    rosservice call service_name args
+#+END_SRC
+
+*** rossrv
+    :PROPERTIES:
+    :CUSTOM_ID: rossrv
+    :END:
+
+#+BEGIN_SRC sh
+    rossrv list
+    rossrv show srv_name
+#+END_SRC
+
+*** rosparam
+    :PROPERTIES:
+    :CUSTOM_ID: rosparam
+    :END:
+
+#+BEGIN_SRC sh
+    rosparam list
+    rosparam get param_key
+    rosparam set param_key param_value
+    rosparam dump file_name
+    rosparam load file_name
+    rosparam delete param_key
+#+END_SRC
+
+*** rosbag
+    :PROPERTIES:
+    :CUSTOM_ID: rosbag
+    :END:
+
+#+BEGIN_SRC sh
+    rosbag record <topic-names>
+    rosbag record -a
+    rosbag play <bag-files>
+#+END_SRC
+
+** Communication
+   :PROPERTIES:
+   :CUSTOM_ID: communication
+   :END:
+
+- Topic
+- Message (msg)
+- Service (srv)
+- parameter server
+- Action
+
+#+CAPTION: topic-vs-service
+[[https://i.imgur.com/S9VF64i.png]]
+
+** Tools
+   :PROPERTIES:
+   :CUSTOM_ID: tools
+   :END:
+
+- gazebo (OSRF) ODE
+- RViz
+- rqt
+
+  - rqt_graph
+  - rqt_plot
+  - rqt_console
+
+- rosbag
+- TF (TransForm)
+
+#+CAPTION: ros-link-fram
+[[https://i.imgur.com/fTCBJv4.png]]
+
+- URDF(Unified Robot Description Format)
+
+** Client Library
+   :PROPERTIES:
+   :CUSTOM_ID: client-library
+   :END:
+
+- roscpp
+- rospy
+- roslisp
+
+** SLAMs IN ROS
+   :PROPERTIES:
+   :CUSTOM_ID: slams-in-ros
+   :END:
+
+- Gmapping
+- Karto
+
+* robot_sim_demo
+  :PROPERTIES:
+  :CUSTOM_ID: robot_sim_demo
+  :END:
+
+[[https://github.com/DroidAITech][重德智能-github]]
+
+** Download anc Make
+   :PROPERTIES:
+   :CUSTOM_ID: download-anc-make
+   :END:
+
+#+BEGIN_SRC sh
+    cd ~/catkin_ws/src
+    git clone https://github.com/DroidAITech/ROS-Academy-for-Beginners.git
+    cd ~/catkin_ws
+    rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
+    catkin_make
+    source ~/catkin_ws/devel/setup.bash
+#+END_SRC
+
+** How to use
+   :PROPERTIES:
+   :CUSTOM_ID: how-to-use
+   :END:
+
+#+BEGIN_SRC sh
+    $ rospack profile
+    $ roslaunch robot_sim_demo robot_spawn.launch
+
+    yubao@yubao-Z370M-S01:~/catkin_ws/src/ROS-Academy-for-Beginners$ rosnode list
+    /cmd_vel_mux
+    /gazebo
+    /gazebo_gui
+    /mobile_base_nodelet_manager
+    /rosout
+    /xbot/robot_state_publisher
+    /xbot/spawner
+
+    yubao@yubao-Z370M-S01:~/catkin_ws/src/ROS-Academy-for-Beginners$ rosnode info /cmd_vel_mux
+    --------------------------------------------------------------------------------
+    Node [/cmd_vel_mux]
+    Publications:
+     * /mobile_base_nodelet_manager/bond [bond/Status]
+     * /rosout [rosgraph_msgs/Log]
+
+    Subscriptions:
+     * /clock [rosgraph_msgs/Clock]
+     * /mobile_base_nodelet_manager/bond [bond/Status]
+
+    Services:
+     * /cmd_vel_mux/get_loggers
+     * /cmd_vel_mux/set_logger_level
+
+
+    contacting node http://yubao-Z370M-S01:40381/ ...
+    Pid: 20597
+    Connections:
+     * topic: /rosout
+        * to: /rosout
+        * direction: outbound
+        * transport: TCPROS
+     * topic: /mobile_base_nodelet_manager/bond
+        * to: /cmd_vel_mux
+        * direction: outbound
+        * transport: INTRAPROCESS
+     * topic: /mobile_base_nodelet_manager/bond
+        * to: /mobile_base_nodelet_manager
+        * direction: outbound
+        * transport: TCPROS
+     * topic: /clock
+        * to: /gazebo (http://yubao-Z370M-S01:45907/)
+        * direction: inbound
+        * transport: TCPROS
+     * topic: /mobile_base_nodelet_manager/bond
+        * to: /cmd_vel_mux (http://yubao-Z370M-S01:40381/)
+        * direction: inbound
+        * transport: INTRAPROCESS
+     * topic: /mobile_base_nodelet_manager/bond
+        * to: /mobile_base_nodelet_manager (http://yubao-Z370M-S01:42755/)
+        * direction: inbound
+        * transport: TCPROS
+#+END_SRC
+
+Control:
+
+#+BEGIN_SRC sh
+    ~/catkin_ws/src/ROS-Academy-for-Beginners$ rosrun robot_sim_demo robot_keyboard_teleop.py
+
+    Control The Robot!
+    ---------------------------
+    Moving around:
+       u    i    o
+       j    k    l
+       m    ,    .
+
+    q/z : increase/decrease max speeds by 10%
+    w/x : increase/decrease only linear speed by 10%
+    e/c : increase/decrease only angular speed by 10%
+    space key, k : force stop
+    anything else : stop smoothly
+
+    CTRL-C to quit
+
+    currently:  speed 0.2   turn 1
+#+END_SRC
+
+Add Image view;
+
+#+BEGIN_SRC sh
+     rosrun image_view image_view image:=/camera/rgb/image_raw
+#+END_SRC
+
+* Robots
+- [[http://www.willowgarage.com/][willowgarage]]
+
+** PR2
+#+CAPTION: pr2
+[[https://i.imgur.com/9TaafSl.png]]
+#+BEGIN_SRC sh
+    roslaunch pr2_bringup pr2.launch
+#+END_SRC
+* ROS in Practice
+  :PROPERTIES:
+  :CUSTOM_ID: ros-in-practice
+  :END:
+
+** cv_camera
+   :PROPERTIES:
+   :CUSTOM_ID: cv_camera
+   :END:
+
+cv_camera uses OpenCV capture object to capture camera image. This
+supports camera_image and nodelet.
+
+- [[http://wiki.ros.org/cv_camera][cv_camera-row wiki]]
+- [[https://answers.ros.org/question/197651/how-to-install-a-driver-like-usb_cam/][how
+  to install a driver like usb camera]]
+
+Usage:
+
+#+BEGIN_SRC sh
+    rosparam set cv_camera/device_id 0
+    rosrun cv_camera cv_camera_node
+#+END_SRC
+
+** usb_cam
+   :PROPERTIES:
+   :CUSTOM_ID: usb_cam
+   :END:
+
+#+BEGIN_SRC sh
+    sudo apt-get install ros-kinetic-usb-cam
+
+    yubao@yubao-Z370M-S01:~$ rosrun usb_cam usb_cam_node
+
+    yubao@yubao-Z370M-S01:~$ rostopic list
+    /rosout
+    /rosout_agg
+    /usb_cam/camera_info
+    /usb_cam/image_raw
+    /usb_cam/image_raw/compressed
+    /usb_cam/image_raw/compressed/parameter_descriptions
+    /usb_cam/image_raw/compressed/parameter_updates
+    /usb_cam/image_raw/compressedDepth
+    /usb_cam/image_raw/compressedDepth/parameter_descriptions
+    /usb_cam/image_raw/compressedDepth/parameter_updates
+    /usb_cam/image_raw/theora
+    /usb_cam/image_raw/theora/parameter_descriptions
+    /usb_cam/image_raw/theora/parameter_updates
+
+    $rosrun rviz rviz
+#+END_SRC
+
+#+CAPTION: usb camera
+[[https://i.loli.net/2019/02/12/5c62abc8e7d30.png]]
+
+** Usb camera from sources
+   :PROPERTIES:
+   :CUSTOM_ID: usb-camera-from-sources
+   :END:
+
+#+BEGIN_SRC sh
+    cd catkin_ws/src
+    git clone https://github.com/bosch-ros-pkg/usb_cam.git
+    cd ../
+    catkin_make
+
+    rosdep install camera_calibration
+    rosmake camera_calibration
+
+    roslaunch usb_cam usb-cam-test.launch
+#+END_SRC
+
+Result:
+
+#+CAPTION: Usb Camera Image
+[[https://i.loli.net/2019/02/21/5c6e4d07ede90.png]]
+
+** Camera calibration
+   :PROPERTIES:
+   :CUSTOM_ID: camera-calibration
+   :END:
+
+- [[http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration][How
+  to Calibrate a Monocular Camera]]
+
+#+BEGIN_SRC sh
+    yubao@yubao-Z370M-S01:~/catkin_ws/src/ethzasl_ptam$ rosrun cv_camera cv_camera_node
+    [ INFO] [1549972546.088217763]: using default calibration URL
+    [ INFO] [1549972546.088422601]: camera calibration URL: file:///home/yubao/.ros/camera_info/camera.yaml
+    [ INFO] [1549972546.088650628]: Unable to open camera calibration file [/home/yubao/.ros/camera_info/camera.yaml]
+    [ WARN] [1549972546.088742036]: Camera calibration file /home/yubao/.ros/camera_info/camera.yaml not found.
+#+END_SRC
+
+#+BEGIN_SRC sh
+    rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.025 image:=/usb_cam/image_raw camera:=/usb_cam
+#+END_SRC
+
+* References
+  :PROPERTIES:
+  :CUSTOM_ID: references
+  :END:

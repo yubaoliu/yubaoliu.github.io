@@ -1,0 +1,13 @@
+#+AUTHOR: Yubao
+#+DATE: 2019-08-12 Mon 20:26
+#+TITLE: Academic English
+
+** comparation
+
+Our localization program will **reduce the margin of error** considerably compared to a GPS device, whose margin of error can be as high as ten meters
+
+** possible VS probable
+
+- It is not possible to finish the task tomorrow.
+- It is probable that he has forgotten the date.
+- Probably approximately correct (PAC) 大概差不多是对的

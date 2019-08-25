@@ -1,0 +1,167 @@
+* Semantic Segmentation
+** articles
+- [[https://meetshah1995.github.io/semantic-segmentation/deep-learning/pytorch/visdom/2017/06/01/semantic-segmentation-over-the-years.html][Semantic Segmentation using Fully Convolutional Networks over the years]]
+
+** Repos
+*** [[https://github.com/CSAILVision/semantic-segmentation-pytorch.git][CSAILVision/semantic-segmentation-pytorch]]
+*** [[https://github.com/meetshah1995/pytorch-semseg.git][meetshah1995/pytorch-semseg]]
+
+
+* Perceptrons
+** AND Perceptron
+[[https://youtu.be/Y-ImuxNpS40][Youtube: AND Perception]]
+
+[[https://d17h27t6h515a5.cloudfront.net/topher/2017/May/5912bf0e_and-quiz/and-quiz.png]]
+** OR Perceptron
+[[https://d17h27t6h515a5.cloudfront.net/topher/2017/May/5912c102_or-quiz/or-quiz.png]]
+[[https://d17h27t6h515a5.cloudfront.net/topher/2017/May/5912c232_and-to-or/and-to-or.png]]
+** XOR Perceptron
+[[https://youtu.be/-z9K49fdE3g][XOR-Youtubu]]
+[[https://d17h27t6h515a5.cloudfront.net/topher/2017/May/5912c2f1_xor/xor.png]]
+[[https:/classroom.udacity.com/courses/ud188/lessons/b4ca7aaa-b346-43b1-ae7d-20d27b2eab65/concepts/4d015fb7-e73c-447f-a17a-34a0a2b694a0#]]
+
+* Sigmoid
+$$
+\sigma (x) = \frac{1}{1+e^{-x}}
+$$
+
+* Softmax
+[[https:/classroom.udacity.com/courses/ud188/lessons/b4ca7aaa-b346-43b1-ae7d-20d27b2eab65/concepts/4d015fb7-e73c-447f-a17a-34a0a2b694a0#]]
+
+Question: What function turns every number into positive?
+- [ ] sin
+- [ ] log
+- [ ] cos
+- [X] exp
+
+Linear function scores: $Z_1, ..., Z_n$
+
+$$
+p(class i) = \frac{e_{z_i}}{e_{z_1}+...+e_{z_n}}
+$$
+
+* Croos Entropy
+** Cross Entropy
+$$
+CE(CrossEntropy) = - \sum_{i=1}^{m} y_i ln(p_i) + (1-y_i) ln(1-p_i)
+$$
+** Multi-class Cross-Entropy
+$$
+CE(CrossEntropy) = - \sum_{i=1}^{n} \sum_{j=1}^{m} y_{ij} ln(p_{ij})
+$$
+
+* Gradient Descent
+https://classroom.udacity.com/courses/ud188/lessons/b4ca7aaa-b346-43b1-ae7d-20d27b2eab65/concepts/0d92455b-2fa0-4eb8-ae5d-07c7834b8a56
+
+he first thing to notice is that the sigmoid function has a really nice derivative. Namely,
+$$
+\sigma' (x) = \sigma(x) (1-\sigma(x))
+$$
+
+* Batch
+ Batch size = =GPU_COUNT * IMAGES_PER_GPU=
+
+ #+begin_src python
+GPU_COUNT = 1
+IMAGES_PER_GPU = 1
+ #+end_src
+* Resources
+- [[https://gluon-cv.mxnet.io/index.html][GluonCV]] a Deep Learning Toolkit for Computer Vision
+- Udacity: 
+ [[https://classroom.udacity.com/courses/ud188/lessons/b4ca7aaa-b346-43b1-ae7d-20d27b2eab65/concepts/9e1364a8-e8b4-4eac-be12-4d44a139f721][Intro to Deep Learning with PyTorch]]
+* Dataset
+** ADE20K
+*** Prepare ADE20K dataset
+GLUON: [[https://gluon-cv.mxnet.io/build/examples_datasets/ade20k.html][Prepare ADE20K dataset]] ade20k.py
+
+Download: 
+[[http://data.csail.mit.edu/places/ADEchallenge/ADEChallengeData2016.zip][ADEChallengeData2016.zip]] 923M
+[[http://data.csail.mit.edu/places/ADEchallenge/release_test.zip][=release_test.zip=]] 202M
+
+ADE20K is a scene-centric containing 
+- **20** thousands images annotated
+- 150 object categories
+- 2.3 GB 
+
+*** Projects
+[[https://github.com/topics/ade20k][Github--ade20k]]:
+- AILVision / semantic-segmentation-pytorch
+- hellochick / ICNet-tensorflow
+- hellochick / PSPNet-tensorflow
+- mitmul / chainer-pspnet
+- hellochick / semantic-segmentation-tensorflow
+- hellochick / Indoor-segmentation
+- switchablenorms / SwitchNorm_Segmentation
+- Nikronic / ObjectNet
+- ruixuejianfei / SwitchNorm_Segmentation
+- jimmyyhwu / semantic-segmentation
+- Kejie-Wang / resnet-deeplab
+
+
+
+*** Use GLUON
+Installation:
+**Install MXNet**
+#+begin_src python
+# the oldest stable version of mxnet required is 1.4.0
+pip install mxnet-mkl>=1.4.0 --upgrade
+
+# you can install nightly build of mxnet to access up-to-date features
+pip install --pre --upgrade mxnet-mkl
+#+end_src
+
+**Install GluonCV**
+#+begin_src python
+pip install gluoncv --upgrade
+
+# if you are eager to try new features, try nightly build instead
+
+pip install gluoncv --pre --upgrade
+#+end_src
+
+
+User this script to download dataset
+#+begin_src python
+python ade20k.py --download-dir ~/ade_downloads
+#+end_src
+
+
+* Tensorflow
+** using cpu or gp
+
+Refer: https://www.tensorflow.org/guide/using_gpu
+
+- "/cpu:0": The CPU of your machine.
+- "/device:GPU:0": The GPU of your machine, if you have one.
+- "/device:GPU:1": The second GPU of your machine, etc.
+
+
+
+1) with tf.device('/cpu:0'):
+
+#+begin_src python
+with tf.device('/cpu:0'):
+  a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
+  b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
+  c = tf.matmul(a, b)
+# Creates a session with log_device_placement set to True.
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+# Runs the op.
+print(sess.run(c))
+#+end_src
+
+#+begin_src python
+2) sess = tf.Session(config=tf.ConfigProto(device_count={'gpu':0}))
+
+3) config = tf.ConfigProto(
+        device_count = {'CPU': 0}
+    )
+sess = tf.Session(config=config)
+
+4) env CUDA_VISIBLE_DEVICES=0
+#+end_src
+
+
+
+
+

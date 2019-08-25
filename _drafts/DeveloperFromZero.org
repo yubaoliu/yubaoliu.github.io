@@ -1,0 +1,249 @@
+* Tools Usage
+** Cmake
+- refer:http://eigen.tuxfamily.org/index.php?title=CMake
+
+* ThirdParty Libs
+** Eigen
+*** Using Eigen in CMake Projects
+- Refer: https://eigen.tuxfamily.org/dox/TopicCMakeGuide.html
+#+BEGIN_SRC sh
+cmake_minimum_required (VERSION 3.0)
+project (myproject)
+find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+add_executable (example example.cpp)
+target_link_libraries (example Eigen3::Eigen)
+#+END_SRC
+If you have multiple installed version of Eigen, you can pick your favorite one by setting the Eigen3_DIR cmake's variable to the respective path containing the Eigen3*.cmake files. For instance:
+#+BEGIN_SRC sh
+cmake path-to-example-directory -DEigen3_DIR=$HOME/mypackages/share/eigen3/cmake/
+#+END_SRC
+
+** Boost
+*** Installation
+#+BEGIN_SRC sh
+sudo apt-get install libboost-all-dev
+#+END_SRC
+
+** Pangolin
+*** Introduction
+<2017-07-19 Wed>
+- Source Code: [[https://github.com/stevenlovegrove/Pangolin][Pangolin-github]]
+- Pangolin for Input and Visualisation
+
+Pangolin is a lightweight rapid development library for managing OpenGL display / interaction and video input. At its heart is a simple OpenGl viewport manager which can help to modularise 3D visualisation without adding to its complexity, and offers an advanced but intuitive 3D navigation handler. Pangolin also provides a mechanism for manipulating program variables through config files and ui integration.
+
+The ethos of Pangolin is to reduce the boilerplate code that normally gets written to visualise and interact with (typically image and 3D based) systems, without compromising performance.
+
+Although Pangolin may be useful in it's current state, think of it as unmaintained and probably buggy. That being said, it is permissively licenced and can be easily forked (on GitHub) for those wishing to make changes. Patches are welcome.
+
+- Features
+
+*Manage OpenGL Viewports* - A simple layout manager lets you specify viewport dimensions relative to window or parent sizes and enforce aspect ratios. Although viewport dimensions are calculated for you, you are in control of when they are activated, knowing that your OpenGL operations are within a single OpenGL context and drawn as you want.
+
+*Advanced 3D Handler* - Pangolin also allows you to associate different input handlers with a viewport, and if you like, it will take care of the ModelView matrix for you. If you tell Pangolin which Projection matrix you're using for a particular viewport, it can use the depth buffer to improve manipulation with drag and rotate operations around a selected 3D point.
+
+*Input Widgets* - Why would we want yet another widget toolkit you might ask? Well, these are designed specifically for prototyping to be versatile (linear / log scale, runtime adjustable resolution, custom data types, ...), fast, and integrate very simply with code.
+
+*Video Input* - Pangolin can use libDC1394, FFMPEG and V4L (if they are installed) to input various kinds of video from different devices. Pangolin offers a simple C++ common interface for these sources, letting you use firewire and usb cameras, compressed images and video, and even network streams such as motion JPEG (largely thanks to FFMPEG).
+
+*Live Plotter* - Often it is handy to graph scientific data. Pangolin offers a fast and simple OpenGL plotter which supports several visualisation modes (time-series, parametric, cumulative, ...) with intuitive and smooth interaction.
+
+*Record Video* / Input - Pangolin also has some utilities for recording user input and lossless video, which might be handy for generating and testing datasets and in debugging.    
+*** Installation
+#+BEGIN_SRC sh
+git clone https://github.com/stevenlovegrove/Pangolin.git
+cd Pangolin
+mkdir build
+cd build
+cmake ..
+cmake --build .
+#+END_SRC
+*** Issues and Solutions
+- Error log
+#+BEGIN_SRC sh
+yubao@yubao-Lenovo-YOGA-910-13IKB:~/3dPartyLibs/Pangolin/build$ cmake --build .
+Scanning dependencies of target pangolin
+[  1%] Building CXX object src/CMakeFiles/pangolin.dir/utils/file_extension.cpp.o
+[  2%] Building CXX object src/CMakeFiles/pangolin.dir/utils/file_utils.cpp.o
+[  3%] Building CXX object src/CMakeFiles/pangolin.dir/utils/sigstate.cpp.o
+[  4%] Building CXX object src/CMakeFiles/pangolin.dir/utils/threadedfilebuf.cpp.o
+[  5%] Building CXX object src/CMakeFiles/pangolin.dir/utils/timer.cpp.o
+[  6%] Building CXX object src/CMakeFiles/pangolin.dir/utils/uri.cpp.o
+[  7%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io.cpp.o
+[  8%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_exr.cpp.o
+[  9%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_jpg.cpp.o
+[ 10%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_pango.cpp.o
+[ 11%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_png.cpp.o
+[ 12%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_ppm.cpp.o
+[ 13%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_raw.cpp.o
+[ 14%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_tga.cpp.o
+[ 15%] Building CXX object src/CMakeFiles/pangolin.dir/image/image_io_zstd.cpp.o
+[ 16%] Building CXX object src/CMakeFiles/pangolin.dir/image/pixel_format.cpp.o
+[ 17%] Building CXX object src/CMakeFiles/pangolin.dir/log/packet.cpp.o
+[ 18%] Building CXX object src/CMakeFiles/pangolin.dir/log/packetstream.cpp.o
+/home/yubao/3dPartyLibs/Pangolin/src/log/packetstream.cpp: In member function ‘pangolin::pangoTagType pangolin::PacketStream::readTag(pangolin::pangoTagType)’:
+/home/yubao/3dPartyLibs/Pangolin/src/log/packetstream.cpp:39:15: error: ‘runtime_error’ is not a member of ‘std’
+         throw std::runtime_error(("Tag mismatch error: expected tag '" + tagName(r) + "' does not match found tag '" + tagName(x) + "'").c_str());
+               ^
+src/CMakeFiles/pangolin.dir/build.make:470: recipe for target 'src/CMakeFiles/pangolin.dir/log/packetstream.cpp.o' failed
+make[2]: *** [src/CMakeFiles/pangolin.dir/log/packetstream.cpp.o] Error 1
+CMakeFiles/Makefile2:168: recipe for target 'src/CMakeFiles/pangolin.dir/all' failed
+make[1]: *** [src/CMakeFiles/pangolin.dir/all] Error 2
+Makefile:149: recipe for target 'all' failed
+make: *** [all] Error 2
+
+#+END_SRC
+
+- Solution
+Refer to: [[https://github.com/stevenlovegrove/Pangolin/issues/259][issue-259]]
+#+BEGIN_SRC sh
+Add
+#include <stdexcept>
+to []/Pangolin/src/log/packetstream.cpp
+#+END_SRC
+** DBow2
+*** dependencies
+- OpenCV
+- Eigen
+
+** g2o
+*** Dependencies
+- Eigen3
+- Qt5
+
+
+* SLAM
+** ORB-Slam
+*** Dependencies
+
+- Eigen3
+
+- OpenCV
+
+- Pangolin
+*** Installation
+
+#+BEGIN_SRC shell
+git clone https://github.com/raulmur/ORB_SLAM2
+cd ORB_SLAM2
+chmod +x build.sh
+./build.sh
+#+END_SRC
+*** Issues and Solutions
+- Error Log
+#+BEGIN_SRC sh
+yubao@yubao-Lenovo-YOGA-910-13IKB:~/Documents/ORB_SLAM2$ ./build.sh 
+....                                                                                  ^
+/home/yubao/Documents/ORB_SLAM2/src/Viewer.cc: In member function ‘void ORB_SLAM2::Viewer::Run()’:
+/home/yubao/Documents/ORB_SLAM2/src/Viewer.cc:160:28: error: ‘usleep’ was not declared in this scope
+                 usleep(3000);
+                            ^
+/home/yubao/Documents/ORB_SLAM2/src/LocalMapping.cc: In member function ‘void ORB_SLAM2::LocalMapping::Run()’:
+/home/yubao/Documents/ORB_SLAM2/src/LocalMapping.cc:94:28: error: ‘usleep’ was not declared in this scope
+                 usleep(3000);
+                            ^
+/home/yubao/Documents/ORB_SLAM2/src/LocalMapping.cc:108:20: error: ‘usleep’ was not declared in this scope
+         usleep(3000);
+                    ^
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc: In member function ‘void ORB_SLAM2::LoopClosing::Run()’:
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc:84:20: error: ‘usleep’ was not declared in this scope
+         usleep(5000);
+                    ^
+/home/yubao/Documents/ORB_SLAM2/src/LocalMapping.cc: In member function ‘void ORB_SLAM2::LocalMapping::RequestReset()’:
+/home/yubao/Documents/ORB_SLAM2/src/LocalMapping.cc:719:20: error: ‘usleep’ was not declared in this scope
+         usleep(3000);
+                    ^
+/home/yubao/Documents/ORB_SLAM2/src/System.cc: In member function ‘cv::Mat ORB_SLAM2::System::TrackStereo(const cv::Mat&, const cv::Mat&, const double&)’:
+/home/yubao/Documents/ORB_SLAM2/src/System.cc:134:28: error: ‘usleep’ was not declared in this scope
+                 usleep(1000);
+                            ^
+/home/yubao/Documents/ORB_SLAM2/src/System.cc: In member function ‘cv::Mat ORB_SLAM2::System::TrackRGBD(const cv::Mat&, const cv::Mat&, const double&)’:
+/home/yubao/Documents/ORB_SLAM2/src/System.cc:185:28: error: ‘usleep’ was not declared in this scope
+                 usleep(1000);
+                            ^
+/home/yubao/Documents/ORB_SLAM2/src/System.cc: In member function ‘cv::Mat ORB_SLAM2::System::TrackMonocular(const cv::Mat&, const double&)’:
+/home/yubao/Documents/ORB_SLAM2/src/System.cc:236:28: error: ‘usleep’ was not declared in this scope
+                 usleep(1000);
+                            ^
+/home/yubao/Documents/ORB_SLAM2/src/System.cc: In member function ‘void ORB_SLAM2::System::Shutdown()’:
+/home/yubao/Documents/ORB_SLAM2/src/System.cc:309:24: error: ‘usleep’ was not declared in this scope
+             usleep(5000);
+                        ^
+/home/yubao/Documents/ORB_SLAM2/src/System.cc:315:20: error: ‘usleep’ was not declared in this scope
+         usleep(5000);
+                    ^
+/home/yubao/Documents/ORB_SLAM2/src/Tracking.cc: In member function ‘void ORB_SLAM2::Tracking::Reset()’:
+/home/yubao/Documents/ORB_SLAM2/src/Tracking.cc:1512:24: error: ‘usleep’ was not declared in this scope
+             usleep(3000);
+                        ^
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc: In member function ‘void ORB_SLAM2::LoopClosing::CorrectLoop()’:
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc:428:20: error: ‘usleep’ was not declared in this scope
+         usleep(1000);
+                    ^
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc: In member function ‘void ORB_SLAM2::LoopClosing::RequestReset()’:
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc:630:20: error: ‘usleep’ was not declared in this scope
+         usleep(5000);
+                    ^
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc: In member function ‘void ORB_SLAM2::LoopClosing::RunGlobalBundleAdjustment(long unsigned int)’:
+/home/yubao/Documents/ORB_SLAM2/src/LoopClosing.cc:670:28: error: ‘usleep’ was not declared in this scope
+                 usleep(1000);
+                            ^
+CMakeFiles/ORB_SLAM2.dir/build.make:134: recipe for target 'CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.o' failed
+make[2]: *** [CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+CMakeFiles/ORB_SLAM2.dir/build.make:86: recipe for target 'CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o' failed
+make[2]: *** [CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o] Error 1
+CMakeFiles/ORB_SLAM2.dir/build.make:110: recipe for target 'CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.o' failed
+make[2]: *** [CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.o] Error 1
+CMakeFiles/ORB_SLAM2.dir/build.make:494: recipe for target 'CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.o' failed
+make[2]: *** [CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.o] Error 1
+CMakeFiles/ORB_SLAM2.dir/build.make:62: recipe for target 'CMakeFiles/ORB_SLAM2.dir/src/System.cc.o' failed
+make[2]: *** [CMakeFiles/ORB_SLAM2.dir/src/System.cc.o] Error 1
+CMakeFiles/Makefile2:178: recipe for target 'CMakeFiles/ORB_SLAM2.dir/all' failed
+make[1]: *** [CMakeFiles/ORB_SLAM2.dir/all] Error 2
+Makefile:83: recipe for target 'all' failed
+make: *** [all] Error 2
+#+END_SRC
+- Solution
+Refer to: [[https://github.com/raulmur/ORB_SLAM2/issues/254][issues-259]]
+Add #include <unistd.h> to the following files:
+#+BEGIN_SRC sh
+	modified:   Examples/Monocular/mono_euroc.cc
+	modified:   Examples/Monocular/mono_kitti.cc
+	modified:   Examples/Monocular/mono_tum.cc
+	modified:   Examples/RGB-D/rgbd_tum.cc
+	modified:   Examples/Stereo/stereo_euroc.cc
+	modified:   Examples/Stereo/stereo_kitti.cc
+	modified:   src/LocalMapping.cc
+	modified:   src/LoopClosing.cc
+	modified:   src/ORBextractor.cc
+	modified:   src/System.cc
+	modified:   src/Tracking.cc
+	modified:   src/Viewer.cc
+#+END_SRC
+
+- Pangolin lib dependency error 
+#+BEGIN_SRC sh
+[ 68%] Linking CXX executable ../Examples/Monocular/mono_euroc
+../lib/libORB_SLAM2.so: undefined reference to `pangolin::Split(std::string const&, char)'
+../Thirdparty/DBoW2/lib/libDBoW2.so: undefined reference to `cv::_OutputArray::_OutputArray(cv::Mat&)'
+../lib/libORB_SLAM2.so: undefined reference to `pangolin::CreatePanel(std::string const&)'
+../lib/libORB_SLAM2.so: undefined reference to `pangolin::BindToContext(std::string)'
+../lib/libORB_SLAM2.so: undefined reference to `pangolin::CreateWindowAndBind(std::string, int, int, pangolin::Params const&)'
+collect2: error: ld returned 1 exit status
+CMakeFiles/mono_euroc.dir/build.make:134: recipe for target '../Examples/Monocular/mono_euroc' failed
+make[2]: *** [../Examples/Monocular/mono_euroc] Error 1
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/mono_euroc.dir/all' failed
+make[1]: *** [CMakeFiles/mono_euroc.dir/all] Error 2
+Makefile:83: recipe for target 'all' failed
+make: *** [all] Error 2
+#+END_SRC
+
+
+
+
+
+
+
+
+

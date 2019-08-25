@@ -1,0 +1,7 @@
+* Working with submodules
+  :PROPERTIES:
+  :CUSTOM_ID: working-with-submodules
+  :END:
+
+1. [[https://blog.github.com/2016-02-01-working-with-submodules/][Working
+   with submodules]]

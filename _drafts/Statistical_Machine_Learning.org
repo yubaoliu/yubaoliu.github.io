@@ -1,0 +1,45 @@
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+- [[https://www.bilibili.com/video/av24367356][bilibili-(张志华)统计机器学习]]
+
+[[file:assets/markdown-img-paste-20190127120328832.png]]
+
+[[file:assets/markdown-img-paste-20190127120347270.png]]
+
+[[file:assets/markdown-img-paste-20190127120419765.png]]
+
+#+CAPTION: (张志华)统计机器学习
+[[file:assets/markdown-img-paste-20190127120503488.png]]
+
+- [[http://www.stat.cmu.edu/~ryantibs/statml/][stistical Machine
+  Learning: Spring 2017]]
+
+#+CAPTION: Statistical Machine Learning: Spring 2017-Schedule
+[[file:assets/markdown-img-paste-20190127120222376.png]]
+
+* Statistic Machine Learning (SML) Study Notes
+  :PROPERTIES:
+  :CUSTOM_ID: statistic-machine-learning-sml-study-notes
+  :END:
+
+** Introduction
+   :PROPERTIES:
+   :CUSTOM_ID: introduction
+   :END:
+
+网络 算法 机器
+
+优化 概率 统计
+
+数据 矩阵 信息
+
+模型 推理
+
+获知识 靠学习
+
+*What is SML?*
+
+SML = Matrix + Optimization + Algorithm + Statistics

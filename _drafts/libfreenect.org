@@ -1,0 +1,20 @@
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+- [[https://github.com/OpenKinect/libfreenect.git][OpenKinect/libfreenect]]
+- [[https://github.com/OpenKinect/libfreenect2.git][OpenKinect/libfreenect2]]
+
+* Build
+  :PROPERTIES:
+  :CUSTOM_ID: build
+  :END:
+
+#+BEGIN_SRC sh
+    cd libfreenect2/
+    mkdir build && cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/local/freenect2
+    make
+    make install
+#+END_SRC

@@ -1,0 +1,251 @@
+* Overview
+  :PROPERTIES:
+  :CUSTOM_ID: overview
+  :END:
+
+[[https://opencv.org/][opencv_org]]
+[[https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html][OpenCV-Python
+Tutorials]]
+
+*Note*: Before compile OpenCV from source code, remove //anaconda2/bin/
+from PATH under the current terminal
+
+*Config with ccmake or CMake-GUI*:
+
+select:
+
+- BUILD_ZLIB
+- opencv_world
+
+* Installing OpenCV-Python from Pre-built Binaries
+  :PROPERTIES:
+  :CUSTOM_ID: installing-opencv-python-from-pre-built-binaries
+  :END:
+
+Install package
+[[https://packages.ubuntu.com/trusty/python-opencv][python-opencv]] with
+following command in terminal (as root user).
+
+=$ sudo apt-get install python-opencv=
+
+if you are on linux you can do :
+
+#+BEGIN_SRC sh
+    pip install opencv-python
+#+END_SRC
+
+or
+
+#+BEGIN_SRC sh
+    conda install opencv
+#+END_SRC
+
+Open Python IDLE (or IPython) and type following codes in Python
+terminal.
+
+#+BEGIN_SRC python
+    >>> import cv2
+    >>> print cv2.__version__
+    3.4.3
+#+END_SRC
+
+* Building OpenCV from source
+  :PROPERTIES:
+  :CUSTOM_ID: building-opencv-from-source
+  :END:
+
+** Required build dependencies
+   :PROPERTIES:
+   :CUSTOM_ID: required-build-dependencies
+   :END:
+
+We need CMake to configure the installation, GCC for compilation,
+Python-devel and Numpy for building Python bindings etc.
+
+#+BEGIN_SRC sh
+    sudo apt-get install cmake
+#+END_SRC
+
+Next we need GTK support for GUI features, Camera support (libv4l),
+Media Support (ffmpeg, gstreamer) etc.
+
+#+BEGIN_SRC sh
+    sudo apt-get install gtk2-devel
+    sudo apt-get install libv4l-devel
+    sudo apt-get install ffmpeg-devel
+    sudo apt-get install gstreamer-plugins-base-devel
+#+END_SRC
+
+*Optional Dependencies*
+
+Above dependencies are sufficient to install OpenCV in your Ubuntu
+machine. But depending upon your requirements, you may need some extra
+dependencies. A list of such optional dependencies are given below. You
+can either leave it or install it, your call :)
+
+OpenCV comes with supporting files for image formats like PNG, JPEG,
+JPEG2000, TIFF, WebP etc. But it may be a little old. If you want to get
+latest libraries, you can install development files for system libraries
+of these formats.
+
+#+BEGIN_SRC sh
+    sudo apt-get install libpng-devel
+    sudo apt-get install libjpeg-turbo-devel
+    sudo apt-get install jasper-devel
+    sudo apt-get install openexr-devel
+    sudo apt-get install libtiff-devel
+    sudo apt-get install libwebp-devel
+#+END_SRC
+
+** Downloading OpenCV
+   :PROPERTIES:
+   :CUSTOM_ID: downloading-opencv
+   :END:
+
+*Reference:*
+
+- https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html
+
+To download the latest source from OpenCV's
+[[https://github.com/opencv/opencv][GitHub Repository]]. (If you want to
+contribute to OpenCV choose this. For that, you need to install *Git*
+first)
+
+#+BEGIN_SRC sh
+    $ git clone https://github.com/opencv/opencv.git
+#+END_SRC
+
+It will create a folder "opencv" in current directory. The cloning may
+take some time depending upon your internet connection.
+
+** Configuring and Installing
+   :PROPERTIES:
+   :CUSTOM_ID: configuring-and-installing
+   :END:
+
+Now open a terminal window and navigate to the downloaded "opencv"
+folder. Create a new "build" folder and navigate to it.
+
+#+BEGIN_SRC sh
+    $ mkdir build
+    $ cd build
+    $ cmake ../
+#+END_SRC
+
+Now you build the files using "make" command and install it using "make
+install" command.
+
+#+BEGIN_SRC sh
+    $ make
+    $sudo make install
+#+END_SRC
+
+** Test OpenCV Python
+   :PROPERTIES:
+   :CUSTOM_ID: test-opencv-python
+   :END:
+
+Installation is over. All files are installed in "/usr/local/" folder.
+Open a terminal and try import "cv2".
+
+#+BEGIN_SRC C++
+    import cv2 as cv
+    print(cv.__version__)
+#+END_SRC
+
+** Build opencv_contrib
+   :PROPERTIES:
+   :CUSTOM_ID: build-opencv_contrib
+   :END:
+
+[[https://github.com/opencv/opencv_contrib][Github]]
+
+#+BEGIN_SRC sh
+    git clone https://github.com/opencv/opencv_contrib.git
+#+END_SRC
+
+* Common Questions
+  :PROPERTIES:
+  :CUSTOM_ID: common-questions
+  :END:
+
+- Environment:
+
+  - conda
+  - Jupyter
+
+** problom: GTK+
+   :PROPERTIES:
+   :CUSTOM_ID: problom-gtk
+   :END:
+
+- *Problem Description*
+
+I encounterred this problom and it took me many days to solve it.
+
+#+CAPTION: read image example use cv2
+[[file:images/Anaconda/Error_OpenCV_imshow_gtk2x.png]]
+
+/This is the source code/:
+
+#+BEGIN_SRC python
+    import cv2
+
+    img = cv2.imread('test.png',0) # 0: gray; 1: color
+
+    cv2.imshow('Image',img) # para 1: window name
+
+    cv2.waitKey(0)
+
+    ​**Results**:
+    ---------------------------------------------------------------------------
+    error                                     Traceback (most recent call last)
+    <ipython-input-2-55233ffdf5b9> in <module>
+          1 import cv2
+          2 img = cv2.imread('test.png',0) # 0: gray; 1: color
+    ----> 3 cv2.imshow('Image',img) # para 1: window name
+          4 cv2.waitKey(0)
+
+    error: OpenCV(3.4.2) /tmp/build/80754af9/opencv-suite_1535558553474/work/modules/highgui/src/window.cpp:632: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Carbon support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
+#+END_SRC
+
+- *Solutions:*
+
+#+BEGIN_SRC sh
+    conda install -c menpo opencv3
+#+END_SRC
+
+These articles give a possible solution: 1.
+https://anaconda.org/menpo/opencv3 1.
+https://blog.csdn.net/flyyufenfei/article/details/79192330 2.
+https://groups.google.com/a/continuum.io/forum/#!topic/anaconda/uHB2wYT29vU
+
+** Problem with robots
+   :PROPERTIES:
+   :CUSTOM_ID: problem-with-robots
+   :END:
+
+- **Problem Description*
+
+#+CAPTION: Error due to ROS
+[[file:images/2018/12/error-due-to-ros.png]]
+
+#+BEGIN_SRC sh
+    (TensorflowPy36) yubao@yubao-Z370M-S01:~/GitProject/AI/Source/Tensorflow$ python ImageRead.py
+    Traceback (most recent call last):
+      File "ImageRead.py", line 2, in <module>
+        import cv2
+    ImportError: /opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so: undefined symbol: PyCObject_Type
+#+END_SRC
+
+- *Solutions*
+
+#+BEGIN_SRC sh
+    $ vim ~/.bashrc
+#+END_SRC
+
+comment this line:
+
+#+BEGIN_SRC sh
+    #source /opt/ros/kinetic/setup.bash
+#+END_SRC

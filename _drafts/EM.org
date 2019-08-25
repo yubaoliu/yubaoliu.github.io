@@ -1,0 +1,12 @@
+* Expectation Maximization (EM)
+  :PROPERTIES:
+  :CUSTOM_ID: expectation-maximization-em
+  :END:
+
+* Reference
+  :PROPERTIES:
+  :CUSTOM_ID: reference
+  :END:
+
+- [[https://github.com/roboticcam/machine-learning-notes][roboticcam/machine-learning-notes]]
+  徐亦达 EM

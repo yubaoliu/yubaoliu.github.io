@@ -1,0 +1,58 @@
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+- [[https://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html][OpenCV-SIFT]]
+
+* SIFT in OpenCV
+  :PROPERTIES:
+  :CUSTOM_ID: sift-in-opencv
+  :END:
+
+SIFT no longer available in opencv > 3.4.2
+
+#+BEGIN_SRC python
+    import numpy as np
+    import cv2 as cv
+    img = cv.imread('home.jpg')
+    gray= cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+    sift = cv.xfeatures2d.SIFT_create()
+    kp = sift.detect(gray,None)
+    img=cv.drawKeypoints(gray,kp,img)
+    cv.imwrite('sift_keypoints.jpg',img)
+#+END_SRC
+
+* Errors
+  :PROPERTIES:
+  :CUSTOM_ID: errors
+  :END:
+
+- *AttributeError: module 'cv2.cv2' has no attribute 'xfeatures2d'*
+- OPENCV_ENABLE_NONFREE
+
+#+BEGIN_SRC python
+    Traceback (most recent call last):
+      File "/home/yubao/GitProject/AI/MultiviewGeometry/Find_Transform_Matrix.py", line 16, in <module>
+        sift = cv2.xfeatures2d.SIFT_create()
+    cv2.error: OpenCV(4.0.0) /io/opencv_contrib/modules/xfeatures2d/src/sift.cpp:1207: error: (-213:The function/feature is not implemented) This algorithm is patented and is excluded in this configuration; Set OPENCV_ENABLE_NONFREE CMake option and rebuild the library in function 'create'
+#+END_SRC
+
+Read these blog -
+[[https://www.cnblogs.com/Allen-rg/p/9667926.html][Introduction to SIFT
+(Scale-Invariant Feature Transform)]]
+
+*Solution*
+
+- compile OpenCV3.3.1 from source code (I see ROS is also using 3.31)
+- After compileing, rename "cv2.cpython-35m-x86_64-linux-gnu.so" to
+  "cv2.so"
+- copy "cv2.so" to "/usr/lib/python3/dist-packages/"
+
+* References
+  :PROPERTIES:
+  :CUSTOM_ID: references
+  :END:
+
+- [[https://www.cnblogs.com/Allen-rg/p/9667926.html][Introduction to
+  SIFT (Scale-Invariant Feature Transform)]]

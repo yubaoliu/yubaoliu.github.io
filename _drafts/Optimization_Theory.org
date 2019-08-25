@@ -1,0 +1,9 @@
+* Resouces
+  :PROPERTIES:
+  :CUSTOM_ID: resouces
+  :END:
+
+- [[https://www.bilibili.com/video/av5400941?from=search&seid=18289226480350745023][陆吾生最优化课程2007]]
+- [[http://www.ece.uvic.ca/~optimize/][Book-Practical Optimiztion]]
+- [[http://www.ece.uvic.ca/~optimize/SupportMaterials.html][PRACTICAL
+  OPTIMIZATION: Algorithms and Engineering Applications]]

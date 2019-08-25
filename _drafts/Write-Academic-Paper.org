@@ -1,0 +1,267 @@
+* DOI to Bib
+  :PROPERTIES:
+  :CUSTOM_ID: doi-to-bib
+  :END:
+
+- *Online DOI2bib*: https://www.doi2bib.org/
+- Github: https://github.com/bibcure/doi2bib
+- Install doi2bib use pip
+
+#+BEGIN_SRC python
+    pip install doi2bib
+#+END_SRC
+
+- Web API Interface:
+
+#+BEGIN_EXAMPLE
+    http://api.crossref.org/works/[DOI]/transform/application
+#+END_EXAMPLE
+
+*Example*
+
+#+BEGIN_SRC sh
+    curl -s "http://api.crossref.org/works/https://doi.org/10.1007/s12083-014-0303-1/transform/applicatio n/x-bibtex" >> bib.bib
+#+END_SRC
+
+*Result*
+
+#+BEGIN_SRC sh
+    D:\GitHubSources\blog\Scripts (master)
+    λ cat bib.bib
+    @article{Chen_2014,
+            doi = {10.1007/s12083-014-0303-1},
+            url = {https://doi.org/10.1007%2Fs12083-014-0303-1},
+            year = 2014,
+            month = {jul},
+            publisher = {Springer Nature},
+            volume = {8},
+            number = {6},
+            pages = {952--964},
+            author = {Wenlong Chen and Yubao Liu and Haiyang Wang},
+            title = {On storage partitioning of internet routing tables: A P2P-based enhancement for scalable routers},
+            journal = {Peer-to-Peer Networking and Applications}
+    }
+#+END_SRC
+
+- *Shell Script*
+
+*Script*: doi2bib.sh
+
+#+BEGIN_EXAMPLE
+    #Main module
+    echo "sh doi2bib.sh <DOI_INPUT>"
+    doi2bib $1
+
+    doi2bib()
+    {
+            echo >>bib.bib;
+            curl -s "http://api.crossref.org/works/$1/transform/application/x-bibtex">>bib.bib
+            echo >>bib.bib
+    }
+#+END_EXAMPLE
+
+*Result*
+
+#+BEGIN_EXAMPLE
+    D:\GitHubSources\blog\Scripts (master)
+    λ sh doi2bib.sh https://doi.org/10.1007/s12083-014-0303-1
+    sh doi2bib.sh <DOI_INPUT>
+    @article{Chen_2014,
+            doi = {10.1007/s12083-014-0303-1},
+            url = {https://doi.org/10.1007%2Fs12083-014-0303-1},
+            year = 2014,
+            month = {jul},
+            publisher = {Springer Nature},
+            volume = {8},
+            number = {6},
+            pages = {952--964},
+            author = {Wenlong Chen and Yubao Liu and Haiyang Wang},
+            title = {On storage partitioning of internet routing tables: A P2P-based enhancement for scalable routers},
+            journal = {Peer-to-Peer Networking and Applications}
+    }
+#+END_EXAMPLE
+
+* pdfinfo
+  :PROPERTIES:
+  :CUSTOM_ID: pdfinfo
+  :END:
+
+- Windows:
+  [[http://api.256file.com/pdfinfo.exe/en-download-40491.html][Download]]
+- [[https://pypi.org/project/doi2bib/][Python Package]]
+
+* *doi2bib*
+  :PROPERTIES:
+  :CUSTOM_ID: doi2bib
+  :END:
+
+** [[https://pypi.org/project/doi2bib/][Description]]
+[[https://github.com/bibcure/doi2bib.git][Github]]
+   :PROPERTIES:
+   :CUSTOM_ID: description-github
+   :END:
+
+get bib item given a doi
+
+doi2bib is a module of
+[[https://github.com/bibcure/bibcure][bibcure]]and
+[[https://github.com/bibcure/scihub2pdf][scihub2pdf]]
+
+** Install
+   :PROPERTIES:
+   :CUSTOM_ID: install
+   :END:
+
+#+BEGIN_EXAMPLE
+    $ sudo pip install doi2bib
+#+END_EXAMPLE
+
+or if you want the full version
+
+#+BEGIN_EXAMPLE
+    $ sudo pip install bibcure
+#+END_EXAMPLE
+
+** Features and how to use
+   :PROPERTIES:
+   :CUSTOM_ID: features-and-how-to-use
+   :END:
+
+Given a DOI number...
+
+#+BEGIN_EXAMPLE
+    $ doi2bib 10.1038/s41524-017-0032-0
+#+END_EXAMPLE
+
+- get bib item given a doi(requires internet connection)
+
+You can easily append a bib into a bibfile, just do
+
+#+BEGIN_EXAMPLE
+    $ doi2bib 10.1038/s41524-017-0032-0 >> file.bib
+#+END_EXAMPLE
+
+You also can generate a bibtex from a txt file containing a list of DOIs
+
+#+BEGIN_EXAMPLE
+    $ doi2bib --input file_with_dois.txt --output refs.bib
+#+END_EXAMPLE
+
+* bibcure
+  :PROPERTIES:
+  :CUSTOM_ID: bibcure
+  :END:
+
+Given a bib file...
+
+#+BEGIN_EXAMPLE
+    $ bibcure -i input.bib -o output.bib
+#+END_EXAMPLE
+
+- check sure the Arxiv items have been published, then update
+  them(requires internet connection)
+- complete all fields(url, journal, etc) of all bib items using DOI
+  number(requires internet connection)
+- find and create DOI number associated with each bib item which has not
+  DOI field(requires internet connection)
+- abbreviate jorunals names
+
+* title2bib
+  :PROPERTIES:
+  :CUSTOM_ID: title2bib
+  :END:
+
+Given a title...
+
+#+BEGIN_EXAMPLE
+    $ title2bib An useful paper
+#+END_EXAMPLE
+
+- search papers related and return a bib for the selected paper(requires
+  internet connection)
+
+You can easily append a bib into a bibfile, just do
+
+#+BEGIN_EXAMPLE
+    $ title2bib An useful paper --first >> file.bib
+#+END_EXAMPLE
+
+You also can generate a bibtex from a txt file containing a list of
+"titles"
+
+#+BEGIN_EXAMPLE
+    $ title2bib --input file_with_titles.txt --output refs.bib --first
+#+END_EXAMPLE
+
+* arxivcheck
+  :PROPERTIES:
+  :CUSTOM_ID: arxivcheck
+  :END:
+
+Given a arxiv id...
+
+#+BEGIN_EXAMPLE
+    $ arxivcheck 1601.02785
+#+END_EXAMPLE
+
+- check if has been published, and then returns the updated bib
+  (requires internet connection)
+
+Given a title...
+
+#+BEGIN_EXAMPLE
+    $ arxivcheck --title An useful paper published on arxiv
+#+END_EXAMPLE
+
+search papers related and return a bib the first item. You can easily
+append a bib into a bibfile, just do
+
+#+BEGIN_EXAMPLE
+    $ arxivcheck --title An useful paper published on arxiv >> file.bib
+#+END_EXAMPLE
+
+You also can interact with results, just pass --ask parameter
+
+#+BEGIN_EXAMPLE
+    $ arxivcheck --ask --title An useful paper published on arxiv
+#+END_EXAMPLE
+
+* scihub2pdf
+  :PROPERTIES:
+  :CUSTOM_ID: scihub2pdf
+  :END:
+
+[[https://github.com/bibcure/scihub2pdf.git][Github]]
+
+Downloads pdfs via a DOI number, article title or a bibtex file, using
+the database of libgen(sci-hub) , arxiv
+
+Given a bibtex file
+
+#+BEGIN_EXAMPLE
+    $ scihub2pdf -i input.bib
+#+END_EXAMPLE
+
+Given a DOI number...
+
+#+BEGIN_EXAMPLE
+    $ scihub2pdf 10.1038/s41524-017-0032-0
+#+END_EXAMPLE
+
+Given a title...
+
+#+BEGIN_EXAMPLE
+    $ scihub2bib --title An useful paper
+#+END_EXAMPLE
+
+Location folder as argument
+
+#+BEGIN_EXAMPLE
+    $ scihub2pdf -i input.bib -l somefoler/
+#+END_EXAMPLE
+
+Use libgen instead sci-hub
+
+#+BEGIN_EXAMPLE
+    $ scihub2pdf -i input.bib --uselibgen
+#+END_EXAMPLE

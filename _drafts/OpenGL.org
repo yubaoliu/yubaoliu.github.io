@@ -1,0 +1,6 @@
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+- [[https://learnopengl.com/][learnopengl]]

@@ -1,0 +1,159 @@
+* KF in Matlab
+  :PROPERTIES:
+  :CUSTOM_ID: kf-in-matlab
+  :END:
+
+Use help KF command in Matlab: (http://www.joansola.eu/)
+
+#+BEGIN_SRC matlab
+    >> help KF
+    'KF' is a script from the file /home/yubao/GitProject/AISLAM/KalmanFilter/EKF_M_FILES/KF.m
+
+     KF Kalman Filter
+
+     I. System
+
+       x+ = F_x *x + F_u * u + F_n * n
+       y  = H * x + v
+
+       x : state vector           - P : cova. matrix
+       u : control vector
+       n : perturbation vector    - Q : cov. matrix
+       y : measurement vector
+       v : measuremet noise       - R : cov. matrix
+
+       F_x : transition matrix
+       F_u : control amtrix
+       F_n : pert. matrix
+       H   : measurement matrix
+
+
+     II. Initialization
+
+       Define F_x, F_u, F_n, and H.
+
+       Precise x, P, Q and R.
+
+
+     III. Temporal loop
+
+       IIIa. Prediction of mean(x) and P at the arrival of u
+
+           x+ = F_x * x + F_u * u        ... ( + F_n * 0 )
+           P+ = F_x * P * F_x' + F_n * Q * F_n'
+
+       IIIb. correction of mean(x) and P at the arrival of y
+
+           e  = H * x          - expectation
+           E  = H * P * H'
+
+           z  = y - e          - innovation
+           Z  = R + E
+
+           K  = P * H' * Z^-1  - Kalman gain
+
+           x+ = x + K * z
+           P+ = P - K * H * P  //  P - K * Z * K' // and Joseph form
+
+       IV. Plot results
+
+       V. How to set up KF examples
+
+           1. Simulate system, get x, u and y trajectories
+
+           2. Estimate x with the KF. Get x and P trajectories.
+
+           3. Plot results.
+#+END_SRC
+
+* Special Topics - The Kalman Filter
+  :PROPERTIES:
+  :CUSTOM_ID: special-topics---the-kalman-filter
+  :END:
+
+This is a study note of a youtube vedio course:[fn:1]
+
+#+BEGIN_HTML
+  <iframe width="640" height="480" src="https://www.youtube.com/embed/u1QcZxWRYtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+#+END_HTML
+
+#+BEGIN_HTML
+  </iframe>
+#+END_HTML
+
+#+CAPTION: 02 Kalman Filter Architechture[fn:2]
+[[file:assets/markdown-img-paste-20190204115426591.png]]
+
+[[file:assets/markdown-img-paste-20190204115728179.png]]
+[[file:assets/markdown-img-paste-20190209094728806.png]]
+[[file:assets/markdown-img-paste-2019020909555089.png]]
+[[file:assets/markdown-img-paste-20190209100558864.png]]
+[[file:assets/markdown-img-paste-2019020910220409.png]]
+[[file:assets/markdown-img-paste-20190209103801690.png]]
+[[file:assets/markdown-img-paste-20190209104707335.png]]
+[[https://i.loli.net/2019/02/09/5c5e31cd8736c.png]]
+[[https://i.loli.net/2019/02/09/5c5e34c5209af.png]]
+[[https://i.loli.net/2019/02/09/5c5e363246c04.png]]
+[[https://i.loli.net/2019/02/09/5c5e37e58037a.png]]
+[[https://i.loli.net/2019/02/09/5c5e38fc582d4.png]]
+[[https://i.loli.net/2019/02/09/5c5e3a56c62ad.png]]
+[[https://i.loli.net/2019/02/09/5c5e3b333c6f4.png]]
+[[https://i.loli.net/2019/02/09/5c5e3ca460ca0.png]]
+[[https://i.loli.net/2019/02/09/5c5e3f8eafd8c.png]]
+[[https://i.loli.net/2019/02/09/5c5e418f47374.png]]
+[[https://i.loli.net/2019/02/09/5c5e43c365625.png]]
+[[https://i.loli.net/2019/02/09/5c5e806616b74.png]]
+[[https://i.loli.net/2019/02/09/5c5e81e1777fb.png]]
+[[https://i.loli.net/2019/02/09/5c5e84db7b586.png]]
+[[https://i.loli.net/2019/02/09/5c5e85dd62b3e.png]]
+[[https://i.loli.net/2019/02/09/5c5e86f7aa546.png]]
+[[https://i.loli.net/2019/02/09/5c5e89c346fc5.png]]
+[[https://i.loli.net/2019/02/09/5c5e8b3c531f5.png]]
+[[https://i.loli.net/2019/02/09/5c5e8c3f4c109.png]]
+[[https://i.loli.net/2019/02/09/5c5e8d3e60b9e.png]]
+[[https://i.loli.net/2019/02/09/5c5e90ff3979a.png]]
+[[https://i.loli.net/2019/02/09/5c5e922817977.png]]
+[[https://i.loli.net/2019/02/09/5c5e945913e72.png]]
+[[https://i.loli.net/2019/02/09/5c5e9584382d2.png]]
+[[https://i.loli.net/2019/02/09/5c5e962c7235c.png]]
+[[https://i.loli.net/2019/02/09/5c5e98255039a.png]]
+[[https://i.loli.net/2019/02/09/5c5e99707a6fe.png]]
+[[https://i.loli.net/2019/02/09/5c5e9b86bc414.png]]
+[[https://i.loli.net/2019/02/09/5c5e9c22d2e0d.png]]
+[[https://i.loli.net/2019/02/09/5c5e9eea01fb2.png]]
+
+* Understanding Kalman Filters
+  :PROPERTIES:
+  :CUSTOM_ID: understanding-kalman-filters
+  :END:
+
+#+BEGIN_HTML
+  <iframe width="640" height="480" src="https://www.youtube.com/embed/mwn8xhgNpFY?list=PLn8PRpmsu08pzi6EMiYnR-076Mh-q3tWr" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+#+END_HTML
+
+#+BEGIN_HTML
+  </iframe>
+#+END_HTML
+
+#+CAPTION: 01 Why use kalman Filters
+[[https://i.loli.net/2019/02/09/5c5ea221bb8e1.png]]
+
+* References-
+  :PROPERTIES:
+  :CUSTOM_ID: references-
+  :END:
+
+- [[https://www.youtube.com/watch?v=UVNeulkWWUM&list=PLFze15KrfxbHCd0cF5D7FMfPD-B8pxmdN][徐亦达-Kalman
+  Filter]]
+- [[https://www.youtube.com/watch?v=CaCcOwJPytQ&list=PLX2gX-ftPVXU3oUFNATxGXY90AULiqnWT][Special
+  Topics - The Kalman Filter (1 of 55) What is a Kalman Filter?]]
+- [[https://www.youtube.com/watch?v=mwn8xhgNpFY&list=PLn8PRpmsu08pzi6EMiYnR-076Mh-q3tWr][Youtube-Understanding
+  Kalman Filters]]
+- Bishop, Gary, and Greg Welch. "An introduction to the Kalman filter."
+  Proc of SIGGRAPH, Course 8.27599-3175 (2001): 59.
+- Brown, Robert Grover, and Patrick YC Hwang. Introduction to random
+  signals and applied Kalman filtering. Vol. 3. New York: Wiley, 1992.
+
+[fn:1] https://www.youtube.com/watch?v=CaCcOwJPytQ&list=PLX2gX-ftPVXU3oUFNATxGXY90AULiqnWT
+
+[fn:2] https://www.youtube.com/watch?v=CaCcOwJPytQ&list=PLX2gX-ftPVXU3oUFNATxGXY90AULiqnWT

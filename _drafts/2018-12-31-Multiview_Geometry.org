@@ -1,0 +1,26 @@
+* Camera
+  :PROPERTIES:
+  :CUSTOM_ID: camera
+  :END:
+
+** Pinhole Camera Models
+   :PROPERTIES:
+   :CUSTOM_ID: pinhole-camera-models
+   :END:
+
+[[/assets/images/pinhole-camera-model.png]]{:class="img-responsive"
+align="center" }[fn:1]
+
+[[/assets/images/perceptive-projection.png]]{:class="img-responsive"
+align="center" }[fn:2]
+
+[[/assets/images/the-equations-of-perspective-projection.png]][^The
+Geometry of Perspective Projection]
+
+[fn:1] https://github.com/EricLYang/courseRepo [^The Geometry of
+       Perspective
+       Projection](https://www.cse.unr.edu/~bebis/CS791E/Notes/PerspectiveProjection.pdf)
+
+[fn:2] https://github.com/EricLYang/courseRepo [^The Geometry of
+       Perspective
+       Projection](https://www.cse.unr.edu/~bebis/CS791E/Notes/PerspectiveProjection.pdf)

@@ -1,0 +1,8 @@
+* Problems in this Blog
+  :PROPERTIES:
+  :CUSTOM_ID: problems-in-this-blog
+  :END:
+
+1. How to number the reference article lists?
+2. How to number and refer the figure automatically?
+3. How to draw diagrams?

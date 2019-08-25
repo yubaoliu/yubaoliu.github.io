@@ -1,13 +1,48 @@
+#+CATEGORIES: notebook
+#+DESCRIPTION: My test
 #+STARTUP: showall
 #+STARTUP: hidestars
 #+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:t
 #+LAYOUT: post
-#+CATEGORIES: default
-#+AUTHOR: Yubao Liu
-#+DATE: 2019-08-23 Fri 23:20
-#+TITLE: test
-#+DESCRIPTION: test
-#+TAGS: 
+#+AUTHOR: Yubao
+#+DATE: 2019-08-12 Mon 20:26
+#+TITLE: test website with latex
+#+TAGS: test
+
 
 * H1
-This is test
+
+This is a test
+
+#+begin_src cpp
+int main()
+{
+}
+#+end_src
+
+$$
+kk^5=6
+$$
+
+$\sum_{a} + d^2=9$
+
+$$
+a^3-d=5
+$$
+
+
+- $A$ is the area of the polygon,
+- $n$ is the number of sides of the polygon, and
+- $(x_i, y_i), i = 1, 2,..., n$ are the vertices (or "corners") of the polygon.
+
+$$
+{\displaystyle \mathbf {A} ={1 \over 2}{\Big |}\sum _{i=1}^{n}x_{i}(y_{i+1}-y_{i-1}){\Big |}={1 \over 2}{\Big |}\sum _{i=1}^{n}y_{i}(x_{i+1}-x_{i-1}){\Big |}={1 \over 2}{\Big |}\sum _{i=1}^{n}x_{i}y_{i+1}-x_{i+1}y_{i}{\Big |}={1 \over 2}{\Big |}\sum _{i=1}^{n}(x_{i+1}+x_{i})(y_{i+1}-y_{i}){\Big |}={1 \over 2}{\Big |}\sum _{i=1}^{n}\det {\begin{pmatrix}x_{i}&x_{i+1}\\y_{i}&y_{i+1}\end{pmatrix}}{\Big |}}
+$${#eq:id2}
+
+
+where $x_{n+1} = x_1$ and $x_0 = x_n$, as well as $y_{n+1} = y_1$ and $y_0 = y_n$
+
+
+$$
+{\displaystyle \mathbf {A} ={\frac {1}{2}}{\begin{vmatrix}1&1&1\\x_{1}&x_{2}&x_{3}\\y_{1}&y_{2}&y_{3}\end{vmatrix}}}
+$${#eq:}

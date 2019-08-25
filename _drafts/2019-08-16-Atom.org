@@ -1,0 +1,29 @@
+* Install Atom
+
+To install
+[[https://flight-manual.atom.io/getting-started/sections/installing-atom/][Atom]]
+on Debian, Ubuntu, or related distributions, add our official package
+repository to your system by running the following commands:
+
+#+BEGIN_SRC sh
+    curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+    sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+    sudo apt-get update
+#+END_SRC
+
+You can now install Atom using apt-get (or apt on Ubuntu): - Install
+Atom
+
+#+BEGIN_SRC sh
+    sudo apt-get install atom
+#+END_SRC
+
+- Install Atom Beta
+
+#+BEGIN_SRC sh
+    sudo apt-get install atom-beta
+#+END_SRC
+
+** Plugins
+
+- document-outline

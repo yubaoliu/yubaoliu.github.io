@@ -1,0 +1,51 @@
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+- [[https://www.cnblogs.com/shang-slam/p/6733322.html][ORB-SLAM跑通笔记本摄像头]]
+  环境：Ubuntu 14.04 + ROS indigo + ORB-SLAM2 (Thinkpad T460s)
+- [[http://www.cnblogs.com/luyb/p/5357790.html][路游侠blog 代码解读]]
+
+* ORB-SLAM: a Versatile and Accurate Monocular SLAM System
+  :PROPERTIES:
+  :CUSTOM_ID: orb-slam-a-versatile-and-accurate-monocular-slam-system
+  :END:
+
+** Abstract
+   :PROPERTIES:
+   :CUSTOM_ID: abstract
+   :END:
+
+This paper presents ORB-SLAM, a feature-based monocular simultaneous
+localization and mapping (SLAM) system that operates in real time, in
+small and large indoor and outdoor environments.
+
+The system is robust to severe motion clutter, allows wide baseline loop
+closing and relocalization, and includes full automatic initialization.
+
+Building on excellent algorithms of recent years, we designed from
+scratch a novel system that uses the same features for all SLAM tasks:
+
+- tracking,
+- mapping,
+- relocalization,
+- and loop closing.
+
+A survival of the fittest strategy that selects the points and keyframes
+of the reconstruction leads to excellent robustness and generates a
+compact and trackable map that only grows if the scene content changes,
+allowing lifelong operation. We present an exhaustive evaluation in 27
+sequences from the most popular datasets. ORB-SLAM achieves
+unprecedented performance with respect to other state-of-the-art
+monocular SLAM approaches. For the benefit of the community, we make the
+source code public.
+
+* orb-slam2_with_semantic_label
+  :PROPERTIES:
+  :CUSTOM_ID: orb-slam2_with_semantic_label
+  :END:
+
+[[https://github.com/yubaoliu/orb-slam2_with_semantic_label][Github]]
+
+[[https://i.loli.net/2019/03/05/5c7e1f3c00e52.png]]

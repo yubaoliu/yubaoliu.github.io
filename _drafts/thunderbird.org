@@ -1,0 +1,25 @@
+** 在 linux 中 Lightning 在Thunderbird 升级之后消失了
+   :PROPERTIES:
+   :CUSTOM_ID: w_ue-linux-ig-lightning-uethunderbird-uijdioasincgji-aaaucu-beta-iaae
+   :END:
+
+Solution:
+
+安装文件：xul-ext-lightning: sudo apt install xul-ext-lightning
+[[https://support.mozilla.org/en-US/kb/calendar-updates-issues-thunderbird][refer]]
+
+** How to Integrate Google Calendar Into Thunderbird
+   :PROPERTIES:
+   :CUSTOM_ID: how-to-integrate-google-calendar-into-thunderbird
+   :END:
+
+[[https://www.makeuseof.com/tag/how-to-integrate-google-calendar-into-thunderbird/][How
+to Integrate Google Calendar Into Thunderbird]]
+
+[[https://www.makeuseof.com/tag/how-to-integrate-google-calendar-into-thunderbird/][Google
+Calendar integration requires two Thunderbird add-ons]]:
+
+- *Lightning* (pre-packaged as of Thunderbird 38) adds a Sunbird-type
+  calendar to Thunderbird.
+- *Provider for Google Calendar* connects Lightning with Google Calendar
+  for bi-directional read and write access.

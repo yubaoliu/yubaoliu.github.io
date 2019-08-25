@@ -1,0 +1,80 @@
+* Papers
+  :PROPERTIES:
+  :CUSTOM_ID: papers
+  :END:
+
+** Paper Databases
+   :PROPERTIES:
+   :CUSTOM_ID: paper-databases
+   :END:
+
+1. [[https://github.com/mengyuest/iros2018-slam-papers][GitHub -
+   mengyuest/iros2018-slam-papers]]
+
+** Paper Lists
+   :PROPERTIES:
+   :CUSTOM_ID: paper-lists
+   :END:
+
+1. [[https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/Durrant-Whyte_Bailey_SLAM-tutorial-I.pdf][Simultaneous
+   Localisation and Mapping (SLAM): Part I The Essential Algorithms]]
+   Whyte, H. Durrant. "Simultaneous localisation and mapping (SLAM):
+   Part I the essential algorithms." Robotics and Automation Magazine
+   (2006).
+
+2. [[https://pdfs.semanticscholar.org/27d4/6db7ed4e96944080052b761c62102f26b23f.pdf][Simultaneous
+   Localisation and Mapping (SLAM): Part II State of the Art]] Bailey,
+   Tim, and Hugh Durrant-Whyte. "Simultaneous localization and mapping
+   (SLAM): Part II." IEEE Robotics & Automation Magazine 13.3 (2006):
+   108-117.
+
+3. *Past, Present, and Future of Simultaneous Localization And Mapping:
+   Towards the Robust-Perception Age*, /Cesar Cadena, Luca Carlone,
+   Henry Carrillo, Yasir Latif, Davide Scaramuzza, José Neira, Ian Reid,
+   John J. Leonard/
+
+- [[https://github.com/SLAM-future/slam-future][github]]
+- [[https://arxiv.org/pdf/1606.05830.pdf][Paper Online]]
+- *Datasets* As a part of the paper, we collected datasets that are
+  curently available as well the modalities that they include. They can
+  be found in the =datasets= directory. If you want to have your dataset
+  listed, please generate a pull request. Currently the table is in
+  Latex format, with a more editable version to come soon.
+- Bibliography We are also sharing the bibligraphy that has been
+  collected over the course of the creation of the paper. It can be
+  found in =bibliography= subfolder.
+
+1. [[https://arxiv.org/pdf/1609.07720.pdf][SegMatch: Segment based
+   loop-closure for 3D point cloud]] Dubé, Renaud, et al. "Segmatch:
+   Segment based loop-closure for 3d point clouds." arXiv preprint
+   arXiv:1609.07720 (2016).
+
+* Categorized papers
+  :PROPERTIES:
+  :CUSTOM_ID: categorized-papers
+  :END:
+
+** Semantic SLAM
+   :PROPERTIES:
+   :CUSTOM_ID: semantic-slam
+   :END:
+
+1. [[https://papers.nips.cc/paper/5539-depth-map-prediction-from-a-single-image-using-a-multi-scale-deep-network.pdf][Depth
+   Map Prediction from a Single Image using a Multi-Scale Deep Network]]
+   Eigen, David, Christian Puhrsch, and Rob Fergus. "Depth map
+   prediction from a single image using a multi-scale deep network."
+   Advances in neural information processing systems. 2014.
+2. [[https://arxiv.org/pdf/1612.00593.pdf][PointNet: Deep Learning on
+   Point Sets for 3D Classification and Segmentation]] Qi, Charles R.,
+   et al. "Pointnet: Deep learning on point sets for 3d classification
+   and segmentation." Proc. Computer Vision and Pattern Recognition
+   (CVPR), IEEE 1.2 (2017): 4.
+3. [[https://arxiv.org/pdf/1808.06670.pdf][Learning deep representations
+   by mutual information estimation and maximization]] Hjelm, R. Devon,
+   et al. "Learning deep representations by mutual information
+   estimation and maximization." arXiv preprint arXiv:1808.06670 (2018).
+4. [[https://arxiv.org/pdf/1506.01732.pdf][Monocular SLAM Supported
+   Object Recognition.pdf]] Pillai, Sudeep, and John Leonard. "Monocular
+   slam supported object recognition." arXiv preprint arXiv:1506.01732
+   (2015).
+5. 

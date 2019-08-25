@@ -1,0 +1,12 @@
+* Cuda & cudnn
+** how to check cudnn version?
+#+begin_src sh
+cat /usr/include/cudnn.h |grep CUDNN_MAJOR -A 2
+#define CUDNN_MAJOR 7
+#define CUDNN_MINOR 6
+#define CUDNN_PATCHLEVEL 1
+--
+#define CUDNN_VERSION (CUDNN_MAJOR * 1000 + CUDNN_MINOR * 100 + CUDNN_PATCHLEVEL)
+
+#include "driver_types.h"
+#+end_src

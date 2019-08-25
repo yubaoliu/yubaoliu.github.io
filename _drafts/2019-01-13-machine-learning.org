@@ -1,0 +1,14 @@
+* Resources
+  :PROPERTIES:
+  :CUSTOM_ID: resources
+  :END:
+
+- [[http://zh.gluon.ai/index.html][《动手学深度学习》]]
+
+* PLA
+  :PROPERTIES:
+  :CUSTOM_ID: pla
+  :END:
+
+- [[https://github.com/RedstoneWill/MachineLearningInAction/blob/master/Perceptron%20Linear%20Algorithm/PLA.ipynb][PLA-RedstoneWill/MachineLearningInAction]]
+- 

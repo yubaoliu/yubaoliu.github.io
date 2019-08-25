@@ -1,0 +1,413 @@
+** Manual
+   :PROPERTIES:
+   :CUSTOM_ID: manual
+   :END:
+
+[[https://pandoc.org/MANUAL.pdf][pandoc org MANUAL]]
+
+** Bibliographies
+   :PROPERTIES:
+   :CUSTOM_ID: bibliographies
+   :END:
+
+[[https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/zh-cn/pandoc-bibliographies-and-citations.md][markdown-preview-enhanced]]
+
+** equations numbering and equation references
+   :PROPERTIES:
+   :CUSTOM_ID: equations-numbering-and-equation-references
+   :END:
+
+Reference: [[https://github.com/tomduck/pandoc-eqnos][pandoc-eqnos]]
+
+* Inline formatting
+  :PROPERTIES:
+  :CUSTOM_ID: inline-formatting
+  :END:
+
+** Strikeout
+   :PROPERTIES:
+   :CUSTOM_ID: strikeout
+   :END:
+
+This +is deleted text.+
+
+** Emphasis
+   :PROPERTIES:
+   :CUSTOM_ID: emphasis
+   :END:
+
+- To emphasize some text, surround it with *s or _, like this:
+
+#+BEGIN_EXAMPLE
+    This text is _emphasized with underscores_, and this
+    is *emphasized with asterisks*.
+#+END_EXAMPLE
+
+- Double * or _ produces strong emphasis:
+
+#+BEGIN_EXAMPLE
+    This is **strong emphasis** and __with underscores__.
+#+END_EXAMPLE
+
+- A * or _ character surrounded by spaces, or backslash-escaped, will
+  not trigger emphasis:
+
+#+BEGIN_EXAMPLE
+    This is * not emphasized *, and \*neither is this\*.
+#+END_EXAMPLE
+
+- Because _ is sometimes used inside words and identifiers, pandoc does
+  not interpret a _ surrounded by alphanumeric characters as an emphasis
+  marker. If you want to emphasize just part of a word, use *:
+
+#+BEGIN_SRC sh
+    feas*ible*, not feas*able*.
+#+END_SRC
+
+** Superscripts and subscripts
+   :PROPERTIES:
+   :CUSTOM_ID: superscripts-and-subscripts
+   :END:
+
+H_{2}O is a liquid. 2^{10} is 1024.
+
+** Verbatim
+   :PROPERTIES:
+   :CUSTOM_ID: verbatim
+   :END:
+
+To make a short span of text verbatim, put it inside backticks:
+
+#+BEGIN_SRC sh
+    What is the difference between `>>=` and `>>`?
+#+END_SRC
+
+If the verbatim text includes a backtick, use double backticks:
+
+#+BEGIN_EXAMPLE
+    Here is a literal backtick `` ` ``.
+#+END_EXAMPLE
+
+=<$>=
+
+* Figure
+  :PROPERTIES:
+  :CUSTOM_ID: figure
+  :END:
+
+** Markdown Syntax
+   :PROPERTIES:
+   :CUSTOM_ID: markdown-syntax
+   :END:
+
+#+BEGIN_EXAMPLE
+    ![Figure caption](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Triangle_area_from_coordinates_JCB.jpg/732px-Triangle_area_from_coordinates_JCB.jpg){#fig:id align="middle" .image-medium}
+#+END_EXAMPLE
+
+Result:
+
+#+CAPTION: Figure
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Triangle_area_from_coordinates_JCB.jpg/732px-Triangle_area_from_coordinates_JCB.jpg]]
+
+- Cite: see Fig. @fig:id or Fig.{@fig:id}
+- italics /fig:id/
+- Use tag ={#fig:id tag="B.1"}= or ={#fig:id  $text{B.1}'$ }=
+
+** html syntex
+   :PROPERTIES:
+   :CUSTOM_ID: html-syntex
+   :END:
+
+Note: This method cannot be parsed by pandoc
+
+#+BEGIN_EXAMPLE
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Triangle_area_from_coordinates_JCB.jpg/732px-Triangle_area_from_coordinates_JCB.jpg" class="img-medium" >
+#+END_EXAMPLE
+
+Result:
+
+* Table
+  :PROPERTIES:
+  :CUSTOM_ID: table
+  :END:
+
+| Centered Default Right Left      |
+| Header Aligned Aligned Aligned   |
+
+First row 12.0 Example of a row that ​ spans multiple lines. Second row
+5.0 Here's another one. Note ​ the blank line between rows.
+
+--------------
+
+* List
+  :PROPERTIES:
+  :CUSTOM_ID: list
+  :END:
+
+- fruits
+
+  - apples
+
+    - macintosh
+    - red delicious
+
+  - pears
+
+- vegetables
+
+  - broccoli
+  - chard
+
+* Numbered example lists
+  :PROPERTIES:
+  :CUSTOM_ID: numbered-example-lists
+  :END:
+
+1) My first example will be numbered (1).
+2) My second example will be numbered (2).
+
+Explanation of examples.
+
+3) My third example will be numbered (3). Numbered examples can be
+   labeled and referred to elsewhere in the document:
+
+4) This is a good example.
+
+As (4) illustrates, ...
+
+* Definition
+  :PROPERTIES:
+  :CUSTOM_ID: definition
+  :END:
+
+- Term 1 :: Definition 1
+
+- Term 2 with /inline markup/ :: Definition 2
+
+  #+BEGIN_EXAMPLE
+      { some code, part of Definition 2 }
+  #+END_EXAMPLE
+
+  Third paragraph of definition 2.
+
+- Term 1 :: Definition 1
+- Term 2 :: Definition 2a
+  Definition 2b
+
+* Equations
+  :PROPERTIES:
+  :CUSTOM_ID: equations
+  :END:
+
+The equation for a straight line is $$ y = mx + b $$ {#eq:line} and the
+equation for a polynomial is $$ y = \sum_{n=0}^{\infty} a_n x^n $$
+{#eq:polynomial}
+
+Equation @eq:line and eq. @eq:polynomial are known to all first-year
+math students.
+
+The Fourier series is a little more advanced:
+$$ y = \frac{1}{2}a_0 + \sum_{n=1}^{\infty}a_n\cos(nx) + \sum_{n=1}^{\infty}b_n\cos(nx) $$
+{#eq:fourier}
+
+Equations {@eq:line}--{@eq:fourier} are used throughout science and
+engineering.
+
+Equations can be left unnumbered if we do not need to refer to them:
+$$ y = A e^{-\gamma t}\cos(2\pi f t) $$
+
+It is also possible to number equations generically without planning to
+refer to them; e.g.: $$ \pi = 3.141592653589793238462643 \ldots $$
+{#eq:}
+
+#+BEGIN_HTML
+  <hr>
+#+END_HTML
+
+* Insert Video
+  :PROPERTIES:
+  :CUSTOM_ID: insert-video
+  :END:
+
+** 对于嵌入标签所支持的扩展
+   :PROPERTIES:
+   :CUSTOM_ID: 对于嵌入标签所支持的扩展
+   :END:
+
+[[https://tutorialehtml.com/zh/html-tutorial-embed-video/][tutorialehtml]]
+
+These are:
+
+- swf - 制造于Macromedia Flash
+- .wmv - Microsoft Windows Media Video
+- .mov - Quick Time Movie, 属于苹果公司
+- .mpeg - 制作于Moving Pictures Expert Group.
+
+最常用的是.MPEG和.SWF, 因为这些是压缩格式。
+
+#+BEGIN_SRC sh
+    <iframe  width="425" height="344" src="https://www.youtube.com/embed/F9Bo89m2f6g" frameborder="0" allowfullscreen  ></iframe>
+
+    <embed src="https://www.youtube.com/embed/F9Bo89m2f6g" autostart="false"  width="425" height="344" />
+#+END_SRC
+
+* Pandoc Output
+  :PROPERTIES:
+  :CUSTOM_ID: pandoc-output
+  :END:
+
+** PDF Output
+   :PROPERTIES:
+   :CUSTOM_ID: pdf-output
+   :END:
+
+#+BEGIN_SRC sh
+    pandoc \
+        --toc
+        --latex-engine=pdflatex \
+        --filter pandoc-citeproc
+        --filter pandoc-fignos \
+        --filter pandoc-eqnos \
+        --filter pandoc-tablenos \
+        --bibliography=./Bibliographies.bib \
+        --variable papersize=a4paper \
+        --csl=ieee.cls \
+        --number-sections \
+        --wrap=auto \
+        --variable classoption=twocolumn \
+        -s Image\ Process-Report1-Fundamental\ Matrix.md \
+        -o report_Compute_Fundamental_Matrix.pdf
+#+END_SRC
+
+* kramdown
+  :PROPERTIES:
+  :CUSTOM_ID: kramdown
+  :END:
+
+** toc
+   :PROPERTIES:
+   :CUSTOM_ID: toc
+   :END:
+
+#+BEGIN_SRC sh
+    * TOC
+    {:toc}
+#+END_SRC
+
+** GFM
+   :PROPERTIES:
+   :CUSTOM_ID: gfm
+   :END:
+
+给 Kramdown 传递值为 "GFM" 的 input 选项，从而启用 Github 扩展的
+Markdown 语法。
+
+例如，在 _config.yml 文件中加入以下配置项： kramdown: input: GFM
+
+** Mathjax
+   :PROPERTIES:
+   :CUSTOM_ID: mathjax
+   :END:
+
+#+BEGIN_EXAMPLE
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+    </script>
+#+END_EXAMPLE
+
+To enable any of the TeX extensions, simply add the appropriate string
+(e.g., "AMSmath.js") to the extensions array in the TeX block of your
+configuration. If you use one of the combined configuration files, like
+TeX-AMS_CHTML, this will already include several of the extensions
+automatically, but you can include others using a mathjax configuration
+script prior to loading MathJax. For example
+
+#+BEGIN_EXAMPLE
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { extensions: ["autobold.js"] }});
+    </script>
+    <script type="text/javascript"
+        src="https://example.com/mathjax/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+#+END_EXAMPLE
+
+Equations can be numbered in two ways: either number the AMSmath
+environments as LaTeX would, or number all displayed equations (the
+example above uses AMS-style numbering). Set autoNumber to "all" if you
+want every displayed equation to be numbered. You can use \notag or
+\nonumber to prevent individual equations from being numbered, and
+\tag{} can be used to override the usual equation number with your own
+symbol instead.
+
+In equation =\eqref{eq:sample}=, we find the value of an interesting
+integral:
+
+#+BEGIN_EXAMPLE
+    \begin{equation}
+      \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+      \label{eq:sample}
+    \end{equation}
+#+END_EXAMPLE
+
+Result: $$
+\begin{equation}
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+  \label{eq:sample}
+\end{equation}
+$$
+
+Refer
+[[http://docs.mathjax.org/en/latest/tex.html#automatic-equation-numbering][Mathjax-equation-numbering]]
+for detail.
+
+** Commutative diagrams
+   :PROPERTIES:
+   :CUSTOM_ID: commutative-diagrams
+   :END:
+
+#+BEGIN_EXAMPLE
+    \begin{CD}
+    A @>a>> B\\
+    @VVbV @VVcV\\
+    C @>d>> D
+    \end{CD}
+#+END_EXAMPLE
+
+Result:
+
+$$
+\begin{CD}
+A @>a>> B\\
+@VVbV @VVcV\\
+C @>d>> D
+\end{CD}
+$$
+
+#+BEGIN_HTML
+  <hr>
+#+END_HTML
+
+* Reference
+  :PROPERTIES:
+  :CUSTOM_ID: reference
+  :END:
+
+- [[http://caunion.me/study-notes-of-kramdown/][KRAMDOWN学习笔记]]
+- [[https://www.soimort.org/notes/161117/][Boilerplating Pandoc for
+  Academic Writing]]
+- [[https://kramdown.gettalong.org/syntax.html][kramdown Syntax]]
+- [[http://pikipity.github.io/blog/kramdown-syntax-chinese-1.html][Kramdown
+  语法文档翻译-github]]
+  [[https://github.com/pikipity/pikipity.github.com][git blog]]
+- [[http://scholarlymarkdown.com/][scholarlymarkdown]]
+
+  - This project is very old, in 2015, not update now
+  - I try to install on Ubuntu 16.04, but failed (2019-01-04)
+
+- [[https://gist.github.com/maxogden/97190db73ac19fc6c1d9beee1a6e4fc8][maxogden/bibtex.png]]
+- [[https://kieranhealy.org/blog/archives/2014/01/23/plain-text/][plain
+  text, papers, pandoc]]
+- [[https://www.chriskrycho.com/2015/academic-markdown-and-citations.html][Academic
+  Markdown and Citations]]

@@ -1,0 +1,56 @@
+* ADE20K
+** Resources
+- [[https://docs.google.com/spreadsheets/d/1se8YEtb2detS7OuPE86fXGyD269pMycAWe2mtKUj2W8/edit#gid=0][color_coding_semantic_segmentation_classes]]
+- [[https://github.com/CSAILVision/semantic-segmentation-pytorch][CSAILVision/semantic-segmentation-pytorch]]
+** download_ADE20K.sh
+   #+begin_src bash
+   wget -O ./data/ADEChallengeData2016.zip http://data.csail.mit.edu/places/ADEchallenge/ADEChallengeData2016.zip
+   unzip ./data/ADEChallengeData2016.zip -d ./data
+   rm ./data/ADEChallengeData2016.zip
+   echo "Dataset downloaded."
+   #+end_src
+
+** TUM
+***  [[https://vision.in.tum.de/data/datasets/rgbd-dataset][RGB-D SLAM Dataset and Benchmark]]
+We provide a large dataset containing RGB-D data and ground-truth data with the goal to establish a novel benchmark for the evaluation of visual odometry and visual SLAM systems. 
+- FPS: 30 HZ
+- resolution (640x480)
+
+*** Useful tools for the RGB-D benchmark
+Refer: https://vision.in.tum.de/data/datasets/rgbd-dataset/tools
+- Download
+    #+begin_src 
+    svn checkout https://svncvpr.in.tum.de/cvpr-ros-pkg/trunk/rgbd_benchmark/rgbd_benchmark_tools
+    #+end_src
+- Associating color and depth images
+
+The Kinect provides the color and depth images in an un-synchronized way. This means that the set of time stamps from the color images do not intersect with those of the depth images. Therefore, we need some way of associating color images to depth images.
+#+begin_src bash
+python associate.py PATH_TO_SEQUENCE/rgb.txt PATH_TO_SEQUENCE/depth.txt > associations.txt
+#+end_src
+*** Evaluation
+- ABSOLUTE TRAJECTORY ERROR (ATE)
+- RELATIVE POSE ERROR (RPE)
+
+*** Generating a point cloud from images
+    #+begin_src 
+    TUM/rgbd_benchmark_tools/src/rgbd_benchmark_tools$ python generate_pointcloud.py ../../../rgbd_dataset_freiburg1_room/rgb/1305031910.765238.png ../../../rgbd_dataset_freiburg1_room/depth/1305031910.771502.png 
+output.ply
+    #+end_src
+use meshlab to view ply cloud file
+    #+begin_src bash
+    sudo apt-get install meshlab
+    #+end_src
+* VOC
+#+begin_src sh
+wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
+wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
+wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
+tar xf VOCtrainval_11-May-2012.tar
+tar xf VOCtrainval_06-Nov-2007.tar
+tar xf VOCtest_06-Nov-2007.tar
+#+end_src
+There will now be a VOCdevkit/ subdirectory with all the VOC training data in it.
+
+* Concepts
+- ILSVRC: ImageNet Large Scale Visual Recognition Competition 

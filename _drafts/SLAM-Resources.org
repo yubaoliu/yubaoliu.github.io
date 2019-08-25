@@ -1,0 +1,244 @@
+* Search Resources
+  :PROPERTIES:
+  :CUSTOM_ID: search-resources
+  :END:
+
+- [[https://github.com/AlbertSlam/Lee-SLAM-source][AlbertSlam/Lee-SLAM-source]]
+  SLAM 开发学习资源与经验分享
+- [[http://www.slamcn.org/index.php/%E9%A6%96%E9%A1%B5][SLAMCN]]
+- [[https://www.zhihu.com/question/35186064][zhihu-学习SLAM需要哪些预备知识？]]
+- [[https://github.com/zziz/pwc][zziz/pwc]] Papers with codes
+
+* SLAM Resources
+  :PROPERTIES:
+  :CUSTOM_ID: slam-resources
+  :END:
+
+- [[https://paperswithcode.com/][Papers with code]]
+- [[https://github.com/EricLYang/courseRepo][EricLYang/courseRepo]]
+  小象学院 杨亮
+- [[https://www.mrpt.org/List_of_SLAM_algorithms][MRPT-Tutorials: SLAM
+  algorithms]]
+- [[http://openslam.org/][openslam]]
+- [视觉SLAM十四讲]
+
+- [[https://github.com/FangGet][Fangget]]
+- [[https://github.com/AlbertSlam][SLAM.AR]]
+- [[https://bitbucket.org/osrf/servicesim][OpenSourceRoboticsFoundation
+  OSRF Simulation servicesim]]
+- [[https://github.com/marknabil/SFM-Visual-SLAM][marknabil/SFM-Visual-SLAM]]
+  source code list
+- [[https://github.com/speed8928/3D-reconstruction][speed8928/3D-reconstruction]]
+  Awesome 3D reconstruction list
+- [[https://github.com/jlblancoc/tutorial-se3-manifold][jlblancoc/tutorial-se3-manifold]]
+- [[https://github.com/mengyuest/iros2018-slam-papers/blob/master/README.md][mengyuest/iros2018-slam-papers]]
+- [[https://github.com/YiChenCityU/Recent_SLAM_Research/blob/master/README_2018.md][YiChenCityU/Recent_SLAM_Research]]
+- [[https://github.com/yizt/cv-papers][yizt/cv-papers]]
+- [[https://github.com/Ewenwan/MVision][Ewenwan/MVision]] 机器人视觉
+  移动机器人 VS-SLAM ORB-SLAM2 深度学习目标检测 yolov3 行为检测 opencv
+  PCL 机器学习 无人驾驶
+
+- [[https://github.com/georgeerol/RoboticPerception][georgeerol/RoboticPerception]]
+  Explore object recognition, segmentation, and how to process depth
+  data from camera sensors to help a robot better understand and
+  navigate its world.
+- [[https://github.com/tangzhenyu/SemanticSegmentation_DL][tangzhenyu/SemanticSegmentation_DL]]
+
+** Projects
+   :PROPERTIES:
+   :CUSTOM_ID: projects
+   :END:
+
+- [[https://github.com/googlecartographer][Cartographer]]
+- [[https://github.com/stuffmatic/blam][stuffmatic/blam]]
+- semmatch
+- [[https://www.openrobots.org/wiki/rtslam/][RT-SLAM]] RT-SLAM stands
+  for Real Time SLAM (Simultaneous Localization And Mapping).
+- 
+
+* Source Code
+  :PROPERTIES:
+  :CUSTOM_ID: source-code
+  :END:
+
+- [[http://www.robots.ox.ac.uk/~gk/PTAM/][Parallel Tracking and Mapping
+  for Small AR Workspaces - Source Cod]]
+- [[https://github.com/anuranbaka/OpenDTAM][anuranbaka/OpenDTAM]]
+- [[https://www.cnblogs.com/gaoxiang12/p/4652478.html][一起做RGB-D
+  SLAM]]
+- [[https://github.com/penguinmenac3/ros_graph_slam][penguinmenac3/ros_graph_slam]]
+- [[http://www.robots.ox.ac.uk/~gk/PTAM/][Oxford-PTAM/PTAM-GPL]]
+- [[https://sourceforge.net/p/slam-plus-plus/wiki/Home/][SLAM++ 2.3
+  Released-BA]]
+- [[https://github.com/qixuxiang/orb-slam2_with_semantic_label][qixuxiang/orb-slam2_with_semantic_label]]
+- [[https://github.com/charlesq34/pointnet][charlesq34/pointnet]]
+- [[https://github.com/tolgabirdal/ppf_matching][Github-tolgabirdal/ppf_matching]]
+- [[https://github.com/mp3guy/ElasticFusion][mp3guy/ElasticFusion]]
+- [[https://www.iri.upc.edu/people/jsola/JoanSola/eng/toolbox.html][SLAM
+  TOOLBOX FOR MATLAB]]
+
+#+BEGIN_SRC sh
+    yubao@yubao-Z370M-S01:~/GitProject/slamtb$ git branch -a
+    * graph
+      remotes/origin/HEAD -> origin/graph
+      remotes/origin/ekf
+      remotes/origin/graph
+      remotes/origin/gtsam2
+      remotes/origin/master
+      remotes/origin/uvic
+    yubao@yubao-Z370M-S01:
+#+END_SRC
+
+** BOOKS
+   :PROPERTIES:
+   :CUSTOM_ID: books
+   :END:
+
+- [[file:Multiple%20View%20Geometry%20in%20Computer%20Vision][Multiple
+  View Geometry in Computer Vision]]
+
+  - [[https://www.youtube.com/watch?v=RDkwklFGMfo&list=PLTBdjV_4f-EJn6udZ34tht9EVIW7lbeo4][Youtube-Multiple
+    View Geometry - Lecture]]
+  - [[https://github.com/maolingao/mvg_slides][maolingao/mvg_slides]]
+    slides
+
+- [[http://www.probabilistic-robotics.org/][Probabilistic Robotics]]
+- 
+
+* Math
+  :PROPERTIES:
+  :CUSTOM_ID: math
+  :END:
+
+- [[https://github.com/jlblancoc/tutorial-se3-manifold][jlblancoc/tutorial-se3-manifold]]
+
+* Famous People, Labs
+  :PROPERTIES:
+  :CUSTOM_ID: famous-people-labs
+  :END:
+
+** City College Robotics
+   :PROPERTIES:
+   :CUSTOM_ID: city-college-robotics
+   :END:
+
+- [[https://ccny-ros-pkg.github.io/][blog-github]]
+
+Member: - Liang Yang Samleo L. Joseph (~2015) - [[][Ivan Dryanovski]]
+
+** Andy Zeng
+   :PROPERTIES:
+   :CUSTOM_ID: andy-zeng
+   :END:
+
+- [[http://andyzeng.github.io/][Homepage]]
+- [[https://github.com/andyzeng][Github]]
+
+  - tsdf-fusion
+  - tsdf-fusion-python
+
+** Georg Klein
+   :PROPERTIES:
+   :CUSTOM_ID: georg-klein
+   :END:
+
+#+CAPTION: Georg Klein
+[[http://www.robots.ox.ac.uk/~gk/imgs/georg_klein_136.jpg]]
+
+- [[http://www.robots.ox.ac.uk/~gk/][Home Page]]
+- Introduction
+
+#+BEGIN_QUOTE
+  From Oct 2005 to August 2009 I was a post-doctoral research assistant
+  in the Active Vision Group of the Oxford University Engineering
+  Department. I worked under the supervision of Prof. David Murray.
+
+  I was formerly a PhD student at the Machine Intelligence Laboratory of
+  the Cambridge University Engineering Department, under the supervision
+  of Dr. Tom Drummond. Originally from Austria, I matriculated at King's
+  College, Cambridge in 1997 and obtained an MEng degree in 2001 and a
+  PhD in 2006.
+#+END_QUOTE
+
+- [[http://www.robots.ox.ac.uk/~gk/PTAM/][Parallel Tracking and Mapping
+  for Small AR Workspaces - Source Code]]
+
+** Sudeep Pillai
+   :PROPERTIES:
+   :CUSTOM_ID: sudeep-pillai
+   :END:
+
+- [[http://people.csail.mit.edu/spillai/][About]]
+
+** Michael Kaess
+   :PROPERTIES:
+   :CUSTOM_ID: michael-kaess
+   :END:
+
+- [[http://people.csail.mit.edu/kaess/][Dr. Michael Kaess]]
+- 
+
+** Liam Paull
+   :PROPERTIES:
+   :CUSTOM_ID: liam-paull
+   :END:
+
+- [[http://liampaull.ca/][Home Page]]
+
+** The TerraSwarm Research Center
+   :PROPERTIES:
+   :CUSTOM_ID: the-terraswarm-research-center
+   :END:
+
+- [[https://ptolemy.berkeley.edu/projects/terraswarm/index.htm][Home
+  page]]
+
+** LABORATORY FOR INFORMATION & DECISION SYSTEMS
+   :PROPERTIES:
+   :CUSTOM_ID: laboratory-for-information-decision-systems
+   :END:
+
+- [[https://lids.mit.edu/][home page]]
+
+** Andrew Davison
+   :PROPERTIES:
+   :CUSTOM_ID: andrew-davison
+   :END:
+
+Imperial College London Smart Robotics Lab
+
+- [[https://www.doc.ic.ac.uk/~ajd/][Andrew Davison: Research]]
+
+- [[https://wp.doc.ic.ac.uk/sleutene/project/semantic-object-dynamic-mapping/][Project-3.
+  Semantic, Object-Level, and Dynamic Mapping]]
+
+** Jose Luis Blanco
+   :PROPERTIES:
+   :CUSTOM_ID: jose-luis-blanco
+   :END:
+
+Associate Professor at UAL - Mechanical Engineering & Robotics
+
+- [[https://w3.ual.es/~jlblanco/][Home Page]]
+- [[https://github.com/jlblancoc][Github]]
+
+** Shibiao Xu (徐士彪)
+   :PROPERTIES:
+   :CUSTOM_ID: shibiao-xu-徐士彪
+   :END:
+
+[[https://shibiaoxu.github.io/][github-io]]
+
+** Joan Solà
+   :PROPERTIES:
+   :CUSTOM_ID: joan-solà
+   :END:
+
+[[http://www.joansola.eu/][Joan Solà]]
+
+* Laboratory
+  :PROPERTIES:
+  :CUSTOM_ID: laboratory
+  :END:
+
+- [[http://www.robots.ox.ac.uk/ActiveVision/][Active Vision Laboratory]]

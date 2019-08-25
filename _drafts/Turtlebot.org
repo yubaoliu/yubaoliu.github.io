@@ -1,0 +1,7 @@
+* Introduction
+- [[https://www.ncnynl.com/category/ros-kobuki/][Turtlebot入门教程]] and https://www.ncnynl.com/turtlebot2.html
+* Run
+#+begin_src bash
+roslaunch turtlebot_bringup minimal.launch (启动底座)
+roslaunch turtlebot_teleop keyboard_teleop.launch (启动遥控)
+#+end_src

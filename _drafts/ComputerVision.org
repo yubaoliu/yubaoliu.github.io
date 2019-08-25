@@ -1,0 +1,431 @@
+#+STARTUP: latexpreview
+#+STARTUP: inlineimages
+* Tutorials
+** What is Computer Vision
+**Computer vision** is really about interpreting and analysis of the scene. 
+That is 
+- what is the content of the image of the scene,
+- who is in there,
+- what is in the image and 
+- what is happening.
+
+Every picture tells a story.
+
+Goal of computer vision is to write computer programs that can **interpret images**.
+We're going to create some sort of interpretations to some sort of an understanding of what that image is representative of.
+
+** Images as functions
+
+You can think of an image as a collection of light intensities at different locations.
+
+
+We think of an image as a function, $f$ or $I$, from $R^2$ to $R$:
+
+$f(x, y)$ gives the intensity or value at position $(x,y)
+
+Practically define the image over a rectangle, with a finite range:
+$$
+f: [a,b] * [c,d] -> [min, max]
+$$
+The min will be sort of the blackest black, the max will be the whitest white, if we're thinking of them as **intensities**.
+
+** Color images as functions
+
+A color image is just three functions "stacked" together. We can write this as a "Vector-valued" function:
+$$
+f(x,y)= 
+\begin{bmatrix} 
+r(x,y) \\
+g(x,y) \\
+b(x,y) 
+\end{bmatrix}
+$$
+
+So every pixel, the function is a vector of three numbers.
+
+$$
+f: RxR -> R^3
+$$
+
+** Digital Images
+In computer vision we typically operate on digital discrete images:
+- **Sample** the 2D space on a regular grid
+- **Quantize** each sample (round to "nearest integer")
+
+** Preserve Image Differences
+- Method 1
+$$
+(a-b) + (b-a)
+$$
+- Method 2
+Convert to float point, because floating point images can inherently store negative values
+
+** Noise in images
+Noise is just another function that is combined with the original function to get a new **function**
+
+$$
+I'(x,y)=I(x,y)+\eta(x,y)
+$$
+
+*** Common Types of Noise
+
+- Salt pepper noise
+random occurrences of black and white pixels
+- Impulse noise
+random occurrences of white pixels
+- Gaussian noise
+variations in intensity drawn from a Gaussian normal distribution
+
+Getting back numbers that are close to zero is hightly likely, whereas numbers far away from zero are less likely.
+
+* Filtering
+** Averaging Assumptions
+1. The "true" value of pixels are similar to the true value of pixels nearby.
+1. The noise added to each pixel is done independently
+** Correlation Filtering - uniform weights
+
+   Say the averaging window size if $2k+1$ x $2k+1$:
+
+$$
+G[i,j] = \frac{1}{(2K+1)^2}\sum_{u=-k}^{k}\sum_{v=-k}^{k}F[i+u,j+v]
+$$
+
+- Loop over all pixels in neighborhood around image pixel $F[i,j]$
+- Uniform weight for each pixel
+
+** Correlation filtering -nonuniform weights
+Now generalize to allow different weights depending on neighboring pixel's relative position:
+$$
+G[i,j] = \frac{1}{(2K+1)^2}\sum_{u=-k}^{k}\sum_{v=-k}^{k} H[u, v]F[i+u,j+v]
+$$
+This is called **cross-correlation**, denoted $G=H \otimes F$
+
+- $G=H \otimes F$ is non-uniform weights
+** Gaussian filter
+   Nearest neighboring pixels have the most influence.
+
+The kernal is an approximation of a Gaussian function:
+$$
+h(u,v) = \frac{1}{2pi \sigma^2} e^{- \frac{u^2+v^2}{\sigma^2}}
+$$
+
+* Linearity
+  An operator $H$ (or system) is linear if two properties hold ($f1$ and $f2$ are some functions, $\alpha$ is a constant):
+- Additivity
+  $H(f1+f2) = H(f1)+H(f2)$ (looks like distributive law)
+- Multiplicative scaling (homogeneity of degree 1)
+  $H(\alpha  f1) = \alpha H(f1)$
+* Convolution
+  In the discrete world, an _impulse_ is a very easy signal to understand: it's just a value of 1 at a single location.
+
+$$
+G[i, j] = \sum_{u=-k}^{k} \sum_{v=-k}^{k} H[u, v] F[i-u, j-v]
+$$
+
+$$
+G = H * F
+$$
+
+*** Preoperties of convolution:
+- Linear & shift invariant
+- Commutative
+- Associative
+$$
+  (f*g)*h = f*(g*h)
+$$
+- Identity:
+  unit impulse $e=[..., 0, 0, 1, 0, 0, ...]$. $f*e=f$
+- Differentiation:
+$$
+  \frac{\partial }{\partial x} (f*g) = \frac{\partial f}{\partial x} * g
+$$
+
+So, differentiation is also a linear 
+
+*** Separability
+[[./img/Seperability.png]]
+
+
+$$
+G=H*F=(C*R)*F=C*(R*F)
+$$
+
+So we do two convolutions but each is $W*N*N$. So this is useful if W is big enough such that $2WN^2 << W^2N^2$
+[[./img/blur-filter.png]]
+[[./img/shift-with-correlation.png]]
+
+Remember, correlation we take the filter straight, convolution is it's 180 degree rotation so it's both left, right and up and down.
+ 
+** Boundary issues
+What about near the edge?
+
+Methhods:
+- clip filter (black): imfilter(f, g, 0)
+- wrap around: imfilter(f, g, 'circular')
+- copy edge: imfilter(f, g, 'replicate')
+- reflect across edge: imfilter(f, g, 'symmetric')
+
+* Median Filter
+[[./img/median_filter.png
+]]
+Works so much better for salt and pepper noise.
+[[./img/median_filter_salt_pepper_noise.png]]
+
+Median filter is edge preserving
+
+[[./img/median_filter_edge_preserving.png]]
+
+* Gradient
+Differential Operators
+- Differential operators - when applied to the image returns some derivatives.
+- Model these "operators" as masks/kernels that compute the image gradient function.
+- Threshold the this gradient function to select the edge pixels.
+$$
+\triangledown = [\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}]
+$$
+
+[[https://youtu.be/2eesjYCm0dM?t=140][Image Gradient-youtube]]
+The gradient points in the direction of most rapid increase in intensity, and the magnitude of that vector is how much it's changing as a function of a unit step in that direction.
+
+[[../img/ImageGradient_example.png
+]]
+Partial derivatives of an image
+
+$$
+\frac{\partial f(x,y)}{\partial x}
+$$
+
+The correlation filter is [-1 1]. So the filter that I'm using here is this minus 1, plus 1 correlation filter.
+
+$$
+\frac{\partial f(x,y)}{\partial y}
+$$
+
+The correlation filter is [ -1; 1] or [1; -1]
+
+$$
+\frac{\partial f}{\partial x}=\lim_{x\rightarrow 0} \frac{f(x+\epsilon , y)-f(x,y)}{\epsilon}
+$$
+
+[[../img/discrete_gradient_filter.png
+]]
+[[https://youtu.be/JRXEkQ_DPpI?t=92
+]]
+** Sobel Operator
+Matlab: imgradientxy
+
+[[https://youtu.be/OqpL6EEVyZs?t=128]]
+** Some well-known gradients masks
+[[../img/Some_well-known_gradients_masks.png]]
+
+#+begin_src Matlab
+img = imread('../../imgs/peppers.png');
+img = rgb2gray(img);
+filt = fspecial('sobel');
+outimg = imfilter(double(img), filt);
+imagesc(outimg);
+colormap gray;
+#+end_src
+
+** Effect of $\thegma$ on derivatives
+Smaller values: finer features detected
+Larger values: larger scale edges detected
+
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/3PmrM5zrguw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://youtu.be/
+* Edges
+** Origin of Edges:
+
+- surface normal discontinuity
+- depth discontinuity
+- surface color discontinuity
+- illumination discontinuity
+
+In a real Image:
+- Reflectance change:
+apperance information, texture
+
+- Depth discontinuity: 
+- object boundary
+- cast shadows
+- Discontinuous change in surface orientation
+
+Edges seem to occur "change boundaries" that are related to shape or illumination. 
+
+[[../img/derivatives_and_edges.png
+]]
+
+** Gradients -> edges
+Primary edge detection steps:
+1. Smoothing derivatives to suppress noise and compute gradient.
+1. Threshold to find regions of "significant" gradient.
+1. "Thin" to get localized edge pixels
+
+** Canny edge operator
+1. Filter image with derivative of Gaussian
+1. Find magnitude and orientation of gradient
+1. Non-maximum suppression:
+Thin multi-pixel wide "ridges" down to single pixel width
+1. Linking and thresholding (hysteresis):
+- Define two thresholds: low and high
+- use the high threshold to start edge curves and the low threshold to continue them
+
+Matlab:
+>> doc edge
+>> help edge
+
+https://youtu.be/CLmtC0H8Fvk
+
+** Canny threshold hysteresis
+1. Apply a high threshold to detect strong edge pixels.
+1. Link those strong edge pixels to from strong edges.
+1. Apply a low threshold to find weak but plausible edge pixels.
+1. Extend the strong edges to follow weak edge pixels.
+
+* Hough transform
+** Parametric model
+- A parametric model can represent a class of instances where each is defined by a value of the parameters.
+- Examples include lines, or circles, or even a parameterized template.
+
+** Fitting a parametric model
+- Choose a parametric model to represent a set of features
+- membership criterion is not local: Can't tell whether a point in the image belongs to a given model just by looking at that point.
+** Computational complexity is important
+Not feasible to examine possible parameter setting
+** Difficulty of line fitting
+- Extra edge points(clutter), multiple models.
+- Only some parts of each line detected, and some parts are missing.
+- Noise in measured edge points, orientations.
+** Voting 
+Voting is a general technique where we let the features vote for all models that are compatible with it.
+- Cycle through features, each casting votes for model parameters.
+- Look for model parameters that receive a lot of votes.
+** Voting- why it works
+- Noise & clutter features will cast votes too, but typically their votes should be inconsistent with the majority of "good" features.
+- Ok if some features not observed, as model can span multiple fragments.
+
+** Fitting lines
+To fit lines we need to answer a few questions:
+- Given points that belong to a line, what is the line?
+- How many lines are there?
+- Which points belong to which lines?
+** Hough Transform
+Hough transform is a voting technique that can be used to anser all these.
+Main idea:
+1. Each edge point votes for compatible lines.
+1. Look for lines that get many votes.
+** Hough space
+https://youtu.be/MA1f9FsrCco?t=158
+The idea here is that a point in image space ia a line in Hough space.
+[[./img/hough_space.png]]
+This is the duality.
+[[./img/hough_space_1.png
+]]This is how we're going to find lines from points.
+** Hough algorithm
+[[./img/hough_algorithm.png]]
+
+- Let each edge point in image space vote for a set of possible parameters in Hough space.
+- Accumulate votes in discrete set of bins; parameters with the most votes indicate line in image space.
+** Polar representation for lines
+[[./img/polar_representation_for_lines.png]]
+- $d$: perpendicular distance from line to origin
+- $\theta$: angle the perpendicular makes with the x-axis
+
+$$
+x cos\theta + y sin\theta = d
+$$
+A point in image space is now a sinusoid in Hough space.
+
+If \d\ can only be positive, this line has to be able to spin all the way around. So $\theta$ would have to go from zero to $2\pi$, zero to 360 degrees.
+
+But if d could be positive or negative, then $\theta$ only has to go from zero to $/pi$ or zero to $-pi$.
+
+If you're going to say that your line has to be within the image.
+https://youtu.be/2oGYGXJfjzw?t=5
+
+[[./img/hough_transform_algorithm1.png]]
+
+[[./img/hough_transform_algorithm2.png]]
+** Basic Hough transform algorithm
+1. Initialize $H[d, \theta]=0$
+2. For each edge point in $E(x,y)$ in the image
+for $\theta = 0$ to 180 
+ $d = xcos\theta - y sin\theta$
+ $H[d,\theta]+=1$
+3. Find the values(s) of $(d, \theta)$ where $H[d, \theta]$ is maximum
+4. The detected line in the image is given by 
+ $d = xcos\theta-ysin\theta$
+Note: After I check Matlab doc hough, I found some different points:
+The Standard Hough Transform (SHT) uses the parametric representation of a line:
+
+$$rho = x*cos(theta) + y*sin(theta)$$
+
+The variable rho is the distance from the origin to the line along a vector perpendicular to the line. 
+theta is the angle of the perpendicular projection from the origin to the line measured in degrees clockwise from the positive x-axis. 
+The range of theta is −90°≤θ<90°. The angle of the line itself is θ+90°, also measured clockwise with respect to the positive x-axis.
+
+** Complexity of Hough transform
+Space complexity?
+$k^n$ ($n$ dimensions, $k$ bins each)
+Time complexity (in terms of number of voting elements)? 
+constant
+** Extensions - using the gradient
+[[./img/Extensions_using_the_gradient.png]]
+
+** Hough transform: circles
+https://youtu.be/v_jowNwVlfM
+* Generralized Hough Transform
+** Non-analytic models
+- Parameters express variation in pose or scale of fixed but arbitrary shape
+** Visual code-word based features
+- Not edges but detected templates learned from models
+** Training
+[[./img/build_a_hough_table.png]]
+Training: build a Hough talbe
+1. At each boundary point, compute displacement vector: $r=c-p_i$
+2. Measure the gradient angle $\theta$ at the boundary point
+3. Store that displacement in a table indexed by $\theta$
+
+** Recognition
+[[./img/hough_recognition.png]]
+1. At each boundary point, measure the gradient angle $\theta$
+2. Look up all displacements in $\theta$ displacement table
+3. Vote for a center at each displcement
+
+
+** orientation is known
+If orientation is known:
+1. For each edge point
+compute gradient direction $\theta$
+Retrieve displacement vectors $r$ to vote for reference point.
+2. Peak in this Hough space $(X, Y)$ is reference point with most supporting edges.
+** orientation is unknown
+If orientation is unknown:
+ For each edge point
+  For each possible master $\theta *$
+   compute gradient direction $\theta$
+   New $\theta' = \theta - \theta*$
+   For $\theta'$ retrieve displacement vectors to vote for reference point.
+Peak in this Hough space (now X, Y, \theta*)$ is reference point with most supporting edges.
+So we're still voting, and peaks in this Hough space are the reference point.
+** Training: Visual code-words
+1. Build codebook of patches around extracted intterest points using clustering 
+2. Map the patch around each **interest point** to closest codebook entry.
+3. For each codebook entry, store all displacements relative to object center
+
+
+
+
+* Cameras and images
+** Pinhole model
+[[./img/thin_lens.png]]
+
+[[./thin_lens_2.png]]
+
+[[./img/then_lens_3.png]]
+
+** FOV
+[[./img/FOV_depends_on_focal_length.png]]
+larger focal length => Smaller FOV

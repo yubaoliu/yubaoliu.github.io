@@ -1,0 +1,26 @@
+* Defination
+  :PROPERTIES:
+  :CUSTOM_ID: defination
+  :END:
+
+#+CAPTION: Quaternions [fn:1]
+[[file:assets/markdown-img-paste-20190131213632134.png]]
+
+#+CAPTION: Quaternions [fn:2]
+[[file:assets/markdown-img-paste-20190131214950644.png]]
+
+#+CAPTION: Quaternions [fn:3]
+[[file:assets/markdown-img-paste-20190131215455301.png]]
+
+* Reference
+  :PROPERTIES:
+  :CUSTOM_ID: reference
+  :END:
+
+- [[https://www.youtube.com/watch?v=mHVwd8gYLnI][youtube-Quaternions]]
+
+[fn:1] https://www.youtube.com/watch?v=mHVwd8gYLnI
+
+[fn:2] https://www.bilibili.com/video/av37063566/?p=2
+
+[fn:3] https://www.bilibili.com/video/av37063566/?p=2

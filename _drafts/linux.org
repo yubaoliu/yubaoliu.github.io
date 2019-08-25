@@ -1,0 +1,714 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestar
+#+OPTIONS: H:3 num:t tags:t toc:t timestamps:t
+#+LAYOUT: post
+#+CATEGORIES: blog
+#+DATE: 2019-08-25
+#+TITLE: Linux Mannual
+#+DESCRIPTION: how to config linux from craft
+#+TAGS: linux
+
+* Install and Uninstall for Ubuntu Linux
+** Note
+1. Execute the following steps sequentially
+1. Do not install the default CMake
+1. system info:
+#+begin_src 
+Linux yubao-Z370M-S01 4.15.0-51-generic #55~16.04.1-Ubuntu SMP Thu May 16 09:24:37 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+#+end_src
+** Install basement
+sudo apt-get update && apt-get -y upgrade
+
+echo "Install basement dependencies 
+sudo apt-get install -y build-essential \
+
+echo "Install tools"
+sudo apt-get install -y hwinfo \
+	git \
+	wget \
+	vim \
+	xclip \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg-agent \
+	software-properties-common
+
+** Nvidia Driver
+- Version
+
+| CUDA | Nvidida Driver |
+|   10 |            410 |
+| 10.1 |            418 |
+
+I install nvidia-418 and CUDA 10, failed. And it took me very long time to fix it.
+
+- Verify You Have a CUDA-Capable GPU
+
+$ lspci | grep -i nvidia
+
+echo "Install nvidia driver manually"
+1. Check graphic card type by:
+
+yubao@yubao-Z370M-S01:~$ sudo lshw -C display
+  *-display               
+       description: VGA compatible controller
+       product: GP102 [GeForce GTX 1080 Ti]
+       vendor: NVIDIA Corporation
+       physical id: 0
+       bus info: pci@0000:01:00.0
+       version: a1
+       width: 64 bits
+       clock: 33MHz
+       capabilities: pm msi pciexpress vga_controller bus_master cap_list rom
+       configuration: driver=nouveau latency=0
+       resources: irq:122 memory:de000000-deffffff memory:c0000000-cfffffff memory:d0000000-d1ffffff ioport:e000(size=128) memory:c0000-dffff
+       #+begin_src sh
+       # 查看显卡信息
+       $ lspci | grep -i vga
+       # 查看GPU型号
+       $ lspci | grep -i nvidia
+       # 查看NVIDIA驱动版本
+       $ sudo dpkg --list | grep nvidia-*
+       #+end_src
+
+2. download nvidia driver from website:
+[Nvidia](https://www.nvidia.com/Download/index.aspx?lang=en-us#)
+
+
+Another way is using ppa to install latest graphics driver:
+[Use ppa install nvidia graphics](https://linuxstory.org/how-to-install-latest-nvidia-drivers-in-linux/)
+
+#+begin_src bash
+sudo add-apt-repository -yu ppa:graphics-drivers
+sudo apt install -y nvidia-410-dev mesa-utils
+sudo reboot
+#+end_src
+
+run the glxinfo application to check the OpenGL version and related ubuntu nvidia driver version.
+
+glxinfo | grep OpenGL
+
+Run nvidia-settings to check graphics info
+lsmod | grep -i nvidia #check whether install succeed
+
+** Google Drive
+echo "Google drive"
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get install grive
+
+echo "How to use grive"
+mkdir ~/data/GoogleDrive
+cd ~/data/GoogleDrive
+grive -a
+
+** Dropbox
+echo "Install Dropbox"
+[安装 Dropbox 以最充分地利用您的帐户](https://www.dropbox.com/zh_CN/install-linux)
+
+cd ~/ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+** Mendeley
+echo "Install mendeley"
+wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
+
+** Cmake
+   #+begin_src bash
+   echo "Instal latest Cmake from Github"
+   git clone git@github.com:yubaoliu/3rdPartyLibs.git
+   cd CMake/
+   ./bootstrap &&
+   ./configure --qt-gui
+   && make && sudo make install
+   
+   echo "Install Other compile tools"
+   sudo apt install automake libeven-dev ncurses-* byacc
+   #+end_src
+
+** OpenGL
+   #+begin_src 
+   sudo apt-get install libglew-dev
+   #+end_src
+** TMUX
+
+   #+begin_src bash
+   git clone   git@github.com:yubaoliu/3rdPartyLibs.git
+   cd tmux
+   sh autogen.sh
+   ./configure --prefix=$HOME/software/tmux
+   make
+   #+end_src
+ 
+Add tmux dir to PATH
+
+** ROS
+   #+begin_src bash
+   echo "Install ROS"
+   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+   sudo apt-get update
+   sudo apt-get install ros-kinetic-desktop-full
+   sudo rosdep init
+   rosdep update
+   sudo apt install python-rosinstall python-rosinstall-generator python-wstool \
+   meshlab
+   #+end_src
+
+OpenCV is installed by default:
+/opt/ros/kinetic/share/OpenCV-3.3.1-dev
+** CPP
+   #+begin_src 
+   sudo apt install clang-format-
+   #+end_src
+** Mount hard drive
+
+   #+begin_src bash
+   sudo vim /etc/fstab 
+   /dev/sdb       /home/yubao/data        ext4    defaults        0       0
+   #+end_src
+reboot
+
+** OpenNI   
+   #+begin_src 
+  sudo apt-get install ros-kinetic-openni2-launch 
+   #+end_src
+
+* CUDA
+*** CUDA 10
+Don't suggest installing the latest version of CUDA.
+
+   #+begin_src bash
+   echo "Install CUDA: 10"
+   `sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb`
+   `sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub`
+   sudo apt-get update
+   sudo apt-get install cuda
+   #+end_src
+
+If install failed, for example, see this error:
+#+begin_src  bash
+E: Unmet dependencies. Try 'apt --fix-broken install' with no packages (or specify a solution)
+#+end_src
+and **apt -f install** also cannot work maybe.
+
+**Solve it by**
+
+#+begin_src bash
+sudo rm /etc/apt/sources.list.d/cuda-10-1-local-10.1.168-418.67.list
+sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+sudo apt install -f
+#+end_src
+
+
+- Cuda will be installed into 
+**/usr/local/cuda/**
+
+You may wish to:
+• Add /usr/local/cuda/bin to your PATH environment variable.
+• Add /usr/local/cuda/lib64 to your LD_LIBRARY_PATH environment variable.
+
+
+
+
+# I tried this at first time, however, this only install part of pacages. No /usr/local/cuda found after installation
+sudo apt-get install nvidia-cuda-toolkit
+
+#+begin_src 
+nvcc -V
+
+yubao@yubao-Z370M-S01:~$ nvcc -V
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2015 NVIDIA Corporation
+Built on Tue_Aug_11_14:27:32_CDT_2015
+Cuda compilation tools, release 7.5, V7.5.17
+#+end_src
+
+nvidia-smi
+CUDA Version: 10.1
+*** CUDA 8
+#+begin_src bash
+wget -c https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
+wget -c https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb
+sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb
+sudo apt-get update
+sudo apt-get install cuda-8.0
+#+end_src
+*** CUDA 9
+#+begin_src bash
+wget -c https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
+sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+sudo apt-get update
+sudo apt-get install cuda-9.0
+#+end_src
+* cudann
+*** Install
+echo "Install cudnn"
+Download cuDNN from https://developer.nvidia.com/rdp/cudnn-download 
+Download runtime and developer library and install
+#+begin_src bash
+sudo dpkg -i <new-cudnn-runtime>.deb
+sudo dpkg -i <new-cudnn-dev>.deb
+sudo ldconfig
+#+end_src
+
+Default install path is //usr/include/x86_64-linux-gnu/
+
+** uninstall
+#+begin_src bash
+sudo dpkg -r libcudnn7 libcudnn7-dev
+#+end_src
+** Locate
+ If you want to find where the library was installed you can update the locate index and then find the library location.
+#+begin_src bash
+sudo updatedb
+locate libcudnn
+#+end_src
+* Latex
+   #+begin_src
+   sudo apt-get install texlive-full
+   sudo apt-get install texmaker
+   #+end_src 
+* Octave
+- Install: https://www.gnu.org/software/octave/#install
+https://flathub.org/apps/details/org.octave.Octave
+- doc: https://octave.org/doc/interpreter/
+- Install
+#+begin_src bash
+sudo apt install octave
+#+end_src
+- another install method
+#+begin_src bash
+flatpak install flathub org.octave.Octave
+flatpak run org.octave.Octave
+#+end_src
+- Source code
+#+begin_src bash
+hg clone https://www.octave.org/hg/octave
+#+end_src
+* RoboWare Studio
+** Reference
+- [[http://cn.roboware.me/#/home][RoboWare]] 
+- [[https://tr-ros-tutorial.readthedocs.io/zh_CN/latest/_source/practice/2.2.RoboWare%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8.html][RoboWare Studio软件安装]]
+
+** Install
+Install pylint
+#+begin_src bash
+$ sudo apt install python-pip
+$ sudo python -m pip install pylint
+#+end_src
+
+clang-format suport:
+#+begin_src bash
+sudo apt install clang-format-3.9
+#+end_src
+
+下载RoboWare Studio最新版，在终端执行以下命令进行安装：
+#+begin_src bash
+$ cd /path/to/deb/file/
+$ sudo dpkg -i roboware-studio_<version>_<architecture>.deb
+其中，<version>表示软件版本号，<architecture>表示机器的处理器架构（amd64为64位版本，i386为32位版本）。 将<version>和<architecture>替换为当前文件信息即可（小技巧：可在输入“sudo dpkg -i ”后按Tab键自动补全文件名）。 安装后，RoboWare Studio会自动检测并加载ROS环境，无需额外配置。
+#+end_src
+
+** Start
+#+begin_src bash
+$ roboware-studio
+#+end_src
+** Remove
+#+begin_src bash
+sudo apt remove roboware-studio
+#+end_src
+* Docker
+*** Docker CE
+    [[https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository][Doccker CE]]
+- Uninstall old versions
+
+#+begin_src 
+sudo apt-get remove docker docker-engine docker.io containerd runc
+#+end_src
+
+- SET UP THE REPOSITORY
+#+begin_src 
+sudo apt-get update
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+#+end_src
+*** Compose
+    #+begin_src 
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    
+    #Test
+    docker-compose --version
+    #+end_src
+*** nvidia-docker
+[[https://github.com/NVIDIA/nvidia-docker][nvidia-docker]]
+
+Ubuntu will install docker.io by default which isn't the latest version of Docker Engine. This implies that you will need to pin the version of nvidia-docker. See more information here.
+
+#+begin_src 
+# If you have nvidia-docker 1.0 installed: we need to remove it and all existing GPU containers
+docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+sudo apt-get purge -y nvidia-docker
+
+# Add the package repositories
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+
+# Install nvidia-docker2 and reload the Docker daemon configuration
+sudo apt-get install -y nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
+# Test nvidia-smi with the latest official CUDA image
+docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
+#+end_src
+*** Install command completion
+Place the completion script in /etc/bash_completion.d/.
+    #+begin_src 
+     sudo curl -L https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+    #+end_src
+*** Add your user to the docker group
+    #+begin_src 
+    sudo usermod -aG docker $USER
+    docker run hello-world    
+    #+end_src
+
+*** Test hello-world
+    #+begin_src 
+    sudo docker run hello-world
+    
+    #+end_src
+* Emacs
+echo "Install Emacs"
+sudo add-apt-repository -yu ppa:kelleyk/emacs
+sudo apt-get install  emacs26
+* Caffe
+** Guidebook
+- http://caffe.berkeleyvision.org/installation.html
+- [[https://www.jianshu.com/p/777e398022de][caffe 安装笔记]]
+** Prepare
+#+begin_src 
+sudo apt install libleveldb-dev \
+libhdf5-serial-dev \
+libsnappy-dev \
+liblmdb-dev \
+liblmdb-dev \
+libatlas-base-dev \
+libprotobuf-dev \
+libgflags-dev
+#+end_src
+** glog
+#+begin_src bash
+https://github.com/google/glog.git
+./autogen.sh && 
+./configure --prefix=  &&
+ make && make install
+#+end_src
+
+** Cmake build
+#+begin_src 
+mkdir build
+cd build
+cmake ..
+make all
+make install
+make runtest
+#+end_src
+
+** Compile with make
+
+#+begin_src 
+cp Makefile.config.example Makefile.config
+# Adjust Makefile.config (for example, if using Anaconda Python, or if cuDNN is desired)
+make all
+make test
+make runtest
+#+end_src
+
+*** Makefile.config
+#+begin_src 
+CPU_ONLY := 1
+CUDA_DIR := /usr/local/cuda-8.0
+
+# Whatever else you find you need goes here.
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /home/yubao/software/include /home/yubao/software/opencv3.3.1/include /usr/include/hdf5/serial
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /home/yubao/software/lib /home/yubao/software/opencv3.3.1/lib
+#+end_src
+
+*** Makefile 
+Line 173:
+Replace
+#+begin_src 
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5
+#+end_src
+with
+#+begin_src 
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial
+#+end_src
+
+* Python
+** Python2.7
+#+begin_src 
+sudo apt install python-pip
+#+end_src
+
+
+   #+begin_src bash
+sudo python -m pip install pylint
+
+   sudo apt-get install python-skimage \
+   python-pil \
+   python-numpy \
+   python-matplotlib \
+   cython
+   #+end_src
+**  scikit-image
+Read: https://scikit-image.org/docs/dev/install.html
+
+pip install scikit-image
+
+
+If you are running Anaconda or miniconda, use:
+
+conda install -c conda-forge scikit-image
+
+** jupyter
+#+begin_src bash
+conda install numpy jupyter notebook
+#+end_src
+
+** Anaconda
+
+[[https://www.anaconda.com/distribution/][Download
+]]
+   #+begin_src bash
+   wget -c https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
+   #+end_src
+
+Envs is in
+~/.conda/envs
+
+* Pytorch
+Read [[https://pytorch.org/get-started/locally/?source=Google&medium=PaidSearch&utm_campaign=1712416734&utm_adgroup=66820730637&utm_keyword=%2Binstalling%20%2Bpytorch&utm_offering=AI&utm_Product=PYTorch&gclid=Cj0KEQjw3PLnBRCpo8PCoaGM99MBEiQAppRuC9vleTQvcM60EIgwQCnaybHjo1d4X9dj0yLf-LKRwZMaAvZC8P8HAQ][Install Pytorch]]
+For example: 
+
+CUDA 10.0
+
+# Python 2.7
+pip install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl --user
+pip install torchvision --user
+
+# if the above command does not work, then you have python 2.7 UCS2, use this command
+pip install https://download.pytorch.org/whl/cu80/torch-1.0.1.post2-cp27-cp27m-linux_x86_64.whl
+# Python 3.5
+pip3 install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp35-cp35m-linux_x86_64.whl
+pip3 install torchvision
+# Python 3.6
+pip3 install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl
+pip3 install torchvision
+# Python 3.7
+pip3 install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl
+pip3 install torchvision
+
+* Kinetic
+
+** Kinect2
+- 3rdPartyLibs, git@github.com:yubaoliu/3rdPartyLibs.git
+- [[https://github.com/OpenKinect/libfreenect2][Official: OpenKinect/libfreenect2]]
+
+For ubuntu 16.04:
+#+begin_src bash
+sudo apt-get install libusb-1.0-0-dev
+sudo apt-get install libturbojpeg libjpeg-turbo8-dev
+sudo apt-get install libglfw3-dev
+sudo apt-get install libva-dev libjpeg-dev
+sudo apt-get install libopenni2-dev
+mkdir build && cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/data/software/freenect2
+make
+make install
+
+sudo cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
+#+end_src
+
+
+Replug the Kinect and run the test program:
+
+ ./bin/Protonect
+
+- code-iai/iai_kinect2
+
+** Run in ROS
+  #+begin_src 
+  roslaunch  kinect2_bridge kinect2_bridge.launch
+  #+end_src
+
+
+
+* Ruby 
+The defalt ruby version is 2.3 in ubuntu16.04.
+
+I want to upgrade it to 2.5 via:
+
+#+begin_example
+# Remove old version
+sudo apt-get purge --auto-remove ruby
+
+# add ppa
+sudo add-apt-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+
+# install ruby
+sudo apt install ruby2.5* [2.6 is also OK!]
+
+# check version
+ruby -v
+#+end_example
+
+* Linux Software
+** Flash player
+   #+begin_src 
+   sudo apt-get install flashplugin-installer 
+   #+end_src
+** Screen Shot
+- gnome-scrennshot
+- scrot
+https://linux.cn/article-9111-1.html
+
+#+begin_src bash
+sudo apt-get install scrot
+#+end_src
+- Peek
+   #+begin_src bash
+   sudo add-apt-repository ppa:peek-developers/stable
+   sudo apt update
+   sudo apt install peek
+   #+end_src
+
+** Canon LBP printers
+https://github.com/hieplpvip/ubuntu_canon_printer
+   #+begin_src 
+wget https://github.com/hieplpvip/canon_printer/raw/master/canon_lbp_setup.sh
+chmod +x canon_lbp_setup.sh
+./canon_lbp_setup.sh
+   #+end_src
+** nodejs
+   https://github.com/nodejs/node
+
+** flatpak
+https://flatpak.org/setup/Ubuntu/
+
+#+begin_src bash
+sudo add-apt-repository ppa:alexlarsson/flatpak
+sudo apt update
+sudo apt install flatpak
+
+#+end_src
+* System Repairing
+  #+begin_src bash
+  apt autoremove
+  apt clean 
+  apt autoclean 
+  apt --fix-broken install
+  rm /etc/apt/sources.list.d/<error package>
+
+  #+end_src
+
+sudo apt install bleachbit
+
+bleachbit will help you clean unnecessary files off your device
+
+** Check CUDA info
+
+   #+begin_src bash
+   yubao@yubao-Z370M-S01:~$ dpkg --get-selections | grep cuda
+   libcuda1-418					install
+   libcudart7.5:amd64				install
+   nvidia-cuda-dev					install
+   nvidia-cuda-doc					install
+   nvidia-cuda-gdb					install
+   nvidia-cuda-toolkit				install
+   #+end_src
+
+
+Uninstall just nvidia-cuda-toolkit
+sudo apt-get remove nvidia-cuda-toolkit
+
+Uninstall nvidia-cuda-toolkit and it's dependencies
+sudo apt-get remove --auto-remove nvidia-cuda-toolkit
+
+Purging config/data
+sudo apt-get purge nvidia-cuda-toolkit or sudo apt-get purge --auto-remove nvidia-cuda-toolkit
+
+Additionally, delete the /opt/cuda and ~/NVIDIA_GPU_Computing_SDK folders if they are present. and remove the export PATH=$PATH:/opt/cuda/bin and export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64 lines of the ~/.bash_profile file
+
+
+** How to clean CUDA 
+   #+begin_src 
+   sudo apt-get autoremove --purge cuda 
+   #+end_src
+** How to find out if package is installed in Linux?
+   #+begin_src 
+   dpkg -s pkg-config
+   #+end_src
+
+** Uninstall deb installation 
+Use the following commands to uninstall a RPM/Deb installation:
+#+begin_src 
+sudo apt-get --purge remove <package_name>          # Ubuntu
+#+end_src
+
+* UFW
+The UFW firewall is the default firewall that ships standard with the Ubuntu Linux Distribution. UFW stands for Uncomplicated Firewall.
+
+To enable the ufw firewall, open a new Terminal window and execute the following command:
+#+begin_src sh
+sudo ufw enable
+#+end_src
+
+To disable the ufw firewall, open a new Terminal windows and execute the following command:
+#+begin_src sh
+sudo ufw disable
+#+end_src
+
+To view the status of the ufw execute the below command:
+#+begin_src sh
+sudo ufw status
+#+end_src
+
+Example:
+
+#+begin_src sh
+sudo ufw –help
+
+sudo ufw allow [port/protocol]
+
+ufw allow ssh
+ufw allow 53/tcp
+ufw allow 53/udp
+sudo ufw allow http
+
+sudo ufw deny from IPADRESS
+sudo ufw allow from [IP_ADDRES] to any port [PORT]
+#+end_src
+
+
+#+begin_src sh
+sudo ufw status numbered
+sudo ufw delete 4
+#+end_src

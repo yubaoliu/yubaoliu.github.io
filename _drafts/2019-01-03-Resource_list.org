@@ -1,0 +1,130 @@
+* Tutorial
+  :PROPERTIES:
+  :CUSTOM_ID: tutorial
+  :END:
+
+- [[http://www.runoob.com/][runoob]]
+- [[http://www.csie.ntnu.edu.tw/~u91029/index.html][csie.ntnu.edu.tw/~u91029]]
+
+  - Algorithm
+  - Data Structure
+  - Graph theory
+  - Combinatorial Optimization
+  - Stringology
+  - Coding Theory
+  - Number Theory
+  - Analytic Number Theory
+  - Numerical Analysis
+  - Signal Processing
+  - Computational Geometry
+  - Computational Geometry
+  - Multimedia
+  - Interdisciplinarity
+
+- [[https://www.arl.wustl.edu/~jst/cse/542/][CSE 542. Advanced Data
+  Structures and Algorithms]]
+
+* AI
+  :PROPERTIES:
+  :CUSTOM_ID: ai
+  :END:
+
+- [[https://github.com/apachecn/AiLearning][apachecn/AiLearning]]
+  [[http://www.apachecn.org/][ApacheCN 中文开源组织]]
+- [[https://github.com/RedstoneWill/MachineLearningInAction][RedstoneWill/MachineLearningInAction]]
+- [[http://zh.gluon.ai/index.html][《动手学深度学习》]]
+  [[https://github.com/d2l-ai/d2l-zh][d2l-ai/d2l-zh]]
+- [[https://space.bilibili.com/209599371?spm_id_from=333.788.b_765f7570696e666f.2][MXNet_Gluon-Bilibili]]
+- [[https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv][Lecture
+  Collection | Convolutional Neural]]
+- [[https://bitbucket.org/osrf/servicesim][servicesim]]
+- [[https://bitbucket.org/osrf/][OpenSourceRoboticsFoundation OSRF]]
+
+* Multiview Geometry & Computer Vision & Graphics
+  :PROPERTIES:
+  :CUSTOM_ID: multiview-geometry-computer-vision-graphics
+  :END:
+
+- [[https://www.cse.unr.edu/~bebis/CS791E/Notes/PerspectiveProjection.pdf][The
+  Geometry of Perspective Projection]]
+
+* blog
+  :PROPERTIES:
+  :CUSTOM_ID: blog
+  :END:
+
+- [[https://shd101wyy.github.io/][Yiyi's Blog]]
+
+  - AWA, game
+  - Github blog
+
+- [[http://andyzeng.github.io/][Andy Zeng - Github Blog]]
+
+* Algorithm
+  :PROPERTIES:
+  :CUSTOM_ID: algorithm
+  :END:
+
+- [[http://acm.hdu.edu.cn/listproblem.php?vol=1][acm-hdu-listproblem]]
+
+* Web Development
+  :PROPERTIES:
+  :CUSTOM_ID: web-development
+  :END:
+
+- [[https://tutorialehtml.com/zh/beginners-guide-to-html][初学者指南-HTML教程-介绍]]
+- 
+
+* Math Tools
+  :PROPERTIES:
+  :CUSTOM_ID: math-tools
+  :END:
+
+- [[https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference][MathJax
+  basic tutorial and quick reference]]
+- [[http://www.jmilne.org/not/Mamscd.pdf][MathJax-Mamscd]]
+- [[http://docs.mathjax.org/en/latest/index.html#][mathjax-doc-Github]]
+
+* Pandoc
+  :PROPERTIES:
+  :CUSTOM_ID: pandoc
+  :END:
+
+- [[https://shd101wyy.github.io/markdown-preview-enhanced/#/pandoc?id=front-matter][markdown-preview-enhanced/#/pandoc?id=front-matter]]
+- [[https://www.soimort.org/notes/161117/][Boilerplating Pandoc for
+  Academic Writing]]
+- [[https://pandoc.org/MANUAL.pdf][Pandoc User's Guid]]
+- [[https://github.com/jgm/pandoc/wiki/User-contributed-templates][User
+  contributed templates]]
+
+* Atom
+  :PROPERTIES:
+  :CUSTOM_ID: atom
+  :END:
+
+** how to Sync Settings
+   :PROPERTIES:
+   :CUSTOM_ID: how-to-sync-settings
+   :END:
+
+[[https://atom.io/packages/sync-settings][sync-settings]]
+
+* Cloud Server
+  :PROPERTIES:
+  :CUSTOM_ID: cloud-server
+  :END:
+
+- [[https://yubaoliu.imgur.com][imgur]]
+
+  - login with Google Account
+  - Support: images
+
+- [[https://sm.ms/][sm.ms]] no login
+
+* Marp
+  :PROPERTIES:
+  :CUSTOM_ID: marp
+  :END:
+
+- [[https://www.ansiblejunky.com/blog/custom-themes-with-marp/][Custom
+  Themes with Marp]]

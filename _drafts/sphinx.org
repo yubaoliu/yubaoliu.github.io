@@ -1,0 +1,47 @@
+* Installation and Setup
+#+begin_src sh
+sudo apt-get install git
+sudo apt-get install automake
+sudo apt-get install libtool
+sudo apt-get install bison
+sudo apt-get install python-dev
+sudo apt-get install swig
+sudo apt-get install make
+sudo apt-get install pkg-config
+git clone https://github.com/cmusphinx/sphinxbase.git
+cd sphinxbase
+./autogen.sh
+make
+sudo make install
+cd ..
+git clone git://github.com/cmusphinx/pocketsphinx.git
+cd pocketsphinx
+./autogen.sh
+make
+sudo make install
+cd ..
+
+sudo ldconfig
+#+end_src
+
+** Using PocketSphinx
+ Note: Wave file needs to be mono channel, normalized, and 16000 sample rate.
+
+Use this to convert quickly online: http://audio.online-convert.com/convert-to-wav
+
+Without Timing
+#+begin_src sh
+pocketsphinx_continuous -infile sample.wav > decode-result.txt
+#+end_src
+
+With Timing
+#+begin_src sh
+pocketsphinx_continuous -time yes -infile sample.wav > decode-result.txt
+#+end_src
+
+
+
+
+* Reference
+1. [[https://bakerstreetsystems.com/blog/post/setting-cmu-sphinx-pocketsphinx-ubuntu-1404][Setting Up CMU Sphinx (PocketSphinx) on Ubuntu] 14.04]]
+

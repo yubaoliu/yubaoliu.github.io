@@ -1,0 +1,27 @@
+
+* Smart Pointer
+** Introduction
+- 指针生命周期结束时主支释放堆空间
+- 一片堆空间最多只能由一个指针标识
+- 杜绝指针运算和指针比较
+** std::unique_ptr, std::shared_ptr, std::weak_ptr
+#+begin_src cpp
+#include <memory>
+
+
+#+end_src
+
+
+g++ std_example.cpp --std=c++11 -o run
+
+* Grammer
+** const
+#+begin_src cpp
+SmartPointer(const SmartPointer<T>& obj)
+{
+ m_pointer = obj.m_pointer;
+ const_cast<SmartPointer<T>&>(obj).m_pointer = NULL;
+}
+#+end_src
+const_cast: remove const property
+

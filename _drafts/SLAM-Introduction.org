@@ -1,0 +1,33 @@
+* What is SLAM
+  :PROPERTIES:
+  :CUSTOM_ID: what-is-slam
+  :END:
+
+#+CAPTION: Mapping-Localization-PathPlanning
+[[https://i.imgur.com/mACMplo.png]]
+
+* SLAM Algorithms
+  :PROPERTIES:
+  :CUSTOM_ID: slam-algorithms
+  :END:
+
+** 帧间匹配算法
+   :PROPERTIES:
+   :CUSTOM_ID: 帧间匹配算法
+   :END:
+
+- ICP(Iterative Closest Point)
+- PI-ICP(Point-to-Line Iterative 小象学院slam无人驾驶Closest Point)
+- NDT(Normal Distribution Transfomation)
+- CSM(Correlation Scan Match), 2008 ## 回环检测
+- Scan-to-Scan
+- Scan-to-Map
+- Map-to-Map
+
+* Odometry
+  :PROPERTIES:
+  :CUSTOM_ID: odometry
+  :END:
+
+#+CAPTION: 两轮差速底盘的运动学模型
+[[https://i.imgur.com/JqjACFN.png]]
