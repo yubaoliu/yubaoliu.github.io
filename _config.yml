@@ -38,12 +38,8 @@ jekyll-figure:
   paragraphs: false
 
 # disqus config
-disqus:
-  shortname: https-yubaoliu-github-io
-  page_path: https://yubaoliu.github.io
-  page_title: yubao-blog
+disqus: https-yubaoliu-github-io
 comments: true
-#disqus: https-yubaoliu-github-io
 
 # google analytics config
 ga:
