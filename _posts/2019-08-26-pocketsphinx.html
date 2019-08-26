@@ -1,0 +1,270 @@
+
+<div id="outline-container-org7727137" class="outline-2">
+<h2 id="org7727137"><span class="section-number-2">1</span> Installation and Setup</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install git</code>
+<code>sudo apt-get install automake</code>
+<code>sudo apt-get install libtool</code>
+<code>sudo apt-get install bison</code>
+<code>sudo apt-get install python-dev</code>
+<code>sudo apt-get install swig</code>
+<code>sudo apt-get install make</code>
+<code>sudo apt-get install pkg-config</code>
+</pre>
+</div>
+
+<p>
+Install sphinxbase
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>git clone https://github.com/cmusphinx/sphinxbase.git</code>
+<code><span style="color: #F92672;">cd</span> sphinxbase</code>
+<code>./autogen.sh</code>
+<code>make</code>
+<code>sudo make install</code>
+<code><span style="color: #F92672;">cd</span> ..</code>
+<code>git clone git://github.com/cmusphinx/pocketsphinx.git</code>
+<code><span style="color: #F92672;">cd</span> pocketsphinx</code>
+<code>./autogen.sh</code>
+<code>make</code>
+<code>sudo make install</code>
+<code><span style="color: #F92672;">cd</span> ..</code>
+<code></code>
+<code>sudo ldconfig</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1e870c9" class="outline-3">
+<h3 id="org1e870c9"><span class="section-number-3">1.1</span> Using PocketSphinx</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Note: Wave file needs to be mono channel, normalized, and 16000 sample rate.
+</p>
+
+<p>
+Use this to convert quickly online: <a href="http://audio.online-convert.com/convert-to-wav">http://audio.online-convert.com/convert-to-wav</a>
+</p>
+
+<p>
+Without Timing
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>pocketsphinx_continuous -infile sample.wav &gt; decode-result.txt</code>
+</pre>
+</div>
+
+<p>
+With Timing
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>pocketsphinx_continuous -time yes -infile sample.wav &gt; decode-result.txt</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1e90897" class="outline-2">
+<h2 id="org1e90897"><span class="section-number-2">2</span> Ros wrapper</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5bd3cdf" class="outline-3">
+<h3 id="org5bd3cdf"><span class="section-number-3">2.1</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Updated ROS bindings to pocketsphinx
+</p>
+
+<pre class="example">
+<code>git clone https://github.com/UTNuclearRoboticsPublic/pocketsphinx.git</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org411341c" class="outline-3">
+<h3 id="org411341c"><span class="section-number-3">2.2</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Updated ROS bindings to pocketsphinx
+</p>
+<pre class="example">
+<code>git clone https://github.com/Pankaj-Baranwal/pocketsphinx.git</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgafbe0c1" class="outline-2">
+<h2 id="orgafbe0c1"><span class="section-number-2">3</span> Errors</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org5864776" class="outline-3">
+<h3 id="org5864776"><span class="section-number-3">3.1</span> exception<sub>on</sub><sub>overflow</sub></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Error description:
+</p>
+
+<pre class="example">
+<code>INFO: jsgf.c(709): Defined rule: &lt;bring_me_wrsyolo.location&gt;</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py", line 164, in &lt;module&gt;</code>
+<code>    ASRTest()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py", line 95, in __init__</code>
+<code>    self.start_recognizer()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py", line 126, in start_recognizer</code>
+<code>    fsg.writefile(self.gram + '.fsg')</code>
+<code>AttributeError: 'NoneType' object has no attribute 'writefile'</code>
+<code>[asr_control-1] process has died [pid 16762, exit code 1, cmd /home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py jsgf_audio:=sphinx_audio __name:=asr_control __log:=/home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/asr_control-1.log].</code>
+<code>log file: /home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/asr_control-1*.log</code>
+<code>ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear</code>
+<code>ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe</code>
+<code>ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side</code>
+<code>ALSA lib pcm_route.c:867:(find_matching_chmap) Found no matching channel map</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py", line 76, in &lt;module&gt;</code>
+<code>    AudioMessage()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py", line 27, in __init__</code>
+<code>    self.transfer_audio_msg()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py", line 57, in transfer_audio_msg</code>
+<code>    buf = stream.read(1024,exception_on_overflow = False)</code>
+<code>TypeError: read() got an unexpected keyword argument 'exception_on_overflow'</code>
+<code>[audio_control-2] process has died [pid 16763, exit code 1, cmd /home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py __name:=audio_control __log:=/home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/audio_control-2.log].</code>
+<code>log file: /home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/audio_control-2*.log</code>
+<code>all processes on machine have died, roslaunch will exit</code>
+<code>shutting down processing monitor...</code>
+<code>... shutting down processing monitor complete</code>
+<code>done</code>
+</pre>
+
+<p>
+Solution:
+</p>
+
+<p>
+<i>exception<sub>on</sub><sub>overflow</sub></i> is caused by <i>pyaudio</i>. The version of <i>pyaudio</i> is too old.
+Please use <i>pip</i> to upgrade it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd2b98e0" class="outline-3">
+<h3 id="orgd2b98e0"><span class="section-number-3">3.2</span> pyaudio is too old</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Errors:
+</p>
+<pre class="example">
+<code>ubao@yubao-Z370M-S01:~/data/catkin_ws/src/pocketsphinx$ pip2.7 install pyaudio --upgrade --ignore-installed</code>
+<code>/home/yubao/.local/lib/python2.7/site-packages/pip/_vendor/requests/__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.</code>
+<code>  warnings.warn(warning, RequestsDependencyWarning)</code>
+<code>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</code>
+<code>Collecting pyaudio</code>
+<code>Installing collected packages: pyaudio</code>
+<code>ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/pyaudio.pyc'</code>
+<code>Consider using the `--user` option or check the permissions.</code>
+</pre>
+
+<p>
+Solution:
+</p>
+
+<p>
+Use pip to upgrade pyaudio to 0.2.11
+</p>
+
+<p>
+I try to uninstall the current version by:
+</p>
+<pre class="example">
+<code>yubao@yubao-Z370M-S01:~/data/catkin_ws/src/pocketsphinx$ pip  uninstall  pyaudio</code>
+<code>/home/yubao/.local/lib/python2.7/site-packages/pip/_vendor/requests/__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.</code>
+<code>  warnings.warn(warning, RequestsDependencyWarning)</code>
+<code>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</code>
+<code>ERROR: Cannot uninstall 'PyAudio'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</code>
+</pre>
+
+<p>
+Then, I use <b><b>&#x2013;ignore-installed</b></b>. This means I can update my current version installed directly withoud removing the previous version.
+It works fun for me.
+</p>
+
+
+<pre class="example">
+<code>yubao@yubao-Z370M-S01:~/data/catkin_ws/src/pocketsphinx$ pip2.7 install pyaudio --upgrade --user  --ignore-installed</code>
+<code>/home/yubao/.local/lib/python2.7/site-packages/pip/_vendor/requests/__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.</code>
+<code>  warnings.warn(warning, RequestsDependencyWarning)</code>
+<code>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</code>
+<code>Collecting pyaudio</code>
+<code>Installing collected packages: pyaudio</code>
+<code>Successfully installed pyaudio-0.2.11</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org960fc11" class="outline-3">
+<h3 id="org960fc11"><span class="section-number-3">3.3</span> roslaunch pocketsphinx robocup.launch</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Errors:
+</p>
+<pre class="example">
+<code></code>
+<code>process[recognizer-1]: started with pid [25472]</code>
+<code>the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'</code>
+<code>[INFO] [1566799396.039243]: Launch config: gconfaudiosrc</code>
+<code>/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py:68: SyntaxWarning: The publisher should be created with an explicit keyword argument 'queue_size'. Please see http://wiki.ros.org/rospy/Overview/Publishers%20and%20Subscribers for more information.</code>
+<code>  self.pub = rospy.Publisher('~output', String)</code>
+<code>[INFO] [1566799396.056145]: Starting recognizer...</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 177, in &lt;module&gt;</code>
+<code>    start = recognizer()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 73, in __init__</code>
+<code>    self.start_recognizer()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 80, in start_recognizer</code>
+<code>    self.pipeline = gst.parse_launch(self.launch_config)</code>
+<code>glib.GError: no element "vader"</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/opt/ros/kinetic/lib/python2.7/dist-packages/rospy/core.py", line 466, in signal_shutdown</code>
+<code>    h()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 131, in shutdown</code>
+<code>    gtk.main_quit()</code>
+<code>RuntimeError: called outside of a mainloop</code>
+<code>[recognizer-1] process has died [pid 25472, exit code 1, cmd /home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py __name:=recognizer __log:=/home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/recognizer-1.log].</code>
+<code>log file: /home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/recognizer-1*.log</code>
+<code>all processes on machine have died, roslaunch will exit</code>
+<code>shutting down processing monitor...</code>
+<code>... shutting down processing monitor complete</code>
+<code>done</code>
+</pre>
+
+<p>
+Refer: <a href="https://answers.ros.org/question/246247/speech-recognition-packages-for-ros-kinetic-kame/">https://answers.ros.org/question/246247/speech-recognition-packages-for-ros-kinetic-kame/</a>
+&gt;&gt;"Hey! Pocketsphinx is the right package for you.
+But the original package is not well maintained and many have faced difficulties running it on Ubuntu14.04 and above, specially for ROS versions above Indigo.
+So, you could instead use this one:
+Updated Pocketsphinx It is well maintained, doesn't use GStreamer-like external dependencies, and has much better documentation.
+UTNuclearRobotic's version is also a fork of a previous copy of this repo.
+It has many modes you can work with including:
+kws mode for keyword detection.
+asr mode for continuous speech detection
+okay-google mode for switching between the above mentioned modes smoothly etc.
+&gt;&gt;You can also find more tutorials about it on the wiki as well as the Medium blogs here:
+<a href="https://medium.com/@PankajB96/">https://medium.com/@PankajB96/</a>"
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org5598cd2" class="outline-2">
+<h2 id="org5598cd2"><span class="section-number-2">4</span> Reference</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li><a href="https://bakerstreetsystems.com/blog/post/setting-cmu-sphinx-pocketsphinx-ubuntu-1404">Setting Up CMU Sphinx (PocketSphinx) on Ubuntu] 14.04</a></li>
+</ol>
+</div>
+</div>

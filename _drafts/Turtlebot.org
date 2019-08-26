@@ -1,7 +1,201 @@
-* Introduction
-- [[https://www.ncnynl.com/category/ros-kobuki/][Turtlebot入门教程]] and https://www.ncnynl.com/turtlebot2.html
-* Run
-#+begin_src bash
-roslaunch turtlebot_bringup minimal.launch (启动底座)
-roslaunch turtlebot_teleop keyboard_teleop.launch (启动遥控)
+#+EXPORT_FILE_NAME: 2019-08-26-turtlebot.html
+#+TITLE: Turtlebot
+
+* Install Turtlebot ROS Packages
+#+begin_src sh
+sudo apt install ros-kinetic-turtlebot-*
 #+end_src
+* Network Configuration
+Config Turtlebot robot as the master machine.
+My PC as the slave machine.
+*** Install ssh
+#+begin_src sh
+sudo apt-get install openssh-server
+ps -e|grep ssh
+
+ssh [user_name]@[ROBOT_IP]
+#+end_src
+
+*** Network Time Protocol
+#+begin_src sh
+sudo apt-get install chrony
+sudo ntpdate ntp.ubuntu.com
+
+ntpdate -q other_computer_ip
+#+end_src
+
+*** Add host name
+#+begin_src sh
+ sudo vim /etc/hosts
+#+end_src
+Add:
+
+#+begin_example
+133.15.23.26    yubao-pc
+133.15.23.206   kobuki
+#+end_example
+
+Restart Network
+#+begin_src sh
+sudo /etc/init.d/networking restart
+#+end_src
+
+*** Modify bash file to config ROS
+Kobuki:
+#+begin_src sh
+echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/turtlebot/devel/setup.sh
+echo export ROS_HOSTNAME=IP_OF_TURTLEBOT >> ~/turtlebot/devel/setup.sh
+#+end_src
+
+Remote PC Setup:
+#+begin_src sh
+echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc
+echo export ROS_HOSTNAME=IP_OF_PC >> ~/.bashrc
+#+end_src
+
+or add these lines to ~/.bashrc
+
+#+begin_src sh
+export ROS_MASTER_URI=http://[kobuki-ip]:11311
+export ROS_HOSTNAME=<PC_IP>
+export ROS_IP=<PC_IP>
+#+end_src
+Example:
+#+begin_example
+export ROS_MASTER_URI=http://kobuki:11311
+export ROS_HOSTNAME=133.15.23.26
+export ROS_IP=133.15.23.26
+#+end_example
+
+* Verify from TurtleBot to Remote PC
+*** Hello Message
+On remote pc run:
+#+begin_src sh
+rostopic pub -r10 /hello std_msgs/String "hello"
+#+end_src
+
+On TurtleBot run
+
+#+begin_src sh
+rostopic echo /hello
+#+end_src
+
+*** Turtlesim Example
+koboki:
+#+begin_src sh
+roscore
+
+rosrun turtlesim turtlesim_node
+#+end_src
+
+PC:
+#+begin_src sh
+rosrun turtlesim turtle_teleop_key
+#+end_src
+
+#+begin_src sh
+yubao@yubao-Z370M-S01:~$ rosrun turtlesim turtle_teleop_key
+Reading from keyboard
+---------------------------
+Use arrow keys to move the turtle.
+#+end_src
+
+* Start Turtlebot
+
+kobuki:
+#+begin_example sh
+roslaunch turtlebot_bringup minimal.launch --screen
+#+end_example
+
+Remote:
+#+begin_src sh
+roslaunch turtlebot_teleop keyboard_teleop.launch
+
+rosrun turtlesim draw_square
+#+end_src
+
+检查底座信息
+#+begin_src sh
+rqt -s kobuki_dashboard
+#+end_src
+
+* Mapping using gmapping and Kinect
+**turtlebot**
+
+#+begin_src sh
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation gmapping_demo.launch
+#+end_src
+**Remote**
+#+begin_src sh
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+roslaunch turtlebot_teleop keyboard_teleop.launch
+#+end_src
+
+**Save Map**
+
+#+begin_src sh
+rosrun map_server map_saver -f /tmp/my_map
+ls /tmp/
+#+end_src
+
+**Demo**
+
+#+begin_export html
+<iframe width="640" height="480" src="https://www.youtube.com/embed/QYpm-t-76T8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+#+end_export
+
+* Autonomous Driving
+**turtlebot**:
+#+begin_src sh
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation amcl_demo.launch map_file:=/tmp/my_map.yaml
+#+end_src
+
+**Remote**
+#+begin_src sh
+roslaunch turtlebot_rviz_launchers view_navigation.launch --screen
+#+end_src
+* Turtlebot充电桩：自主充电
+**turtlebot**:
+#+begin_src sh
+roslaunch turtlebot_bringup minimal.launch
+#+end_src
+
+**Removte**
+#+begin_src sh
+roslaunch kobuki_auto_docking minimal.launch --screen
+roslaunch kobuki_auto_docking activate.launch --screen
+#+end_src
+
+* ROS =turtlebot_follower=
+**Turtlebot**
+#+begin_example
+roslaunch turtlebot_bringup minimal.launch
+#+end_example
+
+**PC**
+#+begin_example
+roslaunch turtlebot_follower follower.launch
+#+end_example
+
+**Config Parameters**
+#+begin_example
+rosrun rqt_reconfigure rqt_reconfigure
+#+end_example
+
+**Rviz Setting**
+- Frame: =camera_rgb_frame=
+- Add marker topics
+
+Demo:
+
+#+begin_export html
+<iframe width="677" height="412" src="https://www.youtube.com/embed/UjGAd0mEZ1M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+#+end_export
+
+* References
++ ROS =turtlebot_follower= ：让机器人跟随我们移动, https://blog.csdn.net/yiranhaiziqi/article/details/53085096
++ [[https://www.ncnynl.com/archives/201609/793.html][Turtlebot入门教程]]
++ [[http://wiki.ros.org/turtlebot/Tutorials/indigo/Network%20Configuration][turtlebotTutorialsindigoNetwork Configuration]]
++ [[http://wiki.ros.org/ROS/NetworkSetup][ROSNetworkSetup]]
