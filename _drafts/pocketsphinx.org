@@ -192,7 +192,6 @@ okay-google mode for switching between the above mentioned modes smoothly etc.
 https://medium.com/@PankajB96/"
 
 
-
 * Reference
 1. [[https://bakerstreetsystems.com/blog/post/setting-cmu-sphinx-pocketsphinx-ubuntu-1404][Setting Up CMU Sphinx (PocketSphinx) on Ubuntu] 14.04]]
 

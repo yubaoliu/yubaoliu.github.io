@@ -1,0 +1,370 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb8d7548">1. Install Turtlebot ROS Packages</a></li>
+<li><a href="#orgc9b25e7">2. Network Configuration</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgfade057">2.0.1. Install ssh</a></li>
+<li><a href="#orgd6f13f5">2.0.2. Network Time Protocol</a></li>
+<li><a href="#org84b1a92">2.0.3. Add host name</a></li>
+<li><a href="#org79baa6c">2.0.4. Modify bash file to config ROS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6164c39">3. Verify from TurtleBot to Remote PC</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orga83521d">3.0.1. Hello Message</a></li>
+<li><a href="#orgd7d3ea0">3.0.2. Turtlesim Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd4a199c">4. Start Turtlebot</a></li>
+<li><a href="#orgcc104ad">5. Mapping using gmapping and Kinect</a></li>
+<li><a href="#org1b7ce7a">6. Autonomous Driving</a></li>
+<li><a href="#org055f80d">7. Turtlebot充电桩：自主充电</a></li>
+<li><a href="#orgba38b0f">8. ROS <code>turtlebot_follower</code></a></li>
+<li><a href="#orgecc043c">9. References</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb8d7548" class="outline-2">
+<h2 id="orgb8d7548"><span class="section-number-2">1</span> Install Turtlebot ROS Packages</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt install ros-kinetic-turtlebot-*</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc9b25e7" class="outline-2">
+<h2 id="orgc9b25e7"><span class="section-number-2">2</span> Network Configuration</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Config Turtlebot robot as the master machine.
+My PC as the slave machine.
+</p>
+</div>
+<div id="outline-container-orgfade057" class="outline-4">
+<h4 id="orgfade057"><span class="section-number-4">2.0.1</span> Install ssh</h4>
+<div class="outline-text-4" id="text-2-0-1">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install openssh-server</code>
+<code>ps -e|grep ssh</code>
+<code></code>
+<code>ssh [user_name]@[ROBOT_IP]</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6f13f5" class="outline-4">
+<h4 id="orgd6f13f5"><span class="section-number-4">2.0.2</span> Network Time Protocol</h4>
+<div class="outline-text-4" id="text-2-0-2">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install chrony</code>
+<code>sudo ntpdate ntp.ubuntu.com</code>
+<code></code>
+<code>ntpdate -q other_computer_ip</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84b1a92" class="outline-4">
+<h4 id="org84b1a92"><span class="section-number-4">2.0.3</span> Add host name</h4>
+<div class="outline-text-4" id="text-2-0-3">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo vim /etc/hosts</code>
+</pre>
+</div>
+<p>
+Add:
+</p>
+
+<pre class="example">
+<code>133.15.23.26    yubao-pc</code>
+<code>133.15.23.206   kobuki</code>
+</pre>
+
+<p>
+Restart Network
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo /etc/init.d/networking restart</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79baa6c" class="outline-4">
+<h4 id="org79baa6c"><span class="section-number-4">2.0.4</span> Modify bash file to config ROS</h4>
+<div class="outline-text-4" id="text-2-0-4">
+<p>
+Kobuki:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #FF1493;">echo</span> export <span style="color: #FF8C00;">ROS_MASTER_URI</span>=http://IP_OF_TURTLEBOT:11311 &gt;&gt; ~/turtlebot/devel/setup.sh</code>
+<code><span style="color: #FF1493;">echo</span> export <span style="color: #FF8C00;">ROS_HOSTNAME</span>=IP_OF_TURTLEBOT &gt;&gt; ~/turtlebot/devel/setup.sh</code>
+</pre>
+</div>
+
+<p>
+Remote PC Setup:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #FF1493;">echo</span> export <span style="color: #FF8C00;">ROS_MASTER_URI</span>=http://IP_OF_TURTLEBOT:11311 &gt;&gt; ~/.bashrc</code>
+<code><span style="color: #FF1493;">echo</span> export <span style="color: #FF8C00;">ROS_HOSTNAME</span>=IP_OF_PC &gt;&gt; ~/.bashrc</code>
+</pre>
+</div>
+
+<p>
+or add these lines to ~/.bashrc
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #FF1493;">export</span> <span style="color: #FF8C00;">ROS_MASTER_URI</span>=http://[kobuki-ip]:11311</code>
+<code><span style="color: #FF1493;">export</span> <span style="color: #FF8C00;">ROS_HOSTNAME</span>=&lt;PC_IP&gt;</code>
+<code><span style="color: #FF1493;">export</span> <span style="color: #FF8C00;">ROS_IP</span>=&lt;PC_IP&gt;</code>
+</pre>
+</div>
+<p>
+Example:
+</p>
+<pre class="example">
+<code>export ROS_MASTER_URI=http://kobuki:11311</code>
+<code>export ROS_HOSTNAME=133.15.23.26</code>
+<code>export ROS_IP=133.15.23.26</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6164c39" class="outline-2">
+<h2 id="org6164c39"><span class="section-number-2">3</span> Verify from TurtleBot to Remote PC</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orga83521d" class="outline-4">
+<h4 id="orga83521d"><span class="section-number-4">3.0.1</span> Hello Message</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<p>
+On remote pc run:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>rostopic pub -r10 /hello std_msgs/String <span style="color: #CDC673;">"hello"</span></code>
+</pre>
+</div>
+
+<p>
+On TurtleBot run
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>rostopic echo /hello</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7d3ea0" class="outline-4">
+<h4 id="orgd7d3ea0"><span class="section-number-4">3.0.2</span> Turtlesim Example</h4>
+<div class="outline-text-4" id="text-3-0-2">
+<p>
+koboki:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roscore</code>
+<code></code>
+<code>rosrun turtlesim turtlesim_node</code>
+</pre>
+</div>
+
+<p>
+PC:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>rosrun turtlesim turtle_teleop_key</code>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>yubao@yubao-Z370M-S01:~$ rosrun turtlesim turtle_teleop_key</code>
+<code>Reading from keyboard</code>
+<code>---------------------------</code>
+<code>Use arrow keys to move the turtle.</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd4a199c" class="outline-2">
+<h2 id="orgd4a199c"><span class="section-number-2">4</span> Start Turtlebot</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+kobuki:
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_bringup minimal.launch --screen</code>
+</pre>
+
+<p>
+Remote:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_teleop keyboard_teleop.launch</code>
+<code></code>
+<code>rosrun turtlesim draw_square</code>
+</pre>
+</div>
+
+<p>
+检查底座信息
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>rqt -s kobuki_dashboard</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc104ad" class="outline-2">
+<h2 id="orgcc104ad"><span class="section-number-2">5</span> Mapping using gmapping and Kinect</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b><b>turtlebot</b></b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_bringup minimal.launch</code>
+<code>roslaunch turtlebot_navigation gmapping_demo.launch</code>
+</pre>
+</div>
+<p>
+<b><b>Remote</b></b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_rviz_launchers view_navigation.launch</code>
+<code>roslaunch turtlebot_teleop keyboard_teleop.launch</code>
+</pre>
+</div>
+
+<p>
+<b><b>Save Map</b></b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>rosrun map_server map_saver -f /tmp/my_map</code>
+<code>ls /tmp/</code>
+</pre>
+</div>
+
+<p>
+<b><b>Demo</b></b>
+</p>
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/QYpm-t-76T8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+
+<div id="outline-container-org1b7ce7a" class="outline-2">
+<h2 id="org1b7ce7a"><span class="section-number-2">6</span> Autonomous Driving</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<b><b>turtlebot</b></b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_bringup minimal.launch</code>
+<code>roslaunch turtlebot_navigation amcl_demo.launch map_file:=/tmp/my_map.yaml</code>
+</pre>
+</div>
+
+<p>
+<b><b>Remote</b></b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_rviz_launchers view_navigation.launch --screen</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org055f80d" class="outline-2">
+<h2 id="org055f80d"><span class="section-number-2">7</span> Turtlebot充电桩：自主充电</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<b><b>turtlebot</b></b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_bringup minimal.launch</code>
+</pre>
+</div>
+
+<p>
+<b><b>Removte</b></b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch kobuki_auto_docking minimal.launch --screen</code>
+<code>roslaunch kobuki_auto_docking activate.launch --screen</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba38b0f" class="outline-2">
+<h2 id="orgba38b0f"><span class="section-number-2">8</span> ROS <code>turtlebot_follower</code></h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<b><b>Turtlebot</b></b>
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_bringup minimal.launch</code>
+</pre>
+
+<p>
+<b><b>PC</b></b>
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_follower follower.launch</code>
+</pre>
+
+<p>
+<b><b>Config Parameters</b></b>
+</p>
+<pre class="example">
+<code>rosrun rqt_reconfigure rqt_reconfigure</code>
+</pre>
+
+<p>
+<b><b>Rviz Setting</b></b>
+</p>
+<ul class="org-ul">
+<li>Frame: <code>camera_rgb_frame</code></li>
+<li>Add marker topics</li>
+</ul>
+
+<p>
+Demo:
+</p>
+
+<iframe width="677" height="412" src="https://www.youtube.com/embed/UjGAd0mEZ1M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+
+<div id="outline-container-orgecc043c" class="outline-2">
+<h2 id="orgecc043c"><span class="section-number-2">9</span> References</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>ROS <code>turtlebot_follower</code> ：让机器人跟随我们移动, <a href="https://blog.csdn.net/yiranhaiziqi/article/details/53085096">https://blog.csdn.net/yiranhaiziqi/article/details/53085096</a></li>
+<li><a href="https://www.ncnynl.com/archives/201609/793.html">Turtlebot入门教程</a></li>
+<li><a href="http://wiki.ros.org/turtlebot/Tutorials/indigo/Network%20Configuration">turtlebotTutorialsindigoNetwork Configuration</a></li>
+<li><a href="http://wiki.ros.org/ROS/NetworkSetup">ROSNetworkSetup</a></li>
+</ul>
+</div>
+</div>

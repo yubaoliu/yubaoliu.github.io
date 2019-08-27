@@ -1,0 +1,40 @@
+#+EXPORT_FILE_NAME: 2019-08-27-hdlslam.html
+#+TITLE: HDL SLAM Series
+#+KEYWORDS: 
+#+OPTIONS: body-only:t
+#+subtitle: 
+
+* HDL_GRAPH_SLAM
+** launch
+Config parameters
+#+begin_src sh
+<arg name="enable_floor_detection" default="true" />
+<arg name="enable_gps" default="false" />
+<arg name="enable_imu_acc" default="false" />
+<arg name="enable_imu_ori" default="false" />
+#+end_src
+
+
+#+begin_src sh
+roslaunch hdl_graph_slam_[Custoimized].launch
+#+end_src
+
+** play bag file
+
+#+begin_src sh
+ rosbag play --clock mapping.bag /velodyne_gpsimu_driver/imu_data:=/gpsimu_driver/imu_data
+#+end_src
+
+** Save map
+
+#+begin_src sh
+rosservice call /hdl_graph_slam/save_map "resolution: 0.01 destination: '/home/yubao/data/Dataset/aisl_lab/map.pcd'"
+#+end_src
+
+View /pcd/ map:
+
+#+begin_src sh
+pcl_viewer map.pcd
+#+end_src
+
+

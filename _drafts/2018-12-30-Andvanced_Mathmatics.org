@@ -1,4 +1,0 @@
-* Taylor
-  :PROPERTIES:
-  :CUSTOM_ID: taylor
-  :END:

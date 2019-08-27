@@ -1,7 +1,0 @@
-* Resources
-  :PROPERTIES:
-  :CUSTOM_ID: resources
-  :END:
-
-- [[https://www.learnopencv.com/image-alignment-feature-based-using-opencv-c-python/][Image
-  Alignment (Feature Based) using OpenCV (C++/Python)]]

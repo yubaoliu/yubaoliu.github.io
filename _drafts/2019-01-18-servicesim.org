@@ -1,7 +1,0 @@
-* servicesim
-  :PROPERTIES:
-  :CUSTOM_ID: servicesim
-  :END:
-
-- [[https://bitbucket.org/osrf/servicesim][bitbucket-servicesim]]
-- [[https://bitbucket.org/osrf/servicesim/wiki/Home][wiki]]

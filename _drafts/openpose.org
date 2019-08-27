@@ -1,6 +1,0 @@
-#+begin_export html
-
-#+end_export
-
-* Source Code
-- reigngt09/Pose-Estimation,  https://github.com/reigngt09/Pose-Estimation.git

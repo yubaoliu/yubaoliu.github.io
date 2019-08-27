@@ -1,6 +1,32 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb64b67a">1. Installation and Setup</a>
+<ul>
+<li><a href="#org9ff6c8a">1.1. Using PocketSphinx</a></li>
+</ul>
+</li>
+<li><a href="#orga66c96e">2. Ros wrapper</a>
+<ul>
+<li><a href="#org232cc4c">2.1. UTNuclearRoboticsPublic/pocketsphinx</a></li>
+<li><a href="#orgc0ab3bd">2.2. Pankaj-Baranwal/pocketsphinx</a></li>
+</ul>
+</li>
+<li><a href="#org61bdb02">3. Errors</a>
+<ul>
+<li><a href="#orgb0ebb1a">3.1. exception<sub>on</sub><sub>overflow</sub></a></li>
+<li><a href="#org984497b">3.2. pyaudio is too old</a></li>
+<li><a href="#orga8c2a8c">3.3. roslaunch pocketsphinx robocup.launch</a></li>
+</ul>
+</li>
+<li><a href="#org2111e58">4. Reference</a></li>
+</ul>
+</div>
+</div>
 
-<div id="outline-container-org7727137" class="outline-2">
-<h2 id="org7727137"><span class="section-number-2">1</span> Installation and Setup</h2>
+<div id="outline-container-orgb64b67a" class="outline-2">
+<h2 id="orgb64b67a"><span class="section-number-2">1</span> Installation and Setup</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh"><code>sudo apt-get install git</code>
@@ -19,25 +45,25 @@ Install sphinxbase
 </p>
 <div class="org-src-container">
 <pre class="src src-sh"><code>git clone https://github.com/cmusphinx/sphinxbase.git</code>
-<code><span style="color: #F92672;">cd</span> sphinxbase</code>
+<code><span style="color: #FF1493;">cd</span> sphinxbase</code>
 <code>./autogen.sh</code>
 <code>make</code>
 <code>sudo make install</code>
-<code><span style="color: #F92672;">cd</span> ..</code>
+<code><span style="color: #FF1493;">cd</span> ..</code>
 <code>git clone git://github.com/cmusphinx/pocketsphinx.git</code>
-<code><span style="color: #F92672;">cd</span> pocketsphinx</code>
+<code><span style="color: #FF1493;">cd</span> pocketsphinx</code>
 <code>./autogen.sh</code>
 <code>make</code>
 <code>sudo make install</code>
-<code><span style="color: #F92672;">cd</span> ..</code>
+<code><span style="color: #FF1493;">cd</span> ..</code>
 <code></code>
 <code>sudo ldconfig</code>
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org1e870c9" class="outline-3">
-<h3 id="org1e870c9"><span class="section-number-3">1.1</span> Using PocketSphinx</h3>
+<div id="outline-container-org9ff6c8a" class="outline-3">
+<h3 id="org9ff6c8a"><span class="section-number-3">1.1</span> Using PocketSphinx</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Note: Wave file needs to be mono channel, normalized, and 16000 sample rate.
@@ -66,12 +92,12 @@ With Timing
 </div>
 </div>
 
-<div id="outline-container-org1e90897" class="outline-2">
-<h2 id="org1e90897"><span class="section-number-2">2</span> Ros wrapper</h2>
+<div id="outline-container-orga66c96e" class="outline-2">
+<h2 id="orga66c96e"><span class="section-number-2">2</span> Ros wrapper</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5bd3cdf" class="outline-3">
-<h3 id="org5bd3cdf"><span class="section-number-3">2.1</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
+<div id="outline-container-org232cc4c" class="outline-3">
+<h3 id="org232cc4c"><span class="section-number-3">2.1</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Updated ROS bindings to pocketsphinx
@@ -83,8 +109,8 @@ Updated ROS bindings to pocketsphinx
 </div>
 </div>
 
-<div id="outline-container-org411341c" class="outline-3">
-<h3 id="org411341c"><span class="section-number-3">2.2</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div id="outline-container-orgc0ab3bd" class="outline-3">
+<h3 id="orgc0ab3bd"><span class="section-number-3">2.2</span> Pankaj-Baranwal/pocketsphinx</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Updated ROS bindings to pocketsphinx
@@ -96,12 +122,12 @@ Updated ROS bindings to pocketsphinx
 </div>
 </div>
 
-<div id="outline-container-orgafbe0c1" class="outline-2">
-<h2 id="orgafbe0c1"><span class="section-number-2">3</span> Errors</h2>
+<div id="outline-container-org61bdb02" class="outline-2">
+<h2 id="org61bdb02"><span class="section-number-2">3</span> Errors</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org5864776" class="outline-3">
-<h3 id="org5864776"><span class="section-number-3">3.1</span> exception<sub>on</sub><sub>overflow</sub></h3>
+<div id="outline-container-orgb0ebb1a" class="outline-3">
+<h3 id="orgb0ebb1a"><span class="section-number-3">3.1</span> exception<sub>on</sub><sub>overflow</sub></h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Error description:
@@ -150,8 +176,8 @@ Please use <i>pip</i> to upgrade it.
 </div>
 </div>
 
-<div id="outline-container-orgd2b98e0" class="outline-3">
-<h3 id="orgd2b98e0"><span class="section-number-3">3.2</span> pyaudio is too old</h3>
+<div id="outline-container-org984497b" class="outline-3">
+<h3 id="org984497b"><span class="section-number-3">3.2</span> pyaudio is too old</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Errors:
@@ -204,8 +230,8 @@ It works fun for me.
 </div>
 </div>
 
-<div id="outline-container-org960fc11" class="outline-3">
-<h3 id="org960fc11"><span class="section-number-3">3.3</span> roslaunch pocketsphinx robocup.launch</h3>
+<div id="outline-container-orga8c2a8c" class="outline-3">
+<h3 id="orga8c2a8c"><span class="section-number-3">3.3</span> roslaunch pocketsphinx robocup.launch</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Errors:
@@ -259,9 +285,8 @@ okay-google mode for switching between the above mentioned modes smoothly etc.
 </div>
 
 
-
-<div id="outline-container-org5598cd2" class="outline-2">
-<h2 id="org5598cd2"><span class="section-number-2">4</span> Reference</h2>
+<div id="outline-container-org2111e58" class="outline-2">
+<h2 id="org2111e58"><span class="section-number-2">4</span> Reference</h2>
 <div class="outline-text-2" id="text-4">
 <ol class="org-ol">
 <li><a href="https://bakerstreetsystems.com/blog/post/setting-cmu-sphinx-pocketsphinx-ubuntu-1404">Setting Up CMU Sphinx (PocketSphinx) on Ubuntu] 14.04</a></li>
