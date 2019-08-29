@@ -469,6 +469,15 @@ Result:
     rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.025 image:=/usb_cam/image_raw camera:=/usb_cam
 #+END_SRC
 
+* Erros
+** OpenCV version conflict
+#+begin_example
+/usr/bin/ld: warning: libopencv_imgcodecs.so.3.2, needed by /opt/ros/melodic/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.3.3
+/usr/bin/ld: warning: libopencv_core.so.3.3, needed by /usr/lib/libopencv_imgcodecs.so.3.3.1, may conflict with libopencv_core.so.3.2
+/usr/bin/ld: warning: libopencv_imgproc.so.3.3, needed by /usr/lib/libopencv_imgcodecs.so.3.3.1, may conflict with libopencv_imgproc.so.3.2
+[100%] Built target monocular_person_following_node
+#+end_example
+
 * Resources
 ** 中国大学MOOC---《机器人操作系统入门》
 - [[https://www.bilibili.com/video/av24585414/?p=7&t=231][ROS机器人操作系统入门-中国大学MOOC]]

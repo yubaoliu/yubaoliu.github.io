@@ -58,10 +58,15 @@
 <li><a href="#camera-calibration">5.4. Camera calibration</a></li>
 </ul>
 </li>
-<li><a href="#org05eccb1">6. Resources</a>
+<li><a href="#org83127eb">6. Erros</a>
 <ul>
-<li><a href="#orga52ce3b">6.1. 中国大学MOOC&#x2014;《机器人操作系统入门》</a></li>
-<li><a href="#orgc913d3d">6.2. Projects</a></li>
+<li><a href="#org9f1afcd">6.1. OpenCV version conflict</a></li>
+</ul>
+</li>
+<li><a href="#org05eccb1">7. Resources</a>
+<ul>
+<li><a href="#orga52ce3b">7.1. 中国大学MOOC&#x2014;《机器人操作系统入门》</a></li>
+<li><a href="#orgc913d3d">7.2. Projects</a></li>
 </ul>
 </li>
 </ul>
@@ -91,7 +96,7 @@ slave:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><code>rostopic pub -r10 /hello std_msgs/String <span style="color: #CDC673;">"hello world"</span></code>
+<pre class="src src-sh"><code>rostopic pub -r10 /hello std_msgs/String <span style="color: #E6DB74;">"hello world"</span></code>
 </pre>
 </div>
 
@@ -167,7 +172,7 @@ LTS), among other platform options.
 <h3 id="orgfb10fcd"><span class="section-number-3">2.2</span> Install ROS Kinetic</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
-<pre class="src src-shell"><code>sudo sh -c <span style="color: #CDC673;">'echo "deb http://packages.ros.org/ros/ubuntu $(</span><span style="color: #AF87FF; font-weight: bold;">lsb_release</span><span style="color: #CDC673;"> -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></code>
+<pre class="src src-shell"><code>sudo sh -c <span style="color: #E6DB74;">'echo "deb http://packages.ros.org/ros/ubuntu $(</span><span style="color: #AE81FF; font-weight: bold;">lsb_release</span><span style="color: #E6DB74;"> -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></code>
 <code>sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116</code>
 <code></code>
 <code>sudo apt-get install ros-kinetic-desktop-full</code>
@@ -175,8 +180,8 @@ LTS), among other platform options.
 <code>sudo rosdep init</code>
 <code>rosdep update</code>
 <code></code>
-<code><span style="color: #FF1493;">echo</span> <span style="color: #CDC673;">"source /opt/ros/kinetic/setup.bash"</span> &gt;&gt; ~/.bashrc</code>
-<code><span style="color: #FF1493;">source</span> ~/.bashrc</code>
+<code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"source /opt/ros/kinetic/setup.bash"</span> &gt;&gt; ~/.bashrc</code>
+<code><span style="color: #F92672;">source</span> ~/.bashrc</code>
 <code></code>
 <code>sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential</code>
 </pre>
@@ -192,7 +197,7 @@ Upgrade gazebo:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><code>sudo sh -c <span style="color: #CDC673;">'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" &gt; /etc/apt/sources.list.d/gazebo-stable.list'</span></code>
+<pre class="src src-sh"><code>sudo sh -c <span style="color: #E6DB74;">'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" &gt; /etc/apt/sources.list.d/gazebo-stable.list'</span></code>
 <code>wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -</code>
 <code>sudo apt-get update</code>
 <code>sudo apt-get install gazebo7</code>
@@ -205,9 +210,9 @@ Upgrade gazebo:
 <h3 id="orgd7e7ae7"><span class="section-number-3">2.4</span> Shell Environment</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
-<pre class="src src-sh"><code><span style="color: #8B8878;">#</span><span style="color: #8B8878;">ROS</span></code>
-<code><span style="color: #FF1493;">source</span> /opt/ros/kinetic/setup.bash</code>
-<code><span style="color: #FF1493;">source</span> ~/catkin_ws/devel/setup.sh</code>
+<pre class="src src-sh"><code><span style="color: #75715E;">#</span><span style="color: #75715E;">ROS</span></code>
+<code><span style="color: #F92672;">source</span> /opt/ros/kinetic/setup.bash</code>
+<code><span style="color: #F92672;">source</span> ~/catkin_ws/devel/setup.sh</code>
 </pre>
 </div>
 </div>
@@ -222,7 +227,7 @@ Upgrade gazebo:
 <h4 id="orga6d6340"><span class="section-number-4">2.5.1</span> catkin<sub>create</sub><sub>pkg</sub></h4>
 <div class="outline-text-4" id="text-2-5-1">
 <div class="org-src-container">
-<pre class="src src-sh"><code><span style="color: #FF1493;">cd</span> src/</code>
+<pre class="src src-sh"><code><span style="color: #F92672;">cd</span> src/</code>
 <code>catkin_create_pkg Test roscpp rospy std_msgs nav_msgs</code>
 </pre>
 </div>
@@ -234,7 +239,7 @@ Upgrade gazebo:
 <div class="outline-text-4" id="text-2-5-2">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rospack list | grep catkin_ws</code>
-<code><span style="color: #FF1493;">source</span> devel/setup.sh</code>
+<code><span style="color: #F92672;">source</span> devel/setup.sh</code>
 </pre>
 </div>
 </div>
@@ -476,12 +481,12 @@ start ros master, rosout, parameter server:
 <h3 id="download-anc-make"><span class="section-number-3">3.1</span> Download anc Make</h3>
 <div class="outline-text-3" id="text-download-anc-make">
 <div class="org-src-container">
-<pre class="src src-sh"><code><span style="color: #FF1493;">cd</span> ~/catkin_ws/src</code>
+<pre class="src src-sh"><code><span style="color: #F92672;">cd</span> ~/catkin_ws/src</code>
 <code>git clone https://github.com/DroidAITech/ROS-Academy-for-Beginners.git</code>
-<code><span style="color: #FF1493;">cd</span> ~/catkin_ws</code>
+<code><span style="color: #F92672;">cd</span> ~/catkin_ws</code>
 <code>rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y</code>
 <code>catkin_make</code>
-<code><span style="color: #FF1493;">source</span> ~/catkin_ws/devel/setup.bash</code>
+<code><span style="color: #F92672;">source</span> ~/catkin_ws/devel/setup.bash</code>
 </pre>
 </div>
 </div>
@@ -665,7 +670,7 @@ Usage:
 <code>/usb_cam/image_raw/theora/parameter_descriptions</code>
 <code>/usb_cam/image_raw/theora/parameter_updates</code>
 <code></code>
-<code>$<span style="color: #FF8C00;">rosrun</span> rviz rviz</code>
+<code>$<span style="color: #FD971F;">rosrun</span> rviz rviz</code>
 </pre>
 </div>
 
@@ -682,9 +687,9 @@ Usage:
 <h3 id="usb-camera-from-sources"><span class="section-number-3">5.3</span> Usb camera from sources</h3>
 <div class="outline-text-3" id="text-usb-camera-from-sources">
 <div class="org-src-container">
-<pre class="src src-sh"><code><span style="color: #FF1493;">cd</span> catkin_ws/src</code>
+<pre class="src src-sh"><code><span style="color: #F92672;">cd</span> catkin_ws/src</code>
 <code>git clone https://github.com/bosch-ros-pkg/usb_cam.git</code>
-<code><span style="color: #FF1493;">cd</span> ../</code>
+<code><span style="color: #F92672;">cd</span> ../</code>
 <code>catkin_make</code>
 <code></code>
 <code>rosdep install camera_calibration</code>
@@ -732,13 +737,30 @@ to Calibrate a Monocular Camera</a></li>
 </div>
 </div>
 
-<div id="outline-container-org05eccb1" class="outline-2">
-<h2 id="org05eccb1"><span class="section-number-2">6</span> Resources</h2>
+<div id="outline-container-org83127eb" class="outline-2">
+<h2 id="org83127eb"><span class="section-number-2">6</span> Erros</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orga52ce3b" class="outline-3">
-<h3 id="orga52ce3b"><span class="section-number-3">6.1</span> 中国大学MOOC&#x2014;《机器人操作系统入门》</h3>
+<div id="outline-container-org9f1afcd" class="outline-3">
+<h3 id="org9f1afcd"><span class="section-number-3">6.1</span> OpenCV version conflict</h3>
 <div class="outline-text-3" id="text-6-1">
+<pre class="example">
+<code>/usr/bin/ld: warning: libopencv_imgcodecs.so.3.2, needed by /opt/ros/melodic/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.3.3</code>
+<code>/usr/bin/ld: warning: libopencv_core.so.3.3, needed by /usr/lib/libopencv_imgcodecs.so.3.3.1, may conflict with libopencv_core.so.3.2</code>
+<code>/usr/bin/ld: warning: libopencv_imgproc.so.3.3, needed by /usr/lib/libopencv_imgcodecs.so.3.3.1, may conflict with libopencv_imgproc.so.3.2</code>
+<code>[100%] Built target monocular_person_following_node</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org05eccb1" class="outline-2">
+<h2 id="org05eccb1"><span class="section-number-2">7</span> Resources</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orga52ce3b" class="outline-3">
+<h3 id="orga52ce3b"><span class="section-number-3">7.1</span> 中国大学MOOC&#x2014;《机器人操作系统入门》</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li><a href="https://www.bilibili.com/video/av24585414/?p=7&amp;t=231">ROS机器人操作系统入门-中国大学MOOC</a></li>
 <li><a href="https://github.com/sychaichangkun/ROS-Academy-for-Beginners.git">《机器人操作系统入门》课程讲义-Github</a></li>
@@ -752,8 +774,8 @@ to Calibrate a Monocular Camera</a></li>
 </div>
 
 <div id="outline-container-orgc913d3d" class="outline-3">
-<h3 id="orgc913d3d"><span class="section-number-3">6.2</span> Projects</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="orgc913d3d"><span class="section-number-3">7.2</span> Projects</h3>
+<div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li><a href="https://bitbucket.org/osrf/servicesim">servicesim</a></li>
 <li><a href="https://bitbucket.org/osrf/">OpenSourceRoboticsFoundation OSRF</a></li>

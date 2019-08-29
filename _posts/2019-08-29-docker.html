@@ -1,0 +1,141 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc7b413b">1. Docker CE</a></li>
+<li><a href="#orgfbe460b">2. Compose</a></li>
+<li><a href="#orga7b8ba4">3. nvidia-docker</a></li>
+<li><a href="#orgb66cbc7">4. Install command completion</a></li>
+<li><a href="#orgbe60aa5">5. Add your user to the docker group</a></li>
+<li><a href="#org3d5577c">6. Test hello-world</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc7b413b" class="outline-2">
+<h2 id="orgc7b413b"><span class="section-number-2">1</span> Docker CE</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository">Doccker CE</a>
+</p>
+<ul class="org-ul">
+<li>Uninstall old versions</li>
+</ul>
+
+<pre class="example">
+<code>sudo apt-get remove docker docker-engine docker.io containerd runc</code>
+</pre>
+
+<ul class="org-ul">
+<li>SET UP THE REPOSITORY</li>
+</ul>
+<pre class="example">
+<code>sudo apt-get update</code>
+<code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code>
+<code>sudo apt-key fingerprint 0EBFCD88</code>
+<code>sudo add-apt-repository \</code>
+<code>   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \</code>
+<code>   $(lsb_release -cs) \</code>
+<code>   stable"</code>
+<code></code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install docker-ce docker-ce-cli containerd.io</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgfbe460b" class="outline-2">
+<h2 id="orgfbe460b"><span class="section-number-2">2</span> Compose</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+<code>sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</code>
+<code>sudo chmod +x /usr/local/bin/docker-compose</code>
+<code>sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose</code>
+<code></code>
+<code>#Test</code>
+<code>docker-compose --version</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orga7b8ba4" class="outline-2">
+<h2 id="orga7b8ba4"><span class="section-number-2">3</span> nvidia-docker</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://github.com/NVIDIA/nvidia-docker">nvidia-docker</a>
+</p>
+
+<p>
+Ubuntu will install docker.io by default which isn't the latest version of Docker Engine. This implies that you will need to pin the version of nvidia-docker. See more information here.
+</p>
+
+<p>
+If you have nvidia-docker 1.0 installed: we need to remove it and all existing GPU containers
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>docker volume ls -q -f <span style="color: #FD971F;">driver</span>=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f <span style="color: #FD971F;">volume</span>={} | xargs -r docker rm -f</code>
+<code>sudo apt-get purge -y nvidia-docker</code>
+</pre>
+</div>
+
+<p>
+Add the package repositories
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>  sudo apt-key add -</code>
+<code><span style="color: #FD971F;">distribution</span>=$(<span style="color: #AE81FF; font-weight: bold;">.</span> /etc/os-release;<span style="color: #F92672;">echo</span> $<span style="color: #FD971F;">ID</span>$<span style="color: #FD971F;">VERSION_ID</span>)</code>
+<code>curl -s -L https://nvidia.github.io/nvidia-docker/$<span style="color: #FD971F;">distribution</span>/nvidia-docker.list | <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>  sudo tee /etc/apt/sources.list.d/nvidia-docker.list</code>
+<code>sudo apt-get update</code>
+</pre>
+</div>
+
+<p>
+Install nvidia-docker2 and reload the Docker daemon configuration
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install -y nvidia-docker2</code>
+<code>sudo pkill -SIGHUP dockerd</code>
+</pre>
+</div>
+
+<p>
+Test nvidia-smi with the latest official CUDA image
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb66cbc7" class="outline-2">
+<h2 id="orgb66cbc7"><span class="section-number-2">4</span> Install command completion</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Place the completion script in <i>etc/bash<sub>completion.d</sub></i>.
+</p>
+<pre class="example">
+<code>sudo curl -L https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgbe60aa5" class="outline-2">
+<h2 id="orgbe60aa5"><span class="section-number-2">5</span> Add your user to the docker group</h2>
+<div class="outline-text-2" id="text-5">
+<pre class="example">
+<code>sudo usermod -aG docker $USER</code>
+<code>docker run hello-world    </code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3d5577c" class="outline-2">
+<h2 id="org3d5577c"><span class="section-number-2">6</span> Test hello-world</h2>
+<div class="outline-text-2" id="text-6">
+<pre class="example">
+<code>sudo docker run hello-world</code>
+<code></code>
+</pre>
+</div>
+</div>

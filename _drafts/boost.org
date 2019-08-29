@@ -1,0 +1,41 @@
+#+EXPORT_FILE_NAME: 
+#+TITLE: 
+#+KEYWORDS: 
+#+OPTIONS: body-only:t
+#+subtitle: 
+
+* Compile and Install
+
+Read: https://github.com/boostorg/boost/wiki/Getting-Started%3A-Overview
+
+#+begin_example
+git clone --recursive https://github.com/boostorg/boost.git
+cd boost
+git checkout develop # or whatever branch you want to use
+./bootstrap.sh --prefix=<INSTALL_PATH>
+./b2 install
+#+end_example
+
+* First Example
+
+example.cpp:
+#+begin_src cpp
+#include <boost/lambda/lambda.hpp>
+#include <iostream>
+#include <iterator>
+#include <algorithm>
+
+int main()
+{
+    using namespace boost::lambda;
+    typedef std::istream_iterator<int> in;
+
+    std::for_each(
+        in(std::cin), in(), std::cout << (_1 * 3) << " " );
+}
+#+end_src
+
+Compile
+#+begin_example
+c++ -I ~/software/install/boost -std=c++14 example.cpp
+#+end_example

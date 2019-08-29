@@ -9,6 +9,7 @@
 <li><a href="#org3d75986">1.3. Save map</a></li>
 </ul>
 </li>
+<li><a href="#org371b532">2. koide3/monocular<sub>person</sub><sub>following</sub></a></li>
 </ul>
 </div>
 </div>
@@ -24,10 +25,10 @@
 Config parameters
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><code>&lt;arg <span style="color: #FF8C00;">name</span>=<span style="color: #CDC673;">"enable_floor_detection"</span> <span style="color: #FF8C00;">default</span>=<span style="color: #CDC673;">"true"</span> /&gt;</code>
-<code>&lt;arg <span style="color: #FF8C00;">name</span>=<span style="color: #CDC673;">"enable_gps"</span> <span style="color: #FF8C00;">default</span>=<span style="color: #CDC673;">"false"</span> /&gt;</code>
-<code>&lt;arg <span style="color: #FF8C00;">name</span>=<span style="color: #CDC673;">"enable_imu_acc"</span> <span style="color: #FF8C00;">default</span>=<span style="color: #CDC673;">"false"</span> /&gt;</code>
-<code>&lt;arg <span style="color: #FF8C00;">name</span>=<span style="color: #CDC673;">"enable_imu_ori"</span> <span style="color: #FF8C00;">default</span>=<span style="color: #CDC673;">"false"</span> /&gt;</code>
+<pre class="src src-sh"><code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_floor_detection"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"true"</span> /&gt;</code>
+<code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_gps"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"false"</span> /&gt;</code>
+<code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_imu_acc"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"false"</span> /&gt;</code>
+<code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_imu_ori"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"false"</span> /&gt;</code>
 </pre>
 </div>
 
@@ -53,7 +54,7 @@ Config parameters
 <h3 id="org3d75986"><span class="section-number-3">1.3</span> Save map</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-sh"><code>rosservice call /hdl_graph_slam/save_map <span style="color: #CDC673;">"resolution: 0.01 destination: '/home/yubao/data/Dataset/aisl_lab/map.pcd'"</span></code>
+<pre class="src src-sh"><code>rosservice call /hdl_graph_slam/save_map <span style="color: #E6DB74;">"resolution: 0.01 destination: '/home/yubao/data/Dataset/aisl_lab/map.pcd'"</span></code>
 </pre>
 </div>
 
@@ -66,5 +67,15 @@ View <i>pcd</i> map:
 </pre>
 </div>
 </div>
+</div>
+</div>
+
+
+<div id="outline-container-org371b532" class="outline-2">
+<h2 id="org371b532"><span class="section-number-2">2</span> koide3/monocular<sub>person</sub><sub>following</sub></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://github.com/yubaoliu/monocular_person_following">Git: monocular<sub>person</sub><sub>following</sub></a>
+</p>
 </div>
 </div>

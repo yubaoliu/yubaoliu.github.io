@@ -1,0 +1,9 @@
+#+EXPORT_FILE_NAME: 2019-08-28-peoplebot.html
+#+TITLE: Peoplebot Robot
+#+KEYWORDS: 
+#+OPTIONS: body-only:t
+#+subtitle:
+
+* rosaria
+- amor-ros-pkg/rosaria: https://github.com/amor-ros-pkg/rosaria
+

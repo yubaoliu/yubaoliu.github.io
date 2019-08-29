@@ -1,0 +1,16 @@
+#+EXPORT_FILE_NAME: 2019-08-28-vim.org
+#+TITLE: VIM Manual
+#+KEYWORDS: 
+#+OPTIONS: body-only:t
+#+subtitle: my vim config
+
+* Vim粘贴代码时缩进混乱
+** 取消自动缩进 
+在命令模式下，使用“:set nosmartindent”和“:set noautoindent”取消自动缩进，然后再粘贴即可。完成后再开启自动缩进“:set smartindent”和“:set autoindent”，以上命令都可使用简写，比如“:set si”，可通过Vim的帮助“:help smartindent”查看相应说明。[fn:1] 
+
+** paste mode 
+Vim的编辑模式中，还有一个Paste模式，在该模式下，可将文本原本的粘贴到Vim中，以避免一些格式错误。通过“:set paste”和“:set nopaste”进入和退出该模式。更简便的方式是，在Vim中设置一个进入和退出Paste模式的快捷键，往“~/.vimrc”中添加一行配置“set pastetoggle=<F12>”，这样即可通过F12快速的在Paste模式中切换，当然快捷键在不冲突的前提下可以任意指定，具体如何指定，参考附带的教程链接。[fn:1]
+
+* Footnotes
+
+[fn:1] https://my.oschina.net/joshuazhan/blog/122539

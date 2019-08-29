@@ -38,3 +38,6 @@ pcl_viewer map.pcd
 #+end_src
 
 
+* koide3/monocular_person_following
+[[https://github.com/yubaoliu/monocular_person_following][Git: monocular_person_following]]
+

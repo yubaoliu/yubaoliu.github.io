@@ -1,0 +1,35 @@
+#+EXPORT_FILE_NAME: 2019-08-28-shortcut.html
+#+TITLE: Shortcut
+#+KEYWORDS: 
+#+OPTIONS: body-only:t
+#+subtitle: 
+
+* Emacs
+** ORG
+*** Outline
+- C-Enter: create same level item
+** Footnode
+- C-c C-x f  The footnote action command.
+* Linux
+- Bash history without line numbers
+#+BEGIN_SRC sh
+    history | cut -c 8-
+#+END_SRC
+
+* GIT
+
+1. Remove untracked files from the working tree =git clean -f -d=
+2. Nested GIT =git submodule update --init --recursive=
+
+* Image
+
+*Resize Image* First install ImageMagick via:
+
+#+BEGIN_SRC sh
+    sudo apt-get install imagemagick
+#+END_SRC
+
+#+BEGIN_SRC sh
+    convert  -resize 50% source.png dest.jpg
+    convert -resize 1024X768  source.png dest.jpg
+#+END_SRC

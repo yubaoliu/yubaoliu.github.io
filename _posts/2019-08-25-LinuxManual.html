@@ -1,0 +1,1640 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org55a3fcf">1. Install and Uninstall for Ubuntu Linux</a>
+<ul>
+<li><a href="#org74419f9">1.1. Note</a></li>
+<li><a href="#org09c4499">1.2. Install basement</a></li>
+<li><a href="#org99f4395">1.3. Nvidia Driver</a></li>
+<li><a href="#orgf1fafcc">1.4. Google Drive</a></li>
+<li><a href="#orgb276839">1.5. Dropbox</a></li>
+<li><a href="#org3af345f">1.6. Mendeley</a></li>
+<li><a href="#org358cfc2">1.7. Cmake</a></li>
+<li><a href="#org3bbe50f">1.8. OpenGL</a></li>
+<li><a href="#orgcae60f5">1.9. TMUX</a></li>
+<li><a href="#org4e86946">1.10. ROS</a></li>
+<li><a href="#orgf794d91">1.11. CPP</a></li>
+<li><a href="#org0ae1478">1.12. Mount hard drive</a></li>
+<li><a href="#org26991b6">1.13. OpenNI</a></li>
+</ul>
+</li>
+<li><a href="#orgbad0197">2. CUDA</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org70e5c2f">2.0.1. CUDA 10</a></li>
+<li><a href="#org23a0906">2.0.2. CUDA 8</a></li>
+<li><a href="#org70f263b">2.0.3. CUDA 9</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgbb11f55">3. cudann</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org56c6739">3.0.1. Install</a></li>
+</ul>
+</li>
+<li><a href="#org813dcc2">3.1. uninstall</a></li>
+<li><a href="#org4e1f406">3.2. Locate</a></li>
+</ul>
+</li>
+<li><a href="#org62cbeb3">4. Latex</a></li>
+<li><a href="#orge84fa36">5. Octave</a></li>
+<li><a href="#org6842e8e">6. RoboWare Studio</a>
+<ul>
+<li><a href="#org3d8d418">6.1. Reference</a></li>
+<li><a href="#orgeb44ef4">6.2. Install</a></li>
+<li><a href="#org26d2713">6.3. Start</a></li>
+<li><a href="#org99a47e1">6.4. Remove</a></li>
+</ul>
+</li>
+<li><a href="#org06a07e0">7. Emacs</a></li>
+<li><a href="#org8b757ee">8. Caffe</a>
+<ul>
+<li><a href="#org52f9855">8.1. Guidebook</a></li>
+<li><a href="#org5a79d8a">8.2. Prepare</a></li>
+<li><a href="#org1413697">8.3. glog</a></li>
+<li><a href="#orgcf58f79">8.4. Cmake build</a></li>
+<li><a href="#orga43785d">8.5. Compile with make</a>
+<ul>
+<li><a href="#org95c783d">8.5.1. Makefile.config</a></li>
+<li><a href="#orgae8c46a">8.5.2. Makefile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb2b55eb">9. Python</a>
+<ul>
+<li><a href="#orgdbdfd1d">9.1. Python2.7</a></li>
+<li><a href="#org98697e3">9.2. scikit-image</a></li>
+<li><a href="#org7c06632">9.3. jupyter</a></li>
+<li><a href="#org993aaa5">9.4. Anaconda</a></li>
+</ul>
+</li>
+<li><a href="#org331c684">10. Pytorch</a></li>
+<li><a href="#orga99a5be">11. Kinetic</a>
+<ul>
+<li><a href="#org3d8e187">11.1. Kinect2</a></li>
+<li><a href="#orgd30105b">11.2. Run in ROS</a></li>
+</ul>
+</li>
+<li><a href="#orgf3cbe09">12. Ruby</a></li>
+<li><a href="#orgd6bbb57">13. Linux Software</a>
+<ul>
+<li><a href="#org224b11f">13.1. Flash player</a></li>
+<li><a href="#org22361c9">13.2. Screen Shot</a></li>
+<li><a href="#org85e8749">13.3. Canon LBP printers</a></li>
+<li><a href="#org53b25fc">13.4. nodejs</a></li>
+<li><a href="#orge32ce8a">13.5. flatpak</a></li>
+</ul>
+</li>
+<li><a href="#org8407995">14. System Repairing</a>
+<ul>
+<li><a href="#org767d71e">14.1. Check CUDA info</a></li>
+<li><a href="#org2b079a2">14.2. How to clean CUDA</a></li>
+<li><a href="#org1e9f728">14.3. How to find out if package is installed in Linux?</a></li>
+<li><a href="#org7039aac">14.4. Uninstall deb installation</a></li>
+</ul>
+</li>
+<li><a href="#orga17b310">15. UFW</a></li>
+<li><a href="#how-to">16. How to</a>
+<ul>
+<li><a href="#how-to-check-package-version-installed">16.1. How to check package version installed</a></li>
+</ul>
+</li>
+<li><a href="#linux">17. Linux</a>
+<ul>
+<li><a href="#system-info">17.1. System Info</a></li>
+<li><a href="#quick-build-from-zero">17.2. Quick build from zero</a></li>
+<li><a href="#desktop">17.3. DESKTOP</a>
+<ul>
+<li><a href="#check-current-desktop-environments">17.3.1. check current desktop environments</a></li>
+<li><a href="#remove-desktop">17.3.2. Remove DESKTOP</a></li>
+</ul>
+</li>
+<li><a href="#python">17.4. python</a></li>
+<li><a href="#software-center">17.5. software-center</a></li>
+<li><a href="#atom">17.6. Atom</a></li>
+<li><a href="#pandoc">17.7. Pandoc</a></li>
+<li><a href="#markdown">17.8. Markdown</a></li>
+<li><a href="#latex">17.9. LaTeX</a></li>
+<li><a href="#grive">17.10. grive</a></li>
+<li><a href="#ibus">17.11. ibus</a></li>
+<li><a href="#screenshot">17.12. Screenshot</a></li>
+<li><a href="#ocative">17.13. Ocative</a></li>
+</ul>
+</li>
+<li><a href="#build-better-linux-environment-from-scratch">18. Build Better Linux Environment from Scratch</a>
+<ul>
+<li><a href="#softwares">18.1. softwares</a></li>
+</ul>
+</li>
+<li><a href="#linux-kernel-overview">19. Linux Kernel Overview</a></li>
+<li><a href="#how-to-install-unity-3d">20. How to Install Unity 3D</a>
+<ul>
+<li><a href="#orgfac292f">20.1. Get Unity -</a></li>
+<li><a href="#orgbb3c75b">20.2. Installation <code>sudo dpkg -i unity-editor.deb</code></a></li>
+<li><a href="#org38695d5">20.3. Install GNU Global This tutor</a>
+<ul>
+<li><a href="#orge277264">20.3.1. Common Questions</a></li>
+</ul>
+</li>
+<li><a href="#org8c3a250">20.4. Common Questions - configure: error: curses library is required but</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org55a3fcf" class="outline-2">
+<h2 id="org55a3fcf"><span class="section-number-2">1</span> Install and Uninstall for Ubuntu Linux</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org74419f9" class="outline-3">
+<h3 id="org74419f9"><span class="section-number-3">1.1</span> Note</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>Execute the following steps sequentially</li>
+<li>Do not install the default CMake</li>
+<li>system info:</li>
+</ol>
+<pre class="example">
+<code>Linux yubao-Z370M-S01 4.15.0-51-generic #55~16.04.1-Ubuntu SMP Thu May 16 09:24:37 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org09c4499" class="outline-3">
+<h3 id="org09c4499"><span class="section-number-3">1.2</span> Install basement</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+sudo apt-get update &amp;&amp; apt-get -y upgrade
+</p>
+
+<p>
+echo "Install basement dependencies 
+sudo apt-get install -y build-essential \
+</p>
+
+<p>
+echo "Install tools"
+sudo apt-get install -y hwinfo \
+	git \
+	wget \
+	vim \
+	xclip \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg-agent \
+	software-properties-common
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99f4395" class="outline-3">
+<h3 id="org99f4395"><span class="section-number-3">1.3</span> Nvidia Driver</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Version</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">CUDA</td>
+<td class="org-right">Nvidida Driver</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">410</td>
+</tr>
+
+<tr>
+<td class="org-right">10.1</td>
+<td class="org-right">418</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+I install nvidia-418 and CUDA 10, failed. And it took me very long time to fix it.
+</p>
+
+<ul class="org-ul">
+<li>Verify You Have a CUDA-Capable GPU</li>
+</ul>
+
+<p>
+$ lspci | grep -i nvidia
+</p>
+
+<p>
+echo "Install nvidia driver manually"
+</p>
+<ol class="org-ol">
+<li>Check graphic card type by:</li>
+</ol>
+
+<p>
+yubao@yubao-Z370M-S01:~$ sudo lshw -C display
+  *-display               
+       description: VGA compatible controller
+       product: GP102 [GeForce GTX 1080 Ti]
+       vendor: NVIDIA Corporation
+       physical id: 0
+       bus info: pci@0000:01:00.0
+       version: a1
+       width: 64 bits
+</p>
+<p>
+capabilities: pm msi pciexpress vga<sub>controller</sub> bus<sub>master</sub> cap<sub>list</sub> rom
+configuration: driver=nouveau latency=0
+resources: irq:122 memory:de000000-deffffff memory:c0000000-cfffffff memory:d0000000-d1ffffff ioport:e000(size=128) memory:c0000-dffff
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #75715E;"># </span><span style="color: #75715E;">&#26597;&#30475;&#26174;&#21345;&#20449;&#24687;</span></code>
+<code>$ lspci | grep -i vga</code>
+<code><span style="color: #75715E;"># </span><span style="color: #75715E;">&#26597;&#30475;GPU&#22411;&#21495;</span></code>
+<code>$ lspci | grep -i nvidia</code>
+<code><span style="color: #75715E;"># </span><span style="color: #75715E;">&#26597;&#30475;NVIDIA&#39537;&#21160;&#29256;&#26412;</span></code>
+<code>$ sudo dpkg --list | grep nvidia-*</code>
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>download nvidia driver from website:</li>
+</ol>
+<p>
+[Nvidia](<a href="https://www.nvidia.com/Download/index.aspx?lang=en-us">https://www.nvidia.com/Download/index.aspx?lang=en-us</a>#)
+</p>
+
+
+<p>
+Another way is using ppa to install latest graphics driver:
+[Use ppa install nvidia graphics](<a href="https://linuxstory.org/how-to-install-latest-nvidia-drivers-in-linux/">https://linuxstory.org/how-to-install-latest-nvidia-drivers-in-linux/</a>)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo add-apt-repository -yu ppa:graphics-drivers</code>
+<code>sudo apt install -y nvidia-410-dev mesa-utils</code>
+<code>sudo reboot</code>
+</pre>
+</div>
+
+<p>
+run the glxinfo application to check the OpenGL version and related ubuntu nvidia driver version.
+</p>
+
+<p>
+glxinfo | grep OpenGL
+</p>
+
+<p>
+Run nvidia-settings to check graphics info
+lsmod | grep -i nvidia #check whether install succeed
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf1fafcc" class="outline-3">
+<h3 id="orgf1fafcc"><span class="section-number-3">1.4</span> Google Drive</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+echo "Google drive"
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get install grive
+</p>
+
+<p>
+echo "How to use grive"
+mkdir ~/data/GoogleDrive
+cd ~/data/GoogleDrive
+grive -a
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb276839" class="outline-3">
+<h3 id="orgb276839"><span class="section-number-3">1.5</span> Dropbox</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+echo "Install Dropbox"
+[安装 Dropbox 以最充分地利用您的帐户](<a href="https://www.dropbox.com/zh_CN/install-linux">https://www.dropbox.com/zh_CN/install-linux</a>)
+</p>
+
+<p>
+cd ~/ &amp;&amp; wget -O - "<a href="https://www.dropbox.com/download?plat=lnx.x86_64">https://www.dropbox.com/download?plat=lnx.x86_64</a>" | tar xzf -
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3af345f" class="outline-3">
+<h3 id="org3af345f"><span class="section-number-3">1.6</span> Mendeley</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+echo "Install mendeley"
+wget -c <a href="https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest">https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org358cfc2" class="outline-3">
+<h3 id="org358cfc2"><span class="section-number-3">1.7</span> Cmake</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"Instal latest Cmake from Github"</span></code>
+<code>git clone git@github.com:yubaoliu/3rdPartyLibs.git</code>
+<code><span style="color: #F92672;">cd</span> CMake/</code>
+<code>./bootstrap &amp;&amp;</code>
+<code>./configure --qt-gui</code>
+<code>&amp;&amp; make &amp;&amp; sudo make install</code>
+<code></code>
+<code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"Install Other compile tools"</span></code>
+<code>sudo apt install automake libeven-dev ncurses-* byacc</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3bbe50f" class="outline-3">
+<h3 id="org3bbe50f"><span class="section-number-3">1.8</span> OpenGL</h3>
+<div class="outline-text-3" id="text-1-8">
+<pre class="example">
+<code>sudo apt-get install libglew-dev</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcae60f5" class="outline-3">
+<h3 id="orgcae60f5"><span class="section-number-3">1.9</span> TMUX</h3>
+<div class="outline-text-3" id="text-1-9">
+<div class="org-src-container">
+<pre class="src src-bash"><code>git clone   git@github.com:yubaoliu/3rdPartyLibs.git</code>
+<code><span style="color: #F92672;">cd</span> tmux</code>
+<code>sh autogen.sh</code>
+<code>./configure --prefix=$<span style="color: #FD971F;">HOME</span>/software/tmux</code>
+<code>make</code>
+</pre>
+</div>
+
+<p>
+Add tmux dir to PATH
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4e86946" class="outline-3">
+<h3 id="org4e86946"><span class="section-number-3">1.10</span> ROS</h3>
+<div class="outline-text-3" id="text-1-10">
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"Install ROS"</span></code>
+<code>sudo sh -c <span style="color: #E6DB74;">'echo "deb http://packages.ros.org/ros/ubuntu $(</span><span style="color: #AE81FF; font-weight: bold;">lsb_release</span><span style="color: #E6DB74;"> -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install ros-kinetic-desktop-full</code>
+<code>sudo rosdep init</code>
+<code>rosdep update</code>
+<code>sudo apt install python-rosinstall python-rosinstall-generator python-wstool <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>meshlab</code>
+</pre>
+</div>
+
+<p>
+OpenCV is installed by default:
+/opt/ros/kinetic/share/OpenCV-3.3.1-dev
+</p>
+</div>
+</div>
+<div id="outline-container-orgf794d91" class="outline-3">
+<h3 id="orgf794d91"><span class="section-number-3">1.11</span> CPP</h3>
+<div class="outline-text-3" id="text-1-11">
+<pre class="example">
+<code>sudo apt install clang-format-</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org0ae1478" class="outline-3">
+<h3 id="org0ae1478"><span class="section-number-3">1.12</span> Mount hard drive</h3>
+<div class="outline-text-3" id="text-1-12">
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo vim /etc/fstab </code>
+<code>/dev/sdb       /home/yubao/data        ext4    defaults        0       0</code>
+</pre>
+</div>
+<p>
+reboot
+</p>
+</div>
+</div>
+
+<div id="outline-container-org26991b6" class="outline-3">
+<h3 id="org26991b6"><span class="section-number-3">1.13</span> OpenNI</h3>
+<div class="outline-text-3" id="text-1-13">
+<pre class="example">
+<code>sudo apt-get install ros-kinetic-openni2-launch </code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbad0197" class="outline-2">
+<h2 id="orgbad0197"><span class="section-number-2">2</span> CUDA</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org70e5c2f" class="outline-4">
+<h4 id="org70e5c2f"><span class="section-number-4">2.0.1</span> CUDA 10</h4>
+<div class="outline-text-4" id="text-2-0-1">
+<p>
+Don't suggest installing the latest version of CUDA.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"Install CUDA: 10"</span></code>
+<code><span style="color: #AE81FF; font-weight: bold;">`sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb`</span></code>
+<code><span style="color: #AE81FF; font-weight: bold;">`sudo apt-key add /var/cuda-repo-&lt;version&gt;/7fa2af80.pub`</span></code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install cuda</code>
+</pre>
+</div>
+
+<p>
+If install failed, for example, see this error:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>E: Unmet dependencies. Try <span style="color: #E6DB74;">'apt --fix-broken install'</span> with no packages (or specify a solution)</code>
+</pre>
+</div>
+<p>
+and <b><b>apt -f install</b></b> also cannot work maybe.
+</p>
+
+<p>
+<b><b>Solve it by</b></b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo rm /etc/apt/sources.list.d/cuda-10-1-local-10.1.168-418.67.list</code>
+<code>sudo apt update</code>
+<code>sudo apt upgrade</code>
+<code>sudo apt autoremove</code>
+<code>sudo apt install -f</code>
+</pre>
+</div>
+
+
+<ul class="org-ul">
+<li>Cuda will be installed into</li>
+</ul>
+<p>
+<b><b><i>usr/local/cuda</i></b></b>
+</p>
+
+<p>
+You may wish to:
+• Add /usr/local/cuda/bin to your PATH environment variable.
+• Add /usr/local/cuda/lib64 to your LD<sub>LIBRARY</sub><sub>PATH</sub> environment variable.
+</p>
+
+
+
+
+<p>
+sudo apt-get install nvidia-cuda-toolkit
+</p>
+
+<pre class="example">
+<code>nvcc -V</code>
+<code></code>
+<code>yubao@yubao-Z370M-S01:~$ nvcc -V</code>
+<code>nvcc: NVIDIA (R) Cuda compiler driver</code>
+<code>Copyright (c) 2005-2015 NVIDIA Corporation</code>
+<code>Built on Tue_Aug_11_14:27:32_CDT_2015</code>
+<code>Cuda compilation tools, release 7.5, V7.5.17</code>
+</pre>
+
+<p>
+nvidia-smi
+CUDA Version: 10.1
+</p>
+</div>
+</div>
+<div id="outline-container-org23a0906" class="outline-4">
+<h4 id="org23a0906"><span class="section-number-4">2.0.2</span> CUDA 8</h4>
+<div class="outline-text-4" id="text-2-0-2">
+<div class="org-src-container">
+<pre class="src src-bash"><code>wget -c https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb</code>
+<code>wget -c https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb</code>
+<code>sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb</code>
+<code>sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb</code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install cuda-8.0</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org70f263b" class="outline-4">
+<h4 id="org70f263b"><span class="section-number-4">2.0.3</span> CUDA 9</h4>
+<div class="outline-text-4" id="text-2-0-3">
+<div class="org-src-container">
+<pre class="src src-bash"><code>wget -c https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb</code>
+<code>sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb</code>
+<code>sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub</code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install cuda-9.0</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb11f55" class="outline-2">
+<h2 id="orgbb11f55"><span class="section-number-2">3</span> cudann</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org56c6739" class="outline-4">
+<h4 id="org56c6739"><span class="section-number-4">3.0.1</span> Install</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<p>
+echo "Install cudnn"
+Download cuDNN from <a href="https://developer.nvidia.com/rdp/cudnn-download">https://developer.nvidia.com/rdp/cudnn-download</a> 
+Download runtime and developer library and install
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo dpkg -i &lt;new-cudnn-runtime&gt;.deb</code>
+<code>sudo dpkg -i &lt;new-cudnn-dev&gt;.deb</code>
+<code>sudo ldconfig</code>
+</pre>
+</div>
+
+<p>
+Default install path is <i>/usr/include/x86<sub>64</sub>-linux-gnu</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org813dcc2" class="outline-3">
+<h3 id="org813dcc2"><span class="section-number-3">3.1</span> uninstall</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo dpkg -r libcudnn7 libcudnn7-dev</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e1f406" class="outline-3">
+<h3 id="org4e1f406"><span class="section-number-3">3.2</span> Locate</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+If you want to find where the library was installed you can update the locate index and then find the library location.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo updatedb</code>
+<code>locate libcudnn</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org62cbeb3" class="outline-2">
+<h2 id="org62cbeb3"><span class="section-number-2">4</span> Latex</h2>
+<div class="outline-text-2" id="text-4">
+<pre class="example">
+<code>sudo apt-get install texlive-full</code>
+<code>sudo apt-get install texmaker</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orge84fa36" class="outline-2">
+<h2 id="orge84fa36"><span class="section-number-2">5</span> Octave</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Install: <a href="https://www.gnu.org/software/octave/#install">https://www.gnu.org/software/octave/#install</a></li>
+</ul>
+<p>
+<a href="https://flathub.org/apps/details/org.octave.Octave">https://flathub.org/apps/details/org.octave.Octave</a>
+</p>
+<ul class="org-ul">
+<li>doc: <a href="https://octave.org/doc/interpreter/">https://octave.org/doc/interpreter/</a></li>
+<li>Install</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo apt install octave</code>
+</pre>
+</div>
+<ul class="org-ul">
+<li>another install method</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><code>flatpak install flathub org.octave.Octave</code>
+<code>flatpak run org.octave.Octave</code>
+</pre>
+</div>
+<ul class="org-ul">
+<li>Source code</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"><code>hg clone https://www.octave.org/hg/octave</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6842e8e" class="outline-2">
+<h2 id="org6842e8e"><span class="section-number-2">6</span> RoboWare Studio</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org3d8d418" class="outline-3">
+<h3 id="org3d8d418"><span class="section-number-3">6.1</span> Reference</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li><a href="http://cn.roboware.me/#/home">RoboWare</a></li>
+<li><a href="https://tr-ros-tutorial.readthedocs.io/zh_CN/latest/_source/practice/2.2.RoboWare%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8.html">RoboWare Studio软件安装</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgeb44ef4" class="outline-3">
+<h3 id="orgeb44ef4"><span class="section-number-3">6.2</span> Install</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Install pylint
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>$ sudo apt install python-pip</code>
+<code>$ sudo python -m pip install pylint</code>
+</pre>
+</div>
+
+<p>
+clang-format suport:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo apt install clang-format-3.9</code>
+</pre>
+</div>
+
+<p>
+下载RoboWare Studio最新版，在终端执行以下命令进行安装：
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>$ cd /path/to/deb/file/</code>
+<code>$ sudo dpkg -i roboware-studio_&lt;version&gt;_&lt;architecture&gt;.deb</code>
+<code>&#20854;&#20013;&#65292;&lt;version&gt;&#34920;&#31034;&#36719;&#20214;&#29256;&#26412;&#21495;&#65292;&lt;architecture&gt;&#34920;&#31034;&#26426;&#22120;&#30340;&#22788;&#29702;&#22120;&#26550;&#26500;&#65288;amd64&#20026;64&#20301;&#29256;&#26412;&#65292;i386&#20026;32&#20301;&#29256;&#26412;&#65289;&#12290; &#23558;&lt;version&gt;&#21644;&lt;architecture&gt;&#26367;&#25442;&#20026;&#24403;&#21069;&#25991;&#20214;&#20449;&#24687;&#21363;&#21487;&#65288;&#23567;&#25216;&#24039;&#65306;&#21487;&#22312;&#36755;&#20837;&#8220;sudo dpkg -i &#8221;&#21518;&#25353;Tab&#38190;&#33258;&#21160;&#34917;&#20840;&#25991;&#20214;&#21517;&#65289;&#12290; &#23433;&#35013;&#21518;&#65292;RoboWare Studio&#20250;&#33258;&#21160;&#26816;&#27979;&#24182;&#21152;&#36733;ROS&#29615;&#22659;&#65292;&#26080;&#38656;&#39069;&#22806;&#37197;&#32622;&#12290;</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org26d2713" class="outline-3">
+<h3 id="org26d2713"><span class="section-number-3">6.3</span> Start</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+<pre class="src src-bash"><code>$ roboware-studio</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org99a47e1" class="outline-3">
+<h3 id="org99a47e1"><span class="section-number-3">6.4</span> Remove</h3>
+<div class="outline-text-3" id="text-6-4">
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo apt remove roboware-studio</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org06a07e0" class="outline-2">
+<h2 id="org06a07e0"><span class="section-number-2">7</span> Emacs</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+echo "Install Emacs"
+sudo add-apt-repository -yu ppa:kelleyk/emacs
+sudo apt-get install  emacs26
+</p>
+</div>
+</div>
+<div id="outline-container-org8b757ee" class="outline-2">
+<h2 id="org8b757ee"><span class="section-number-2">8</span> Caffe</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org52f9855" class="outline-3">
+<h3 id="org52f9855"><span class="section-number-3">8.1</span> Guidebook</h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li><a href="http://caffe.berkeleyvision.org/installation.html">http://caffe.berkeleyvision.org/installation.html</a></li>
+<li><a href="https://www.jianshu.com/p/777e398022de">caffe 安装笔记</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5a79d8a" class="outline-3">
+<h3 id="org5a79d8a"><span class="section-number-3">8.2</span> Prepare</h3>
+<div class="outline-text-3" id="text-8-2">
+<pre class="example">
+<code>sudo apt install libleveldb-dev \</code>
+<code>libhdf5-serial-dev \</code>
+<code>libsnappy-dev \</code>
+<code>liblmdb-dev \</code>
+<code>liblmdb-dev \</code>
+<code>libatlas-base-dev \</code>
+<code>libprotobuf-dev \</code>
+<code>libgflags-dev</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org1413697" class="outline-3">
+<h3 id="org1413697"><span class="section-number-3">8.3</span> glog</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-bash"><code>https://github.com/google/glog.git</code>
+<code>./autogen.sh &amp;&amp; </code>
+<code>./configure --prefix=  &amp;&amp;</code>
+<code> make &amp;&amp; make install</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf58f79" class="outline-3">
+<h3 id="orgcf58f79"><span class="section-number-3">8.4</span> Cmake build</h3>
+<div class="outline-text-3" id="text-8-4">
+<pre class="example">
+<code>mkdir build</code>
+<code>cd build</code>
+<code>cmake ..</code>
+<code>make all</code>
+<code>make install</code>
+<code>make runtest</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga43785d" class="outline-3">
+<h3 id="orga43785d"><span class="section-number-3">8.5</span> Compile with make</h3>
+<div class="outline-text-3" id="text-8-5">
+<pre class="example">
+<code>cp Makefile.config.example Makefile.config</code>
+<code># Adjust Makefile.config (for example, if using Anaconda Python, or if cuDNN is desired)</code>
+<code>make all</code>
+<code>make test</code>
+<code>make runtest</code>
+</pre>
+</div>
+
+<div id="outline-container-org95c783d" class="outline-4">
+<h4 id="org95c783d"><span class="section-number-4">8.5.1</span> Makefile.config</h4>
+<div class="outline-text-4" id="text-8-5-1">
+<pre class="example">
+<code>CPU_ONLY := 1</code>
+<code>CUDA_DIR := /usr/local/cuda-8.0</code>
+<code></code>
+<code># Whatever else you find you need goes here.</code>
+<code>INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /home/yubao/software/include /home/yubao/software/opencv3.3.1/include /usr/include/hdf5/serial</code>
+<code>LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /home/yubao/software/lib /home/yubao/software/opencv3.3.1/lib</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgae8c46a" class="outline-4">
+<h4 id="orgae8c46a"><span class="section-number-4">8.5.2</span> Makefile</h4>
+<div class="outline-text-4" id="text-8-5-2">
+<p>
+Line 173:
+Replace
+</p>
+<pre class="example">
+<code>LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5</code>
+</pre>
+<p>
+with
+</p>
+<pre class="example">
+<code>LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb2b55eb" class="outline-2">
+<h2 id="orgb2b55eb"><span class="section-number-2">9</span> Python</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-orgdbdfd1d" class="outline-3">
+<h3 id="orgdbdfd1d"><span class="section-number-3">9.1</span> Python2.7</h3>
+<div class="outline-text-3" id="text-9-1">
+<pre class="example">
+<code>sudo apt install python-pip</code>
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo python -m pip install pylint</code>
+<code></code>
+<code>   sudo apt-get install python-skimage <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>   python-pil <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>   python-numpy <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>   python-matplotlib <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code>   cython</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org98697e3" class="outline-3">
+<h3 id="org98697e3"><span class="section-number-3">9.2</span> scikit-image</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+Read: <a href="https://scikit-image.org/docs/dev/install.html">https://scikit-image.org/docs/dev/install.html</a>
+</p>
+
+<p>
+pip install scikit-image
+</p>
+
+
+<p>
+If you are running Anaconda or miniconda, use:
+</p>
+
+<p>
+conda install -c conda-forge scikit-image
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c06632" class="outline-3">
+<h3 id="org7c06632"><span class="section-number-3">9.3</span> jupyter</h3>
+<div class="outline-text-3" id="text-9-3">
+<div class="org-src-container">
+<pre class="src src-bash"><code>conda install numpy jupyter notebook</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org993aaa5" class="outline-3">
+<h3 id="org993aaa5"><span class="section-number-3">9.4</span> Anaconda</h3>
+<div class="outline-text-3" id="text-9-4">
+<p>
+<a href="https://www.anaconda.com/distribution/">Download
+</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>wget -c https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh</code>
+</pre>
+</div>
+
+<p>
+Envs is in
+~/.conda/envs
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org331c684" class="outline-2">
+<h2 id="org331c684"><span class="section-number-2">10</span> Pytorch</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Read <a href="https://pytorch.org/get-started/locally/?source=Google&amp;medium=PaidSearch&amp;utm_campaign=1712416734&amp;utm_adgroup=66820730637&amp;utm_keyword=%2Binstalling%20%2Bpytorch&amp;utm_offering=AI&amp;utm_Product=PYTorch&amp;gclid=Cj0KEQjw3PLnBRCpo8PCoaGM99MBEiQAppRuC9vleTQvcM60EIgwQCnaybHjo1d4X9dj0yLf-LKRwZMaAvZC8P8HAQ">Install Pytorch</a>
+For example: 
+</p>
+
+<p>
+CUDA 10.0
+</p>
+
+<p>
+pip install <a href="https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl">https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp27-cp27mu-linux_x86_64.whl</a> &#x2013;user
+pip install torchvision &#x2013;user
+</p>
+
+<p>
+pip install <a href="https://download.pytorch.org/whl/cu80/torch-1.0.1.post2-cp27-cp27m-linux_x86_64.whl">https://download.pytorch.org/whl/cu80/torch-1.0.1.post2-cp27-cp27m-linux_x86_64.whl</a>
+</p>
+
+<p>
+pip3 install <a href="https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp35-cp35m-linux_x86_64.whl">https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp35-cp35m-linux_x86_64.whl</a>
+pip3 install torchvision
+</p>
+
+<p>
+pip3 install <a href="https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl">https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl</a>
+pip3 install torchvision
+</p>
+
+<p>
+pip3 install <a href="https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl">https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl</a>
+pip3 install torchvision
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga99a5be" class="outline-2">
+<h2 id="orga99a5be"><span class="section-number-2">11</span> Kinetic</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org3d8e187" class="outline-3">
+<h3 id="org3d8e187"><span class="section-number-3">11.1</span> Kinect2</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>3rdPartyLibs, git@github.com:yubaoliu/3rdPartyLibs.git</li>
+<li><a href="https://github.com/OpenKinect/libfreenect2">Official: OpenKinect/libfreenect2</a></li>
+</ul>
+
+<p>
+For ubuntu 16.04:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo apt-get install libusb-1.0-0-dev</code>
+<code>sudo apt-get install libturbojpeg libjpeg-turbo8-dev</code>
+<code>sudo apt-get install libglfw3-dev</code>
+<code>sudo apt-get install libva-dev libjpeg-dev</code>
+<code>sudo apt-get install libopenni2-dev</code>
+<code>mkdir build &amp;&amp; <span style="color: #F92672;">cd</span> build</code>
+<code>cmake .. -DCMAKE_INSTALL_PREFIX=$<span style="color: #FD971F;">HOME</span>/data/software/freenect2</code>
+<code>make</code>
+<code>make install</code>
+<code></code>
+<code>sudo cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/</code>
+</pre>
+</div>
+
+
+<p>
+Replug the Kinect and run the test program:
+</p>
+
+<p>
+./bin/Protonect
+</p>
+
+<ul class="org-ul">
+<li>code-iai/iai<sub>kinect2</sub></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd30105b" class="outline-3">
+<h3 id="orgd30105b"><span class="section-number-3">11.2</span> Run in ROS</h3>
+<div class="outline-text-3" id="text-11-2">
+<pre class="example">
+<code>roslaunch  kinect2_bridge kinect2_bridge.launch</code>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf3cbe09" class="outline-2">
+<h2 id="orgf3cbe09"><span class="section-number-2">12</span> Ruby</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+The defalt ruby version is 2.3 in ubuntu16.04.
+</p>
+
+<p>
+I want to upgrade it to 2.5 via:
+</p>
+
+<pre class="example">
+<code># Remove old version</code>
+<code>sudo apt-get purge --auto-remove ruby</code>
+<code></code>
+<code># add ppa</code>
+<code>sudo add-apt-repository ppa:brightbox/ruby-ng</code>
+<code>sudo apt-get update</code>
+<code></code>
+<code># install ruby</code>
+<code>sudo apt install ruby2.5* [2.6 is also OK!]</code>
+<code></code>
+<code># check version</code>
+<code>ruby -v</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd6bbb57" class="outline-2">
+<h2 id="orgd6bbb57"><span class="section-number-2">13</span> Linux Software</h2>
+<div class="outline-text-2" id="text-13">
+</div>
+<div id="outline-container-org224b11f" class="outline-3">
+<h3 id="org224b11f"><span class="section-number-3">13.1</span> Flash player</h3>
+<div class="outline-text-3" id="text-13-1">
+<pre class="example">
+<code>sudo apt-get install flashplugin-installer </code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org22361c9" class="outline-3">
+<h3 id="org22361c9"><span class="section-number-3">13.2</span> Screen Shot</h3>
+<div class="outline-text-3" id="text-13-2">
+<ul class="org-ul">
+<li>gnome-scrennshot</li>
+<li>scrot</li>
+</ul>
+<p>
+<a href="https://linux.cn/article-9111-1.html">https://linux.cn/article-9111-1.html</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo apt-get install scrot</code>
+</pre>
+</div>
+<ul class="org-ul">
+<li><p>
+Peek
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo add-apt-repository ppa:peek-developers/stable</code>
+<code>sudo apt update</code>
+<code>sudo apt install peek</code>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org85e8749" class="outline-3">
+<h3 id="org85e8749"><span class="section-number-3">13.3</span> Canon LBP printers</h3>
+<div class="outline-text-3" id="text-13-3">
+<p>
+<a href="https://github.com/hieplpvip/ubuntu_canon_printer">https://github.com/hieplpvip/ubuntu_canon_printer</a>
+</p>
+<pre class="example">
+<code>wget https://github.com/hieplpvip/canon_printer/raw/master/canon_lbp_setup.sh</code>
+<code>chmod +x canon_lbp_setup.sh</code>
+<code>./canon_lbp_setup.sh</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org53b25fc" class="outline-3">
+<h3 id="org53b25fc"><span class="section-number-3">13.4</span> nodejs</h3>
+<div class="outline-text-3" id="text-13-4">
+<p>
+<a href="https://github.com/nodejs/node">https://github.com/nodejs/node</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge32ce8a" class="outline-3">
+<h3 id="orge32ce8a"><span class="section-number-3">13.5</span> flatpak</h3>
+<div class="outline-text-3" id="text-13-5">
+<p>
+<a href="https://flatpak.org/setup/Ubuntu/">https://flatpak.org/setup/Ubuntu/</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code>sudo add-apt-repository ppa:alexlarsson/flatpak</code>
+<code>sudo apt update</code>
+<code>sudo apt install flatpak</code>
+<code></code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8407995" class="outline-2">
+<h2 id="org8407995"><span class="section-number-2">14</span> System Repairing</h2>
+<div class="outline-text-2" id="text-14">
+<div class="org-src-container">
+<pre class="src src-bash"><code>apt autoremove</code>
+<code>apt clean </code>
+<code>apt autoclean </code>
+<code>apt --fix-broken install</code>
+<code>rm /etc/apt/sources.list.d/&lt;error package&gt;</code>
+<code></code>
+</pre>
+</div>
+
+<p>
+sudo apt install bleachbit
+</p>
+
+<p>
+bleachbit will help you clean unnecessary files off your device
+</p>
+</div>
+
+<div id="outline-container-org767d71e" class="outline-3">
+<h3 id="org767d71e"><span class="section-number-3">14.1</span> Check CUDA info</h3>
+<div class="outline-text-3" id="text-14-1">
+<div class="org-src-container">
+<pre class="src src-bash"><code>yubao@yubao-Z370M-S01:~$ dpkg --get-selections | grep cuda</code>
+<code>libcuda1-418                    install</code>
+<code>libcudart7.5:amd64              install</code>
+<code>nvidia-cuda-dev                 install</code>
+<code>nvidia-cuda-doc                 install</code>
+<code>nvidia-cuda-gdb                 install</code>
+<code>nvidia-cuda-toolkit             install</code>
+</pre>
+</div>
+
+
+<p>
+Uninstall just nvidia-cuda-toolkit
+sudo apt-get remove nvidia-cuda-toolkit
+</p>
+
+<p>
+Uninstall nvidia-cuda-toolkit and it's dependencies
+sudo apt-get remove &#x2013;auto-remove nvidia-cuda-toolkit
+</p>
+
+<p>
+Purging config/data
+sudo apt-get purge nvidia-cuda-toolkit or sudo apt-get purge &#x2013;auto-remove nvidia-cuda-toolkit
+</p>
+
+<p>
+Additionally, delete the <i>opt/cuda and ~/NVIDIA<sub>GPU</sub><sub>Computing</sub><sub>SDK</sub> folders if they are present. and remove the export PATH=$PATH:/opt/cuda/bin and export LD<sub>LIBRARY</sub><sub>PATH</sub>=$LD<sub>LIBRARY</sub><sub>PATH</sub>:/opt/cuda/lib:/opt/cuda/lib64 lines of the ~</i>.bash<sub>profile</sub> file
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2b079a2" class="outline-3">
+<h3 id="org2b079a2"><span class="section-number-3">14.2</span> How to clean CUDA</h3>
+<div class="outline-text-3" id="text-14-2">
+<pre class="example">
+<code>sudo apt-get autoremove --purge cuda </code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org1e9f728" class="outline-3">
+<h3 id="org1e9f728"><span class="section-number-3">14.3</span> How to find out if package is installed in Linux?</h3>
+<div class="outline-text-3" id="text-14-3">
+<pre class="example">
+<code>dpkg -s pkg-config</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7039aac" class="outline-3">
+<h3 id="org7039aac"><span class="section-number-3">14.4</span> Uninstall deb installation</h3>
+<div class="outline-text-3" id="text-14-4">
+<p>
+Use the following commands to uninstall a RPM/Deb installation:
+</p>
+<pre class="example">
+<code>sudo apt-get --purge remove &lt;package_name&gt;          # Ubuntu</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga17b310" class="outline-2">
+<h2 id="orga17b310"><span class="section-number-2">15</span> UFW</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+The UFW firewall is the default firewall that ships standard with the Ubuntu Linux Distribution. UFW stands for Uncomplicated Firewall.
+</p>
+
+<p>
+To enable the ufw firewall, open a new Terminal window and execute the following command:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo ufw enable</code>
+</pre>
+</div>
+
+<p>
+To disable the ufw firewall, open a new Terminal windows and execute the following command:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo ufw disable</code>
+</pre>
+</div>
+
+<p>
+To view the status of the ufw execute the below command:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo ufw status</code>
+</pre>
+</div>
+
+<p>
+Example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo ufw &#8211;help</code>
+<code></code>
+<code>sudo ufw allow [port/protocol]</code>
+<code></code>
+<code>ufw allow ssh</code>
+<code>ufw allow 53/tcp</code>
+<code>ufw allow 53/udp</code>
+<code>sudo ufw allow http</code>
+<code></code>
+<code>sudo ufw deny from IPADRESS</code>
+<code>sudo ufw allow from [IP_ADDRES] to any port [PORT]</code>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo ufw status numbered</code>
+<code>sudo ufw delete 4</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org08c91ce" class="outline-2">
+<h2 id="how-to"><span class="section-number-2">16</span> How to</h2>
+<div class="outline-text-2" id="text-how-to">
+</div>
+
+<div id="outline-container-org3db00cf" class="outline-3">
+<h3 id="how-to-check-package-version-installed"><span class="section-number-3">16.1</span> How to check package version installed</h3>
+<div class="outline-text-3" id="text-how-to-check-package-version-installed">
+<div class="org-src-container">
+<pre class="src src-sh"><code>dpkg -s &lt;packagename&gt;</code>
+</pre>
+</div>
+
+<p>
+For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>yubao@yubao-Z370M-S01:~/GitProject$ dpkg -s pcl</code>
+<code>Package: pcl</code>
+<code>Status: install ok installed</code>
+<code>Priority: optional</code>
+<code>Section: devel</code>
+<code>Installed-Size: 1172090</code>
+<code>Maintainer: pcl-developers@pointclouds.org</code>
+<code>Architecture: amd64</code>
+<code>Version: 1.8.0</code>
+<code>Depends: freeglut3, libboost-date-time1.58.0, libboost-filesystem1.58.0, libboost-iostreams1.58.0, libboost-system1.58.0, libboost-thread1.58.0, libc6 (&gt;= 2.14), libgcc1 (&gt;= 1:4.3), libgl1-mesa-glx | libgl1, libgomp1 (&gt;= 4.9), libpng12-0 (&gt;= 1.2.13-4), libqhull7, libqt5core5a (&gt;= 5.0.2), libqt5widgets5 (&gt;= 5.0.2), libstdc++6 (&gt;= 5.2), libusb-1.0-0 (&gt;= 2:1.0.8), libvtk6.2, libvtk6.2-qt</code>
+<code>Description: Point Cloud Library (PCL)</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcbe7398" class="outline-2">
+<h2 id="linux"><span class="section-number-2">17</span> Linux</h2>
+<div class="outline-text-2" id="text-linux">
+</div>
+
+<div id="outline-container-org53f59e1" class="outline-3">
+<h3 id="system-info"><span class="section-number-3">17.1</span> System Info</h3>
+<div class="outline-text-3" id="text-system-info">
+<div class="org-src-container">
+<pre class="src src-sh"><code>yubao@yubao-Z370M-S01:~/GitProject/yubaoliu.github.io$ uname -a</code>
+<code>Linux yubao-Z370M-S01 4.15.0-43-generic <span style="color: #75715E;">#</span><span style="color: #75715E;">46~16.04.1-Ubuntu SMP Fri Dec 7 13:31:08 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</span></code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf1cccd1" class="outline-3">
+<h3 id="quick-build-from-zero"><span class="section-number-3">17.2</span> Quick build from zero</h3>
+<div class="outline-text-3" id="text-quick-build-from-zero">
+<div class="org-src-container">
+<pre class="src src-sh"><code></code>
+<code><span style="color: #75715E;"># </span><span style="color: #75715E;">OpenCV</span></code>
+<code><span style="color: #75715E;">#</span><span style="color: #75715E;">Remove any previous installations of x264&lt;/h3&gt;</span></code>
+<code>sudo apt-get remove x264 libx264-dev</code>
+<code>sudo apt-get install build-essential checkinstall cmake pkg-config yasm</code>
+<code>sudo apt-get install git gfortran</code>
+<code>sudo apt-get install libjpeg8-dev libjasper-dev libpng12-dev</code>
+<code>sudo apt-get install libtiff5-dev</code>
+<code>sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev</code>
+<code>sudo apt-get install libxine2-dev libv4l-dev</code>
+<code>sudo apt-get install libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev</code>
+<code>sudo apt-get install qt5-default libgtk2.0-dev libtbb-dev</code>
+<code>sudo apt-get install libatlas-base-dev</code>
+<code>sudo apt-get install libfaac-dev libmp3lame-dev libtheora-dev</code>
+<code>sudo apt-get install libvorbis-dev libxvidcore-dev</code>
+<code>sudo apt-get install libopencore-amrnb-dev libopencore-amrwb-dev</code>
+<code>sudo apt-get install x264 v4l-utils</code>
+<code></code>
+<code><span style="color: #75715E;"># </span><span style="color: #75715E;">Optional dependencies</span></code>
+<code>sudo apt-get install libprotobuf-dev protobuf-compiler</code>
+<code>sudo apt-get install libgoogle-glog-dev libgflags-dev</code>
+<code>sudo apt-get install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen</code>
+<code></code>
+<code><span style="color: #75715E;"># </span><span style="color: #75715E;">Python</span></code>
+<code>sudo apt-get install python-dev python-pip python3-dev python3-pip</code>
+<code>sudo -H pip2 install -U pip numpy</code>
+<code>sudo -H pip3 install -U pip numpy</code>
+<code>pip install --user numpy scipy matplotlib scikit-image scikit-learn ipython</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge2070de" class="outline-3">
+<h3 id="desktop"><span class="section-number-3">17.3</span> DESKTOP</h3>
+<div class="outline-text-3" id="text-desktop">
+</div>
+
+<div id="outline-container-org713b8fe" class="outline-4">
+<h4 id="check-current-desktop-environments"><span class="section-number-4">17.3.1</span> check current desktop environments</h4>
+<div class="outline-text-4" id="text-check-current-desktop-environments">
+<div class="org-src-container">
+<pre class="src src-sh"><code>yubao@yubao-Z370M-S01:~$ echo $<span style="color: #FD971F;">DESKTOP_SESSION</span></code>
+<code>ubuntu</code>
+<code></code>
+<code></code>
+<code>yubao@yubao-Z370M-S01:~$  ls /usr/bin/*session*</code>
+<code>/usr/bin/dbus-run-session       /usr/bin/gnome-session-inhibit     /usr/bin/session-installer  /usr/bin/xfce4-session-logout</code>
+<code>/usr/bin/gnome-session          /usr/bin/gnome-session-properties  /usr/bin/session-migration  /usr/bin/xfce4-session-settings</code>
+<code>/usr/bin/gnome-session-classic  /usr/bin/gnome-session-quit        /usr/bin/xfce4-session      /usr/bin/x-session-manager</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaaa7558" class="outline-4">
+<h4 id="remove-desktop"><span class="section-number-4">17.3.2</span> Remove DESKTOP</h4>
+<div class="outline-text-4" id="text-remove-desktop">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get purge gnome*</code>
+<code>sudo apt-get purge xfce4-*</code>
+<code></code>
+<code>sudo apt-get autoclean</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc452601" class="outline-3">
+<h3 id="python"><span class="section-number-3">17.4</span> python</h3>
+<div class="outline-text-3" id="text-python">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install python-dev python-pip python3-dev python3-pip</code>
+<code>sudo -H pip2 install -U pip numpy</code>
+<code>sudo -H pip3 install -U pip numpy</code>
+<code>pip install --user numpy scipy matplotlib scikit-image scikit-learn ipython</code>
+</pre>
+</div>
+
+<p>
+Don't remove current python3, otherwise Ubuntu OS will BROKEN.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4db2937" class="outline-3">
+<h3 id="software-center"><span class="section-number-3">17.5</span> software-center</h3>
+<div class="outline-text-3" id="text-software-center">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install software-center</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc982aa8" class="outline-3">
+<h3 id="atom"><span class="section-number-3">17.6</span> Atom</h3>
+<div class="outline-text-3" id="text-atom">
+<p>
+<a href="http://tipsonubuntu.com/2016/08/05/install-atom-text-editor-ubuntu-16-04/">Install
+Guide</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org437448b" class="outline-3">
+<h3 id="pandoc"><span class="section-number-3">17.7</span> Pandoc</h3>
+<div class="outline-text-3" id="text-pandoc">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt install pandoc pandoc-citeproc</code>
+<code>pip install --user  pandoc-fignos</code>
+<code>pip install --user pandoc-tablenos</code>
+<code>pip install --upgrade pandoc-tablenos  <span style="color: #75715E;">#</span><span style="color: #75715E;">for upgrade</span></code>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><a href="https://github.com/tomduck/pandoc-fignos">pandoc-fignos</a></li>
+<li><a href="https://github.com/tomduck/pandoc-tablenos">pandoc-tablenos</a></li>
+<li><a href="https://github.com/tomduck/pandoc-eqnos">pandoc-eqnos</a></li>
+<li><a href="https://github.com/jgm/pandoc-citeproc">pandoc-citeproc</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfca6121" class="outline-3">
+<h3 id="markdown"><span class="section-number-3">17.8</span> Markdown</h3>
+<div class="outline-text-3" id="text-markdown">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install markdown</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2dd8209" class="outline-3">
+<h3 id="latex"><span class="section-number-3">17.9</span> LaTeX</h3>
+<div class="outline-text-3" id="text-latex">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install perl-tk perl-doc</code>
+<code>sudo apt-get install texlive-full</code>
+<code>sudo apt-get install texlive-fonts-recommended <span style="color: #75715E;">#</span><span style="color: #75715E;">maybe not need</span></code>
+<code>sudo apt install texlive-latex-extra</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org99fdd07" class="outline-3">
+<h3 id="grive"><span class="section-number-3">17.10</span> grive</h3>
+<div class="outline-text-3" id="text-grive">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo add-apt-repository ppa:nilarimogard/webupd8</code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install grive</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdd177bc" class="outline-3">
+<h3 id="ibus"><span class="section-number-3">17.11</span> ibus</h3>
+<div class="outline-text-3" id="text-ibus">
+<p>
+<a href="http://wiki.ubuntu.org.cn/IBus">iBus</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org02f10f5" class="outline-3">
+<h3 id="screenshot"><span class="section-number-3">17.12</span> Screenshot</h3>
+<div class="outline-text-3" id="text-screenshot">
+<ul class="org-ul">
+<li>gnome-screenshot</li>
+<li>Shutter</li>
+<li>Scrot</li>
+<li>Deepin-ScreenShot</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaff394b" class="outline-3">
+<h3 id="ocative"><span class="section-number-3">17.13</span> Ocative</h3>
+<div class="outline-text-3" id="text-ocative">
+<p>
+Install from ppa:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo add-apt-repository ppa:octave/stable</code>
+<code>sudo apt-get update</code>
+<code>sudo apt-get install octave</code>
+<code>sudo apt-get install liboctave-dev</code>
+</pre>
+</div>
+
+<p>
+The belowing is the old stuff needed to summarize
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba69c0d" class="outline-2">
+<h2 id="build-better-linux-environment-from-scratch"><span class="section-number-2">18</span> Build Better Linux Environment from Scratch</h2>
+<div class="outline-text-2" id="text-build-better-linux-environment-from-scratch">
+</div>
+
+<div id="outline-container-org6c1cc12" class="outline-3">
+<h3 id="softwares"><span class="section-number-3">18.1</span> softwares</h3>
+<div class="outline-text-3" id="text-softwares">
+<ul class="org-ul">
+<li><a href="https://www.teamviewer.com/cn/download/linux/">team viewer</a></li>
+<li><a href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">Atom</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b1a493" class="outline-2">
+<h2 id="linux-kernel-overview"><span class="section-number-2">19</span> Linux Kernel Overview</h2>
+<div class="outline-text-2" id="text-linux-kernel-overview">
+<ul class="org-ul">
+<li>Process scheduler</li>
+<li>Memory Manager</li>
+<li>I/O Schedule</li>
+<li>IPC</li>
+<li>Network Services</li>
+<li>File Systme IO=&gt;Device Driver=&gt;Hardware/Peripherals</li>
+<li><a href="https://www.youtube.com/watch?v=-O6GsrmOUgY">LInux Kernel
+Programming-01-youtube</a></li>
+<li>Linux Kernel ** How to obtain Linux Kernel</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>apt-get install linux-source</code>
+<code><span style="color: #F92672;">cd</span> /usr/src</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa19971" class="outline-2">
+<h2 id="how-to-install-unity-3d"><span class="section-number-2">20</span> How to Install Unity 3D</h2>
+<div class="outline-text-2" id="text-how-to-install-unity-3d">
+</div>
+
+<div id="outline-container-orgfac292f" class="outline-3">
+<h3 id="orgfac292f"><span class="section-number-3">20.1</span> Get Unity -</h3>
+<div class="outline-text-3" id="text-20-1">
+<p>
+<a href="https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/">Forum.unity3d.com</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb3c75b" class="outline-3">
+<h3 id="orgbb3c75b"><span class="section-number-3">20.2</span> Installation <code>sudo dpkg -i unity-editor.deb</code></h3>
+<div class="outline-text-3" id="text-20-2">
+<ul class="org-ul">
+<li>gtags ** How to Install GNU Global source code tagging system</li>
+
+<li>Get GNU Flobal download link:
+<a href="https://www.gnu.org/software/global/">GNU GLobal</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org38695d5" class="outline-3">
+<h3 id="org38695d5"><span class="section-number-3">20.3</span> Install GNU Global This tutor</h3>
+<div class="outline-text-3" id="text-20-3">
+<p>
+<a href="https://github.com/yubaochina/Emacs-Cpp-IDE/blob/master/emacs-tutor/emacs-tutor.org#version-control">GnuGloabalInstallGuid</a>
+introduced the method of installing GNU Global in Linux/Windows/Mac.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>tar xvf global-&lt;version&gt;.tar.gz</code>
+<code><span style="color: #F92672;">cd</span> global-&lt;version&gt;/</code>
+<code>If you have ctags installed, add the option --with-exuberant-ctags and supply the installed path: ./configure [--with-exuberant-ctags=/usr/local/bin/ctags]</code>
+<code>make</code>
+<code>sudo make install</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge277264" class="outline-4">
+<h4 id="orge277264"><span class="section-number-4">20.3.1</span> Common Questions</h4>
+<div class="outline-text-4" id="text-20-3-1">
+<ul class="org-ul">
+<li>Install GNU Global</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #75715E;">#</span><span style="color: #75715E;">!/bin/</span><span style="color: #F92672;">sh</span></code>
+<code> tar zxvf global-6.5.7.tar.gz</code>
+<code> <span style="color: #F92672;">cd</span> global-6.5.7</code>
+<code> ./configure</code>
+<code> make</code>
+<code> sudo make install</code>
+</pre>
+</div>
+<p>
+** How to Use gtags
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #F92672;">cd</span> /path/to/prject/root</code>
+<code>gtags</code>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>GTAGS: definition database</li>
+<li>GRTAGS: reference database</li>
+<li>GPATH: path name database</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c3a250" class="outline-3">
+<h3 id="org8c3a250"><span class="section-number-3">20.4</span> Common Questions - configure: error: curses library is required but</h3>
+<div class="outline-text-3" id="text-20-4">
+<p>
+not found.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>global-6.5.7$ sudo apt-get install libncurses5-dev</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
