@@ -315,10 +315,6 @@ $ roboware-studio
 #+begin_src bash
 sudo apt remove roboware-studio
 #+end_src
-* Emacs
-echo "Install Emacs"
-sudo add-apt-repository -yu ppa:kelleyk/emacs
-sudo apt-get install  emacs26
 * Caffe
 ** Guidebook
 - http://caffe.berkeleyvision.org/installation.html
@@ -480,7 +476,6 @@ Replug the Kinect and run the test program:
   roslaunch  kinect2_bridge kinect2_bridge.launch
   #+end_src
 
-
 * Ruby 
 The defalt ruby version is 2.3 in ubuntu16.04.
 
@@ -633,41 +628,7 @@ sudo ufw allow from [IP_ADDRES] to any port [PORT]
 sudo ufw status numbered
 sudo ufw delete 4
 #+end_src
-* How to
-  :PROPERTIES:
-  :CUSTOM_ID: how-to
-  :END:
-
-** How to check package version installed
-   :PROPERTIES:
-   :CUSTOM_ID: how-to-check-package-version-installed
-   :END:
-
-#+BEGIN_SRC sh
-    dpkg -s <packagename>
-#+END_SRC
-
-For example:
-
-#+BEGIN_SRC sh
-    yubao@yubao-Z370M-S01:~/GitProject$ dpkg -s pcl
-    Package: pcl
-    Status: install ok installed
-    Priority: optional
-    Section: devel
-    Installed-Size: 1172090
-    Maintainer: pcl-developers@pointclouds.org
-    Architecture: amd64
-    Version: 1.8.0
-    Depends: freeglut3, libboost-date-time1.58.0, libboost-filesystem1.58.0, libboost-iostreams1.58.0, libboost-system1.58.0, libboost-thread1.58.0, libc6 (>= 2.14), libgcc1 (>= 1:4.3), libgl1-mesa-glx | libgl1, libgomp1 (>= 4.9), libpng12-0 (>= 1.2.13-4), libqhull7, libqt5core5a (>= 5.0.2), libqt5widgets5 (>= 5.0.2), libstdc++6 (>= 5.2), libusb-1.0-0 (>= 2:1.0.8), libvtk6.2, libvtk6.2-qt
-    Description: Point Cloud Library (PCL)
-#+END_SRC
-
 * Linux
-  :PROPERTIES:
-  :CUSTOM_ID: linux
-  :END:
-
 ** System Info
    :PROPERTIES:
    :CUSTOM_ID: system-info
@@ -845,10 +806,6 @@ Guide]]
 - Deepin-ScreenShot
 
 ** Ocative
-   :PROPERTIES:
-   :CUSTOM_ID: ocative
-   :END:
-
 Install from ppa:
 
 #+BEGIN_SRC sh
@@ -859,6 +816,50 @@ Install from ppa:
 #+END_SRC
 
  The belowing is the old stuff needed to summarize
+
+* How to
+** How to check package version installed
+#+BEGIN_SRC sh
+    dpkg -s <packagename>
+#+END_SRC
+
+For example:
+
+#+BEGIN_SRC sh
+    yubao@yubao-Z370M-S01:~/GitProject$ dpkg -s pcl
+    Package: pcl
+    Status: install ok installed
+    Priority: optional
+    Section: devel
+    Installed-Size: 1172090
+    Maintainer: pcl-developers@pointclouds.org
+    Architecture: amd64
+    Version: 1.8.0
+    Depends: freeglut3, libboost-date-time1.58.0, libboost-filesystem1.58.0, libboost-iostreams1.58.0, libboost-system1.58.0, libboost-thread1.58.0, libc6 (>= 2.14), libgcc1 (>= 1:4.3), libgl1-mesa-glx | libgl1, libgomp1 (>= 4.9), libpng12-0 (>= 1.2.13-4), libqhull7, libqt5core5a (>= 5.0.2), libqt5widgets5 (>= 5.0.2), libstdc++6 (>= 5.2), libusb-1.0-0 (>= 2:1.0.8), libvtk6.2, libvtk6.2-qt
+    Description: Point Cloud Library (PCL)
+#+END_SRC
+** How to find files deleted by **rm**
+*** ~/.local/share/Trash
+Speaking in the most abstract terms, whenever you delete a file on the graphical interface, the file is "moved" to a special "buffer", a directory called trash. You can locate it in your home directory, =~/.local/share/Trash/=. 
+Files "deleted" from this directory, will be really deleted. This real deletion is what happens when you use /rm/ on a file.
+*** rm-trash
+#+begin_example
+sudo add-apt-repository ppa:nateshmbhat/rm-trash
+sudo apt-get update
+sudo apt-get install rm-trash
+#+end_example
+
+Add this to /.bashrc/
+#+begin_example
+alias rm=trash
+#+end_example
+
+*** Others
+Not yet tried.
+#+begin_example
+sudo apt-get install trash-cli
+sudo apt-get install foremost
+#+end_example
 
 * Build Better Linux Environment from Scratch
   :PROPERTIES:
