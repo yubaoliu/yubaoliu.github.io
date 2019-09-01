@@ -1,6 +1,12 @@
 #+EXPORT_FILE_NAME: 2019-08-26-turtlebot.html
 #+TITLE: Turtlebot
 
+* Turorial
++ ROS =turtlebot_follower= ：让机器人跟随我们移动, https://blog.csdn.net/yiranhaiziqi/article/details/53085096
++ [[https://www.ncnynl.com/archives/201609/793.html][Turtlebot入门教程]]
++ [[http://wiki.ros.org/turtlebot/Tutorials/indigo/Network%20Configuration][turtlebotTutorialsindigoNetwork Configuration]]
++ [[http://wiki.ros.org/ROS/NetworkSetup][ROSNetworkSetup]]
++ [[https://medium.com/@PankajB96/pocketsphinx-in-ros-demo-1-0-74b2dfc5ebca][Pocketsphinx in ROS: Demo 1.0]]
 * Install Turtlebot ROS Packages
 #+begin_src sh
 sudo apt install ros-kinetic-turtlebot-*
@@ -194,8 +200,72 @@ Demo:
 <iframe width="677" height="412" src="https://www.youtube.com/embed/UjGAd0mEZ1M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 #+end_export
 
-* References
-+ ROS =turtlebot_follower= ：让机器人跟随我们移动, https://blog.csdn.net/yiranhaiziqi/article/details/53085096
-+ [[https://www.ncnynl.com/archives/201609/793.html][Turtlebot入门教程]]
-+ [[http://wiki.ros.org/turtlebot/Tutorials/indigo/Network%20Configuration][turtlebotTutorialsindigoNetwork Configuration]]
-+ [[http://wiki.ros.org/ROS/NetworkSetup][ROSNetworkSetup]]
+* pocketsphinx: ksm (keyword spotting mode)
+
+Refer:
+- https://github.com/Pankaj-Baranwal/pocketsphinx/wiki/Demo:-Kws-mode
+
+- build pocketsphinx ros wrapper
+#+begin_example
+cd ~/catkin_ws/src
+git clone https://github.com/Pankaj-Baranwal/pocketsphinx.git
+git checkout kinetic-devel
+cd ..
+catkin_make
+#+end_example
+
+- Launch =turtlebot_gazebo=:
+
+#+begin_example
+roslaunch turtlebot_gazebo turtlebot_world.launch
+#+end_example
+
+- kws.launch
+#+begin_example
+roslaunch pocketsphinx kws.launch dict:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic kws:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.kwlist
+#+end_example
+
+- Checkout data
+#+begin_example
+rostopic echo /kws_data
+#+end_example
+
+**dict**: 
+Location(absolute path) of the dictionary. Dictionary contains the words which are used in the keyphrases along with their phonetics as used in the acoustic model.
+
+**kwlist**: 
+This contains a list of keyphrases along with their threshold values. A typical line looks like this:
+
+=Hello World /1e-12/=
+
+**keyphrase**: 
+In case you only need to use 1 keyphrase, you can simply use a combination of a keyphrase and its threshold(see next argument). You should either use a kwlist argument or a combination of keyphrase and threshold.
+
+**threshold**: 
+To specify the threshold of the keyphrase in the above mentioned argument.
+
+**input**:
+If you want to use an audio file as input, you can specify its absolute path here. Else you should omit this argument. System's microphone will be used as input instead.
+
+**hmm**:
+In case the default acoustic model is missing or not suited to your needs, you can specify a new one using this argument. Just add its absolute path as value of this argument. You can find the existing ones
+* 语音控制turtlrbot机器人移动
+Reference:
+- [[https://www.ncnynl.com/archives/201609/870.html][turtlebot入门-语音控制]]
+  + 利用PocketSphinx实现语音识别
+  + 利用语音命令来控制Turtlebot
+  + 实现播放语音
+
+
+* 实现播放语音
+#+begin_example
+$ rosrun sound_play soundplay_node.py  
+$ rosrun sound_play say.py "Greetings Humans. Take me to your leader."  
+#+end_example
+
+Change another person to read.
+
+#+begin_example
+$ sudo apt-get install festvox-don  
+$ rosrun sound_play say.py "Welcome to the future" voice_don_diphone
+#+end_example

@@ -4,13 +4,17 @@
 <ul>
 <li><a href="#orgb64b67a">1. Installation and Setup</a>
 <ul>
-<li><a href="#org9ff6c8a">1.1. Using PocketSphinx</a></li>
+<li><a href="#org9c72cbe">1.1. Install dependencies</a></li>
+<li><a href="#org8bcedcd">1.2. Install sphinxbase and pocketsphinx from source code</a></li>
+<li><a href="#org48e6b77">1.3. Indigo User</a></li>
+<li><a href="#org9ff6c8a">1.4. Using PocketSphinx</a></li>
 </ul>
 </li>
 <li><a href="#orga66c96e">2. Ros wrapper</a>
 <ul>
-<li><a href="#org232cc4c">2.1. UTNuclearRoboticsPublic/pocketsphinx</a></li>
-<li><a href="#orgc0ab3bd">2.2. Pankaj-Baranwal/pocketsphinx</a></li>
+<li><a href="#orgc0ab3bd">2.1. Pankaj-Baranwal/pocketsphinx</a></li>
+<li><a href="#org232cc4c">2.2. UTNuclearRoboticsPublic/pocketsphinx</a></li>
+<li><a href="#org1536f91">2.3. Pankaj-Baranwal/pocketsphinx</a></li>
 </ul>
 </li>
 <li><a href="#org61bdb02">3. Errors</a>
@@ -28,6 +32,10 @@
 <div id="outline-container-orgb64b67a" class="outline-2">
 <h2 id="orgb64b67a"><span class="section-number-2">1</span> Installation and Setup</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org9c72cbe" class="outline-3">
+<h3 id="org9c72cbe"><span class="section-number-3">1.1</span> Install dependencies</h3>
+<div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-sh"><code>sudo apt-get install git</code>
 <code>sudo apt-get install automake</code>
@@ -39,32 +47,44 @@
 <code>sudo apt-get install pkg-config</code>
 </pre>
 </div>
+</div>
+</div>
 
-<p>
-Install sphinxbase
-</p>
+<div id="outline-container-org8bcedcd" class="outline-3">
+<h3 id="org8bcedcd"><span class="section-number-3">1.2</span> Install sphinxbase and pocketsphinx from source code</h3>
+<div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-sh"><code>git clone https://github.com/cmusphinx/sphinxbase.git</code>
-<code><span style="color: #FF1493;">cd</span> sphinxbase</code>
+<code><span style="color: #F92672;">cd</span> sphinxbase</code>
 <code>./autogen.sh</code>
 <code>make</code>
 <code>sudo make install</code>
-<code><span style="color: #FF1493;">cd</span> ..</code>
+<code><span style="color: #F92672;">cd</span> ..</code>
+<code></code>
 <code>git clone git://github.com/cmusphinx/pocketsphinx.git</code>
-<code><span style="color: #FF1493;">cd</span> pocketsphinx</code>
+<code><span style="color: #F92672;">cd</span> pocketsphinx</code>
 <code>./autogen.sh</code>
 <code>make</code>
 <code>sudo make install</code>
-<code><span style="color: #FF1493;">cd</span> ..</code>
+<code><span style="color: #F92672;">cd</span> ..</code>
 <code></code>
 <code>sudo ldconfig</code>
 </pre>
 </div>
 </div>
+</div>
 
+<div id="outline-container-org48e6b77" class="outline-3">
+<h3 id="org48e6b77"><span class="section-number-3">1.3</span> Indigo User</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Reafer: <a href="http://wiki.ros.org/pocketsphinx">http://wiki.ros.org/pocketsphinx</a>
+</p>
+</div>
+</div>
 <div id="outline-container-org9ff6c8a" class="outline-3">
-<h3 id="org9ff6c8a"><span class="section-number-3">1.1</span> Using PocketSphinx</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org9ff6c8a"><span class="section-number-3">1.4</span> Using PocketSphinx</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
 Note: Wave file needs to be mono channel, normalized, and 16000 sample rate.
 </p>
@@ -96,9 +116,54 @@ With Timing
 <h2 id="orga66c96e"><span class="section-number-2">2</span> Ros wrapper</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org232cc4c" class="outline-3">
-<h3 id="org232cc4c"><span class="section-number-3">2.1</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
+<div id="outline-container-orgc0ab3bd" class="outline-3">
+<h3 id="orgc0ab3bd"><span class="section-number-3">2.1</span> Pankaj-Baranwal/pocketsphinx</h3>
 <div class="outline-text-3" id="text-2-1">
+<pre class="example">
+<code>cd ~/catkin_ws/src</code>
+<code>git clone https://github.com/Pankaj-Baranwal/pocketsphinx.git</code>
+<code>git checkout kinetic-devel</code>
+<code>cd ..</code>
+<code>catkin_make</code>
+</pre>
+
+<p>
+Dependencies  
+</p>
+<ol class="org-ol">
+<li>pyaudio</li>
+</ol>
+<pre class="example">
+<code>sudo pip install pyaudio</code>
+</pre>
+
+<p>
+If this does not work, follow instructions below:
+</p>
+<pre class="example">
+<code>sudo apt-get install libasound-dev</code>
+<code>sudo apt-get install python-pyaudio</code>
+</pre>
+
+<ol class="org-ol">
+<li>pocketsphinx: You will need to have pip preinstalled for this to work</li>
+</ol>
+<pre class="example">
+<code>sudo pip install pocketsphinx</code>
+</pre>
+
+<p>
+There are many dependencies which need to be met before installation of pocketsphinx through pip works.
+Use Synaptics package manager to install the unmet dependencies which would be mentioned as error messages on the terminal window in case installation fails. Some of them include:  
+    libpulse-dev  
+    swig
+</p>
+</div>
+</div>
+
+<div id="outline-container-org232cc4c" class="outline-3">
+<h3 id="org232cc4c"><span class="section-number-3">2.2</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 Updated ROS bindings to pocketsphinx
 </p>
@@ -109,9 +174,9 @@ Updated ROS bindings to pocketsphinx
 </div>
 </div>
 
-<div id="outline-container-orgc0ab3bd" class="outline-3">
-<h3 id="orgc0ab3bd"><span class="section-number-3">2.2</span> Pankaj-Baranwal/pocketsphinx</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org1536f91" class="outline-3">
+<h3 id="org1536f91"><span class="section-number-3">2.3</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 Updated ROS bindings to pocketsphinx
 </p>
@@ -283,7 +348,6 @@ okay-google mode for switching between the above mentioned modes smoothly etc.
 </div>
 </div>
 </div>
-
 
 <div id="outline-container-org2111e58" class="outline-2">
 <h2 id="org2111e58"><span class="section-number-2">4</span> Reference</h2>

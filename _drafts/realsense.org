@@ -1,0 +1,131 @@
+* Resources
+
+-  [[https://realsense.intel.com/get-started/][Get started]]
+-  [[https://github.com/IntelRealSense/librealsense][IntelRealSense/librealsense-Github]]
+-  [[https://www.intel.com/content/dam/support/us/en/documents/emerging-technologies/intel-realsense-technology/Intel-RealSense-SDK2-Github-Guide.pdf][Intel®
+   RealSense™ SDK 2.0 Github User Guide]]
+
+* Preparation
+
+-  Ubuntu 16.04
+
+Ubuntu 16.04/18.04 LTS (Linux Kernels 4.4, 4.8 ,4.10, 4.13, 4.15 and
+4.16)
+
+=Linux yubao-Z370M-S01 4.15.0-46-generic #49~16.04.1-Ubuntu SMP Tue Feb 12 17:45:24 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux=
+
+-  ROS Kinetic
+-  Intel® RealSense™ SDK 2.0 (build 2.19.0)
+   [[https://github.com/IntelRealSense/librealsense/releases/tag/v2.19.0][Download]]
+-  Intel® RealSense™ Depth Cameras D435i
+-  ROS Wrapper 2.0 for Intel® RealSense™ Devices (build 2.2.1)
+   [[https://github.com/intel-ros/realsense/releases][Download]]
+
+Important notes: - Don't use the Using pre-build packages, try to build
+with source code. I don't know why - Make sure the SDK's version is
+compatible with ROS Wrapper's version
+
+* Building librealsense2 SDK
+
+Refer
+[[https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md][Linux
+Ubuntu Installation]]
+
+** Error when execute ./scripts/patch-realsense-ubuntu-lts.sh
+
+Error Description:
+
+#+BEGIN_SRC sh
+    make: Leaving directory '/home/yubao/GitProject/librealsense-2.19.0/ubuntu-xenial-hwe'
+    Patched kernels modules were created successfully
+
+    Replacing videodev :
+        Module videodev  is used by videobuf2_core
+        Unloading dependency videobuf2_core
+        modprobe: FATAL: Module videobuf2_core is in use.
+    Failed to unload module videobuf2_core. error type 1 . Operation is aborted
+    yubao@yubao-Z370M-S01:~/GitProject/librealsense-2.19.0$
+#+END_SRC
+
+Solution:
+
+#+BEGIN_SRC sh
+    yubao@yubao-Z370M-S01:~/catkin_ws$ lsmod | grep videobuf2_core
+    videobuf2_core         40960  2 videobuf2_v4l2,uvcvideo
+    videodev              180224  3 videobuf2_core,videobuf2_v4l2,uvcvideo
+    yubao@yubao-Z370M-S01:~/catkin_ws$ sudo modprobe -r uvcvideo
+    yubao@yubao-Z370M-S01:~/catkin_ws$ lsmod | grep videobuf2_core
+#+END_SRC
+
+** build and installation
+
+#+BEGIN_SRC sh
+    mkdir build && cd build
+    cmake ../ -DBUILD_EXAMPLES=true -DCMAKE_BUILD_TYPE=Release
+    make && sudo make install
+#+END_SRC
+
+** Recompile and install librealsense binaries
+
+=sudo make uninstall && make clean && make && sudo make install=
+
+Remove all RealSense™ SDK-related packages with:
+
+=dpkg -l | grep "realsense" | cut -d " " -f 3 | xargs sudo dpkg --purge=
+
+** realsense-viewer
+
+Reconnect the Intel RealSense depth camera and run:
+
+*realsense-viewer*
+
+to verify the installation.
+
+If not working, reboot your PC and try again.
+
+#+CAPTION: Realsense Viewer
+
+[[https://i.loli.net/2019/02/24/5c728a981f7a7.png]]
+** ROS: RGBD Poind Cloud
+
+=roslaunch realsense2_camera rs_camera.launch filters:=pointcloud=
+
+** ROS: Start the camera node
+
+=roslaunch realsense2_camera rs_camera.launch=
+
+[[https://i.loli.net/2019/03/08/5c82255d93cdc.png]]
+* SLAM with D435i
+
+[[https://github.com/intel-ros/realsense/wiki/SLAM-with-D435i][wiki]]
+
+* OpenNI2 Interface
+
+refer
+[[https://github.com/IntelRealSense/librealsense/tree/master/wrappers/openni2][]]
+
+#+BEGIN_SRC sh
+    cd build
+    cmake-gui ..
+#+END_SRC
+
+#+CAPTION: RealSense2 OpenNI2 driver
+
+[[https://i.loli.net/2019/02/26/5c752ff606fbc.png]]
+#+BEGIN_SRC sh
+    make
+
+    cp _out/librs2driver.so ~/GitProject/OpenNI2/Bin/x64-Release/OpenNI2/Drivers/
+    cp librealsense2.so ~/GitProject/OpenNI2/Bin/x64-Release/OpenNI2/Drivers/
+#+END_SRC
+
+=./SimpleViewer=
+
+#+CAPTION: SimpleViewer
+
+[[https://i.loli.net/2019/02/26/5c752f5f1be70.png]]
+./NiViewer
+
+#+CAPTION: NiViewer
+
+[[https://i.loli.net/2019/02/26/5c753184142b0.png]]

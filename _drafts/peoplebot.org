@@ -27,9 +27,9 @@ For Logical Gamepad F310:
 
 Hold on **A** key to control robot.
 
-[[https://i.imgur.com/igOF7Dc.png?1]]
-
+#+CAPTION:  =rqt_graph=
+https://i.imgur.com/tbbKXNh.png
 
 * Reference
 1. [[http://wiki.ros.org/joy][wiki-ros-joy]]
-1. [[http://wiki.ros.org/teleop_twist_joy][teleop_twist_joy]]
+1. [[http://wiki.ros.org/teleop_twist_joy][=teleop_twist_joy=]]

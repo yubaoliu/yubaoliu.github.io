@@ -859,10 +859,119 @@ Add this to /.bashrc/
 #+begin_example
 alias rm=trash
 #+end_example
+*** About /rm/command
+**Important**: do not use /-f/ option. The files deleted will not shown in trash if using /-f/.
+
+#+begin_example
+s$ rm --help
+Usage: trash [OPTION]... FILE...
+
+Put files in trash
+
+Options:
+  --version            show program's version number and exit
+  -h, --help           show this help message and exit
+  -d, --directory      ignored (for GNU rm compatibility)
+  -f, --force          ignored (for GNU rm compatibility)
+  -i, --interactive    ignored (for GNU rm compatibility)
+  -r, -R, --recursive  ignored (for GNU rm compatibility)
+  -v, --verbose        explain what is being done
+
+To remove a file whose name starts with a `-', for example `-foo',
+use one of these commands:
+
+    trash -- -foo
+
+    trash ./-foo
+#+end_example
 *** ohters
 Not yet tried.
 #+begin_example
 sudo apt-get install foremost
+#+end_example
+
+* How to solver **Library Conflict** Problem
+Example:
+
+#+begin_example sh
+[ 13%] Built target slam_rgbd
+/usr/bin/ld: warning: libboost_thread.so.1.58.0, needed by /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/libpcl_common.so, may conflict with libboost_thread.so.1.71.0
+/usr/bin/ld: warning: libboost_chrono.so.1.58.0, needed by /opt/ros/kinetic/lib/libroscpp.so, may conflict with libboost_chrono.so.1.71.0
+/usr/bin/ld: warning: libboost_filesystem.so.1.58.0, needed by /opt/ros/kinetic/lib/libroscpp.so, may conflict with libboost_filesystem.so.1.71.0
+/usr/bin/ld: warning: libboost_regex.so.1.58.0, needed by /opt/ros/kinetic/lib/librosconsole.so, may conflict with libboost_regex.so.1.71.0
+[ 13%] Built target octomap_generator
+Makefile:140: recipe for target 'all' failed
+make: *** [all] Error 2
+Invoking "make -j12 -l12" failed
+#+end_example
+
+Try to solve this error:
+
+- check =$LD_LIBRARY_PATH=
+
+#+begin_example sh
+$ echo $LD_LIBRARY_PATH
+~/software/caffe/lib:/usr/local/cuda/lib64:/usr/locla/lib:~/software/caffe/lib:/usr/local/cuda/lib64:/home/yubao/data/catkin_ws/devel/lib:/home/yubao/data/SpacialAI/catkin_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu:/usr/locla/lib:~/software/caffe/lib:/usr/local/cuda/lib64:/usr/locla/lib:
+#+end_example
+
+- check =/etc/ld.so.conf.d=
+  
+#+begin_example sh
+$ ls /etc/ld.so.conf.d
+cuda-10-0.conf  fakeroot-x86_64-linux-gnu.conf  libc.conf                  zz_i386-biarch-compat.conf
+cuda-10-1.conf  i386-linux-gnu.conf             x86_64-linux-gnu.conf
+cuda-8-0.conf   i386-linux-gnu_EGL.conf         x86_64-linux-gnu_EGL.conf
+cuda-9-0.conf   i386-linux-gnu_GL.conf          x86_64-linux-gnu_GL.conf
+#+end_example
+
+#+begin_example sh
+$ cat /etc/ld.so.conf.d/x86_64-linux-gnu.conf
+
+# Multiarch support
+/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu
+#+end_example
+
+We can locate where is libboost 1.58. 
+
+#+begin_example sh
+$ ls /usr/lib/x86_64-linux-gnu/libboost_thread.
+libboost_thread.a          libboost_thread.so         libboost_thread.so.1.58.0
+#+end_example
+
+- ldd
+
+#+begin_example sh
+$ ldd /home/yubao/data/catkin_ws/devel/lib/orb_slam2/slam_rgbd | grep "boost"
+        libboost_regex.so.1.58.0 => /usr/lib/x86_64-linux-gnu/libboost_regex.so.1.58.0 (0x00007f4f5f9e6000)
+        libboost_system.so.1.58.0 => /usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0 (0x00007f4f5c169000)
+        libboost_thread.so.1.58.0 => /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.58.0 (0x00007f4f5bf43000)
+        libboost_chrono.so.1.58.0 => /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.58.0 (0x00007f4f5b914000)
+        libboost_filesystem.so.1.58.0 => /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.58.0 (0x00007f4f5b6fc000)
+#+end_example
+
+- Read Error Message Carefully
+
+#+begin_example sh
+/home/yubao/data/software/boost/include/boost/date_time/time_duration.hpp:285:14: error: no type named ‘type’ in ‘struct boost::enable_if<boost::is_integral<double>, void>’
+In file included from /home/yubao/data/software/boost/include/boost/date_time/posix_time/posix_time_config.hpp:16:0,
+                 from /home/yubao/data/software/boost/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /home/yubao/data/software/boost/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /home/yubao/data/software/boost/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /home/yubao/data/software/boost/include/boost/thread/thread_time.hpp:11,
+                 from /home/yubao/data/software/boost/include/boost/thread/detail/platform_time.hpp:11,
+                 from /home/yubao/data/software/boost/include/boost/thread/pthread/condition_variable.hpp:9,
+                 from /home/yubao/data/software/boost/include/boost/thread/condition_variable.hpp:16,
+                 from /home/yubao/data/software/boost/include/boost/thread/condition.hpp:13,
+                 from /opt/ros/kinetic/include/actionlib/server/simple_action_server.h:40,
+#+end_example
+
+What caused this is that another /boost/ (1.71) is installed in =/home/yubao/data/software/boost/include/boost=.
+
+/boost 1.71/ is I manually installed. Therefore, I removed /BOOST/ related config from /.bashrc/. And then rebuild the source code. 
+
+#+begin_example sh
+export BOOST_ROOT="$HOME/data/software/boost"
 #+end_example
 
 * Build Better Linux Environment from Scratch

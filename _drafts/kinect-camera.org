@@ -151,14 +151,14 @@ Connect your sensor and run kinect2_bridge:
 *Result:*
 
 #+CAPTION: Kinetic2 Demo
-[[file::https://i.imgur.com/Nfr92Dp.jpg]]
+[[file:https://i.imgur.com/Nfr92Dp.jpg]]
 
 * Kinect2 Calibration
 Refer:
-- code-iai/iai_kinect2: https://github.com/code-iai/iai_kinect2/tree/master/kinect2_calibration
+- code-iai/=iai_kinect2=: https://github.com/code-iai/iai_kinect2/tree/master/kinect2_calibration
 - kinect2的标定: https://www.cnblogs.com/li-yao7758258/p/7445429.html
 
-* Ros Simulation - iai_kinect2
+* Ros Simulation - =iai_kinect2=
 - [[https://github.com/code-iai/iai_kinect2][github]]
 
 #+BEGIN_SRC sh
