@@ -1,0 +1,94 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4e89225">1. Introduction</a></li>
+<li><a href="#orga798415">2. Build</a></li>
+<li><a href="#orgd05ca15">3. Run</a></li>
+<li><a href="#org14577c0">4. MobileSim</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4e89225" class="outline-2">
+<h2 id="org4e89225"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>amor-ros-pkg/rosaria: <a href="https://github.com/amor-ros-pkg/rosaria">https://github.com/amor-ros-pkg/rosaria</a></li>
+<li>How to use ROSARIA: <a href="http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA">http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA</a></li>
+<li>Installation of ROSAria and Aria on Ubuntu: <a href="https://github.com/Izwor/ROS-workshop/wiki/Installation-of-ROSAria-and-Aria-on-Ubuntu">https://github.com/Izwor/ROS-workshop/wiki/Installation-of-ROSAria-and-Aria-on-Ubuntu</a></li>
+<li>MobileSim: <a href="http://vigir.missouri.edu/~gdesouza/Research/MobileRobotics/Software/MobileSim/README.html">http://vigir.missouri.edu/~gdesouza/Research/MobileRobotics/Software/MobileSim/README.html</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orga798415" class="outline-2">
+<h2 id="orga798415"><span class="section-number-2">2</span> Build</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+<code>cd ~/catkin_ws/src</code>
+<code>git clone https://github.com/amor-ros-pkg/rosaria.git</code>
+<code></code>
+<code>$ rosdep update</code>
+<code>$ rosdep install rosaria</code>
+<code>$ cd ~/catkin_ws</code>
+<code>$ catkin_make</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd05ca15" class="outline-2">
+<h2 id="orgd05ca15"><span class="section-number-2">3</span> Run</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The default port is /dev/ttyUSB0
+</p>
+
+<p>
+Make sure you have added your user to the "dialout" group 
+</p>
+<pre class="example">
+<code>sudo usermod -a -G dialout $USER</code>
+</pre>
+
+<p>
+or change the permissions of the serial port device to allow all users to access it 
+</p>
+<pre class="example">
+<code>sudo chmod a+rw /dev/ttyUSB0 </code>
+<code>or</code>
+<code>sudo chmod a+rw /dev/ttyS0</code>
+</pre>
+
+
+<pre class="example">
+<code>rosrun rosaria RosAria</code>
+</pre>
+
+<p>
+To specify the port as /dev/ttyS0
+</p>
+
+<pre class="example">
+<code>rosrun rosaria RosAria _port:=/dev/ttyS0</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org14577c0" class="outline-2">
+<h2 id="org14577c0"><span class="section-number-2">4</span> MobileSim</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+MobileSim is a simulator for use with ARIA. It provides a simple 2D simulation scalable to many robots, and useful for software testing
+</p>
+
+<p>
+ARIA automatically detects MobileSim if it is running on the same computer, and will connect to it. Or, you can explicitly set it using RosAria's ~port parameter:
+</p>
+
+<pre class="example">
+<code>rosrun rosaria RosAria _port:=localhost:8101</code>
+</pre>
+</div>
+</div>

@@ -1,0 +1,267 @@
+#+EXPORT_FILE_NAME: 2019-08-31-c-cpp.html
+#+TITLE: CPP Manual
+#+KEYWORDS: 
+#+DATE: <2019-08-31 土>
+#+subtitle: 
+
+* DataType  
+** DataType Convertion
+*** string to other datatypes
+- atof : convert string to double
+- atoi : convert string to integer
+- atoll : convert string to long integger
+- strtof : convert string to double
+- strtof : convert string to float
+- strtoll : convert sting to long integer
+- strtoul : convert string to unsigned long integer
+- strtoull : convert string to unsigned long long integer    
+*** convert to string
+#+BEGIN_SRC C++ :exports both
+#include <string>
+#include <sstream>  
+#include <iostream>
+using namespace std;
+int main(int argc, char *argv[])
+{
+  int int_val=100;
+  stringstream strm;
+  strm<<int_val;
+  string s=strm.str();
+  cout<<s<<endl;
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: 100
+
+* Smart Pointer
+** Introduction
+智能指针的原理是，接受一个申请好的内存地址，构造一个保存在栈上的智能指针对象，当程序退出栈的作用域范围后，由于栈上的变量自动被销毁，智能指针内部保存的内存也就被释放掉了（除非将智能指针保存起来）。
+C++11提供了三种智能指针：std::shared_ptr, std::unique_ptr, std::weak_ptr，使用时需添加头文件<memory>。
+shared_ptr使用引用计数，每一个shared_ptr的拷贝都指向相同的内存。每使用他一次，内部的引用计数加1，每析构一次，内部的引用计数减1，减为0时，删除所指向的堆内存。shared_ptr内部的引用计数是安全的，但是对象的读取需要加锁。[fn:1]
+
+** header
+#+begin_example
+#include <memory>
+#+end_example
+** std::shared\_ptr
+*** Introduction
+相比于普通指针，共享指针要占用多一倍的内存空间，其内部包含两个指针，一个指针指向它所管理的资源，第二个指针指向一个称为“Control Block”的控制块，如图所示： [fn:2]
+[[https://img-blog.csdn.net/20170604133221130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center]] [fn:2]
+
+第二个字段：Weak Count，也是一个引用计数，它用来计数指向该Object的 =std::weak_ptr= 指针的数量
+
+=Std::shared_ptr= 的大小两倍于普通指针。
+
+没有 =std::shared_ptr<T[]>= .所以shared_ptr只能管理单个对象，而不能管理对象数组。
+
+*** Example
+#+begin_example cpp
+#include "stdafx.h"
+#include <iostream>
+#include <future>
+#include <thread>
+
+using namespace std;
+class Person
+{
+public:
+    Person(int v) {
+        value = v;
+        std::cout << "Cons" <<value<< std::endl;
+    }
+    ~Person() {
+        std::cout << "Des" <<value<< std::endl;
+    }
+
+    int value;
+
+};
+
+int main()
+{
+    std::shared_ptr<Person> p1(new Person(1));// Person(1)的引用计数为1
+
+    std::shared_ptr<Person> p2 = std::make_shared<Person>(2);
+
+    p1.reset(new Person(3));// 首先生成新对象，然后引用计数减1，引用计数为0，故析构Person(1)
+                            // 最后将新对象的指针交给智能指针
+
+    std::shared_ptr<Person> p3 = p1;//现在p1和p3同时指向Person(3)，Person(3)的引用计数为2
+
+    p1.reset();//Person(3)的引用计数为1
+    p3.reset();//Person(3)的引用计数为0，析构Person(3)
+    return 0;
+}
+#+end_example
+
+*** How to construct =shared_ptr= object
+**** New
+
+Bare pointer:
+
+#+begin_example cpp
+  std::shared_ptr<int> p4(new int(5));
+    int *pInt = p4.get();
+#+end_example
+
+Class:[fn:2]
+#+begin_example cpp
+shared_ptr<Investment> sp(newInvestment());
+
+Investment * pInvestment =new Investment();
+
+shared_ptr<Investment>sp(pInvestment);
+#+end_example
+
+**** make_shared
+#+begin_example cpp
+auto sp1 = std::make_shared<Investment>();
+#+end_example
+
+**** 通过拷贝另一个智能指针 [fn:2]
+#+begin_example cpp
+shared_ptr<Investment> sp2(sp);
+
+shared_ptr<Investment> sp3 = sp2;
+#+end_example
+*** delete
+ =shared_ptr= 默认情况下使用delete释放资源，但是用户也可以指定自己的资源释放函数，例如在下面这个例子中，pInvest用delete\_Investment进行资源释放操作：[fn:2]
+
+ #+begin_example cpp
+ auto delete_Investment = [](Investment*pInv)
+{
+      pInv->getObjectType();
+      deletepInv;
+};
+shared_ptr<Investment>pInvest(new Investment(),delete_Investment)
+ #+end_example
+
+*** std::enable_shared_from_this
+继承std::enable_shared_from_this类，并将this指针用shared_from_this()接口代替
+#+begin_example cpp
+classInvestment :public std::enable_shared_from_this<Investment>
+{
+public:
+      void Handler();
+};
+
+voidInvestment::Handler()
+{
+      m_ptrVec.emplace_back(shared_from_this());
+}
+#+end_example
+
+** std::unique\_ptr
+*** Introduction
+=uniqut_ptr= 是一种对资源具有排他性拥有权的智能指针，即一个对象资源只能同时被一个unique\_ptr指向。[fn:2]
+*** Constructor
+**** Example
+#+begin_example cpp
+unique_ptr<Investment> pInvestment;     // 创建一个空的智能指针
+pInvestment.reset(new Investment());    //"绑定”动态对象 
+Investment *pI = pInvestment.release(); //释放所有权 
+pI= nullptr;                         //显式销毁所指对象，同时智能指针变为空指针
+#+end_example
+
+管理动态数组:
+
+由于unique\_ptr有 =std::unique_ptr<T[]>= 的重载函数，所以它可以用来管理数组资源.
+#+begin_example cpp
+unique_ptr<int[]> pArray(new int[3]{1,3,3});
+#+end_example
+**** New
+#+begin_example cpp
+unique_ptr<Investment> up(new Investment());
+
+Investment *pInv = new Investment();
+unique_ptr<Investment> up1(pInv);
+#+end_example
+**** make\_unique
+#+begin_example cpp
+auto pInv = make_unique<Investment>();
+#+end_example
+**** move()
+#+begin_example cpp
+unique_ptr<Investment> up1 = std::move(up);
+#+end_example
+**** 自定义释放器
+#+begin_example cpp
+auto delete_Investment = [](Investment* pInv)
+{
+       pInv->getObjectType();
+       delete pInv;
+};
+unique_ptr<Investment,decltype(delete_Investment)> pInvest(nullptr,delete_Investment);
+#+end_example
+
+或者也可以使用函数指针
+#+begin_example cpp
+void deleteInv(Investment* pInv) {}
+std::unique_ptr<Investment,void(*)(Investment*)>ptr(nullptr,deleteInv);
+#+end_example
+
+**** Notice
+注意：unique_ptr不能被复制或者拷贝，下面的代码将出错：
+#+begin_example cpp
+unique_ptr<Investment> up(new Investment()); //ok
+unique_ptr<Investment> up1(up);              //error, can not be copy
+unique_ptr<Investment> up2 = up;            //error, can not be assigned
+#+end_example
+
+但是，unique_ptr可以作为函数的返回值：
+
+#+begin_example cpp
+unique_ptr<Investment> GetPtr();        //function getthe unique pointer
+unique_ptr<Investment> pInv = GetPtr(); // ok
+#+end_example
+
+** std::weak\_ptr
+
+weak\_ptr是一种弱智能指针，它具有类似shared\_ptr的行为，但是却不会影响的它所指向的资源的引用计数。Weak\_ptr不能被解引用，也不能被测试是否为null。
+
+weak\_ptr之所以具备这些特点，是因为weak\_ptr不是一个独立的指针，而是shared\_ptr的一个附加物。Weak\_ptr 是通过shared\_ptr创建出来的，正像如下代码: [fn:2]
+
+#+begin_export  cpp
+auto spw =std::make_shared<Investment>();
+std::weak_ptr<Investment>wpw(spw);
+#+end_export
+
+如果此时，将spw赋值为null，spw所管理的资源会被析构，那么wpw也就成为了悬空指针，也称为“过期”（expired），可以通过expired()判断weak_ptr是否过期。
+#+begin_example cpp
+spw = nullptr;
+if (!wpw.expired()) {}
+#+end_example
+
+当我们想要访问weak_ptr所指向的资源时，应当将weak_ptr转为一个shared_ptr，通过shared_ptr来访问资源。这里有两种方法来做这件事：
+
+1. 通过weak\_ptr的lock()调用
+#+begin_example cpp
+std::shared_ptr<Investment>spw1 = wpw.lock();// 如果wpw过期，则返回null
+#+end_example
+
+2. 将weak\_ptr作为shared\_ptr构造函数的参数
+#+begin_example cpp
+std::shared_ptr<Investment>spw2(wpw);
+#+end_example
+
+weak\_ptr的用处主要体现在两方面：
+
+1. 需要获知所管理的资源是否过期
+观察者模式
+2. 解决shared_ptr的循环引用问题
+[[https://img-blog.csdn.net/20170604153930487?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center]]
+
+For detail information, please read the original blog: [fn:2]
+
+[[https://img-blog.csdn.net/20170604153953836?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center]]
+
+* reference
+1. [[http://boqian.weebly.com/][boqian's space]]
+
+* Footnotes
+
+[fn:2] https://blog.csdn.net/jxianxu/article/details/72858536, csdn-C++11智能指针之std::shared_ptr, 云飞扬_Dylan
+
+[fn:1] https://www.cnblogs.com/jiayayao/p/6128877.html, Jia Yayao's Blog

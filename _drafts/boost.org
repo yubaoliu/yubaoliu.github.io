@@ -1,22 +1,109 @@
-#+EXPORT_FILE_NAME: 
-#+TITLE: 
+#+EXPORT_FILE_NAME: 2019-08-31-boost.html
+#+TITLE: Boost
 #+KEYWORDS: 
-#+OPTIONS: body-only:t
 #+subtitle: 
+#+DATE: <2019-08-31 Sat>
 
-* Compile and Install
+* Tutorial
+- [[https://riptutorial.com/boost][Getting started with boost]]
+- [[https://theboostcpplibraries.com/][The Boost C++ Libraries]]-book. Soure code: https://github.com/BorisSchaeling/theboostcpplibraries
 
-Read: https://github.com/boostorg/boost/wiki/Getting-Started%3A-Overview
+
+* Intoduction
+** Boost includes
 
 #+begin_example
+String and text processing
+Containers
+Iterators
+Algorithms
+Function objects and higher-order programming
+Generic Programming
+Template Metaprogramming
+Preprocessor Metaprogramming
+Concurrent Programming
+Math and numerics
+Correctness and testing
+Data structures
+Image processing
+Input/Output
+Inter-language support
+Memory
+Parsing
+Programming Interfaces
+Miscellaneous
+Broken compiler workarounds
+#+end_example
+
+** Boost Libraries
+#+begin_example
+Boost.Chrono
+Boost.Context
+Boost.Filesystem
+Boost.GraphParallel
+Boost.IOStreams
+Boost.Locale
+Boost.MPI
+Boost.ProgramOptions
+Boost.Python
+Boost.Regex
+Boost.Serialization
+Boost.Signals
+Boost.System
+Boost.Thread
+Boost.Timer
+Boost.Wave
+Boost.DateTime
+Boost.Graph
+Boost.Math
+Boost.Random
+Boost.Test
+Boost.Exception
+#+end_example
+
+* Compile and Install
+** Install from source code
+Read: https://github.com/boostorg/boost/wiki/Getting-Started%3A-Overview
+
+#+begin_example sh
 git clone --recursive https://github.com/boostorg/boost.git
 cd boost
 git checkout develop # or whatever branch you want to use
-./bootstrap.sh --prefix=<INSTALL_PATH>
+./bootstrap.sh --prefix=<ABSOLUTE_INSTALL_PATH>
 ./b2 install
 #+end_example
 
-* First Example
+** Install from deb
+#+begin_example
+sudo apt-get install libboost-all-dev
+#+end_example
+* Getting Started
+** Header
+you can include Boost headers in C++ files with 
+
+#+begin_example cpp
+#include <boost/header/path.hpp> 
+#+end_example
+** CMakefileLists
+
+[[https://cmake.org/cmake/help/v3.8/module/FindBoost.html][FindBoost]]
+
+#+begin_example sh
+cmake_minimum_required(VERSION 3.7)
+project(your_project)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(SOURCE_FILES main.cpp tmap.cpp tmap.h)
+find_package(Boost 1.71 COMPONENTS serialization HINTS "<BOOST_ROOT>")
+
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    add_executable(YourTarget ${SOURCE_FILES})
+    target_link_libraries(your_target ${Boost_LIBRARIES} -missing_libs)        
+endif()
+  
+#+end_example
+** First Example
 
 example.cpp:
 #+begin_src cpp
@@ -37,5 +124,410 @@ int main()
 
 Compile
 #+begin_example
-c++ -I ~/software/install/boost -std=c++14 example.cpp
+c++ -I ~/data/software/boost -std=c++14 example.cpp
 #+end_example
+** Mean Covariance Example
+#+header: :exports mean-covariance
+#+begin_src cpp
+#include <iostream>
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/variance.hpp>
+   
+int main()
+{
+  using namespace boost::accumulators;
+  accumulator_set<int, stats<tag::mean, tag::variance>> acc;
+
+  for(int i = 1; i <= 6; i++)
+    acc(i);
+
+  std::cout << "mean=" << mean(acc) << ", variance=" << variance(acc) << '\n';
+  // prints "mean=3.5, variance=2.91667"
+
+  return 0;
+}
+#+end_src
+
+* Smart Pointers
+
+The standard library has included the smart pointer =std::auto_ptr= since C++98, but since C++11, =std::auto_ptr= has been deprecated. With C++11, new and better smart pointers were introduced in the standard library. =std::shared_ptr= and =std::weak_ptr= originate from Boost.SmartPointers and are called boost::shared_ptr and boost::weak\_ptr in this library. There is no counterpart to std::unique\_ptr. However, Boost.SmartPointers provides four additional smart pointers – boost::scoped\_ptr, boost::scoped\_array, boost::shared\_array, and boost::intrusive_ptr – which are not in the standard library.
+** =boost::scoped_ptr=
+=boost::scoped_ptr= is a smart pointer that is the sole owner of a dynamically allocated object. =boost::scoped_ptr= cannot be copied or moved. This smart pointer is defined in the header file =boost/scoped_ptr.hpp=.
+
+#+name: ex_use_scoped_ptr
+#+begin_src cpp
+#include <boost/scoped_ptr.hpp>
+#include <iostream>
+
+int main()
+{
+  boost::scoped_ptr<int> p{new int{1}};
+  std::cout << *p << '\n';
+  p.reset(new int{2});
+  std::cout << *p.get() << '\n';
+  p.reset();
+  std::cout << std::boolalpha << static_cast<bool>(p) << '\n';
+}
+#+end_src
+
+** =boost::scoped_array=
+#+begin_src cpp
+#include <boost/scoped_array.hpp>
+
+int main()
+{
+  boost::scoped_array<int> p{new int[2]};
+  *p.get() = 1;
+  p[1] = 2;
+  p.reset(new int[3]);
+}
+#+end_src
+
+* Data Structures
+** Lexical Cast
+ Use "boost" lib to Convert DataType
+#+BEGIN_SRC C++ :exports_both
+  #include <string>
+  #include <iostream>
+  #include "boost/lexical_cast.hpp"
+  using boost::lexical_cast;
+  using boost::bad_lexical_cast;
+  using namespace std;
+  int main(int argc, char *argv[])
+  {
+    int s=23;
+    string str=lexical_cast<string>(s);
+    cout<<"int to str: "<<str<<endl;
+
+    str="Message: "+lexical_cast<string>('A')+"="+lexical_cast<string>(34.5);
+    cout<<"char and float to str: "<<str<<endl;
+
+    array<char,64> msg=lexical_cast<array<char,64>>(23);
+    for (int i=0; i <2 ; i++) {
+      cout<<"int to char array, msg:"<<msg[i]<<endl;  
+    }
+
+
+    s=lexical_cast<int>("3456");
+    cout<<"int to string:"<<s<<endl;
+
+    try {
+      s=lexical_cast<int>("56.78");  // bad_lexical_cast
+    } catch (bad_lexical_cast &e) {
+      cout<<"Exception caught: "<<e.what()<<endl;
+    }
+    try{
+    s=lexical_cast<int>("3456yu");//bad_lexical_cast
+    }catch(bad_lexical_cast &e){
+      cout<<"Exception caught: "<<e.what()<<endl;
+    }
+    s=lexical_cast<int>("3456yu",4);
+    cout<<s<<endl;
+    return 0;
+  } 
+
+#+END_SRC
+
+#+RESULTS:
+| int       | to      | str:        | 23      |       |          |        |       |       |     |    |             |    |        |
+| char      | and     | float       | to      | str:  | Message: | A=34.5 |       |       |     |    |             |    |        |
+| int       | to      | char        | array,  | msg:2 |          |        |       |       |     |    |             |    |        |
+| int       | to      | char        | array,  | msg:3 |          |        |       |       |     |    |             |    |        |
+| int       | to      | string:3456 |         |       |          |        |       |       |     |    |             |    |        |
+| Exception | caught: | bad         | lexical | cast: | source   | type   | value | could | not | be | interpreted | as | target |
+| Exception | caught: | bad         | lexical | cast: | source   | type   | value | could | not | be | interpreted | as | target |
+| 3456      |         |             |         |       |          |        |       |       |     |    |             |    |        |
+** variant
+#+BEGIN_SRC C++ :exports_both
+#include <vector>
+#include <iostream>
+#include "boost/variant.hpp"
+using namespace std;
+int main(int argc, char *argv[])
+{
+  //union
+  union {int i; float f;} u;
+  u.i=34;
+  u.f=2.3;
+
+  boost::variant<int,string> u1,u2;
+  u1=2;
+  u2="hello";
+  cout<<u1<<" "<<u2<<endl;
+
+  //u1=u1*2 error
+  u1=boost::get<int>(u1)*2;
+
+  try{
+    string st=boost::get<string>(u1);  // throw exception of bad_get
+  }catch(boost::bad_get &e){
+    cout<<"Exception caught: "<<e.what()<<endl;
+  }
+  u1="good";  // u1 become a sting
+  u1=32;      // u1 become a int again
+
+  boost::variant<int,string> u3;
+  cout<<u3<<endl;
+
+  void Double(boost::variant<int,string> v);
+
+  // using visitor
+  class DoubleVisitor: public boost::static_visitor<>{
+   public:
+    void operator() (int& i) const {
+      i+=i;
+    }
+    void operator() (string& str) const{
+      str+=str;
+    }
+  };
+
+  u1=2;
+  boost::apply_visitor(DoubleVisitor(),u1);  // u1 become 4
+  u2="hello";
+  boost::apply_visitor(DoubleVisitor(),u2);  // u2 become "hellohello"
+ 
+  std::vector<boost::variant<int,string>> vec;
+  vec.push_back("good");
+  vec.push_back(23);
+  vec.push_back("bad");
+  
+  DoubleVisitor f;
+  for(auto x: vec){
+    boost::apply_visitor(f,x);
+    cout<<x<<endl;
+  }
+
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+|         2 | hello   |                 |        |       |     |       |            |
+| Exception | caught: | boost::bad_get: | failed | value | get | using | boost::get |
+|         0 |         |                 |        |       |     |       |            |
+|  goodgood |         |                 |        |       |     |       |            |
+|        46 |         |                 |        |       |     |       |            |
+|    badbad |         |                 |        |       |     |       |            |
+** Any
+#+BEGIN_SRC C++ :exports_both
+#include <vector>
+#include <iostream>
+#include "boost/any.hpp"
+using namespace std;
+int main(int argc, char *argv[])
+{
+  boost::any x,y,z;
+  x=string("hello");
+  x=2.3;
+  y='z';
+  z=vector<int>();
+
+  cout<<boost::any_cast<char>(y)<<endl;  // return a copy of y's data: 'z'
+  cout<<boost::any_cast<double>(x)<<endl; // return a copy of x's data: 2.3
+  try {
+    cout<<boost::any_cast<int>(x)<<endl;  // throws bad_cast_any
+  } catch (boost::bad_any_cast& e) {
+    cout<<"Exception: "<<e.what()<<endl;
+  }
+  try {
+    cout<<boost::any_cast<float>(x)<<endl;  // throws bad_any_cast  
+  } catch (boost::bad_any_cast& e) {
+    cout<<"Exception: "<<e.what()<<endl;
+  }
+
+  if(x.empty())
+    cout<<"x is empty"<<endl;
+
+  if(x.type()==typeid(char))
+    cout<<"x is char"<<endl;
+  
+  /*This is the wrong use example
+  boost::any_cast<vector<int>>(z).push_back(23);
+  int i=boost::any_cast<vector<int>>(z).back();  // crash, becase boost::any_cast<vector<int>>(z) return a copy of variable z
+  */
+  int i;
+  boost::any p=&i;
+  int* pInt=boost::any_cast<int*>(p);  // returns a pointer
+  
+  vector<boost::any> m;
+  m.push_back(2);
+  m.push_back('a');
+  m.push_back(p);
+  m.push_back(boost::any());
+
+  struct Property{
+    string name;
+    boost::any value;
+  };
+  
+  vector<Property> properties;
+  
+  return 0;
+}
+
+#+END_SRC
+
+#+RESULTS:
+| z          |                      |        |            |       |                 |
+| 2.3        |                      |        |            |       |                 |
+| Exception: | boost::bad_any_cast: | failed | conversion | using | boost::any_cast |
+| Exception: | boost::bad_any_cast: | failed | conversion | using | boost::any_cast |
+- This is a common wrong use example
+#+BEGIN_SRC C++ :exports_both
+  boost::any z;
+  z=vector<int>();
+  boost::any_cast<vector<int>>(z).push_back(23);
+  int i=boost::any_cast<vector<int>>(z).back();  // crash, becase boost::any_cast<vector<int>>(z) return a copy of variable z
+#+END_SRC
+** optional
+#+BEGIN_SRC C++ :exports_both
+#include "boost/optional.hpp"
+#include "boost/variant.hpp"
+#include <iostream>
+#include <vector>
+#include <deque>
+using namespace std;
+
+deque<char> queue;
+
+boost::optional<char>  get_async_data(){
+  if(!queue.empty())
+    return boost::optional<char>(queue.back());
+  else
+    return boost::optional<char>();
+}
+
+int main(int argc, char *argv[])
+{
+  boost::variant<nullptr_t, char> v;
+  boost::optional<char> op;  // op is uninitalized, no char is constructed
+  op='A';                    // op contains 'A'
+
+  op=get_async_data();
+  if(!op)
+    cout<<"No data is available"<<endl;
+  else
+  {
+    cout<<"op contains: "<<op.get()<<endl;  // get() will crash if op is uninitialized
+    cout<<"op contains: "<<*op<<endl;       // crash if op is uninitialized
+  }
+
+  op.reset();  // reset op uninitialized state
+  cout<<op.get_value_or('z')<<endl;  // return 'z' if op is empty
+
+  char* p =op.get_ptr();  // return null if op is empty
+
+  //optional can store any kind of data
+  struct A{string name; int value;};
+  A a;
+  cout<<"a's name: "<<a.name<<"a's value: "<<a.value<<endl;
+
+  boost::optional<A> opA0;  // constructor of A is not called
+  boost::optional<A> opA(a);  // a is copy constructed into opA
+  cout<<opA->name<<" "<<opA->value<<endl;
+
+  //Pointer
+  boost::optional<A*> opAP(&a);
+  (*opAP)->name="Bob";
+
+  //Reference
+  boost::optional<A&> opAR(a);
+  opAR->name="Bob";  // this changes a.name
+
+  //Relational Operator
+  boost::optional<int> i1(1);
+  boost::optional<int> i2(9);
+  boost::optional<int> i3;
+  if(i1<i2)
+    cout<<"i2 is bigger"<<endl;  // if both are initialized, *i1<*i2, i3 is uninitialized which is samll than the initialized value
+    
+  return 0;
+}
+
+#+END_SRC
+
+#+RESULTS:
+| No  | data  | is     | available |   |
+| z   |       |        |           |   |
+| a's | name: | a's    | value:    | 1 |
+| 1   |       |        |           |   |
+| i2  | is    | bigger |           |   |
+
+
+* Parallel Programming
+** Boost.Thread 
+#+begin_src c++
+#include <boost/thread.hpp>
+#include <boost/chrono.hpp>
+#include <iostream>
+
+void wait(int seconds)
+{
+  boost::this_thread::sleep_for(boost::chrono::seconds{seconds});
+}
+
+void thread()
+{
+  for (int i = 0; i < 5; ++i)
+  {
+    wait(1);
+    std::cout << i << '\n';
+  }
+}
+
+int main()
+{
+  boost::thread t{thread};
+  t.join();
+}
+#+end_src
+
+** Boost.Atomic
+#+begin_src c++
+#include <boost/atomic.hpp>
+#include <thread>
+#include <iostream>
+
+boost::atomic<int> a{0};
+
+void thread()
+{
+  ++a;
+}
+
+int main()
+{
+  std::thread t1{thread};
+  std::thread t2{thread};
+  t1.join();
+  t2.join();
+  std::cout << a << '\n';
+}
+#+end_src
+
+With lock free
+#+begin_src cpp
+#include <boost/atomic.hpp>
+#include <iostream>
+
+int main()
+{
+  std::cout.setf(std::ios::boolalpha);
+
+  boost::atomic<short> s;
+  std::cout << s.is_lock_free() << '\n';
+
+  boost::atomic<int> i;
+  std::cout << i.is_lock_free() << '\n';
+
+  boost::atomic<long> l;
+  std::cout << l.is_lock_free() << '\n';
+}
+#+end_src
+
+
+
+

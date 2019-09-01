@@ -2,84 +2,113 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfc95026">1. ROS master and slave</a>
+<li><a href="#org6f4c60f">1. Tutorial</a>
 <ul>
-<li><a href="#org02aebad">1.1. Firewall Setting</a></li>
-<li><a href="#orgd135ee6">1.2. Problem: no contents in topic</a></li>
+<li><a href="#orga52ce3b">1.1. 中国大学MOOC&#x2014;《机器人操作系统入门》</a></li>
+<li><a href="#orgc913d3d">1.2. Projects</a></li>
 </ul>
 </li>
-<li><a href="#org51f2d2c">2. ROS foundationals</a>
+<li><a href="#orgfc95026">2. ROS master and slave</a>
 <ul>
-<li><a href="#org2f8510c">2.1. <b>Important Notes</b></a></li>
-<li><a href="#orgfb10fcd">2.2. Install ROS Kinetic</a></li>
-<li><a href="#orgee2cc72">2.3. gazebo</a></li>
-<li><a href="#orgd7e7ae7">2.4. Shell Environment</a></li>
-<li><a href="#commands">2.5. Commands</a>
-<ul>
-<li><a href="#orga6d6340">2.5.1. catkin<sub>create</sub><sub>pkg</sub></a></li>
-<li><a href="#org153cdf7">2.5.2. rospack list</a></li>
-<li><a href="#orgaff91c9">2.5.3. rospack</a></li>
-<li><a href="#orga195e59">2.5.4. rosls</a></li>
-<li><a href="#org960acba">2.5.5. rosed</a></li>
-<li><a href="#org0535833">2.5.6. roscd</a></li>
-<li><a href="#org149a6bf">2.5.7. roslaunch</a></li>
-<li><a href="#org9511282">2.5.8. master</a></li>
-<li><a href="#orgd112ce0">2.5.9. node</a></li>
-<li><a href="#org47e2548">2.5.10. rostopic</a></li>
-<li><a href="#orga44332c">2.5.11. rosmsg</a></li>
-<li><a href="#orgcf26fff">2.5.12. rosservice</a></li>
-<li><a href="#orgc41bedf">2.5.13. rossrv</a></li>
-<li><a href="#org14b7959">2.5.14. rosparam</a></li>
-<li><a href="#rosbag">2.5.15. rosbag</a></li>
+<li><a href="#org02aebad">2.1. Firewall Setting</a></li>
+<li><a href="#orgd135ee6">2.2. Problem: no contents in topic</a></li>
 </ul>
 </li>
-<li><a href="#org67dfc5f">2.6. Communication</a></li>
-<li><a href="#org1a18ec1">2.7. Tools</a></li>
-<li><a href="#client-library">2.8. Client Library</a></li>
-<li><a href="#slams-in-ros">2.9. SLAMs IN ROS</a></li>
+<li><a href="#org51f2d2c">3. ROS foundationals</a>
+<ul>
+<li><a href="#org2f8510c">3.1. <b>Important Notes</b></a></li>
+<li><a href="#orgfb10fcd">3.2. Install ROS Kinetic</a></li>
+<li><a href="#orgee2cc72">3.3. gazebo</a></li>
+<li><a href="#orgd7e7ae7">3.4. Shell Environment</a></li>
+<li><a href="#commands">3.5. Commands</a>
+<ul>
+<li><a href="#orga6d6340">3.5.1. catkin<sub>create</sub><sub>pkg</sub></a></li>
+<li><a href="#org153cdf7">3.5.2. rospack list</a></li>
+<li><a href="#orgaff91c9">3.5.3. rospack</a></li>
+<li><a href="#orga195e59">3.5.4. rosls</a></li>
+<li><a href="#org960acba">3.5.5. rosed</a></li>
+<li><a href="#org0535833">3.5.6. roscd</a></li>
+<li><a href="#org149a6bf">3.5.7. roslaunch</a></li>
+<li><a href="#org9511282">3.5.8. master</a></li>
+<li><a href="#orgd112ce0">3.5.9. node</a></li>
+<li><a href="#org47e2548">3.5.10. rostopic</a></li>
+<li><a href="#orga44332c">3.5.11. rosmsg</a></li>
+<li><a href="#orgcf26fff">3.5.12. rosservice</a></li>
+<li><a href="#orgc41bedf">3.5.13. rossrv</a></li>
+<li><a href="#org14b7959">3.5.14. rosparam</a></li>
+<li><a href="#rosbag">3.5.15. rosbag</a></li>
 </ul>
 </li>
-<li><a href="#robot_sim_demo">3. robot<sub>sim</sub><sub>demo</sub></a>
-<ul>
-<li><a href="#download-anc-make">3.1. Download anc Make</a></li>
-<li><a href="#how-to-use">3.2. How to use</a></li>
+<li><a href="#org67dfc5f">3.6. Communication</a></li>
+<li><a href="#org1a18ec1">3.7. Tools</a></li>
+<li><a href="#client-library">3.8. Client Library</a></li>
+<li><a href="#slams-in-ros">3.9. SLAMs IN ROS</a></li>
 </ul>
 </li>
-<li><a href="#org7f101dd">4. Robots</a>
+<li><a href="#robot_sim_demo">4. robot<sub>sim</sub><sub>demo</sub></a>
 <ul>
-<li><a href="#orga6818f4">4.1. PR2</a></li>
+<li><a href="#download-anc-make">4.1. Download anc Make</a></li>
+<li><a href="#how-to-use">4.2. How to use</a></li>
 </ul>
 </li>
-<li><a href="#ros-in-practice">5. ROS in Practice</a>
+<li><a href="#org7f101dd">5. Robots</a>
 <ul>
-<li><a href="#cv_camera">5.1. cv<sub>camera</sub></a></li>
-<li><a href="#usb_cam">5.2. usb<sub>cam</sub></a></li>
-<li><a href="#usb-camera-from-sources">5.3. Usb camera from sources</a></li>
-<li><a href="#camera-calibration">5.4. Camera calibration</a></li>
+<li><a href="#orga6818f4">5.1. PR2</a></li>
 </ul>
 </li>
-<li><a href="#org83127eb">6. Erros</a>
+<li><a href="#ros-in-practice">6. ROS in Practice</a>
 <ul>
-<li><a href="#org9f1afcd">6.1. OpenCV version conflict</a></li>
+<li><a href="#cv_camera">6.1. cv<sub>camera</sub></a></li>
+<li><a href="#usb_cam">6.2. usb<sub>cam</sub></a></li>
+<li><a href="#usb-camera-from-sources">6.3. Usb camera from sources</a></li>
+<li><a href="#camera-calibration">6.4. Camera calibration</a></li>
 </ul>
 </li>
-<li><a href="#org05eccb1">7. Resources</a>
+<li><a href="#org83127eb">7. Erros</a>
 <ul>
-<li><a href="#orga52ce3b">7.1. 中国大学MOOC&#x2014;《机器人操作系统入门》</a></li>
-<li><a href="#orgc913d3d">7.2. Projects</a></li>
+<li><a href="#org9f1afcd">7.1. OpenCV version conflict</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfc95026" class="outline-2">
-<h2 id="orgfc95026"><span class="section-number-2">1</span> ROS master and slave</h2>
+<div id="outline-container-org6f4c60f" class="outline-2">
+<h2 id="org6f4c60f"><span class="section-number-2">1</span> Tutorial</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org02aebad" class="outline-3">
-<h3 id="org02aebad"><span class="section-number-3">1.1</span> Firewall Setting</h3>
+<div id="outline-container-orga52ce3b" class="outline-3">
+<h3 id="orga52ce3b"><span class="section-number-3">1.1</span> 中国大学MOOC&#x2014;《机器人操作系统入门》</h3>
 <div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><a href="https://www.bilibili.com/video/av24585414/?p=7&amp;t=231">ROS机器人操作系统入门-中国大学MOOC</a></li>
+<li><a href="https://github.com/sychaichangkun/ROS-Academy-for-Beginners.git">《机器人操作系统入门》课程讲义-Github</a></li>
+<li><a href="https://github.com/DroidAITech">重德智能-github</a></li>
+<li><a href="https://www.bilibili.com/video/av24585414/?p=7">Bilibili Vedio</a></li>
+<li><a href="https://github.com/ethz-asl/programming_guidelines/wiki">ethz-asl/programming<sub>guidelines</sub></a>
+<a href="https://www.youtube.com/watch?v=0BxVPCInS3M">Youtube</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc913d3d" class="outline-3">
+<h3 id="orgc913d3d"><span class="section-number-3">1.2</span> Projects</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><a href="https://github.com/leggedrobotics/ros_best_practices">leggedrobotics/ros<sub>best</sub><sub>practices</sub></a></li>
+<li><a href="https://github.com/ros/common_tutorials">ros/common<sub>tutorials</sub></a></li>
+<li><a href="https://bitbucket.org/osrf/servicesim">servicesim</a></li>
+<li><a href="https://bitbucket.org/osrf/">OpenSourceRoboticsFoundation OSRF</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfc95026" class="outline-2">
+<h2 id="orgfc95026"><span class="section-number-2">2</span> ROS master and slave</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org02aebad" class="outline-3">
+<h3 id="org02aebad"><span class="section-number-3">2.1</span> Firewall Setting</h3>
+<div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sh"><code>sudo ufw allow 22</code>
 <code>sudo ufw allow 11311</code>
@@ -89,8 +118,8 @@
 </div>
 
 <div id="outline-container-orgd135ee6" class="outline-3">
-<h3 id="orgd135ee6"><span class="section-number-3">1.2</span> Problem: no contents in topic</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="orgd135ee6"><span class="section-number-3">2.2</span> Problem: no contents in topic</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 slave:
 </p>
@@ -133,12 +162,12 @@ or
 </div>
 
 <div id="outline-container-org51f2d2c" class="outline-2">
-<h2 id="org51f2d2c"><span class="section-number-2">2</span> ROS foundationals</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org51f2d2c"><span class="section-number-2">3</span> ROS foundationals</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org2f8510c" class="outline-3">
-<h3 id="org2f8510c"><span class="section-number-3">2.1</span> <b>Important Notes</b></h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org2f8510c"><span class="section-number-3">3.1</span> <b>Important Notes</b></h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>make sure <b>anaconda</b> is not installed, it may cause uncertain errors
 later. I encountered many unkown problems when compile SLAM and
@@ -169,8 +198,8 @@ LTS), among other platform options.
 </div>
 
 <div id="outline-container-orgfb10fcd" class="outline-3">
-<h3 id="orgfb10fcd"><span class="section-number-3">2.2</span> Install ROS Kinetic</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="orgfb10fcd"><span class="section-number-3">3.2</span> Install ROS Kinetic</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-shell"><code>sudo sh -c <span style="color: #E6DB74;">'echo "deb http://packages.ros.org/ros/ubuntu $(</span><span style="color: #AE81FF; font-weight: bold;">lsb_release</span><span style="color: #E6DB74;"> -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></code>
 <code>sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116</code>
@@ -190,8 +219,8 @@ LTS), among other platform options.
 </div>
 
 <div id="outline-container-orgee2cc72" class="outline-3">
-<h3 id="orgee2cc72"><span class="section-number-3">2.3</span> gazebo</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="orgee2cc72"><span class="section-number-3">3.3</span> gazebo</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 Upgrade gazebo:
 </p>
@@ -207,8 +236,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-orgd7e7ae7" class="outline-3">
-<h3 id="orgd7e7ae7"><span class="section-number-3">2.4</span> Shell Environment</h3>
-<div class="outline-text-3" id="text-2-4">
+<h3 id="orgd7e7ae7"><span class="section-number-3">3.4</span> Shell Environment</h3>
+<div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-sh"><code><span style="color: #75715E;">#</span><span style="color: #75715E;">ROS</span></code>
 <code><span style="color: #F92672;">source</span> /opt/ros/kinetic/setup.bash</code>
@@ -219,13 +248,13 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-org96eec01" class="outline-3">
-<h3 id="commands"><span class="section-number-3">2.5</span> Commands</h3>
+<h3 id="commands"><span class="section-number-3">3.5</span> Commands</h3>
 <div class="outline-text-3" id="text-commands">
 </div>
 
 <div id="outline-container-orga6d6340" class="outline-4">
-<h4 id="orga6d6340"><span class="section-number-4">2.5.1</span> catkin<sub>create</sub><sub>pkg</sub></h4>
-<div class="outline-text-4" id="text-2-5-1">
+<h4 id="orga6d6340"><span class="section-number-4">3.5.1</span> catkin<sub>create</sub><sub>pkg</sub></h4>
+<div class="outline-text-4" id="text-3-5-1">
 <div class="org-src-container">
 <pre class="src src-sh"><code><span style="color: #F92672;">cd</span> src/</code>
 <code>catkin_create_pkg Test roscpp rospy std_msgs nav_msgs</code>
@@ -235,8 +264,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-org153cdf7" class="outline-4">
-<h4 id="org153cdf7"><span class="section-number-4">2.5.2</span> rospack list</h4>
-<div class="outline-text-4" id="text-2-5-2">
+<h4 id="org153cdf7"><span class="section-number-4">3.5.2</span> rospack list</h4>
+<div class="outline-text-4" id="text-3-5-2">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rospack list | grep catkin_ws</code>
 <code><span style="color: #F92672;">source</span> devel/setup.sh</code>
@@ -246,8 +275,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-orgaff91c9" class="outline-4">
-<h4 id="orgaff91c9"><span class="section-number-4">2.5.3</span> rospack</h4>
-<div class="outline-text-4" id="text-2-5-3">
+<h4 id="orgaff91c9"><span class="section-number-4">3.5.3</span> rospack</h4>
+<div class="outline-text-4" id="text-3-5-3">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rospack find robot_sim_demo</code>
 </pre>
@@ -256,8 +285,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-orga195e59" class="outline-4">
-<h4 id="orga195e59"><span class="section-number-4">2.5.4</span> rosls</h4>
-<div class="outline-text-4" id="text-2-5-4">
+<h4 id="orga195e59"><span class="section-number-4">3.5.4</span> rosls</h4>
+<div class="outline-text-4" id="text-3-5-4">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosls topic_demo</code>
 </pre>
@@ -266,8 +295,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-org960acba" class="outline-4">
-<h4 id="org960acba"><span class="section-number-4">2.5.5</span> rosed</h4>
-<div class="outline-text-4" id="text-2-5-5">
+<h4 id="org960acba"><span class="section-number-4">3.5.5</span> rosed</h4>
+<div class="outline-text-4" id="text-3-5-5">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosed topic_demo CMakeLists.txt</code>
 </pre>
@@ -276,8 +305,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-org0535833" class="outline-4">
-<h4 id="org0535833"><span class="section-number-4">2.5.6</span> roscd</h4>
-<div class="outline-text-4" id="text-2-5-6">
+<h4 id="org0535833"><span class="section-number-4">3.5.6</span> roscd</h4>
+<div class="outline-text-4" id="text-3-5-6">
 <div class="org-src-container">
 <pre class="src src-sh"><code>roscd topic_demo</code>
 </pre>
@@ -286,8 +315,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-org149a6bf" class="outline-4">
-<h4 id="org149a6bf"><span class="section-number-4">2.5.7</span> roslaunch</h4>
-<div class="outline-text-4" id="text-2-5-7">
+<h4 id="org149a6bf"><span class="section-number-4">3.5.7</span> roslaunch</h4>
+<div class="outline-text-4" id="text-3-5-7">
 <div class="org-src-container">
 <pre class="src src-sh"><code>roslaunch [pkg_name] [file_name.launch]</code>
 </pre>
@@ -296,8 +325,8 @@ Upgrade gazebo:
 </div>
 
 <div id="outline-container-org9511282" class="outline-4">
-<h4 id="org9511282"><span class="section-number-4">2.5.8</span> master</h4>
-<div class="outline-text-4" id="text-2-5-8">
+<h4 id="org9511282"><span class="section-number-4">3.5.8</span> master</h4>
+<div class="outline-text-4" id="text-3-5-8">
 <p>
 start ros master, rosout, parameter server:
 </p>
@@ -310,8 +339,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-orgd112ce0" class="outline-4">
-<h4 id="orgd112ce0"><span class="section-number-4">2.5.9</span> node</h4>
-<div class="outline-text-4" id="text-2-5-9">
+<h4 id="orgd112ce0"><span class="section-number-4">3.5.9</span> node</h4>
+<div class="outline-text-4" id="text-3-5-9">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosrun [pkg_name] [node_name]</code>
 <code>rosnode list</code>
@@ -323,8 +352,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org47e2548" class="outline-4">
-<h4 id="org47e2548"><span class="section-number-4">2.5.10</span> rostopic</h4>
-<div class="outline-text-4" id="text-2-5-10">
+<h4 id="org47e2548"><span class="section-number-4">3.5.10</span> rostopic</h4>
+<div class="outline-text-4" id="text-3-5-10">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rostopic list</code>
 <code>rostopic info /topic_name</code>
@@ -336,8 +365,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-orga44332c" class="outline-4">
-<h4 id="orga44332c"><span class="section-number-4">2.5.11</span> rosmsg</h4>
-<div class="outline-text-4" id="text-2-5-11">
+<h4 id="orga44332c"><span class="section-number-4">3.5.11</span> rosmsg</h4>
+<div class="outline-text-4" id="text-3-5-11">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosmsg list</code>
 <code>rosmsg show /msg_name</code>
@@ -347,8 +376,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-orgcf26fff" class="outline-4">
-<h4 id="orgcf26fff"><span class="section-number-4">2.5.12</span> rosservice</h4>
-<div class="outline-text-4" id="text-2-5-12">
+<h4 id="orgcf26fff"><span class="section-number-4">3.5.12</span> rosservice</h4>
+<div class="outline-text-4" id="text-3-5-12">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosservice list</code>
 <code>rosservice info service_name</code>
@@ -359,8 +388,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-orgc41bedf" class="outline-4">
-<h4 id="orgc41bedf"><span class="section-number-4">2.5.13</span> rossrv</h4>
-<div class="outline-text-4" id="text-2-5-13">
+<h4 id="orgc41bedf"><span class="section-number-4">3.5.13</span> rossrv</h4>
+<div class="outline-text-4" id="text-3-5-13">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rossrv list</code>
 <code>rossrv show srv_name</code>
@@ -370,8 +399,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org14b7959" class="outline-4">
-<h4 id="org14b7959"><span class="section-number-4">2.5.14</span> rosparam</h4>
-<div class="outline-text-4" id="text-2-5-14">
+<h4 id="org14b7959"><span class="section-number-4">3.5.14</span> rosparam</h4>
+<div class="outline-text-4" id="text-3-5-14">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosparam list</code>
 <code>rosparam get param_key</code>
@@ -385,7 +414,7 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org07b5430" class="outline-4">
-<h4 id="rosbag"><span class="section-number-4">2.5.15</span> rosbag</h4>
+<h4 id="rosbag"><span class="section-number-4">3.5.15</span> rosbag</h4>
 <div class="outline-text-4" id="text-rosbag">
 <div class="org-src-container">
 <pre class="src src-sh"><code>rosbag record &lt;topic-names&gt;</code>
@@ -398,8 +427,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org67dfc5f" class="outline-3">
-<h3 id="org67dfc5f"><span class="section-number-3">2.6</span> Communication</h3>
-<div class="outline-text-3" id="text-2-6">
+<h3 id="org67dfc5f"><span class="section-number-3">3.6</span> Communication</h3>
+<div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>Topic</li>
 <li>Message (msg)</li>
@@ -418,8 +447,8 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org1a18ec1" class="outline-3">
-<h3 id="org1a18ec1"><span class="section-number-3">2.7</span> Tools</h3>
-<div class="outline-text-3" id="text-2-7">
+<h3 id="org1a18ec1"><span class="section-number-3">3.7</span> Tools</h3>
+<div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>gazebo (OSRF) ODE</li>
 <li>RViz</li>
@@ -448,7 +477,7 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org4e104f9" class="outline-3">
-<h3 id="client-library"><span class="section-number-3">2.8</span> Client Library</h3>
+<h3 id="client-library"><span class="section-number-3">3.8</span> Client Library</h3>
 <div class="outline-text-3" id="text-client-library">
 <ul class="org-ul">
 <li>roscpp</li>
@@ -459,7 +488,7 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org92c3599" class="outline-3">
-<h3 id="slams-in-ros"><span class="section-number-3">2.9</span> SLAMs IN ROS</h3>
+<h3 id="slams-in-ros"><span class="section-number-3">3.9</span> SLAMs IN ROS</h3>
 <div class="outline-text-3" id="text-slams-in-ros">
 <ul class="org-ul">
 <li>Gmapping</li>
@@ -470,7 +499,7 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org726b07b" class="outline-2">
-<h2 id="robot_sim_demo"><span class="section-number-2">3</span> robot<sub>sim</sub><sub>demo</sub></h2>
+<h2 id="robot_sim_demo"><span class="section-number-2">4</span> robot<sub>sim</sub><sub>demo</sub></h2>
 <div class="outline-text-2" id="text-robot_sim_demo">
 <p>
 <a href="https://github.com/DroidAITech">重德智能-github</a>
@@ -478,7 +507,7 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-orgddfb71c" class="outline-3">
-<h3 id="download-anc-make"><span class="section-number-3">3.1</span> Download anc Make</h3>
+<h3 id="download-anc-make"><span class="section-number-3">4.1</span> Download anc Make</h3>
 <div class="outline-text-3" id="text-download-anc-make">
 <div class="org-src-container">
 <pre class="src src-sh"><code><span style="color: #F92672;">cd</span> ~/catkin_ws/src</code>
@@ -493,7 +522,7 @@ start ros master, rosout, parameter server:
 </div>
 
 <div id="outline-container-org022053b" class="outline-3">
-<h3 id="how-to-use"><span class="section-number-3">3.2</span> How to use</h3>
+<h3 id="how-to-use"><span class="section-number-3">4.2</span> How to use</h3>
 <div class="outline-text-3" id="text-how-to-use">
 <div class="org-src-container">
 <pre class="src src-shell"><code>$ rospack profile</code>
@@ -593,16 +622,16 @@ Add Image view;
 </div>
 
 <div id="outline-container-org7f101dd" class="outline-2">
-<h2 id="org7f101dd"><span class="section-number-2">4</span> Robots</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org7f101dd"><span class="section-number-2">5</span> Robots</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="http://www.willowgarage.com/">willowgarage</a></li>
 </ul>
 </div>
 
 <div id="outline-container-orga6818f4" class="outline-3">
-<h3 id="orga6818f4"><span class="section-number-3">4.1</span> PR2</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="orga6818f4"><span class="section-number-3">5.1</span> PR2</h3>
+<div class="outline-text-3" id="text-5-1">
 
 <div class="figure">
 <p><img src="https://i.imgur.com/9TaafSl.png" alt="9TaafSl.png" />
@@ -617,12 +646,12 @@ Add Image view;
 </div>
 </div>
 <div id="outline-container-org3654dc0" class="outline-2">
-<h2 id="ros-in-practice"><span class="section-number-2">5</span> ROS in Practice</h2>
+<h2 id="ros-in-practice"><span class="section-number-2">6</span> ROS in Practice</h2>
 <div class="outline-text-2" id="text-ros-in-practice">
 </div>
 
 <div id="outline-container-orga211fb5" class="outline-3">
-<h3 id="cv_camera"><span class="section-number-3">5.1</span> cv<sub>camera</sub></h3>
+<h3 id="cv_camera"><span class="section-number-3">6.1</span> cv<sub>camera</sub></h3>
 <div class="outline-text-3" id="text-cv_camera">
 <p>
 cv<sub>camera</sub> uses OpenCV capture object to capture camera image. This
@@ -648,7 +677,7 @@ Usage:
 </div>
 
 <div id="outline-container-org5c8c170" class="outline-3">
-<h3 id="usb_cam"><span class="section-number-3">5.2</span> usb<sub>cam</sub></h3>
+<h3 id="usb_cam"><span class="section-number-3">6.2</span> usb<sub>cam</sub></h3>
 <div class="outline-text-3" id="text-usb_cam">
 <div class="org-src-container">
 <pre class="src src-sh"><code>sudo apt-get install ros-kinetic-usb-cam</code>
@@ -684,7 +713,7 @@ Usage:
 </div>
 
 <div id="outline-container-org446c848" class="outline-3">
-<h3 id="usb-camera-from-sources"><span class="section-number-3">5.3</span> Usb camera from sources</h3>
+<h3 id="usb-camera-from-sources"><span class="section-number-3">6.3</span> Usb camera from sources</h3>
 <div class="outline-text-3" id="text-usb-camera-from-sources">
 <div class="org-src-container">
 <pre class="src src-sh"><code><span style="color: #F92672;">cd</span> catkin_ws/src</code>
@@ -713,7 +742,7 @@ Result:
 </div>
 
 <div id="outline-container-orgc8ce8e7" class="outline-3">
-<h3 id="camera-calibration"><span class="section-number-3">5.4</span> Camera calibration</h3>
+<h3 id="camera-calibration"><span class="section-number-3">6.4</span> Camera calibration</h3>
 <div class="outline-text-3" id="text-camera-calibration">
 <ul class="org-ul">
 <li><a href="http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration">How
@@ -738,48 +767,18 @@ to Calibrate a Monocular Camera</a></li>
 </div>
 
 <div id="outline-container-org83127eb" class="outline-2">
-<h2 id="org83127eb"><span class="section-number-2">6</span> Erros</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org83127eb"><span class="section-number-2">7</span> Erros</h2>
+<div class="outline-text-2" id="text-7">
 </div>
 <div id="outline-container-org9f1afcd" class="outline-3">
-<h3 id="org9f1afcd"><span class="section-number-3">6.1</span> OpenCV version conflict</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org9f1afcd"><span class="section-number-3">7.1</span> OpenCV version conflict</h3>
+<div class="outline-text-3" id="text-7-1">
 <pre class="example">
 <code>/usr/bin/ld: warning: libopencv_imgcodecs.so.3.2, needed by /opt/ros/melodic/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.3.3</code>
 <code>/usr/bin/ld: warning: libopencv_core.so.3.3, needed by /usr/lib/libopencv_imgcodecs.so.3.3.1, may conflict with libopencv_core.so.3.2</code>
 <code>/usr/bin/ld: warning: libopencv_imgproc.so.3.3, needed by /usr/lib/libopencv_imgcodecs.so.3.3.1, may conflict with libopencv_imgproc.so.3.2</code>
 <code>[100%] Built target monocular_person_following_node</code>
 </pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org05eccb1" class="outline-2">
-<h2 id="org05eccb1"><span class="section-number-2">7</span> Resources</h2>
-<div class="outline-text-2" id="text-7">
-</div>
-<div id="outline-container-orga52ce3b" class="outline-3">
-<h3 id="orga52ce3b"><span class="section-number-3">7.1</span> 中国大学MOOC&#x2014;《机器人操作系统入门》</h3>
-<div class="outline-text-3" id="text-7-1">
-<ul class="org-ul">
-<li><a href="https://www.bilibili.com/video/av24585414/?p=7&amp;t=231">ROS机器人操作系统入门-中国大学MOOC</a></li>
-<li><a href="https://github.com/sychaichangkun/ROS-Academy-for-Beginners.git">《机器人操作系统入门》课程讲义-Github</a></li>
-<li><a href="https://github.com/DroidAITech">重德智能-github</a></li>
-<li><a href="https://www.bilibili.com/video/av24585414/?p=7">Bilibili Vedio</a></li>
-<li><a href="https://github.com/ethz-asl/programming_guidelines/wiki">ethz-asl/programming<sub>guidelines</sub></a>
-<a href="https://www.youtube.com/watch?v=0BxVPCInS3M">Youtube</a></li>
-<li><a href="https://github.com/leggedrobotics/ros_best_practices">leggedrobotics/ros<sub>best</sub><sub>practices</sub></a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgc913d3d" class="outline-3">
-<h3 id="orgc913d3d"><span class="section-number-3">7.2</span> Projects</h3>
-<div class="outline-text-3" id="text-7-2">
-<ul class="org-ul">
-<li><a href="https://bitbucket.org/osrf/servicesim">servicesim</a></li>
-<li><a href="https://bitbucket.org/osrf/">OpenSourceRoboticsFoundation OSRF</a></li>
-</ul>
 </div>
 </div>
 </div>

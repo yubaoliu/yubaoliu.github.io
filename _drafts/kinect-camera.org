@@ -151,7 +151,7 @@ Connect your sensor and run kinect2_bridge:
 *Result:*
 
 #+CAPTION: Kinetic2 Demo
-[[file: img/Kinetic2_Protonect_Test_Result.jpg]]
+[[file::https://i.imgur.com/Nfr92Dp.jpg]]
 
 * Kinect2 Calibration
 Refer:

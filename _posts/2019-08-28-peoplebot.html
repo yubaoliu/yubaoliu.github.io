@@ -3,6 +3,8 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org77b4764">1. rosaria</a></li>
+<li><a href="#orgd683977">2. Getting started</a></li>
+<li><a href="#orgeafbbc0">3. joy stick</a></li>
 </ul>
 </div>
 </div>
@@ -13,5 +15,43 @@
 <ul class="org-ul">
 <li>amor-ros-pkg/rosaria: <a href="https://github.com/amor-ros-pkg/rosaria">https://github.com/amor-ros-pkg/rosaria</a></li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-orgd683977" class="outline-2">
+<h2 id="orgd683977"><span class="section-number-2">2</span> Getting started</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Check if you have the read/write rights in /dev/ttyUSB0. If not
+</p>
+<pre class="example">
+<code>sudo chmod a+rw /dev/ttyUSB0</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgeafbbc0" class="outline-2">
+<h2 id="orgeafbbc0"><span class="section-number-2">3</span> joy stick</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-bash"><code>rosrun joy joy_node</code>
+<code></code>
+<code>rosrun rosaria RosAria</code>
+<code></code>
+<code>rosrun teleop_twist_joy teleop_node  cmd_vel:=/RosAria/cmd_vel</code>
+</pre>
+</div>
+
+<p>
+For Logical Gamepad F310:
+</p>
+
+<p>
+Hold on <b><b>A</b></b> key to control robot.
+</p>
+
+<p>
+<a href="https://i.imgur.com/igOF7Dc.png?1">https://i.imgur.com/igOF7Dc.png?1</a>
+</p>
 </div>
 </div>

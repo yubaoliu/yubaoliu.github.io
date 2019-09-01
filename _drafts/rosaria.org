@@ -1,0 +1,60 @@
+#+EXPORT_FILE_NAME: 2019-08-30-rosaria.html
+#+TITLE: Rosaria
+#+KEYWORDS: 
+#+DATE: <2019-08-30 Fri>
+#+subtitle: 
+
+* Introduction
+- amor-ros-pkg/rosaria: https://github.com/amor-ros-pkg/rosaria
+- How to use ROSARIA: http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA
+- Installation of ROSAria and Aria on Ubuntu: https://github.com/Izwor/ROS-workshop/wiki/Installation-of-ROSAria-and-Aria-on-Ubuntu
+- MobileSim: http://vigir.missouri.edu/~gdesouza/Research/MobileRobotics/Software/MobileSim/README.html
+
+
+* Build
+
+#+begin_example sh
+cd ~/catkin_ws/src
+git clone https://github.com/amor-ros-pkg/rosaria.git
+
+$ rosdep update
+$ rosdep install rosaria
+$ cd ~/catkin_ws
+$ catkin_make
+#+end_example
+
+* Run
+
+The default port is /dev/ttyUSB0
+
+Make sure you have added your user to the "dialout" group 
+#+begin_example
+sudo usermod -a -G dialout $USER
+#+end_example
+
+or change the permissions of the serial port device to allow all users to access it 
+#+begin_example
+sudo chmod a+rw /dev/ttyUSB0 
+or
+sudo chmod a+rw /dev/ttyS0
+#+end_example
+
+
+#+begin_example
+rosrun rosaria RosAria
+#+end_example
+
+To specify the port as /dev/ttyS0
+
+#+begin_example
+rosrun rosaria RosAria _port:=/dev/ttyS0
+#+end_example
+
+* MobileSim 
+MobileSim is a simulator for use with ARIA. It provides a simple 2D simulation scalable to many robots, and useful for software testing
+
+ARIA automatically detects MobileSim if it is running on the same computer, and will connect to it. Or, you can explicitly set it using RosAria's ~port parameter:
+
+#+begin_example
+rosrun rosaria RosAria _port:=localhost:8101
+#+end_example

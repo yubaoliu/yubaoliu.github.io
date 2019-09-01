@@ -83,9 +83,12 @@ Add the package repositories
 <div class="org-src-container">
 <pre class="src src-sh"><code>curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | <span style="color: #E6DB74; font-weight: bold;">\</span></code>
 <code>  sudo apt-key add -</code>
+<code></code>
 <code><span style="color: #FD971F;">distribution</span>=$(<span style="color: #AE81FF; font-weight: bold;">.</span> /etc/os-release;<span style="color: #F92672;">echo</span> $<span style="color: #FD971F;">ID</span>$<span style="color: #FD971F;">VERSION_ID</span>)</code>
+<code></code>
 <code>curl -s -L https://nvidia.github.io/nvidia-docker/$<span style="color: #FD971F;">distribution</span>/nvidia-docker.list | <span style="color: #E6DB74; font-weight: bold;">\</span></code>
 <code>  sudo tee /etc/apt/sources.list.d/nvidia-docker.list</code>
+<code></code>
 <code>sudo apt-get update</code>
 </pre>
 </div>
@@ -100,7 +103,7 @@ Install nvidia-docker2 and reload the Docker daemon configuration
 </div>
 
 <p>
-Test nvidia-smi with the latest official CUDA image
+Test nvidia-smi:
 </p>
 <div class="org-src-container">
 <pre class="src src-sh"><code>docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi</code>

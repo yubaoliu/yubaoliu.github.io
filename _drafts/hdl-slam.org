@@ -41,3 +41,19 @@ pcl_viewer map.pcd
 * koide3/monocular_person_following
 [[https://github.com/yubaoliu/monocular_person_following][Git: monocular_person_following]]
 
+** Run
+
+#+begin_example sh
+echo "monocular_person_following start_robot"
+launch monocular_person_following start_robot.launch publish_dummy_frames:=true webcam:=true camera_xyz:="0 0 0.9" camera_rpy:="0 0 0" --screen
+
+echo "start jetson_person_following"
+roslaunch monocular_person_following jetson_person_following.launch camera_name:=/top_front_camera/qhd
+
+echo "Start Robot"
+rosrun rosaria RosAria
+
+echo "start rvize"
+roscd  monocular_person_following/rviz/
+rviz -d monocular_person_following.rviz
+#+end_example
