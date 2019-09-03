@@ -22,7 +22,7 @@ markdown: kramdown
 
 
 #Plugin Setting
-plugins_dir:
+plugins:
   - jekyll-feed
   - jekyll-admin
   - jekyll-sitemap
