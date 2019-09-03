@@ -20,6 +20,8 @@ gem 'jekyll-figure'
 gem 'jekyll-gist'
 gem 'jekyll-coffeescript'
 gem 'jekyll-assets'
+gem 'jemoji'
+gem 'jekyll-redirect-from'
 #gem "jekyll-pandoc"  # no longer supported by GitHub Pages
 
 
