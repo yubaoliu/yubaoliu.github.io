@@ -20,6 +20,22 @@ instagram:
 # Build settings
 markdown: kramdown
 
+kramdown:
+ input: GFM
+ extensions:
+  - autolink
+  - footnotes
+  - smart
+ auto_ids: true
+ footnote_nr: 1
+ entity_output: as_char
+ toc_levels: 1..4
+ smart_quotes: lsquo,rsquo,ldquo,rdquo
+ coderay_line_numbers: table
+ coderay_tab_width: 4
+ line_width: 80
+ latex_headers: section,subsection,subsubsection,paragraph,subparagraph,subparagraph
+
 
 #Plugin Setting
 plugins:
@@ -32,6 +48,15 @@ plugins:
   - jekyll-gist
   - jekyll-coffeescript
 
+filter: 'category'
+recent_num: 20
+
+
+toc:
+  min_level: 1
+  max_level: 6
+  no_toc_section_class: no_toc_section
+  list_class: section-nav
 
 
 jekyll-figure:
@@ -58,18 +83,18 @@ defaults:
     values:
       layout: "post"
       author: Liu Yubao
-      csl: ../../assets/pandoc/ieee.cls
-      bibliography: ../../assets/bibliography/bibliography.bib
+      csl: ../assets/ieee.cls
+      bibliography: ../assets/bibliography/bibliography.bib
 
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+   - Gemfile
+   - Gemfile.lock
+   - node_modules
+   - vendor/bundle/
+   - vendor/cache/
+   - vendor/gems/
+   - vendor/ruby/
