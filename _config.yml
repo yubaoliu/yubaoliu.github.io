@@ -47,6 +47,8 @@ plugins:
   - jekyll-figure
   - jekyll-gist
   - jekyll-coffeescript
+  - jemoji
+  - jekyll-redirect-from
 
 filter: 'category'
 recent_num: 20
@@ -54,9 +56,9 @@ recent_num: 20
 
 toc:
   min_level: 1
-  max_level: 6
-  no_toc_section_class: no_toc_section
+  max_level: 3
   list_class: section-nav
+  no_toc_section_class: exclude # default: no_toc_section
 
 
 jekyll-figure:

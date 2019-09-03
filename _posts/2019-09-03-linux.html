@@ -32,6 +32,20 @@ tags:
 - 
 - 
 - 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
 - dummy-tags-should-be-replaced
 author: Yubao Liu
 categories: 
@@ -42,14 +56,21 @@ excerpt: post
 toc: true
 export_file_name: 2019-09-03-linux.html
 ---
-
-<div id="outline-container-org80653b8" class="outline-2">
-<h2 id="org80653b8"><span class="section-number-2">1</span> Install and Uninstall for Ubuntu Linux</h2>
+<div id="outline-container-orgf8a02b1" class="outline-2">
+<h2 id="orgf8a02b1"><span class="section-number-2">1</span> TOC</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+{:toc}
+</p>
+</div>
+</div>
+<div id="outline-container-org80653b8" class="outline-2">
+<h2 id="org80653b8"><span class="section-number-2">2</span> Install and Uninstall for Ubuntu Linux</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org871d010" class="outline-3">
-<h3 id="org871d010"><span class="section-number-3">1.1</span> Note</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="org871d010"><span class="section-number-3">2.1</span> Note</h3>
+<div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Execute the following steps sequentially</li>
 <li>Do not install the default CMake</li>
@@ -61,8 +82,8 @@ export_file_name: 2019-09-03-linux.html
 </div>
 </div>
 <div id="outline-container-orgcdc9894" class="outline-3">
-<h3 id="orgcdc9894"><span class="section-number-3">1.2</span> Install basement</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="orgcdc9894"><span class="section-number-3">2.2</span> Install basement</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 sudo apt-get update &amp;&amp; apt-get -y upgrade
 </p>
@@ -89,8 +110,8 @@ sudo apt-get install -y hwinfo \
 </div>
 
 <div id="outline-container-org474afbc" class="outline-3">
-<h3 id="org474afbc"><span class="section-number-3">1.3</span> Nvidia Driver</h3>
-<div class="outline-text-3" id="text-1-3">
+<h3 id="org474afbc"><span class="section-number-3">2.3</span> Nvidia Driver</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Version</li>
 </ul>
@@ -207,8 +228,8 @@ lsmod | grep -i nvidia #check whether install succeed
 </div>
 
 <div id="outline-container-org70d044e" class="outline-3">
-<h3 id="org70d044e"><span class="section-number-3">1.4</span> Google Drive</h3>
-<div class="outline-text-3" id="text-1-4">
+<h3 id="org70d044e"><span class="section-number-3">2.4</span> Google Drive</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
 echo "Google drive"
 sudo add-apt-repository ppa:nilarimogard/webupd8
@@ -226,8 +247,8 @@ grive -a
 </div>
 
 <div id="outline-container-org120f381" class="outline-3">
-<h3 id="org120f381"><span class="section-number-3">1.5</span> Dropbox</h3>
-<div class="outline-text-3" id="text-1-5">
+<h3 id="org120f381"><span class="section-number-3">2.5</span> Dropbox</h3>
+<div class="outline-text-3" id="text-2-5">
 <p>
 echo "Install Dropbox"
 [安装 Dropbox 以最充分地利用您的帐户](<a href="https://www.dropbox.com/zh_CN/install-linux">https://www.dropbox.com/zh_CN/install-linux</a>)
@@ -240,8 +261,8 @@ cd ~/ &amp;&amp; wget -O - "<a href="https://www.dropbox.com/download?plat=lnx.x
 </div>
 
 <div id="outline-container-orga12f53e" class="outline-3">
-<h3 id="orga12f53e"><span class="section-number-3">1.6</span> Mendeley</h3>
-<div class="outline-text-3" id="text-1-6">
+<h3 id="orga12f53e"><span class="section-number-3">2.6</span> Mendeley</h3>
+<div class="outline-text-3" id="text-2-6">
 <p>
 echo "Install mendeley"
 wget -c <a href="https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest">https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest</a>
@@ -250,8 +271,8 @@ wget -c <a href="https://www.mendeley.com/repositories/ubuntu/stable/amd64/mende
 </div>
 
 <div id="outline-container-org6a4c20d" class="outline-3">
-<h3 id="org6a4c20d"><span class="section-number-3">1.7</span> Cmake</h3>
-<div class="outline-text-3" id="text-1-7">
+<h3 id="org6a4c20d"><span class="section-number-3">2.7</span> Cmake</h3>
+<div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-bash"><code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"Instal latest Cmake from Github"</span></code>
 <code>git clone git@github.com:yubaoliu/3rdPartyLibs.git</code>
@@ -268,16 +289,16 @@ wget -c <a href="https://www.mendeley.com/repositories/ubuntu/stable/amd64/mende
 </div>
 
 <div id="outline-container-org59c0ef7" class="outline-3">
-<h3 id="org59c0ef7"><span class="section-number-3">1.8</span> OpenGL</h3>
-<div class="outline-text-3" id="text-1-8">
+<h3 id="org59c0ef7"><span class="section-number-3">2.8</span> OpenGL</h3>
+<div class="outline-text-3" id="text-2-8">
 <pre class="example">
 <code>sudo apt-get install libglew-dev</code>
 </pre>
 </div>
 </div>
 <div id="outline-container-org8c9e762" class="outline-3">
-<h3 id="org8c9e762"><span class="section-number-3">1.9</span> TMUX</h3>
-<div class="outline-text-3" id="text-1-9">
+<h3 id="org8c9e762"><span class="section-number-3">2.9</span> TMUX</h3>
+<div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
 <pre class="src src-bash"><code>git clone   git@github.com:yubaoliu/3rdPartyLibs.git</code>
 <code><span style="color: #F92672;">cd</span> tmux</code>
@@ -294,8 +315,8 @@ Add tmux dir to PATH
 </div>
 
 <div id="outline-container-org5570699" class="outline-3">
-<h3 id="org5570699"><span class="section-number-3">1.10</span> ROS</h3>
-<div class="outline-text-3" id="text-1-10">
+<h3 id="org5570699"><span class="section-number-3">2.10</span> ROS</h3>
+<div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
 <pre class="src src-bash"><code><span style="color: #F92672;">echo</span> <span style="color: #E6DB74;">"Install ROS"</span></code>
 <code>sudo sh -c <span style="color: #E6DB74;">'echo "deb http://packages.ros.org/ros/ubuntu $(</span><span style="color: #AE81FF; font-weight: bold;">lsb_release</span><span style="color: #E6DB74;"> -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></code>
@@ -315,16 +336,16 @@ OpenCV is installed by default:
 </div>
 </div>
 <div id="outline-container-orgd321a15" class="outline-3">
-<h3 id="orgd321a15"><span class="section-number-3">1.11</span> CPP</h3>
-<div class="outline-text-3" id="text-1-11">
+<h3 id="orgd321a15"><span class="section-number-3">2.11</span> CPP</h3>
+<div class="outline-text-3" id="text-2-11">
 <pre class="example">
 <code>sudo apt install clang-format-</code>
 </pre>
 </div>
 </div>
 <div id="outline-container-org1df1cd5" class="outline-3">
-<h3 id="org1df1cd5"><span class="section-number-3">1.12</span> Mount hard drive</h3>
-<div class="outline-text-3" id="text-1-12">
+<h3 id="org1df1cd5"><span class="section-number-3">2.12</span> Mount hard drive</h3>
+<div class="outline-text-3" id="text-2-12">
 <div class="org-src-container">
 <pre class="src src-bash"><code>sudo vim /etc/fstab </code>
 <code>/dev/sdb       /home/yubao/data        ext4    defaults        0       0</code>
@@ -337,8 +358,8 @@ reboot
 </div>
 
 <div id="outline-container-orgc5e6789" class="outline-3">
-<h3 id="orgc5e6789"><span class="section-number-3">1.13</span> OpenNI</h3>
-<div class="outline-text-3" id="text-1-13">
+<h3 id="orgc5e6789"><span class="section-number-3">2.13</span> OpenNI</h3>
+<div class="outline-text-3" id="text-2-13">
 <pre class="example">
 <code>sudo apt-get install ros-kinetic-openni2-launch </code>
 </pre>
@@ -347,12 +368,12 @@ reboot
 </div>
 
 <div id="outline-container-orga65edfe" class="outline-2">
-<h2 id="orga65edfe"><span class="section-number-2">2</span> CUDA</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orga65edfe"><span class="section-number-2">3</span> CUDA</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <ol class="org-ol">
 <li><a id="org7062bd6"></a>CUDA 10<br />
-<div class="outline-text-4" id="text-2-0-1">
+<div class="outline-text-4" id="text-3-0-1">
 <p>
 Don't suggest installing the latest version of CUDA.
 </p>
@@ -428,7 +449,7 @@ CUDA Version: 10.1
 </div>
 </li>
 <li><a id="org8822c89"></a>CUDA 8<br />
-<div class="outline-text-4" id="text-2-0-2">
+<div class="outline-text-4" id="text-3-0-2">
 <div class="org-src-container">
 <pre class="src src-bash"><code>wget -c https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb</code>
 <code>wget -c https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb</code>
@@ -441,7 +462,7 @@ CUDA Version: 10.1
 </div>
 </li>
 <li><a id="orgb744d81"></a>CUDA 9<br />
-<div class="outline-text-4" id="text-2-0-3">
+<div class="outline-text-4" id="text-3-0-3">
 <div class="org-src-container">
 <pre class="src src-bash"><code>wget -c https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb</code>
 <code>sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb</code>
@@ -455,12 +476,12 @@ CUDA Version: 10.1
 </ol>
 </div>
 <div id="outline-container-orgdc7d71c" class="outline-2">
-<h2 id="orgdc7d71c"><span class="section-number-2">3</span> cudann</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgdc7d71c"><span class="section-number-2">4</span> cudann</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <ol class="org-ol">
-<li><a id="org1379af8"></a>Install<br />
-<div class="outline-text-4" id="text-3-0-1">
+<li><a id="orgaaf69f7"></a>Install<br />
+<div class="outline-text-4" id="text-4-0-1">
 <p>
 echo "Install cudnn"
 Download cuDNN from <a href="https://developer.nvidia.com/rdp/cudnn-download">https://developer.nvidia.com/rdp/cudnn-download</a> 
@@ -481,8 +502,8 @@ Default install path is <i>/usr/include/x86<sub>64</sub>-linux-gnu</i>
 </ol>
 
 <div id="outline-container-org2b0929e" class="outline-3">
-<h3 id="org2b0929e"><span class="section-number-3">3.1</span> uninstall</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org2b0929e"><span class="section-number-3">4.1</span> uninstall</h3>
+<div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><code>sudo dpkg -r libcudnn7 libcudnn7-dev</code>
 </pre>
@@ -490,8 +511,8 @@ Default install path is <i>/usr/include/x86<sub>64</sub>-linux-gnu</i>
 </div>
 </div>
 <div id="outline-container-orgf253d2e" class="outline-3">
-<h3 id="orgf253d2e"><span class="section-number-3">3.2</span> Locate</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="orgf253d2e"><span class="section-number-3">4.2</span> Locate</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 If you want to find where the library was installed you can update the locate index and then find the library location.
 </p>
@@ -504,8 +525,8 @@ If you want to find where the library was installed you can update the locate in
 </div>
 </div>
 <div id="outline-container-orgc1187a9" class="outline-2">
-<h2 id="orgc1187a9"><span class="section-number-2">4</span> Latex</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orgc1187a9"><span class="section-number-2">5</span> Latex</h2>
+<div class="outline-text-2" id="text-5">
 <pre class="example">
 <code>sudo apt-get install texlive-full</code>
 <code>sudo apt-get install texmaker</code>
@@ -513,8 +534,8 @@ If you want to find where the library was installed you can update the locate in
 </div>
 </div>
 <div id="outline-container-orgb1cdf28" class="outline-2">
-<h2 id="orgb1cdf28"><span class="section-number-2">5</span> Octave</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgb1cdf28"><span class="section-number-2">6</span> Octave</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Install: <a href="https://www.gnu.org/software/octave/#install">https://www.gnu.org/software/octave/#install</a></li>
 </ul>
@@ -547,12 +568,12 @@ If you want to find where the library was installed you can update the locate in
 </div>
 </div>
 <div id="outline-container-org2a13e14" class="outline-2">
-<h2 id="org2a13e14"><span class="section-number-2">6</span> RoboWare Studio</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org2a13e14"><span class="section-number-2">7</span> RoboWare Studio</h2>
+<div class="outline-text-2" id="text-7">
 </div>
 <div id="outline-container-org1074f3c" class="outline-3">
-<h3 id="org1074f3c"><span class="section-number-3">6.1</span> Reference</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org1074f3c"><span class="section-number-3">7.1</span> Reference</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li><a href="http://cn.roboware.me/#/home">RoboWare</a></li>
 <li><a href="https://tr-ros-tutorial.readthedocs.io/zh_CN/latest/_source/practice/2.2.RoboWare%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8.html">RoboWare Studio软件安装</a></li>
@@ -560,9 +581,9 @@ If you want to find where the library was installed you can update the locate in
 </div>
 </div>
 
-<div id="outline-container-org1b1ff47" class="outline-3">
-<h3 id="org1b1ff47"><span class="section-number-3">6.2</span> Install</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-org5e1ab1b" class="outline-3">
+<h3 id="org5e1ab1b"><span class="section-number-3">7.2</span> Install</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 Install pylint
 </p>
@@ -593,8 +614,8 @@ clang-format suport:
 </div>
 
 <div id="outline-container-org4aa9b68" class="outline-3">
-<h3 id="org4aa9b68"><span class="section-number-3">6.3</span> Start</h3>
-<div class="outline-text-3" id="text-6-3">
+<h3 id="org4aa9b68"><span class="section-number-3">7.3</span> Start</h3>
+<div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-bash"><code>$ roboware-studio</code>
 </pre>
@@ -602,8 +623,8 @@ clang-format suport:
 </div>
 </div>
 <div id="outline-container-orgc0a35f5" class="outline-3">
-<h3 id="orgc0a35f5"><span class="section-number-3">6.4</span> Remove</h3>
-<div class="outline-text-3" id="text-6-4">
+<h3 id="orgc0a35f5"><span class="section-number-3">7.4</span> Remove</h3>
+<div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-bash"><code>sudo apt remove roboware-studio</code>
 </pre>
@@ -612,12 +633,12 @@ clang-format suport:
 </div>
 </div>
 <div id="outline-container-org19e8987" class="outline-2">
-<h2 id="org19e8987"><span class="section-number-2">7</span> Caffe</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org19e8987"><span class="section-number-2">8</span> Caffe</h2>
+<div class="outline-text-2" id="text-8">
 </div>
 <div id="outline-container-org748825b" class="outline-3">
-<h3 id="org748825b"><span class="section-number-3">7.1</span> Guidebook</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org748825b"><span class="section-number-3">8.1</span> Guidebook</h3>
+<div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li><a href="http://caffe.berkeleyvision.org/installation.html">http://caffe.berkeleyvision.org/installation.html</a></li>
 <li><a href="https://www.jianshu.com/p/777e398022de">caffe 安装笔记</a></li>
@@ -625,8 +646,8 @@ clang-format suport:
 </div>
 </div>
 <div id="outline-container-org821c467" class="outline-3">
-<h3 id="org821c467"><span class="section-number-3">7.2</span> Prepare</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="org821c467"><span class="section-number-3">8.2</span> Prepare</h3>
+<div class="outline-text-3" id="text-8-2">
 <pre class="example">
 <code>sudo apt install libleveldb-dev \</code>
 <code>libhdf5-serial-dev \</code>
@@ -640,8 +661,8 @@ clang-format suport:
 </div>
 </div>
 <div id="outline-container-org7a46d99" class="outline-3">
-<h3 id="org7a46d99"><span class="section-number-3">7.3</span> glog</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="org7a46d99"><span class="section-number-3">8.3</span> glog</h3>
+<div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-bash"><code>https://github.com/google/glog.git</code>
 <code>./autogen.sh &amp;&amp; </code>
@@ -653,8 +674,8 @@ clang-format suport:
 </div>
 
 <div id="outline-container-orgc1f30a3" class="outline-3">
-<h3 id="orgc1f30a3"><span class="section-number-3">7.4</span> Cmake build</h3>
-<div class="outline-text-3" id="text-7-4">
+<h3 id="orgc1f30a3"><span class="section-number-3">8.4</span> Cmake build</h3>
+<div class="outline-text-3" id="text-8-4">
 <pre class="example">
 <code>mkdir build</code>
 <code>cd build</code>
@@ -667,8 +688,8 @@ clang-format suport:
 </div>
 
 <div id="outline-container-org86f5597" class="outline-3">
-<h3 id="org86f5597"><span class="section-number-3">7.5</span> Compile with make</h3>
-<div class="outline-text-3" id="text-7-5">
+<h3 id="org86f5597"><span class="section-number-3">8.5</span> Compile with make</h3>
+<div class="outline-text-3" id="text-8-5">
 <pre class="example">
 <code>cp Makefile.config.example Makefile.config</code>
 <code># Adjust Makefile.config (for example, if using Anaconda Python, or if cuDNN is desired)</code>
@@ -680,7 +701,7 @@ clang-format suport:
 
 <ol class="org-ol">
 <li><a id="org36baf78"></a>Makefile.config<br />
-<div class="outline-text-4" id="text-7-5-1">
+<div class="outline-text-4" id="text-8-5-1">
 <pre class="example">
 <code>CPU_ONLY := 1</code>
 <code>CUDA_DIR := /usr/local/cuda-8.0</code>
@@ -693,7 +714,7 @@ clang-format suport:
 </li>
 
 <li><a id="org4650ca8"></a>Makefile<br />
-<div class="outline-text-4" id="text-7-5-2">
+<div class="outline-text-4" id="text-8-5-2">
 <p>
 Line 173:
 Replace
@@ -714,12 +735,12 @@ with
 </div>
 
 <div id="outline-container-orga6bd9b1" class="outline-2">
-<h2 id="orga6bd9b1"><span class="section-number-2">8</span> Python</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="orga6bd9b1"><span class="section-number-2">9</span> Python</h2>
+<div class="outline-text-2" id="text-9">
 </div>
 <div id="outline-container-orgc0af16a" class="outline-3">
-<h3 id="orgc0af16a"><span class="section-number-3">8.1</span> Python2.7</h3>
-<div class="outline-text-3" id="text-8-1">
+<h3 id="orgc0af16a"><span class="section-number-3">9.1</span> Python2.7</h3>
+<div class="outline-text-3" id="text-9-1">
 <pre class="example">
 <code>sudo apt install python-pip</code>
 </pre>
@@ -738,8 +759,8 @@ with
 </div>
 </div>
 <div id="outline-container-org4c05726" class="outline-3">
-<h3 id="org4c05726"><span class="section-number-3">8.2</span> scikit-image</h3>
-<div class="outline-text-3" id="text-8-2">
+<h3 id="org4c05726"><span class="section-number-3">9.2</span> scikit-image</h3>
+<div class="outline-text-3" id="text-9-2">
 <p>
 Read: <a href="https://scikit-image.org/docs/dev/install.html">https://scikit-image.org/docs/dev/install.html</a>
 </p>
@@ -760,8 +781,8 @@ conda install -c conda-forge scikit-image
 </div>
 
 <div id="outline-container-org71b6193" class="outline-3">
-<h3 id="org71b6193"><span class="section-number-3">8.3</span> jupyter</h3>
-<div class="outline-text-3" id="text-8-3">
+<h3 id="org71b6193"><span class="section-number-3">9.3</span> jupyter</h3>
+<div class="outline-text-3" id="text-9-3">
 <div class="org-src-container">
 <pre class="src src-bash"><code>conda install numpy jupyter notebook</code>
 </pre>
@@ -770,8 +791,8 @@ conda install -c conda-forge scikit-image
 </div>
 
 <div id="outline-container-org352e814" class="outline-3">
-<h3 id="org352e814"><span class="section-number-3">8.4</span> Anaconda</h3>
-<div class="outline-text-3" id="text-8-4">
+<h3 id="org352e814"><span class="section-number-3">9.4</span> Anaconda</h3>
+<div class="outline-text-3" id="text-9-4">
 <p>
 <a href="https://www.anaconda.com/distribution/">Download
 </a>
@@ -790,8 +811,8 @@ Envs is in
 </div>
 
 <div id="outline-container-org030fa2c" class="outline-2">
-<h2 id="org030fa2c"><span class="section-number-2">9</span> Pytorch</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org030fa2c"><span class="section-number-2">10</span> Pytorch</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 Read <a href="https://pytorch.org/get-started/locally/?source=Google&amp;medium=PaidSearch&amp;utm_campaign=1712416734&amp;utm_adgroup=66820730637&amp;utm_keyword=%2Binstalling%20%2Bpytorch&amp;utm_offering=AI&amp;utm_Product=PYTorch&amp;gclid=Cj0KEQjw3PLnBRCpo8PCoaGM99MBEiQAppRuC9vleTQvcM60EIgwQCnaybHjo1d4X9dj0yLf-LKRwZMaAvZC8P8HAQ">Install Pytorch</a>
 For example: 
@@ -828,12 +849,12 @@ pip3 install torchvision
 </div>
 
 <div id="outline-container-orgcb90487" class="outline-2">
-<h2 id="orgcb90487"><span class="section-number-2">10</span> Kinetic</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="orgcb90487"><span class="section-number-2">11</span> Kinetic</h2>
+<div class="outline-text-2" id="text-11">
 </div>
 <div id="outline-container-org05b2c5f" class="outline-3">
-<h3 id="org05b2c5f"><span class="section-number-3">10.1</span> Kinect2</h3>
-<div class="outline-text-3" id="text-10-1">
+<h3 id="org05b2c5f"><span class="section-number-3">11.1</span> Kinect2</h3>
+<div class="outline-text-3" id="text-11-1">
 <ul class="org-ul">
 <li>3rdPartyLibs, git@github.com:yubaoliu/3rdPartyLibs.git</li>
 <li><a href="https://github.com/OpenKinect/libfreenect2">Official: OpenKinect/libfreenect2</a></li>
@@ -873,8 +894,8 @@ Replug the Kinect and run the test program:
 </div>
 
 <div id="outline-container-orgaade122" class="outline-3">
-<h3 id="orgaade122"><span class="section-number-3">10.2</span> Run in ROS</h3>
-<div class="outline-text-3" id="text-10-2">
+<h3 id="orgaade122"><span class="section-number-3">11.2</span> Run in ROS</h3>
+<div class="outline-text-3" id="text-11-2">
 <pre class="example">
 <code>roslaunch  kinect2_bridge kinect2_bridge.launch</code>
 </pre>
@@ -883,8 +904,8 @@ Replug the Kinect and run the test program:
 </div>
 
 <div id="outline-container-orga2a3b1d" class="outline-2">
-<h2 id="orga2a3b1d"><span class="section-number-2">11</span> Ruby</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="orga2a3b1d"><span class="section-number-2">12</span> Ruby</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 The defalt ruby version is 2.3 in ubuntu16.04.
 </p>
@@ -911,20 +932,20 @@ I want to upgrade it to 2.5 via:
 </div>
 
 <div id="outline-container-orgb47ee67" class="outline-2">
-<h2 id="orgb47ee67"><span class="section-number-2">12</span> Linux Software</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="orgb47ee67"><span class="section-number-2">13</span> Linux Software</h2>
+<div class="outline-text-2" id="text-13">
 </div>
 <div id="outline-container-org16ab6dd" class="outline-3">
-<h3 id="org16ab6dd"><span class="section-number-3">12.1</span> Flash player</h3>
-<div class="outline-text-3" id="text-12-1">
+<h3 id="org16ab6dd"><span class="section-number-3">13.1</span> Flash player</h3>
+<div class="outline-text-3" id="text-13-1">
 <pre class="example">
 <code>sudo apt-get install flashplugin-installer </code>
 </pre>
 </div>
 </div>
 <div id="outline-container-org1358584" class="outline-3">
-<h3 id="org1358584"><span class="section-number-3">12.2</span> Screen Shot</h3>
-<div class="outline-text-3" id="text-12-2">
+<h3 id="org1358584"><span class="section-number-3">13.2</span> Screen Shot</h3>
+<div class="outline-text-3" id="text-13-2">
 <ul class="org-ul">
 <li>gnome-scrennshot</li>
 <li>scrot</li>
@@ -952,8 +973,8 @@ Peek
 </div>
 
 <div id="outline-container-org7d16a0a" class="outline-3">
-<h3 id="org7d16a0a"><span class="section-number-3">12.3</span> Canon LBP printers</h3>
-<div class="outline-text-3" id="text-12-3">
+<h3 id="org7d16a0a"><span class="section-number-3">13.3</span> Canon LBP printers</h3>
+<div class="outline-text-3" id="text-13-3">
 <p>
 <a href="https://github.com/hieplpvip/ubuntu_canon_printer">https://github.com/hieplpvip/ubuntu_canon_printer</a>
 </p>
@@ -965,8 +986,8 @@ Peek
 </div>
 </div>
 <div id="outline-container-orgd5c3751" class="outline-3">
-<h3 id="orgd5c3751"><span class="section-number-3">12.4</span> nodejs</h3>
-<div class="outline-text-3" id="text-12-4">
+<h3 id="orgd5c3751"><span class="section-number-3">13.4</span> nodejs</h3>
+<div class="outline-text-3" id="text-13-4">
 <p>
 <a href="https://github.com/nodejs/node">https://github.com/nodejs/node</a>
 </p>
@@ -974,8 +995,8 @@ Peek
 </div>
 
 <div id="outline-container-org3f081fb" class="outline-3">
-<h3 id="org3f081fb"><span class="section-number-3">12.5</span> flatpak</h3>
-<div class="outline-text-3" id="text-12-5">
+<h3 id="org3f081fb"><span class="section-number-3">13.5</span> flatpak</h3>
+<div class="outline-text-3" id="text-13-5">
 <p>
 <a href="https://flatpak.org/setup/Ubuntu/">https://flatpak.org/setup/Ubuntu/</a>
 </p>
@@ -991,8 +1012,8 @@ Peek
 </div>
 </div>
 <div id="outline-container-org094b86c" class="outline-2">
-<h2 id="org094b86c"><span class="section-number-2">13</span> System Repairing</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="org094b86c"><span class="section-number-2">14</span> System Repairing</h2>
+<div class="outline-text-2" id="text-14">
 <div class="org-src-container">
 <pre class="src src-bash"><code>apt autoremove</code>
 <code>apt clean </code>
@@ -1013,8 +1034,8 @@ bleachbit will help you clean unnecessary files off your device
 </div>
 
 <div id="outline-container-orga38a532" class="outline-3">
-<h3 id="orga38a532"><span class="section-number-3">13.1</span> Check CUDA info</h3>
-<div class="outline-text-3" id="text-13-1">
+<h3 id="orga38a532"><span class="section-number-3">14.1</span> Check CUDA info</h3>
+<div class="outline-text-3" id="text-14-1">
 <div class="org-src-container">
 <pre class="src src-bash"><code>yubao@yubao-Z370M-S01:~$ dpkg --get-selections | grep cuda</code>
 <code>libcuda1-418                    install</code>
@@ -1050,16 +1071,16 @@ Additionally, delete the <i>opt/cuda and ~/NVIDIA<sub>GPU</sub><sub>Computing</s
 
 
 <div id="outline-container-org29bf2e5" class="outline-3">
-<h3 id="org29bf2e5"><span class="section-number-3">13.2</span> How to clean CUDA</h3>
-<div class="outline-text-3" id="text-13-2">
+<h3 id="org29bf2e5"><span class="section-number-3">14.2</span> How to clean CUDA</h3>
+<div class="outline-text-3" id="text-14-2">
 <pre class="example">
 <code>sudo apt-get autoremove --purge cuda </code>
 </pre>
 </div>
 </div>
 <div id="outline-container-org3414d8f" class="outline-3">
-<h3 id="org3414d8f"><span class="section-number-3">13.3</span> How to find out if package is installed in Linux?</h3>
-<div class="outline-text-3" id="text-13-3">
+<h3 id="org3414d8f"><span class="section-number-3">14.3</span> How to find out if package is installed in Linux?</h3>
+<div class="outline-text-3" id="text-14-3">
 <pre class="example">
 <code>dpkg -s pkg-config</code>
 </pre>
@@ -1067,8 +1088,8 @@ Additionally, delete the <i>opt/cuda and ~/NVIDIA<sub>GPU</sub><sub>Computing</s
 </div>
 
 <div id="outline-container-orgcda8836" class="outline-3">
-<h3 id="orgcda8836"><span class="section-number-3">13.4</span> Uninstall deb installation</h3>
-<div class="outline-text-3" id="text-13-4">
+<h3 id="orgcda8836"><span class="section-number-3">14.4</span> Uninstall deb installation</h3>
+<div class="outline-text-3" id="text-14-4">
 <p>
 Use the following commands to uninstall a RPM/Deb installation:
 </p>
@@ -1080,8 +1101,8 @@ Use the following commands to uninstall a RPM/Deb installation:
 </div>
 
 <div id="outline-container-org3889819" class="outline-2">
-<h2 id="org3889819"><span class="section-number-2">14</span> UFW</h2>
-<div class="outline-text-2" id="text-14">
+<h2 id="org3889819"><span class="section-number-2">15</span> UFW</h2>
+<div class="outline-text-2" id="text-15">
 <p>
 The UFW firewall is the default firewall that ships standard with the Ubuntu Linux Distribution. UFW stands for Uncomplicated Firewall.
 </p>
@@ -1138,11 +1159,11 @@ Example:
 </div>
 </div>
 <div id="outline-container-org441e15d" class="outline-2">
-<h2 id="org441e15d"><span class="section-number-2">15</span> Linux Configure</h2>
-<div class="outline-text-2" id="text-15">
+<h2 id="org441e15d"><span class="section-number-2">16</span> Linux Configure</h2>
+<div class="outline-text-2" id="text-16">
 </div>
 <div id="outline-container-orgf6f566e" class="outline-3">
-<h3 id="system-info"><span class="section-number-3">15.1</span> System Info</h3>
+<h3 id="system-info"><span class="section-number-3">16.1</span> System Info</h3>
 <div class="outline-text-3" id="text-system-info">
 <pre class="example">
 CUSTOM_ID: system-info
@@ -1157,7 +1178,7 @@ CUSTOM_ID: system-info
 </div>
 
 <div id="outline-container-org285a2cc" class="outline-3">
-<h3 id="quick-build-from-zero"><span class="section-number-3">15.2</span> Quick build from zero</h3>
+<h3 id="quick-build-from-zero"><span class="section-number-3">16.2</span> Quick build from zero</h3>
 <div class="outline-text-3" id="text-quick-build-from-zero">
 <pre class="example">
 CUSTOM_ID: quick-build-from-zero
@@ -1198,7 +1219,7 @@ CUSTOM_ID: quick-build-from-zero
 </div>
 
 <div id="outline-container-org4f1af80" class="outline-3">
-<h3 id="desktop"><span class="section-number-3">15.3</span> DESKTOP</h3>
+<h3 id="desktop"><span class="section-number-3">16.3</span> DESKTOP</h3>
 <div class="outline-text-3" id="text-desktop">
 <pre class="example">
 CUSTOM_ID: desktop
@@ -1245,7 +1266,7 @@ CUSTOM_ID: remove-desktop
 </div>
 
 <div id="outline-container-orgd3c9e12" class="outline-3">
-<h3 id="python"><span class="section-number-3">15.4</span> python</h3>
+<h3 id="python"><span class="section-number-3">16.4</span> python</h3>
 <div class="outline-text-3" id="text-python">
 <pre class="example">
 CUSTOM_ID: python
@@ -1266,7 +1287,7 @@ Don't remove current python3, otherwise Ubuntu OS will BROKEN.
 </div>
 
 <div id="outline-container-org9b0488d" class="outline-3">
-<h3 id="software-center"><span class="section-number-3">15.5</span> software-center</h3>
+<h3 id="software-center"><span class="section-number-3">16.5</span> software-center</h3>
 <div class="outline-text-3" id="text-software-center">
 <pre class="example">
 CUSTOM_ID: software-center
@@ -1280,7 +1301,7 @@ CUSTOM_ID: software-center
 </div>
 
 <div id="outline-container-org918e861" class="outline-3">
-<h3 id="atom"><span class="section-number-3">15.6</span> Atom</h3>
+<h3 id="atom"><span class="section-number-3">16.6</span> Atom</h3>
 <div class="outline-text-3" id="text-atom">
 <pre class="example">
 CUSTOM_ID: atom
@@ -1294,7 +1315,7 @@ Guide</a>
 </div>
 
 <div id="outline-container-orgf56a573" class="outline-3">
-<h3 id="pandoc"><span class="section-number-3">15.7</span> Pandoc</h3>
+<h3 id="pandoc"><span class="section-number-3">16.7</span> Pandoc</h3>
 <div class="outline-text-3" id="text-pandoc">
 <pre class="example">
 CUSTOM_ID: pandoc
@@ -1318,7 +1339,7 @@ CUSTOM_ID: pandoc
 </div>
 
 <div id="outline-container-org8fc4a22" class="outline-3">
-<h3 id="markdown"><span class="section-number-3">15.8</span> Markdown</h3>
+<h3 id="markdown"><span class="section-number-3">16.8</span> Markdown</h3>
 <div class="outline-text-3" id="text-markdown">
 <pre class="example">
 CUSTOM_ID: markdown
@@ -1332,7 +1353,7 @@ CUSTOM_ID: markdown
 </div>
 
 <div id="outline-container-org0c38159" class="outline-3">
-<h3 id="latex"><span class="section-number-3">15.9</span> LaTeX</h3>
+<h3 id="latex"><span class="section-number-3">16.9</span> LaTeX</h3>
 <div class="outline-text-3" id="text-latex">
 <pre class="example">
 CUSTOM_ID: latex
@@ -1349,7 +1370,7 @@ CUSTOM_ID: latex
 </div>
 
 <div id="outline-container-org62b57c9" class="outline-3">
-<h3 id="grive"><span class="section-number-3">15.10</span> grive</h3>
+<h3 id="grive"><span class="section-number-3">16.10</span> grive</h3>
 <div class="outline-text-3" id="text-grive">
 <pre class="example">
 CUSTOM_ID: grive
@@ -1365,7 +1386,7 @@ CUSTOM_ID: grive
 </div>
 
 <div id="outline-container-org62dce97" class="outline-3">
-<h3 id="ibus"><span class="section-number-3">15.11</span> ibus</h3>
+<h3 id="ibus"><span class="section-number-3">16.11</span> ibus</h3>
 <div class="outline-text-3" id="text-ibus">
 <pre class="example">
 CUSTOM_ID: ibus
@@ -1378,8 +1399,8 @@ CUSTOM_ID: ibus
 </div>
 
 <div id="outline-container-orgece291d" class="outline-3">
-<h3 id="orgece291d"><span class="section-number-3">15.12</span> Screenshot</h3>
-<div class="outline-text-3" id="text-15-12">
+<h3 id="orgece291d"><span class="section-number-3">16.12</span> Screenshot</h3>
+<div class="outline-text-3" id="text-16-12">
 <ul class="org-ul">
 <li>gnome-screenshot</li>
 <li>Shutter</li>
@@ -1390,8 +1411,8 @@ CUSTOM_ID: ibus
 </div>
 
 <div id="outline-container-orga470a13" class="outline-3">
-<h3 id="orga470a13"><span class="section-number-3">15.13</span> Ocative</h3>
-<div class="outline-text-3" id="text-15-13">
+<h3 id="orga470a13"><span class="section-number-3">16.13</span> Ocative</h3>
+<div class="outline-text-3" id="text-16-13">
 <p>
 Install from ppa:
 </p>
@@ -1411,8 +1432,8 @@ The belowing is the old stuff needed to summarize
 </div>
 
 <div id="outline-container-org0aee4b5" class="outline-3">
-<h3 id="org0aee4b5"><span class="section-number-3">15.14</span> xlip</h3>
-<div class="outline-text-3" id="text-15-14">
+<h3 id="org0aee4b5"><span class="section-number-3">16.14</span> xlip</h3>
+<div class="outline-text-3" id="text-16-14">
 <div class="org-src-container">
 <pre class="src src-sh"><code>sudo apt-get install xclip</code>
 <code><span style="color: #F92672;">alias</span> <span style="color: #FD971F;">xclip</span>=<span style="color: #E6DB74;">'xclip -selection c'</span></code>
@@ -1422,8 +1443,8 @@ The belowing is the old stuff needed to summarize
 </div>
 </div>
 <div id="outline-container-org6477032" class="outline-3">
-<h3 id="org6477032"><span class="section-number-3">15.15</span> Disable hotkey</h3>
-<div class="outline-text-3" id="text-15-15">
+<h3 id="org6477032"><span class="section-number-3">16.15</span> Disable hotkey</h3>
+<div class="outline-text-3" id="text-16-15">
 <p>
 <i>Switching Virtual Keyboard</i> is binded to <i>C-M-b</i>. This is conflict with my emacs keybinding <i>backward-sexp</i>.
 </p>
@@ -1451,10 +1472,9 @@ Press <i>ESC</i> to disable it.
 </div>
 </div>
 
-
 <div id="outline-container-orgf72fea8" class="outline-2">
-<h2 id="orgf72fea8"><span class="section-number-2">16</span> Record Audio</h2>
-<div class="outline-text-2" id="text-16">
+<h2 id="orgf72fea8"><span class="section-number-2">17</span> Record Audio</h2>
+<div class="outline-text-2" id="text-17">
 <pre class="example">
 <code>sudo add-apt-repository ppa:audio-recorder/ppa</code>
 <code>sudo apt-get update</code>
@@ -1467,8 +1487,8 @@ Press <i>ESC</i> to disable it.
 </div>
 </div>
 <div id="outline-container-orgbe0c141" class="outline-2">
-<h2 id="orgbe0c141"><span class="section-number-2">17</span> How to check package version installed</h2>
-<div class="outline-text-2" id="text-17">
+<h2 id="orgbe0c141"><span class="section-number-2">18</span> How to check package version installed</h2>
+<div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <pre class="src src-sh"><code>dpkg -s &lt;packagename&gt;</code>
 </pre>
@@ -1495,12 +1515,12 @@ For example:
 </div>
 </div>
 <div id="outline-container-org5458438" class="outline-2">
-<h2 id="org5458438"><span class="section-number-2">18</span> How to find files deleted by <b><b>rm</b></b></h2>
-<div class="outline-text-2" id="text-18">
+<h2 id="org5458438"><span class="section-number-2">19</span> How to find files deleted by <b><b>rm</b></b></h2>
+<div class="outline-text-2" id="text-19">
 </div>
 <ol class="org-ol">
 <li><a id="org6baf0a9"></a>~/.local/share/Trash<br />
-<div class="outline-text-4" id="text-18-0-1">
+<div class="outline-text-4" id="text-19-0-1">
 <p>
 Speaking in the most abstract terms, whenever you delete a file on the graphical interface, the file is "moved" to a special "buffer", a directory called trash. You can locate it in your home directory, <code>~/.local/share/Trash/</code>. 
 Files "deleted" from this directory, will be really deleted. This real deletion is what happens when you use <i>rm</i> on a file.
@@ -1508,7 +1528,7 @@ Files "deleted" from this directory, will be really deleted. This real deletion 
 </div>
 </li>
 <li><a id="orgc9e552b"></a>rm-trash<br />
-<div class="outline-text-4" id="text-18-0-2">
+<div class="outline-text-4" id="text-19-0-2">
 <pre class="example">
 <code>sudo add-apt-repository ppa:nateshmbhat/rm-trash</code>
 <code>sudo apt-get update</code>
@@ -1522,7 +1542,7 @@ use <i>rm-trash</i> instead.
 </li>
 
 <li><a id="org0bf457a"></a>trash-cli<br />
-<div class="outline-text-4" id="text-18-0-3">
+<div class="outline-text-4" id="text-19-0-3">
 <pre class="example">
 <code>sudo apt-get install trash-cli</code>
 </pre>
@@ -1536,7 +1556,7 @@ Add this to <i>.bashrc</i>
 </div>
 </li>
 <li><a id="orgf85b940"></a>About /rm/command<br />
-<div class="outline-text-4" id="text-18-0-4">
+<div class="outline-text-4" id="text-19-0-4">
 <p>
 <b><b>Important</b></b>: do not use <i>-f</i> option. The files deleted will not shown in trash if using <i>-f</i>.
 </p>
@@ -1566,7 +1586,7 @@ Add this to <i>.bashrc</i>
 </div>
 </li>
 <li><a id="org282183b"></a>ohters<br />
-<div class="outline-text-4" id="text-18-0-5">
+<div class="outline-text-4" id="text-19-0-5">
 <p>
 Not yet tried.
 </p>
@@ -1579,8 +1599,8 @@ Not yet tried.
 </div>
 
 <div id="outline-container-org1a6504a" class="outline-2">
-<h2 id="org1a6504a"><span class="section-number-2">19</span> How to solver <b><b>Library Conflict</b></b> Problem</h2>
-<div class="outline-text-2" id="text-19">
+<h2 id="org1a6504a"><span class="section-number-2">20</span> How to solver <b><b>Library Conflict</b></b> Problem</h2>
+<div class="outline-text-2" id="text-20">
 <p>
 Example:
 </p>
@@ -1685,7 +1705,7 @@ What caused this is that another <i>boost</i> (1.71) is installed in <code>/home
 </div>
 
 <div id="outline-container-org8576ea8" class="outline-2">
-<h2 id="build-better-linux-environment-from-scratch"><span class="section-number-2">20</span> Build Better Linux Environment from Scratch</h2>
+<h2 id="build-better-linux-environment-from-scratch"><span class="section-number-2">21</span> Build Better Linux Environment from Scratch</h2>
 <div class="outline-text-2" id="text-build-better-linux-environment-from-scratch">
 <pre class="example">
 CUSTOM_ID: build-better-linux-environment-from-scratch
@@ -1693,7 +1713,7 @@ CUSTOM_ID: build-better-linux-environment-from-scratch
 </div>
 
 <div id="outline-container-org8627b8c" class="outline-3">
-<h3 id="softwares"><span class="section-number-3">20.1</span> softwares</h3>
+<h3 id="softwares"><span class="section-number-3">21.1</span> softwares</h3>
 <div class="outline-text-3" id="text-softwares">
 <pre class="example">
 CUSTOM_ID: softwares
@@ -1708,7 +1728,7 @@ CUSTOM_ID: softwares
 </div>
 
 <div id="outline-container-orgb3b0832" class="outline-2">
-<h2 id="linux-kernel-overview"><span class="section-number-2">21</span> Linux Kernel Overview</h2>
+<h2 id="linux-kernel-overview"><span class="section-number-2">22</span> Linux Kernel Overview</h2>
 <div class="outline-text-2" id="text-linux-kernel-overview">
 <pre class="example">
 CUSTOM_ID: linux-kernel-overview
@@ -1735,7 +1755,7 @@ Programming-01-youtube</a></li>
 </div>
 
 <div id="outline-container-org41b30a5" class="outline-2">
-<h2 id="how-to-install-unity-3d"><span class="section-number-2">22</span> How to Install Unity 3D</h2>
+<h2 id="how-to-install-unity-3d"><span class="section-number-2">23</span> How to Install Unity 3D</h2>
 <div class="outline-text-2" id="text-how-to-install-unity-3d">
 <pre class="example">
 CUSTOM_ID: how-to-install-unity-3d
@@ -1743,16 +1763,16 @@ CUSTOM_ID: how-to-install-unity-3d
 </div>
 
 <div id="outline-container-orgec80b2c" class="outline-3">
-<h3 id="orgec80b2c"><span class="section-number-3">22.1</span> Get Unity -</h3>
-<div class="outline-text-3" id="text-22-1">
+<h3 id="orgec80b2c"><span class="section-number-3">23.1</span> Get Unity -</h3>
+<div class="outline-text-3" id="text-23-1">
 <p>
 <a href="https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/">Forum.unity3d.com</a>
 </p>
 </div>
 </div>
 <div id="outline-container-org11054b1" class="outline-3">
-<h3 id="org11054b1"><span class="section-number-3">22.2</span> Installation <code>sudo dpkg -i unity-editor.deb</code></h3>
-<div class="outline-text-3" id="text-22-2">
+<h3 id="org11054b1"><span class="section-number-3">23.2</span> Installation <code>sudo dpkg -i unity-editor.deb</code></h3>
+<div class="outline-text-3" id="text-23-2">
 <ul class="org-ul">
 <li>gtags ** How to Install GNU Global source code tagging system</li>
 
@@ -1763,8 +1783,8 @@ CUSTOM_ID: how-to-install-unity-3d
 </div>
 
 <div id="outline-container-orgbc693f0" class="outline-3">
-<h3 id="orgbc693f0"><span class="section-number-3">22.3</span> Install GNU Global This tutor</h3>
-<div class="outline-text-3" id="text-22-3">
+<h3 id="orgbc693f0"><span class="section-number-3">23.3</span> Install GNU Global This tutor</h3>
+<div class="outline-text-3" id="text-23-3">
 <p>
 <a href="https://github.com/yubaochina/Emacs-Cpp-IDE/blob/master/emacs-tutor/emacs-tutor.org#version-control">GnuGloabalInstallGuid</a>
 introduced the method of installing GNU Global in Linux/Windows/Mac.
@@ -1782,7 +1802,7 @@ introduced the method of installing GNU Global in Linux/Windows/Mac.
 
 <ol class="org-ol">
 <li><a id="orgd3b6479"></a>Common Questions<br />
-<div class="outline-text-4" id="text-22-3-1">
+<div class="outline-text-4" id="text-23-3-1">
 <ul class="org-ul">
 <li>Install GNU Global</li>
 </ul>
@@ -1816,8 +1836,8 @@ introduced the method of installing GNU Global in Linux/Windows/Mac.
 </div>
 
 <div id="outline-container-org17eedcb" class="outline-3">
-<h3 id="org17eedcb"><span class="section-number-3">22.4</span> Common Questions - configure: error: curses library is required but</h3>
-<div class="outline-text-3" id="text-22-4">
+<h3 id="org17eedcb"><span class="section-number-3">23.4</span> Common Questions - configure: error: curses library is required but</h3>
+<div class="outline-text-3" id="text-23-4">
 <p>
 not found.
 </p>
