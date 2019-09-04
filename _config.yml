@@ -33,7 +33,7 @@ kramdown:
  smart_quotes: lsquo,rsquo,ldquo,rdquo
  coderay_line_numbers: table
  coderay_tab_width: 4
- line_width: 80
+ line_width: 100
  latex_headers: section,subsection,subsubsection,paragraph,subparagraph,subparagraph
 
 

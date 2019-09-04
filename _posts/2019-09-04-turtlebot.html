@@ -1,0 +1,488 @@
+---
+date: 2019-09-04
+tags: 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: TURTLE BOT
+excerpt: post
+toc: tables
+export_file_name: 2019-09-04-turtlebot.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4d9b541">1. Turorial</a></li>
+<li><a href="#org3af9fcb">2. Install Turtlebot ROS Packages</a></li>
+<li><a href="#orga6c9c25">3. Network Configuration</a></li>
+<li><a href="#org5e80b62">4. Verify from TurtleBot to Remote PC</a></li>
+<li><a href="#org0379ec7">5. Start Turtlebot</a></li>
+<li><a href="#orgdd7f173">6. Mapping using gmapping and Kinect</a></li>
+<li><a href="#org2a1461a">7. Autonomous Driving</a></li>
+<li><a href="#orgda2e6c5">8. Turtlebot充电桩：自主充电</a></li>
+<li><a href="#org87825a8">9. ROS <code>turtlebot_follower</code></a></li>
+<li><a href="#org23ea115">10. pocketsphinx: ksm (keyword spotting mode)</a></li>
+<li><a href="#org7b1daa8">11. 语音控制turtlrbot机器人移动</a></li>
+<li><a href="#org58777e5">12. 实现播放语音</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4d9b541" class="outline-2">
+<h2 id="org4d9b541"><span class="section-number-2">1</span> Turorial</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>ROS <code>turtlebot_follower</code> ：让机器人跟随我们移动, <a href="https://blog.csdn.net/yiranhaiziqi/article/details/53085096">https://blog.csdn.net/yiranhaiziqi/article/details/53085096</a></li>
+<li><a href="https://www.ncnynl.com/archives/201609/793.html">Turtlebot入门教程</a></li>
+<li><a href="http://wiki.ros.org/turtlebot/Tutorials/indigo/Network%20Configuration">turtlebotTutorialsindigoNetwork Configuration</a></li>
+<li><a href="http://wiki.ros.org/ROS/NetworkSetup">ROSNetworkSetup</a></li>
+<li><a href="https://medium.com/@PankajB96/pocketsphinx-in-ros-demo-1-0-74b2dfc5ebca">Pocketsphinx in ROS: Demo 1.0</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3af9fcb" class="outline-2">
+<h2 id="org3af9fcb"><span class="section-number-2">2</span> Install Turtlebot ROS Packages</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt install ros-kinetic-turtlebot-*</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga6c9c25" class="outline-2">
+<h2 id="orga6c9c25"><span class="section-number-2">3</span> Network Configuration</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Config Turtlebot robot as the master machine.
+My PC as the slave machine.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org53ab311"></a>Install ssh<br />
+<div class="outline-text-4" id="text-3-0-1">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install openssh-server</code>
+<code>ps -e|grep ssh</code>
+<code></code>
+<code>ssh [user_name]@[ROBOT_IP]</code>
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org2270383"></a>Network Time Protocol<br />
+<div class="outline-text-4" id="text-3-0-2">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install chrony</code>
+<code>sudo ntpdate ntp.ubuntu.com</code>
+<code></code>
+<code>ntpdate -q other_computer_ip</code>
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org38b5114"></a>Add host name<br />
+<div class="outline-text-4" id="text-3-0-3">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo vim /etc/hosts</code>
+</pre>
+</div>
+<p>
+Add:
+</p>
+
+<pre class="example">
+<code>133.15.23.26    yubao-pc</code>
+<code>133.15.23.206   kobuki</code>
+</pre>
+
+<p>
+Restart Network
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo /etc/init.d/networking restart</code>
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org404470f"></a>Modify bash file to config ROS<br />
+<div class="outline-text-4" id="text-3-0-4">
+<p>
+Kobuki:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #F92672;">echo</span> export <span style="color: #FD971F;">ROS_MASTER_URI</span>=http://IP_OF_TURTLEBOT:11311 &gt;&gt; ~/turtlebot/devel/setup.sh</code>
+<code><span style="color: #F92672;">echo</span> export <span style="color: #FD971F;">ROS_HOSTNAME</span>=IP_OF_TURTLEBOT &gt;&gt; ~/turtlebot/devel/setup.sh</code>
+</pre>
+</div>
+
+<p>
+Remote PC Setup:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #F92672;">echo</span> export <span style="color: #FD971F;">ROS_MASTER_URI</span>=http://IP_OF_TURTLEBOT:11311 &gt;&gt; ~/.bashrc</code>
+<code><span style="color: #F92672;">echo</span> export <span style="color: #FD971F;">ROS_HOSTNAME</span>=IP_OF_PC &gt;&gt; ~/.bashrc</code>
+</pre>
+</div>
+
+<p>
+or add these lines to ~/.bashrc
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">ROS_MASTER_URI</span>=http://[kobuki-ip]:11311</code>
+<code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">ROS_HOSTNAME</span>=&lt;PC_IP&gt;</code>
+<code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">ROS_IP</span>=&lt;PC_IP&gt;</code>
+</pre>
+</div>
+<p>
+Example:
+</p>
+<pre class="example">
+<code>export ROS_MASTER_URI=http://kobuki:11311</code>
+<code>export ROS_HOSTNAME=133.15.23.26</code>
+<code>export ROS_IP=133.15.23.26</code>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org5e80b62" class="outline-2">
+<h2 id="org5e80b62"><span class="section-number-2">4</span> Verify from TurtleBot to Remote PC</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<ol class="org-ol">
+<li><a id="org1078c6e"></a>Hello Message<br />
+<div class="outline-text-4" id="text-4-0-1">
+<p>
+On remote pc run:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>rostopic pub -r10 /hello std_msgs/String <span style="color: #E6DB74;">"hello"</span></code>
+</pre>
+</div>
+
+<p>
+On TurtleBot run
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>rostopic echo /hello</code>
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="orgffbf78c"></a>Turtlesim Example<br />
+<div class="outline-text-4" id="text-4-0-2">
+<p>
+koboki:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roscore</code>
+<code></code>
+<code>rosrun turtlesim turtlesim_node</code>
+</pre>
+</div>
+
+<p>
+PC:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>rosrun turtlesim turtle_teleop_key</code>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>yubao@yubao-Z370M-S01:~$ rosrun turtlesim turtle_teleop_key</code>
+<code>Reading from keyboard</code>
+<code>---------------------------</code>
+<code>Use arrow keys to move the turtle.</code>
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org0379ec7" class="outline-2">
+<h2 id="org0379ec7"><span class="section-number-2">5</span> Start Turtlebot</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+kobuki:
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_bringup minimal.launch --screen</code>
+</pre>
+
+<p>
+Remote:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_teleop keyboard_teleop.launch</code>
+<code></code>
+<code>rosrun turtlesim draw_square</code>
+</pre>
+</div>
+
+<p>
+检查底座信息
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>rqt -s kobuki_dashboard</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdd7f173" class="outline-2">
+<h2 id="orgdd7f173"><span class="section-number-2">6</span> Mapping using gmapping and Kinect</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<b><b>turtlebot</b></b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_bringup minimal.launch</code>
+<code>roslaunch turtlebot_navigation gmapping_demo.launch</code>
+</pre>
+</div>
+<p>
+<b><b>Remote</b></b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_rviz_launchers view_navigation.launch</code>
+<code>roslaunch turtlebot_teleop keyboard_teleop.launch</code>
+</pre>
+</div>
+
+<p>
+<b><b>Save Map</b></b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>rosrun map_server map_saver -f /tmp/my_map</code>
+<code>ls /tmp/</code>
+</pre>
+</div>
+
+<p>
+<b><b>Demo</b></b>
+</p>
+
+<iframe width="640" height="480" src="https://www.youtube.com/embed/QYpm-t-76T8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+
+<div id="outline-container-org2a1461a" class="outline-2">
+<h2 id="org2a1461a"><span class="section-number-2">7</span> Autonomous Driving</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<b><b>turtlebot</b></b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_bringup minimal.launch</code>
+<code>roslaunch turtlebot_navigation amcl_demo.launch map_file:=/tmp/my_map.yaml</code>
+</pre>
+</div>
+
+<p>
+<b><b>Remote</b></b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_rviz_launchers view_navigation.launch --screen</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgda2e6c5" class="outline-2">
+<h2 id="orgda2e6c5"><span class="section-number-2">8</span> Turtlebot充电桩：自主充电</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<b><b>turtlebot</b></b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch turtlebot_bringup minimal.launch</code>
+</pre>
+</div>
+
+<p>
+<b><b>Removte</b></b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch kobuki_auto_docking minimal.launch --screen</code>
+<code>roslaunch kobuki_auto_docking activate.launch --screen</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org87825a8" class="outline-2">
+<h2 id="org87825a8"><span class="section-number-2">9</span> ROS <code>turtlebot_follower</code></h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<b><b>Turtlebot</b></b>
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_bringup minimal.launch</code>
+</pre>
+
+<p>
+<b><b>PC</b></b>
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_follower follower.launch</code>
+</pre>
+
+<p>
+<b><b>Config Parameters</b></b>
+</p>
+<pre class="example">
+<code>rosrun rqt_reconfigure rqt_reconfigure</code>
+</pre>
+
+<p>
+<b><b>Rviz Setting</b></b>
+</p>
+<ul class="org-ul">
+<li>Frame: <code>camera_rgb_frame</code></li>
+<li>Add marker topics</li>
+</ul>
+
+<p>
+Demo:
+</p>
+
+<iframe width="677" height="412" src="https://www.youtube.com/embed/UjGAd0mEZ1M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+
+<div id="outline-container-org23ea115" class="outline-2">
+<h2 id="org23ea115"><span class="section-number-2">10</span> pocketsphinx: ksm (keyword spotting mode)</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Refer:
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/Pankaj-Baranwal/pocketsphinx/wiki/Demo:-Kws-mode">https://github.com/Pankaj-Baranwal/pocketsphinx/wiki/Demo:-Kws-mode</a></li>
+<li><a href="https://medium.com/@PankajB96/pocketsphinx-in-ros-demo-1-0-74b2dfc5ebca">Pocketsphinx in ROS: Demo 1.0</a></li>
+
+<li>build pocketsphinx ros wrapper</li>
+</ul>
+<pre class="example">
+<code>cd ~/catkin_ws/src</code>
+<code>git clone https://github.com/Pankaj-Baranwal/pocketsphinx.git</code>
+<code>cd ../..</code>
+<code>catkin_make</code>
+</pre>
+
+<ul class="org-ul">
+<li>Launch <code>turtlebot_gazebo</code>:</li>
+</ul>
+
+<pre class="example">
+<code>roslaunch turtlebot_gazebo turtlebot_world.launch</code>
+</pre>
+
+<ul class="org-ul">
+<li>kws.launch</li>
+</ul>
+<pre class="example">
+<code>roslaunch pocketsphinx kws.launch dict:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic kws:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.kwlist</code>
+</pre>
+
+<ul class="org-ul">
+<li>Checkout data</li>
+</ul>
+<pre class="example">
+<code>rostopic echo /kws_data</code>
+</pre>
+
+<ul class="org-ul">
+<li>control robot</li>
+</ul>
+<p>
+The turtlebot simulation subscribes to a topic: <code>/mobile_base/commands/velocity</code>. Our node publishes the required velocity and direction instructions on this topic which are read by gazebo and the turtlebot moves accordingly.
+</p>
+
+<pre class="example">
+<code>rosrun pocketsphinx voice_control_example.py</code>
+</pre>
+
+<p>
+<b><b>dict</b></b>: 
+Location(absolute path) of the dictionary. Dictionary contains the words which are used in the keyphrases along with their phonetics as used in the acoustic model.
+</p>
+
+<p>
+<b><b>kwlist</b></b>: 
+This contains a list of keyphrases along with their threshold values. A typical line looks like this:
+</p>
+
+<p>
+<code>Hello World /1e-12/</code>
+</p>
+
+<p>
+<b><b>keyphrase</b></b>: 
+In case you only need to use 1 keyphrase, you can simply use a combination of a keyphrase and its threshold(see next argument). You should either use a kwlist argument or a combination of keyphrase and threshold.
+</p>
+
+<p>
+<b><b>threshold</b></b>: 
+To specify the threshold of the keyphrase in the above mentioned argument.
+</p>
+
+<p>
+<b><b>input</b></b>:
+If you want to use an audio file as input, you can specify its absolute path here. Else you should omit this argument. System's microphone will be used as input instead.
+</p>
+
+<p>
+<b><b>hmm</b></b>:
+In case the default acoustic model is missing or not suited to your needs, you can specify a new one using this argument. Just add its absolute path as value of this argument. You can find the existing ones
+</p>
+</div>
+</div>
+<div id="outline-container-org7b1daa8" class="outline-2">
+<h2 id="org7b1daa8"><span class="section-number-2">11</span> 语音控制turtlrbot机器人移动</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Reference:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.ncnynl.com/archives/201609/870.html">turtlebot入门-语音控制</a>
+<ul class="org-ul">
+<li>利用PocketSphinx实现语音识别</li>
+<li>利用语音命令来控制Turtlebot</li>
+<li>实现播放语音</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org58777e5" class="outline-2">
+<h2 id="org58777e5"><span class="section-number-2">12</span> 实现播放语音</h2>
+<div class="outline-text-2" id="text-12">
+<pre class="example">
+<code>$ rosrun sound_play soundplay_node.py  </code>
+<code>$ rosrun sound_play say.py "Greetings Humans. Take me to your leader."  </code>
+</pre>
+
+<p>
+Change another person to read.
+</p>
+
+<pre class="example">
+<code>$ sudo apt-get install festvox-don  </code>
+<code>$ rosrun sound_play say.py "Welcome to the future" voice_don_diphone</code>
+</pre>
+</div>
+</div>

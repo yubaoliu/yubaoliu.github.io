@@ -1,0 +1,617 @@
+---
+date: 2019-09-04
+tags: 
+- 
+- 
+- 
+- 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: Pocketsphinx
+excerpt: post
+toc: headlines 3
+export_file_name: 2019-09-03-home.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdfef3c6">1. Introduction</a></li>
+<li><a href="#orga97ec74">2. Installation and Setup</a>
+<ul>
+<li><a href="#org2aa49c5">2.1. Install dependencies</a></li>
+<li><a href="#org05c1c65">2.2. Install sphinxbase and pocketsphinx from source code</a></li>
+<li><a href="#orgd89d226">2.3. Indigo User</a></li>
+<li><a href="#org8415038">2.4. Using PocketSphinx</a></li>
+</ul>
+</li>
+<li><a href="#orgd7796f9">3. Ros wrapper</a>
+<ul>
+<li><a href="#org7cd178d">3.1. Pankaj-Baranwal/pocketsphinx</a></li>
+<li><a href="#orgcade2bf">3.2. UTNuclearRoboticsPublic/pocketsphinx</a></li>
+<li><a href="#org4c6c794">3.3. Pankaj-Baranwal/pocketsphinx</a></li>
+</ul>
+</li>
+<li><a href="#org545f981">4. Run ROS Wrapper</a></li>
+<li><a href="#org9c3cf7f">5. Live Speech Demo</a></li>
+<li><a href="#orge3dbdb8">6. Sphinx Knowledge Base Tool</a></li>
+<li><a href="#orgeeff5fa">7. Train Module</a></li>
+<li><a href="#org4af27d9">8. JSGF</a></li>
+<li><a href="#org901ba3d">9. Possible Errors</a>
+<ul>
+<li><a href="#org0ff8ef7">9.1. <code>exception_on_overflow</code></a></li>
+<li><a href="#orga288ba9">9.2. pyaudio is too old</a></li>
+<li><a href="#org9e7a9cd">9.3. roslaunch pocketsphinx robocup.launch</a></li>
+</ul>
+</li>
+<li><a href="#org92900ea">10. Reference</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdfef3c6" class="outline-2">
+<h2 id="orgdfef3c6"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>ASR := Automatic Speech Recognition</li>
+<li>Farfield voice Recognition</li>
+<li>VAD := Voice active detection</li>
+<li>KWS := Keyword spotting (Voice Trigger, VT)</li>
+</ul>
+
+<p>
+CMUSphinx语音识别工具包下载<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<ul class="org-ul">
+<li>Pocketsphinx —用C语言编写的轻量级识别库，主要是进行识别的。</li>
+<li>Sphinxbase — Pocketsphinx所需要的支持库，主要完成的是语音信号的特征提取；</li>
+<li>Sphinx3 —为语音识别研究用C语言编写的解码器</li>
+<li>Sphinx4 —为语音识别研究用JAVA语言编写的解码器</li>
+<li>CMUclmtk —语言模型训练工具</li>
+<li>Sphinxtrain —声学模型训练工具</li>
+<li>下载网址：<a href="http://sourceforge.net/projects/cmusphinx/files/">http://sourceforge.net/projects/cmusphinx/files/</a></li>
+<li>运行 pocketsphinx进行语音识别需要指定三个文件：声学模型、语言模型和字典文件。</li>
+</ul>
+<pre class="example">
+<code>zh_broadcastnews_ptm256_8000/</code>
+<code></code>
+<code>├── feat.params   //HMM模型的特征参数</code>
+<code></code>
+<code>├── mdef   //模型定义文件（为每个即将进行训练的HMM的每一状态定义一个独特的数字标识）</code>
+<code></code>
+<code>├── means  //混合高斯模型的均值</code>
+<code></code>
+<code>├── mixture_weights   //混合权重</code>
+<code></code>
+<code>├── noisedict    //噪声也就是非语音字典</code>
+<code></code>
+<code>├── sendump  //用来从声学模型中获取mixture_weights文件的？？</code>
+<code></code>
+<code>├── transition_matrices  //HMM模型的状态转移矩阵</code>
+<code></code>
+<code>└── variances  //混合高斯模型的方差</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga97ec74" class="outline-2">
+<h2 id="orga97ec74"><span class="section-number-2">2</span> Installation and Setup</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org2aa49c5" class="outline-3">
+<h3 id="org2aa49c5"><span class="section-number-3">2.1</span> Install dependencies</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install -y git  &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> automake &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> libtool &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> bison &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> python-dev &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> swig &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> make &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
+<code> pkg-config</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org05c1c65" class="outline-3">
+<h3 id="org05c1c65"><span class="section-number-3">2.2</span> Install sphinxbase and pocketsphinx from source code</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-sh"><code>git clone https://github.com/cmusphinx/sphinxbase.git</code>
+<code><span style="color: #F92672;">cd</span> sphinxbase</code>
+<code>./autogen.sh</code>
+<code>make</code>
+<code>sudo make install</code>
+<code><span style="color: #F92672;">cd</span> ..</code>
+<code></code>
+<code>git clone git://github.com/cmusphinx/pocketsphinx.git</code>
+<code><span style="color: #F92672;">cd</span> pocketsphinx</code>
+<code>./autogen.sh</code>
+<code>make</code>
+<code>sudo make install</code>
+<code><span style="color: #F92672;">cd</span> ..</code>
+<code></code>
+<code>sudo ldconfig</code>
+</pre>
+</div>
+
+<p>
+Test Installation:
+</p>
+<pre class="example">
+<code>$pocketsphinx_continuous</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd89d226" class="outline-3">
+<h3 id="orgd89d226"><span class="section-number-3">2.3</span> Indigo User</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Reafer: <a href="http://wiki.ros.org/pocketsphinx">http://wiki.ros.org/pocketsphinx</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org8415038" class="outline-3">
+<h3 id="org8415038"><span class="section-number-3">2.4</span> Using PocketSphinx</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Note: Wave file needs to be mono channel, normalized, and 16000 sample rate.
+</p>
+
+<p>
+Use this to convert quickly online: <a href="http://audio.online-convert.com/convert-to-wav">http://audio.online-convert.com/convert-to-wav</a>
+</p>
+
+<p>
+Without Timing
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>pocketsphinx_continuous -infile sample.wav &gt; decode-result.txt</code>
+</pre>
+</div>
+
+<p>
+With Timing
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>pocketsphinx_continuous -time yes -infile sample.wav &gt; decode-result.txt</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7796f9" class="outline-2">
+<h2 id="orgd7796f9"><span class="section-number-2">3</span> Ros wrapper</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org7cd178d" class="outline-3">
+<h3 id="org7cd178d"><span class="section-number-3">3.1</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div class="outline-text-3" id="text-3-1">
+<pre class="example">
+<code>cd ~/catkin_ws/src</code>
+<code># git clone https://github.com/Pankaj-Baranwal/pocketsphinx.git</code>
+<code>git clone https://github.com/yubaoliu/ros-pocketsphinx.git</code>
+<code>cd ../..</code>
+<code>catkin_make</code>
+</pre>
+
+<p>
+If not work try to install these dependencies:
+</p>
+
+<ol class="org-ol">
+<li>pyaudio</li>
+</ol>
+<pre class="example">
+<code>sudo pip install pyaudio</code>
+</pre>
+
+<p>
+If this does not work, follow instructions below:
+</p>
+<pre class="example">
+<code>sudo apt-get install libasound-dev</code>
+<code>sudo apt-get install python-pyaudio</code>
+</pre>
+
+<ol class="org-ol">
+<li>pocketsphinx: You will need to have pip preinstalled for this to work</li>
+</ol>
+<pre class="example">
+<code>sudo pip install pocketsphinx</code>
+</pre>
+
+<p>
+There are many dependencies which need to be met before installation of pocketsphinx through pip works.
+Use Synaptics package manager to install the unmet dependencies which would be mentioned as error messages on the terminal window in case installation fails. Some of them include:  
+    libpulse-dev  
+    swig
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgcade2bf" class="outline-3">
+<h3 id="orgcade2bf"><span class="section-number-3">3.2</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Updated ROS bindings to pocketsphinx
+</p>
+
+<pre class="example">
+<code>git clone https://github.com/UTNuclearRoboticsPublic/pocketsphinx.git</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4c6c794" class="outline-3">
+<h3 id="org4c6c794"><span class="section-number-3">3.3</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Updated ROS bindings to pocketsphinx
+</p>
+<pre class="example">
+<code>git clone https://github.com/Pankaj-Baranwal/pocketsphinx.git</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org545f981" class="outline-2">
+<h2 id="org545f981"><span class="section-number-2">4</span> Run ROS Wrapper</h2>
+<div class="outline-text-2" id="text-4">
+<pre class="example">
+<code>roslaunch pocketsphinx kws.launch dict:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic kws:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.kwlist</code>
+</pre>
+
+<p>
+This will publish topic <code>/kws_data</code>.
+</p>
+
+<p>
+Here is an example: <a href="https://medium.com/@PankajB96/pocketsphinx-in-ros-demo-1-0-74b2dfc5ebca">use pocketsphnix control turtlebot</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c3cf7f" class="outline-2">
+<h2 id="org9c3cf7f"><span class="section-number-2">5</span> Live Speech Demo</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #F92672;">import</span> os</code>
+<code><span style="color: #F92672;">from</span> pocketsphinx <span style="color: #F92672;">import</span> LiveSpeech, get_model_path</code>
+<code></code>
+<code><span style="color: #FD971F;">model_path</span> = get_model_path()</code>
+<code></code>
+<code><span style="color: #FD971F;">speech</span> = LiveSpeech(</code>
+<code>        verbose=<span style="color: #AE81FF;">False</span>,</code>
+<code>        sampling_rate=16000,</code>
+<code>        buffer_size=2048,</code>
+<code>        no_search=<span style="color: #AE81FF;">False</span>,</code>
+<code>        full_utt=<span style="color: #AE81FF;">False</span>,</code>
+<code>        hmm=os.path.join(model_path, <span style="color: #E6DB74;">'en-us'</span>),</code>
+<code>        lm=os.path.join(model_path, <span style="color: #E6DB74;">'en-us.lm.bin'</span>),</code>
+<code>        dic=os.path.join(model_path, <span style="color: #E6DB74;">'cmudict-en-us.dict'</span>)</code>
+<code>)</code>
+<code><span style="color: #F92672;">for</span> phrase <span style="color: #F92672;">in</span> speech:</code>
+<code>        <span style="color: #F92672;">print</span>(<span style="color: #E6DB74;">"phrase:"</span>, phrase)</code>
+<code>        <span style="color: #F92672;">print</span>(phrase.segments(detailed=<span style="color: #AE81FF;">True</span>))</code>
+</pre>
+</div>
+
+<p>
+Run:
+put the source code into <code>pocketsphinx/model</code>.
+</p>
+
+<pre class="example">
+<code>python3 livespeech.py</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge3dbdb8" class="outline-2">
+<h2 id="orge3dbdb8"><span class="section-number-2">6</span> Sphinx Knowledge Base Tool</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">Sphinx Knowledge Base Tool</a>
+To use: Create a sentence corpus file, consisting of all sentences you would like the decoder to recognize. The sentences should be one to a line (but do not need to have standard punctuation). You may not need to exhastively list all possible sentences: the decoder will allow fragments to recombine into new sentences.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeeff5fa" class="outline-2">
+<h2 id="orgeeff5fa"><span class="section-number-2">7</span> Train Module</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Install:
+</p>
+<pre class="example">
+<code>pip install cmuclmtk --user</code>
+</pre>
+
+<pre class="example">
+<code>git clone https://github.com/cmusphinx/sphinxtrain.git</code>
+<code>./autogen.sh</code>
+<code>make</code>
+<code>sudo make install</code>
+</pre>
+
+
+<p>
+Train:
+</p>
+<pre class="example">
+<code>pocketsphinx_continuous -hmm zh_broadcastnews_ptm256_8000/ -lm zh_broadcastnews_64000_utf8.DMP -dict zh_broadcastnews_utf8.dic</code>
+</pre>
+<p>
+-hmm选项指定声学模型文件夹 –lm选项指定语言模型 –dict选项指定字典文件<sup><a id="fnr.1.100" class="footref" href="#fn.1">1</a></sup>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4af27d9" class="outline-2">
+<h2 id="org4af27d9"><span class="section-number-2">8</span> JSGF</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<a href="https://homepages.abdn.ac.uk/k.vdeemter/pages/teaching/NLP/practicals/JSGFGrammar.html">JSGFGrammar</a>
+</p>
+
+
+<p>
+JSGF := Java Speech Grammar Format
+</p>
+
+
+<p>
+The Java Speech Grammar Format (JSGF) is a BNF-style, platform-independent, and vendor-independent textual representation of grammars for use in speech recognition. It is used by the Java Speech API (JSAPI) .
+</p>
+
+
+<p>
+Example:
+</p>
+<ul class="org-ul">
+<li>move a menu thanks please</li>
+<li>close file</li>
+<li>oh mighty computer please kindly delete menu thanks</li>
+</ul>
+
+<pre class="example">
+<code>#JSGF V1.0</code>
+<code></code>
+<code> public &lt;basicCmd&gt; = &lt;startPolite&gt; &lt;command&gt; &lt;endPolite&gt;;</code>
+<code></code>
+<code> &lt;command&gt; = &lt;action&gt; &lt;object&gt;;</code>
+<code> &lt;action&gt; = /10/ open |/2/ close |/1/ delete |/1/ move;</code>
+<code> &lt;object&gt; = [the | a] (window | file | menu);</code>
+<code></code>
+<code> &lt;startPolite&gt; = (please | kindly | could you | oh mighty computer) *;</code>
+<code> &lt;endPolite&gt; = [ please | thanks | thank you ];</code>
+</pre>
+
+<p>
+The features of JSGF that are shown in this example includes:
+</p>
+
+<p>
+using other grammar rules within a grammar rule.
+</p>
+<ul class="org-ul">
+<li>the OR "|" operator.</li>
+<li>the grouping "(&#x2026;)" operator.</li>
+<li>the optional grouping "[&#x2026;]" operator.</li>
+<li>the zero-or-many "*" (called Kleene star) operator.</li>
+<li>a probability (e.g., "open" is more likely than the others).</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="https://homepages.abdn.ac.uk/k.vdeemter/pages/teaching/NLP/practicals/JSGFGrammar_files/helloWorld.jpg" alt="helloWorld.jpg" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Grammar graph created from the Hello World grammar</p>
+</div>
+
+
+
+<div class="figure">
+<p><img src="https://homepages.abdn.ac.uk/k.vdeemter/pages/teaching/NLP/practicals/JSGFGrammar_files/commandGrammar.jpg" alt="commandGrammar.jpg" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Grammar graph created from the Command grammar</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org901ba3d" class="outline-2">
+<h2 id="org901ba3d"><span class="section-number-2">9</span> Possible Errors</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-org0ff8ef7" class="outline-3">
+<h3 id="org0ff8ef7"><span class="section-number-3">9.1</span> <code>exception_on_overflow</code></h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+Error description:
+</p>
+
+<pre class="example">
+<code>INFO: jsgf.c(709): Defined rule: &lt;bring_me_wrsyolo.location&gt;</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py", line 164, in &lt;module&gt;</code>
+<code>    ASRTest()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py", line 95, in __init__</code>
+<code>    self.start_recognizer()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py", line 126, in start_recognizer</code>
+<code>    fsg.writefile(self.gram + '.fsg')</code>
+<code>AttributeError: 'NoneType' object has no attribute 'writefile'</code>
+<code>[asr_control-1] process has died [pid 16762, exit code 1, cmd /home/yubao/data/catkin_ws/src/pocketsphinx/scripts/asr_test.py jsgf_audio:=sphinx_audio __name:=asr_control __log:=/home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/asr_control-1.log].</code>
+<code>log file: /home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/asr_control-1*.log</code>
+<code>ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear</code>
+<code>ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe</code>
+<code>ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side</code>
+<code>ALSA lib pcm_route.c:867:(find_matching_chmap) Found no matching channel map</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py", line 76, in &lt;module&gt;</code>
+<code>    AudioMessage()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py", line 27, in __init__</code>
+<code>    self.transfer_audio_msg()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py", line 57, in transfer_audio_msg</code>
+<code>    buf = stream.read(1024,exception_on_overflow = False)</code>
+<code>TypeError: read() got an unexpected keyword argument 'exception_on_overflow'</code>
+<code>[audio_control-2] process has died [pid 16763, exit code 1, cmd /home/yubao/data/catkin_ws/src/pocketsphinx/scripts/send_audio.py __name:=audio_control __log:=/home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/audio_control-2.log].</code>
+<code>log file: /home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/audio_control-2*.log</code>
+<code>all processes on machine have died, roslaunch will exit</code>
+<code>shutting down processing monitor...</code>
+<code>... shutting down processing monitor complete</code>
+<code>done</code>
+</pre>
+
+<p>
+Solution:
+</p>
+
+<p>
+<i>exception<sub>on</sub><sub>overflow</sub></i> is caused by <i>pyaudio</i>. The version of <i>pyaudio</i> is too old.
+Please use <i>pip</i> to upgrade it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga288ba9" class="outline-3">
+<h3 id="orga288ba9"><span class="section-number-3">9.2</span> pyaudio is too old</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+Errors:
+</p>
+<pre class="example">
+<code>ubao@yubao-Z370M-S01:~/data/catkin_ws/src/pocketsphinx$ pip2.7 install pyaudio --upgrade --ignore-installed</code>
+<code>/home/yubao/.local/lib/python2.7/site-packages/pip/_vendor/requests/__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.</code>
+<code>  warnings.warn(warning, RequestsDependencyWarning)</code>
+<code>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</code>
+<code>Collecting pyaudio</code>
+<code>Installing collected packages: pyaudio</code>
+<code>ERROR: Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/pyaudio.pyc'</code>
+<code>Consider using the `--user` option or check the permissions.</code>
+</pre>
+
+<p>
+Solution:
+</p>
+
+<p>
+Use pip to upgrade pyaudio to 0.2.11
+</p>
+
+<p>
+I try to uninstall the current version by:
+</p>
+<pre class="example">
+<code>yubao@yubao-Z370M-S01:~/data/catkin_ws/src/pocketsphinx$ pip  uninstall  pyaudio</code>
+<code>/home/yubao/.local/lib/python2.7/site-packages/pip/_vendor/requests/__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.</code>
+<code>  warnings.warn(warning, RequestsDependencyWarning)</code>
+<code>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</code>
+<code>ERROR: Cannot uninstall 'PyAudio'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</code>
+</pre>
+
+<p>
+Then, I use <b><b>&#x2013;ignore-installed</b></b>. This means I can update my current version installed directly withoud removing the previous version.
+It works fun for me.
+</p>
+
+
+<pre class="example">
+<code>yubao@yubao-Z370M-S01:~/data/catkin_ws/src/pocketsphinx$ pip2.7 install pyaudio --upgrade --user  --ignore-installed</code>
+<code>/home/yubao/.local/lib/python2.7/site-packages/pip/_vendor/requests/__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.</code>
+<code>  warnings.warn(warning, RequestsDependencyWarning)</code>
+<code>DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</code>
+<code>Collecting pyaudio</code>
+<code>Installing collected packages: pyaudio</code>
+<code>Successfully installed pyaudio-0.2.11</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9e7a9cd" class="outline-3">
+<h3 id="org9e7a9cd"><span class="section-number-3">9.3</span> roslaunch pocketsphinx robocup.launch</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+Errors:
+</p>
+<pre class="example">
+<code></code>
+<code>process[recognizer-1]: started with pid [25472]</code>
+<code>the rosdep view is empty: call 'sudo rosdep init' and 'rosdep update'</code>
+<code>[INFO] [1566799396.039243]: Launch config: gconfaudiosrc</code>
+<code>/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py:68: SyntaxWarning: The publisher should be created with an explicit keyword argument 'queue_size'. Please see http://wiki.ros.org/rospy/Overview/Publishers%20and%20Subscribers for more information.</code>
+<code>  self.pub = rospy.Publisher('~output', String)</code>
+<code>[INFO] [1566799396.056145]: Starting recognizer...</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 177, in &lt;module&gt;</code>
+<code>    start = recognizer()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 73, in __init__</code>
+<code>    self.start_recognizer()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 80, in start_recognizer</code>
+<code>    self.pipeline = gst.parse_launch(self.launch_config)</code>
+<code>glib.GError: no element "vader"</code>
+<code>Traceback (most recent call last):</code>
+<code>  File "/opt/ros/kinetic/lib/python2.7/dist-packages/rospy/core.py", line 466, in signal_shutdown</code>
+<code>    h()</code>
+<code>  File "/home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py", line 131, in shutdown</code>
+<code>    gtk.main_quit()</code>
+<code>RuntimeError: called outside of a mainloop</code>
+<code>[recognizer-1] process has died [pid 25472, exit code 1, cmd /home/yubao/data/catkin_ws/src/pocketsphinx/nodes/recognizer.py __name:=recognizer __log:=/home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/recognizer-1.log].</code>
+<code>log file: /home/yubao/.ros/log/b3c04ae0-c7ad-11e9-977d-309c23e1152f/recognizer-1*.log</code>
+<code>all processes on machine have died, roslaunch will exit</code>
+<code>shutting down processing monitor...</code>
+<code>... shutting down processing monitor complete</code>
+<code>done</code>
+</pre>
+
+<p>
+Refer: <a href="https://answers.ros.org/question/246247/speech-recognition-packages-for-ros-kinetic-kame/">https://answers.ros.org/question/246247/speech-recognition-packages-for-ros-kinetic-kame/</a>
+&gt;&gt;"Hey! Pocketsphinx is the right package for you.
+But the original package is not well maintained and many have faced difficulties running it on Ubuntu14.04 and above, specially for ROS versions above Indigo.
+So, you could instead use this one:
+Updated Pocketsphinx It is well maintained, doesn't use GStreamer-like external dependencies, and has much better documentation.
+UTNuclearRobotic's version is also a fork of a previous copy of this repo.
+It has many modes you can work with including:
+kws mode for keyword detection.
+asr mode for continuous speech detection
+okay-google mode for switching between the above mentioned modes smoothly etc.
+&gt;&gt;You can also find more tutorials about it on the wiki as well as the Medium blogs here:
+<a href="https://medium.com/@PankajB96/">https://medium.com/@PankajB96/</a>"
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org92900ea" class="outline-2">
+<h2 id="org92900ea"><span class="section-number-2">10</span> Reference</h2>
+<div class="outline-text-2" id="text-10">
+<ol class="org-ol">
+<li><a href="https://bakerstreetsystems.com/blog/post/setting-cmu-sphinx-pocketsphinx-ubuntu-1404">Setting Up CMU Sphinx (PocketSphinx) on Ubuntu] 14.04</a></li>
+</ol>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://blog.csdn.net/zouxy09/article/details/7942784">https://blog.csdn.net/zouxy09/article/details/7942784</a> 
+</p></div></div>
+
+
+</div>
+</div>
