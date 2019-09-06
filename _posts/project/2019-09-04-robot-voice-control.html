@@ -1,0 +1,75 @@
+---
+date: 2019-09-04
+tags: 
+- 
+- 
+- 
+- 
+- 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- project
+title: Patrol Robot Navigating and Automatically Mapping using Voice
+excerpt: Robot automatically mapping and navigation using voice recogniztion
+toc: tables
+export_file_name: 2019-09-04-robot-voice-control.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb3a3081">1. Overview</a></li>
+<li><a href="#org0cf9f41">2. Build and  Run</a></li>
+<li><a href="#orgce44330">3. Train Voice Module</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb3a3081" class="outline-2">
+<h2 id="orgb3a3081"><span class="section-number-2">1</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<iframe width="640" height="480"  src="//player.bilibili.com/player.html?aid=66578892&cid=115537946&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+</div>
+
+<div id="outline-container-org0cf9f41" class="outline-2">
+<h2 id="org0cf9f41"><span class="section-number-2">2</span> Build and  Run</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Get Sourece code:
+</p>
+<pre class="example">
+<code>git clone https://github.com/yubaoliu/ros-pocketsphinx.git</code>
+</pre>
+
+<p>
+RUN:
+</p>
+
+<pre class="example">
+<code>rosrun sound_play soundplay_node.py</code>
+<code></code>
+<code>roslaunch pocketsphinx voice_nav.launch</code>
+</pre>
+
+<p>
+TURTLEBOT SIMULATOR:
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_gazebo turtlebot_world.launch</code>
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgce44330" class="outline-2">
+<h2 id="orgce44330"><span class="section-number-2">3</span> Train Voice Module</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">Sphinx Knowledge Base Tool</a>
+</p>
+</div>
+</div>

@@ -1,0 +1,134 @@
+---
+date: 2019-09-06
+tags: 
+- 
+- 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: cmake
+excerpt: post
+toc: tables
+export_file_name: 2019-09-04-turtlebot.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge30b726">1. Overview</a></li>
+<li><a href="#orgd4746dc">2. Install</a>
+<ul>
+<li><a href="#orge23ae0e">2.1. Homebrew</a></li>
+</ul>
+</li>
+<li><a href="#org8d14f23">3. Linux</a>
+<ul>
+<li><a href="#orgfd0f710">3.1. Ubuntu (Debian)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge30b726" class="outline-2">
+<h2 id="orge30b726"><span class="section-number-2">1</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://www.johnlamp.net/cmake-tutorial-1-getting-started.html#DownloadAndInstall1">cmake-tutorial-1-getting-started</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd4746dc" class="outline-2">
+<h2 id="orgd4746dc"><span class="section-number-2">2</span> Install</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Download the disk image from the CMake
+<a href="http://www.cmake.org/cmake/resources/software.html">website</a>. Pick
+the correct download for whichever version of OS X you are using. Use
+the installer and follow its directions. It will ask if you want it to
+make the command line tools available in your path by creating symbolic
+links, have it do so.
+</p>
+
+<p>
+This provides the <code>cmake</code> command, the CMake GUI (<code>CMake.app</code>), and the
+curses interface (<code>ccmake</code>).
+</p>
+</div>
+
+<div id="outline-container-orge23ae0e" class="outline-3">
+<h3 id="orge23ae0e"><span class="section-number-3">2.1</span> Homebrew</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+If you already have homebrew installed you can simply install CMake with
+the command brew install cmake.
+</p>
+
+<p>
+This provides the <code>cmake</code> command and the curses interface (<code>ccmake</code>)
+but <b>not</b> the CMake GUI.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8d14f23" class="outline-2">
+<h2 id="org8d14f23"><span class="section-number-2">3</span> Linux</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgfd0f710" class="outline-3">
+<h3 id="orgfd0f710"><span class="section-number-3">3.1</span> Ubuntu (Debian)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The simplest way to install CMake is via the command line:
+</p>
+
+<p>
+​ <code>sudo apt-get install cmake cmake-qt-gui</code>
+</p>
+
+<p>
+If your Ubuntu install doesn't include X or you primarily use ssh
+sessions you will also want to install the <code>cmake-curses-gui</code> package.
+Again this is simplest with the command
+</p>
+
+<p>
+​ <code>sudo apt-get install cmake-curses-gui</code>,
+</p>
+
+<p>
+but either GUI interface can be used instead.
+</p>
+
+<p>
+This provides the <code>cmake</code> command and the CMake GUI (<code>cmake-gui</code>). The
+second, optional, package provides the curses interface (<code>ccmake</code>).
+</p>
+
+<p>
+<b>ccmake ncurses</b>
+</p>
+
+<pre class="example">
+<code>sudo apt-get install cmake-curses-gui</code>
+<code>ccmake ..</code>
+</pre>
+
+<p>
+<a href="https://stackoverflow.com/question/16851084/how-to-list-all-cmake-build-option-and-their-default-values">shows</a>:
+</p>
+
+
+<div class="figure">
+<p><img src="https://i.stack.imgur.com/ohmjl.png" alt="ohmjl.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>img</p>
+</div>
+</div>
+</div>
+</div>

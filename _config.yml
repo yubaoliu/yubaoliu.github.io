@@ -23,18 +23,15 @@ markdown: kramdown
 kramdown:
  input: GFM
  extensions:
-  - autolink
   - footnotes
   - smart
  auto_ids: true
  footnote_nr: 1
  entity_output: as_char
- toc_levels: 1..4
  smart_quotes: lsquo,rsquo,ldquo,rdquo
  coderay_line_numbers: table
  coderay_tab_width: 4
  line_width: 100
- latex_headers: section,subsection,subsubsection,paragraph,subparagraph,subparagraph
 
 
 #Plugin Setting
@@ -52,13 +49,6 @@ plugins:
 
 filter: 'category'
 recent_num: 20
-
-
-toc:
-  min_level: 1
-  max_level: 3
-  list_class: section-nav
-  no_toc_section_class: exclude # default: no_toc_section
 
 
 jekyll-figure:
@@ -81,12 +71,12 @@ defaults:
   -
     scope:
       path: ""
-      type: "posts"
+#      type: "posts"
     values:
-      layout: "post"
+#      layout: "post"
       author: Liu Yubao
-      csl: ../assets/ieee.cls
-      bibliography: ../assets/bibliography/bibliography.bib
+#      csl: ../assets/ieee.cls
+#      bibliography: ../assets/bibliography/bibliography.bib
 
 
 # Exclude from processing.

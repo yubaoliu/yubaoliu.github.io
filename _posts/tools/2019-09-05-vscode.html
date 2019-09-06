@@ -1,0 +1,60 @@
+---
+date: 2019-09-06
+tags: 
+- 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- tools
+title: vscode
+excerpt: post
+toc: tables
+export_file_name: 2019-09-04-turtlebot.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8a8c0e9">1. Degug</a>
+<ul>
+<li><a href="#orgf57fedd">1.1. How to debug use cmake</a></li>
+<li><a href="#orgd866ffd">1.2. How to pass args to cmake debug</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8a8c0e9" class="outline-2">
+<h2 id="org8a8c0e9"><span class="section-number-2">1</span> Degug</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgf57fedd" class="outline-3">
+<h3 id="orgf57fedd"><span class="section-number-3">1.1</span> How to debug use cmake</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+press C+F5
+</p>
+</div>
+</div>
+<div id="outline-container-orgd866ffd" class="outline-3">
+<h3 id="orgd866ffd"><span class="section-number-3">1.2</span> How to pass args to cmake debug</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+I was able to pass arguments to a debug target using cmake.debugConfig adding a settings.json file inside .vscode folder with this content:
+</p>
+
+<pre class="example">
+<code>{ </code>
+<code>	"cmake.debugConfig": {</code>
+<code>		"args": [</code>
+<code>			"myFirstArgument"</code>
+<code>		]</code>
+<code>	}</code>
+<code>}</code>
+</pre>
+</div>
+</div>
+</div>

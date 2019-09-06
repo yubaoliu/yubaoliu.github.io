@@ -1,0 +1,126 @@
+---
+date: 2019-09-06
+tags: 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- slam
+title: HDL SLAM Series
+excerpt: post
+toc: tables 
+export_file_name: 2019-09-03-kinect-camera.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org95e887d">1. HDL<sub>GRAPH</sub><sub>SLAM</sub></a>
+<ul>
+<li><a href="#org4084c04">1.1. launch</a></li>
+<li><a href="#org936cca6">1.2. play bag file</a></li>
+<li><a href="#org5fb0434">1.3. Save map</a></li>
+</ul>
+</li>
+<li><a href="#org80b8622">2. koide3/monocular<sub>person</sub><sub>following</sub></a>
+<ul>
+<li><a href="#org2eacd3b">2.1. Run</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org95e887d" class="outline-2">
+<h2 id="org95e887d"><span class="section-number-2">1</span> HDL<sub>GRAPH</sub><sub>SLAM</sub></h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org4084c04" class="outline-3">
+<h3 id="org4084c04"><span class="section-number-3">1.1</span> launch</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Config parameters
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_floor_detection"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"true"</span> /&gt;</code>
+<code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_gps"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"false"</span> /&gt;</code>
+<code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_imu_acc"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"false"</span> /&gt;</code>
+<code>&lt;arg <span style="color: #FD971F;">name</span>=<span style="color: #E6DB74;">"enable_imu_ori"</span> <span style="color: #FD971F;">default</span>=<span style="color: #E6DB74;">"false"</span> /&gt;</code>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>roslaunch hdl_graph_slam_[Custoimized].launch</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org936cca6" class="outline-3">
+<h3 id="org936cca6"><span class="section-number-3">1.2</span> play bag file</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-sh"><code>rosbag play --clock mapping.bag /velodyne_gpsimu_driver/imu_data:=/gpsimu_driver/imu_data</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5fb0434" class="outline-3">
+<h3 id="org5fb0434"><span class="section-number-3">1.3</span> Save map</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-sh"><code>rosservice call /hdl_graph_slam/save_map <span style="color: #E6DB74;">"resolution: 0.01 destination: '/home/yubao/data/Dataset/aisl_lab/map.pcd'"</span></code>
+</pre>
+</div>
+
+<p>
+View <i>pcd</i> map:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>pcl_viewer map.pcd</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org80b8622" class="outline-2">
+<h2 id="org80b8622"><span class="section-number-2">2</span> koide3/monocular<sub>person</sub><sub>following</sub></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://github.com/yubaoliu/monocular_person_following">Git: monocular<sub>person</sub><sub>following</sub></a>
+</p>
+</div>
+
+<div id="outline-container-org2eacd3b" class="outline-3">
+<h3 id="org2eacd3b"><span class="section-number-3">2.1</span> Run</h3>
+<div class="outline-text-3" id="text-2-1">
+<pre class="example">
+<code>echo "monocular_person_following start_robot"</code>
+<code>launch monocular_person_following start_robot.launch publish_dummy_frames:=true webcam:=true camera_xyz:="0 0 0.9" camera_rpy:="0 0 0" --screen</code>
+<code></code>
+<code>echo "start jetson_person_following"</code>
+<code>roslaunch monocular_person_following jetson_person_following.launch camera_name:=/top_front_camera/qhd</code>
+<code></code>
+<code>echo "Start Robot"</code>
+<code>rosrun rosaria RosAria</code>
+<code></code>
+<code>echo "start rvize"</code>
+<code>roscd  monocular_person_following/rviz/</code>
+<code>rviz -d monocular_person_following.rviz</code>
+</pre>
+</div>
+</div>
+</div>

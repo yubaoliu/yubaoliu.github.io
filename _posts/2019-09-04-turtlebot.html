@@ -21,13 +21,15 @@ export_file_name: 2019-09-04-turtlebot.html
 <li><a href="#orga6c9c25">3. Network Configuration</a></li>
 <li><a href="#org5e80b62">4. Verify from TurtleBot to Remote PC</a></li>
 <li><a href="#org0379ec7">5. Start Turtlebot</a></li>
-<li><a href="#orgdd7f173">6. Mapping using gmapping and Kinect</a></li>
-<li><a href="#org2a1461a">7. Autonomous Driving</a></li>
-<li><a href="#orgda2e6c5">8. Turtlebot充电桩：自主充电</a></li>
-<li><a href="#org87825a8">9. ROS <code>turtlebot_follower</code></a></li>
-<li><a href="#org23ea115">10. pocketsphinx: ksm (keyword spotting mode)</a></li>
-<li><a href="#org7b1daa8">11. 语音控制turtlrbot机器人移动</a></li>
-<li><a href="#org58777e5">12. 实现播放语音</a></li>
+<li><a href="#org20e4da3">6. Keyboard</a></li>
+<li><a href="#org5028858">7. Joy Stick</a></li>
+<li><a href="#orgdd7f173">8. Mapping using gmapping and Kinect</a></li>
+<li><a href="#org2a1461a">9. Autonomous Driving</a></li>
+<li><a href="#orgda2e6c5">10. Turtlebot充电桩：自主充电</a></li>
+<li><a href="#org87825a8">11. ROS <code>turtlebot_follower</code></a></li>
+<li><a href="#org23ea115">12. pocketsphinx: ksm (keyword spotting mode)</a></li>
+<li><a href="#org7b1daa8">13. 语音控制turtlrbot机器人移动</a></li>
+<li><a href="#org58777e5">14. 实现播放语音</a></li>
 </ul>
 </div>
 </div>
@@ -242,9 +244,27 @@ Remote:
 </div>
 </div>
 
-<div id="outline-container-orgdd7f173" class="outline-2">
-<h2 id="orgdd7f173"><span class="section-number-2">6</span> Mapping using gmapping and Kinect</h2>
+<div id="outline-container-org20e4da3" class="outline-2">
+<h2 id="org20e4da3"><span class="section-number-2">6</span> Keyboard</h2>
 <div class="outline-text-2" id="text-6">
+<pre class="example">
+<code>roslaunch turtlebot_teleop keyboard_teleop.launch</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org5028858" class="outline-2">
+<h2 id="org5028858"><span class="section-number-2">7</span> Joy Stick</h2>
+<div class="outline-text-2" id="text-7">
+<pre class="example">
+<code>jstest /dev/input/js0</code>
+<code></code>
+<code>roslaunch turtlebot_teleop logitech.launch</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgdd7f173" class="outline-2">
+<h2 id="orgdd7f173"><span class="section-number-2">8</span> Mapping using gmapping and Kinect</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 <b><b>turtlebot</b></b>
 </p>
@@ -282,8 +302,8 @@ Remote:
 </div>
 
 <div id="outline-container-org2a1461a" class="outline-2">
-<h2 id="org2a1461a"><span class="section-number-2">7</span> Autonomous Driving</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org2a1461a"><span class="section-number-2">9</span> Autonomous Driving</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 <b><b>turtlebot</b></b>:
 </p>
@@ -303,8 +323,8 @@ Remote:
 </div>
 </div>
 <div id="outline-container-orgda2e6c5" class="outline-2">
-<h2 id="orgda2e6c5"><span class="section-number-2">8</span> Turtlebot充电桩：自主充电</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="orgda2e6c5"><span class="section-number-2">10</span> Turtlebot充电桩：自主充电</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 <b><b>turtlebot</b></b>:
 </p>
@@ -325,8 +345,8 @@ Remote:
 </div>
 
 <div id="outline-container-org87825a8" class="outline-2">
-<h2 id="org87825a8"><span class="section-number-2">9</span> ROS <code>turtlebot_follower</code></h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org87825a8"><span class="section-number-2">11</span> ROS <code>turtlebot_follower</code></h2>
+<div class="outline-text-2" id="text-11">
 <p>
 <b><b>Turtlebot</b></b>
 </p>
@@ -365,8 +385,8 @@ Demo:
 </div>
 
 <div id="outline-container-org23ea115" class="outline-2">
-<h2 id="org23ea115"><span class="section-number-2">10</span> pocketsphinx: ksm (keyword spotting mode)</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="org23ea115"><span class="section-number-2">12</span> pocketsphinx: ksm (keyword spotting mode)</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 Refer:
 </p>
@@ -452,8 +472,8 @@ In case the default acoustic model is missing or not suited to your needs, you c
 </div>
 </div>
 <div id="outline-container-org7b1daa8" class="outline-2">
-<h2 id="org7b1daa8"><span class="section-number-2">11</span> 语音控制turtlrbot机器人移动</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="org7b1daa8"><span class="section-number-2">13</span> 语音控制turtlrbot机器人移动</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 Reference:
 </p>
@@ -469,8 +489,8 @@ Reference:
 </div>
 
 <div id="outline-container-org58777e5" class="outline-2">
-<h2 id="org58777e5"><span class="section-number-2">12</span> 实现播放语音</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org58777e5"><span class="section-number-2">14</span> 实现播放语音</h2>
+<div class="outline-text-2" id="text-14">
 <pre class="example">
 <code>$ rosrun sound_play soundplay_node.py  </code>
 <code>$ rosrun sound_play say.py "Greetings Humans. Take me to your leader."  </code>

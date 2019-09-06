@@ -1,0 +1,82 @@
+---
+date: 2019-09-06
+tags: 
+- 
+- dummy-tags-should-be-replaced
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: Peoplebot Robot
+excerpt: post
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3999d7f">1. rosaria</a></li>
+<li><a href="#org771bdc7">2. Getting started</a></li>
+<li><a href="#org1438aab">3. joy stick</a></li>
+<li><a href="#org3d8210c">4. Reference</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3999d7f" class="outline-2">
+<h2 id="org3999d7f"><span class="section-number-2">1</span> rosaria</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>amor-ros-pkg/rosaria: <a href="https://github.com/amor-ros-pkg/rosaria">https://github.com/amor-ros-pkg/rosaria</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org771bdc7" class="outline-2">
+<h2 id="org771bdc7"><span class="section-number-2">2</span> Getting started</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Check if you have the read/write rights in /dev/ttyUSB0. If not
+</p>
+<pre class="example">
+<code>sudo chmod a+rw /dev/ttyUSB0</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1438aab" class="outline-2">
+<h2 id="org1438aab"><span class="section-number-2">3</span> joy stick</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-bash"><code>rosrun joy joy_node</code>
+<code></code>
+<code>rosrun rosaria RosAria</code>
+<code></code>
+<code>rosrun teleop_twist_joy teleop_node  cmd_vel:=/RosAria/cmd_vel</code>
+</pre>
+</div>
+
+<p>
+For Logical Gamepad F310:
+</p>
+
+<p>
+Hold on <b><b>A</b></b> key to control robot.
+</p>
+
+
+<div class="figure">
+<p><img src="https://i.imgur.com/tbbKXNh.png" alt="tbbKXNh.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span><code>rqt_graph</code></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d8210c" class="outline-2">
+<h2 id="org3d8210c"><span class="section-number-2">4</span> Reference</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li><a href="http://wiki.ros.org/joy">wiki-ros-joy</a></li>
+<li><a href="http://wiki.ros.org/teleop_twist_joy"><code>teleop_twist_joy</code></a></li>
+</ol>
+</div>
+</div>
