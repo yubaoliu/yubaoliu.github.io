@@ -1,0 +1,69 @@
+---
+date: 2019-09-13
+tags: 
+- DynaSLAM
+author: Yubao Liu
+layout: post
+categories: 
+- paper
+title: "DynaSLAM Tracking, Mapping, and Inpainting in Dynamic Scenes"
+excerpt: post
+toc: tables
+export_file_name: 2019-09-13-DynaSLAM.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org414a991">1. Problem Defination</a></li>
+<li><a href="#org4abd18e">2. Proposial</a></li>
+<li><a href="#org0667d1a">3. Experiment</a></li>
+<li><a href="#org2321926">4. Disadvantages</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org414a991" class="outline-2">
+<h2 id="org414a991"><span class="section-number-2">1</span> Problem Defination</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The assumption of <b><b>scene rigidity</b></b> is typical in
+SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service robotics or autonomous vehicles.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4abd18e" class="outline-2">
+<h2 id="org4abd18e"><span class="section-number-2">2</span> Proposial</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+In this paper we present DynaSLAM, a visual SLAM system
+that, building on ORB-SLAM2 [1], adds the capabilities of dy- namic object detection and background inpainting. DynaSLAM is robust in dynamic scenarios for monocular, stereo and RGB-D configurations. We are capable of detecting the moving objects either by multi-view geometry, deep learning or both. Having a static map of the scene allows inpainting the frame background that has been occluded by such dynamic objects.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0667d1a" class="outline-2">
+<h2 id="org0667d1a"><span class="section-number-2">3</span> Experiment</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>RGB-D datasets</li>
+<li>estimates a map of the static parts of the scene</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2321926" class="outline-2">
+<h2 id="org2321926"><span class="section-number-2">4</span> Disadvantages</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+After the potentially dynamic content has been segmented,
+the pose of the camera is tracked <b><b>using the static part of the image</b></b>. Because the segment contours usually become high- gradient areas, salient point features tend to appear. We do not consider the features in such contour areas.
+</p>
+
+
+<p>
+Only use static parts segmented to tracking. The number of features may be not enough to do tracking.
+</p>
+</div>
+</div>
