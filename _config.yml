@@ -17,6 +17,15 @@ github_username:  yubaoliu
 linkedin: https://www.linkedin.com/in/yubao-liu-1022b7120/
 instagram:
 
+elasticsearch:
+ url: "https://fhridvgup:99v9wkn7bv@blog-7074892904.ap-southeast-2.bonsaisearch.net:443"
+ index_name: blog 
+
+algolia:
+ application_id: 'W2P30L7YW7'
+ index_name: yubao_blog
+ search_only_api_key: 069c62cf17f604d26e82360e8e5a1dbd
+
 # Build settings
 markdown: kramdown
 
@@ -46,6 +55,8 @@ plugins:
   - jekyll-coffeescript
   - jemoji
   - jekyll-redirect-from
+  - jekyll-algolia
+  - searchyll
 
 filter: 'category'
 recent_num: 20
