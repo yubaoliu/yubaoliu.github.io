@@ -79,16 +79,10 @@ sass:
 
 
 defaults:
-  -
-    scope:
-      path: ""
-#      type: "posts"
-    values:
-#      layout: "post"
-      author: Liu Yubao
-#      csl: ../assets/ieee.cls
-#      bibliography: ../assets/bibliography/bibliography.bib
-
+ - scope:
+         path: "img"
+   values:
+        image: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

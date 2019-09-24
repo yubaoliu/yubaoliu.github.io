@@ -1,12 +1,12 @@
 
 /* TOC inspired by http://jashkenas.github.com/coffee-script */
 #table-of-contents {
-	font-size: 12pt;
+	font-size: 10pt;
 	position: fixed;
 	right: 0em;
 	top: 0em;
 	background: white;
-	line-height: 20pt;
+	line-height: 12pt;
 	text-align: right;
 	box-shadow: 0 0 1em #777777;
 	-webkit-box-shadow: 0 0 1em #777777;
@@ -35,7 +35,7 @@
 
 #table-of-contents {
 	float: right;
-	border: 2px solid #CCC;
+	border: 1px solid #CCC;
 	max-width: 50%;
 	overflow: auto;
 }

@@ -1,0 +1,83 @@
+---
+date: 2019-09-22
+tags: 
+- robotics
+author: Yubao Liu
+layout: post
+categories: 
+- robotics
+title: Robotics, Vision and Control
+excerpt: post
+toc: tables
+export_file_name: 2019-09-22-robotics-vision-and-control.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7a40e71">1. Tutorial</a></li>
+<li><a href="#org463cd6f">2. Install</a>
+<ul>
+<li><a href="#org9f46bc1">2.1. Robotics Toolbox</a></li>
+</ul>
+</li>
+<li><a href="#org43945bc">3. Python Function</a>
+<ul>
+<li><a href="#org36dd9e6">3.1. se2</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7a40e71" class="outline-2">
+<h2 id="org7a40e71"><span class="section-number-2">1</span> Tutorial</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="http://petercorke.com/wordpress/resources/moocs">MOOCs</a>
+</p>
+<ul class="org-ul">
+<li>Introducing Robotics, a program of 3 courses over 11 weeks.  Covers the 2D case only, skipping the 3D case where rotation is relatively complex to explain.</li>
+<li>Robot Vision, a program of 3 courses over 10 weeks</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org463cd6f" class="outline-2">
+<h2 id="org463cd6f"><span class="section-number-2">2</span> Install</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9f46bc1" class="outline-3">
+<h3 id="org9f46bc1"><span class="section-number-3">2.1</span> Robotics Toolbox</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<a href="http://petercorke.com/wordpress/toolboxes/robotics-toolbox">http://petercorke.com/wordpress/toolboxes/robotics-toolbox</a>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org43945bc" class="outline-2">
+<h2 id="org43945bc"><span class="section-number-2">3</span> Python Function</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org36dd9e6" class="outline-3">
+<h3 id="org36dd9e6"><span class="section-number-3">3.1</span> se2</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #F92672;">import</span> math</code>
+<code><span style="color: #F92672;">import</span> numpy <span style="color: #F92672;">as</span> np</code>
+<code><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">se2</span>(a, b, c):</code>
+<code>        <span style="color: #FD971F;">cth</span> = math.cos(c)</code>
+<code>        <span style="color: #FD971F;">sth</span> = math.sin(c)</code>
+<code>        <span style="color: #FD971F;">R</span> = np.array([[cth, -sth, a],</code>
+<code>                                  [sth, cth, b],</code>
+<code>                                  [0, 0, 1]])</code>
+<code>        <span style="color: #F92672;">return</span> R</code>
+<code></code>
+<code><span style="color: #F92672;">print</span>(se2(1, 2, math.pi/6))</code>
+</pre>
+</div>
+</div>
+</div>
+</div>

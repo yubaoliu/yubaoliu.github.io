@@ -34,9 +34,10 @@ export_file_name: 2019-09-03-kinect-camera.html
 </li>
 <li><a href="#orga54ffa1">2. Install iai<sub>kinect2</sub></a></li>
 <li><a href="#orgb180bc9">3. Test Kinect2</a></li>
-<li><a href="#orgc43bcb0">4. Kinect2 Calibration</a></li>
-<li><a href="#org95616c7">5. Ros Simulation - <code>iai_kinect2</code></a></li>
-<li><a href="#org95a2276">6. Reference</a></li>
+<li><a href="#orgdb446df">4. Image<sub>view</sub></a></li>
+<li><a href="#orgc43bcb0">5. Kinect2 Calibration</a></li>
+<li><a href="#org95616c7">6. Ros Simulation - <code>iai_kinect2</code></a></li>
+<li><a href="#org95a2276">7. Reference</a></li>
 </ul>
 </div>
 </div>
@@ -59,7 +60,7 @@ export_file_name: 2019-09-03-kinect-camera.html
 <pre class="src src-sh"><code>    sudo apt-get install build-essential cmake pkg-config</code>
 <code>    sudo apt-get install libusb-1.0-0-dev</code>
 <code>    sudo apt-get install libturbojpeg libjpeg-turbo8-dev</code>
-<code>  sudo apt-get install libglfw3-dev</code>
+<code>    sudo apt-get install libglfw3-dev</code>
 <code></code>
 <code><span style="color: #75715E;">#</span><span style="color: #75715E;">Optional</span></code>
 <code>    sudo apt-get install beignet-dev</code>
@@ -238,9 +239,17 @@ Connect your sensor and run kinect2<sub>bridge</sub>:
 </div>
 </div>
 
-<div id="outline-container-orgc43bcb0" class="outline-2">
-<h2 id="orgc43bcb0"><span class="section-number-2">4</span> Kinect2 Calibration</h2>
+<div id="outline-container-orgdb446df" class="outline-2">
+<h2 id="orgdb446df"><span class="section-number-2">4</span> Image<sub>view</sub></h2>
 <div class="outline-text-2" id="text-4">
+<pre class="example">
+<code>rosrun image_view image_view image:=/kinect2/qhd/image_color</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc43bcb0" class="outline-2">
+<h2 id="orgc43bcb0"><span class="section-number-2">5</span> Kinect2 Calibration</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Refer:
 </p>
@@ -252,8 +261,8 @@ Refer:
 </div>
 
 <div id="outline-container-org95616c7" class="outline-2">
-<h2 id="org95616c7"><span class="section-number-2">5</span> Ros Simulation - <code>iai_kinect2</code></h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org95616c7"><span class="section-number-2">6</span> Ros Simulation - <code>iai_kinect2</code></h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="https://github.com/code-iai/iai_kinect2">github</a></li>
 </ul>
@@ -267,8 +276,8 @@ Refer:
 </div>
 
 <div id="outline-container-org95a2276" class="outline-2">
-<h2 id="org95a2276"><span class="section-number-2">6</span> Reference</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org95a2276"><span class="section-number-2">7</span> Reference</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="https://mahsaparsapour.wordpress.com/tutorials/kinect-2/">Mahsa mahsaparsapour</a></li>
 </ul>
