@@ -1,21 +1,10 @@
 ---
-date: 2019-09-24
+date: 2019-09-29
 tags: 
 - 
 - 
 - 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- turtle bot
-- robot
+- opencv
 author: Yubao Liu
 layout: post
 categories: 
@@ -29,37 +18,309 @@ export_file_name: 2019-09-03-kinect-camera.html
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2441d45">1. Visual-Inertial (VIO)</a>
+<li><a href="#orgd5910cf">1. Introduction</a>
 <ul>
-<li><a href="#org09575bc">1.1. Common VIO Solutions</a></li>
-<li><a href="#org694774e">1.2. Variables of Interest and dynamical model</a></li>
-<li><a href="#org68f6546">1.3. References</a></li>
+<li><a href="#org49206e5">1.1. What is SLAM?</a></li>
+<li><a href="#org3b5c272">1.2. Rigid Assumption</a></li>
+<li><a href="#orge7661f6">1.3. Chalenges in Visual SLAM</a></li>
 </ul>
 </li>
-<li><a href="#orgab742ac">2. RTAB-Map</a></li>
+<li><a href="#org7f0a3a7">2. RGBD SLAM</a></li>
+<li><a href="#orgbcb5781">3. RTAB MAP</a></li>
+<li><a href="#orgf4ad62e">4. GSLAM</a></li>
+<li><a href="#org05a045d">5. SFM</a></li>
+<li><a href="#org5fbec3f">6. DynaSLAM</a>
+<ul>
+<li><a href="#org10150d8">6.1. Introduction</a></li>
+<li><a href="#org275aac1">6.2. Compile</a></li>
+<li><a href="#org35896cc">6.3. Paper</a></li>
+<li><a href="#orge57d07e">6.4. Abstract</a></li>
+<li><a href="#org2da1b53">6.5. Notes</a></li>
+</ul>
+</li>
+<li><a href="#orgf3cdcc5">7. RDSLAM</a></li>
+<li><a href="#orgf740ee7">8. Mask-SLAM</a>
+<ul>
+<li><a href="#org7064094">8.1. Paper</a></li>
+</ul>
+</li>
+<li><a href="#org06bf81b">9. SOURCE CODE</a></li>
+<li><a href="#org5de96f1">10. ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
+<li><a href="#org47efe7a">11. Visual-Inertial (VIO)</a>
+<ul>
+<li><a href="#orgd826298">11.1. Common VIO Solutions</a></li>
+<li><a href="#org64f095f">11.2. Variables of Interest and dynamical model</a></li>
+<li><a href="#orgcf740a8">11.3. References</a></li>
+</ul>
+</li>
+<li><a href="#org3856754">12. Useful tools for the RGB-D benchmark</a>
+<ul>
+<li><a href="#org2e639aa">12.1. ABSOLUTE TRAJECTORY ERROR (ATE)</a></li>
+<li><a href="#org4e00366">12.2. RELATIVE POSE ERROR (RPE)</a></li>
+<li><a href="#org6809ab6">12.3. Generating a point cloud from images</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-
-<div id="outline-container-org2441d45" class="outline-2">
-<h2 id="org2441d45"><span class="section-number-2">1</span> Visual-Inertial (VIO)</h2>
+<div id="outline-container-orgd5910cf" class="outline-2">
+<h2 id="orgd5910cf"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org09575bc" class="outline-3">
-<h3 id="org09575bc"><span class="section-number-3">1.1</span> Common VIO Solutions</h3>
+<div id="outline-container-org49206e5" class="outline-3">
+<h3 id="org49206e5"><span class="section-number-3">1.1</span> What is SLAM?</h3>
 <div class="outline-text-3" id="text-1-1">
-</div>
-</div>
-<div id="outline-container-org694774e" class="outline-3">
-<h3 id="org694774e"><span class="section-number-3">1.2</span> Variables of Interest and dynamical model</h3>
-</div>
+<p>
+SLAM: Simultaneous Localization and Mapping
+</p>
+<ul class="org-ul">
+<li>Estimate the pose of a robot and the map of the environment at the same time</li>
+<li>Localization: inferring location given a map</li>
+<li>Mapping: inferring a map given locations</li>
+<li>SLAM: learning a map and locating the robot simultaneously</li>
+<li>Disadvantage: lack of semantic information</li>
+</ul>
+
+<p>
+SLAM是由“定位”（Localization)和“建图”（Mapping)两部分构成的。现在来看定位问题。
+这个问题可以用基于特征的方法（feature-based）或直接的方法（direct method）来解.
+</p>
 
 
+<div class="figure">
+<p><img src="https://i.imgur.com/mACMplo.png" alt="mACMplo.png" />
+</p>
+</div>
 
-<div id="outline-container-org68f6546" class="outline-3">
-<h3 id="org68f6546"><span class="section-number-3">1.3</span> References</h3>
+<p>
+SLAM Algorithms
+</p>
+
+<p>
+帧间匹配算法
+</p>
+
+<ul class="org-ul">
+<li>ICP(Iterative Closest Point)</li>
+<li>PI-ICP(Point-to-Line Iterative 小象学院slam无人驾驶Closest Point)</li>
+<li>NDT(Normal Distribution Transfomation)</li>
+<li>CSM(Correlation Scan Match), 2008 ## 回环检测</li>
+<li>Scan-to-Scan</li>
+<li>Scan-to-Map</li>
+<li>Map-to-Map</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="https://i.imgur.com/JqjACFN.png" alt="JqjACFN.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>两轮差速底盘的运动学模型</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b5c272" class="outline-3">
+<h3 id="org3b5c272"><span class="section-number-3">1.2</span> Rigid Assumption</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The assumption of scene rigidity is typical in SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service service robotics or autonomous vehicles.\cite{Bescos2018}
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge7661f6" class="outline-3">
+<h3 id="orge7661f6"><span class="section-number-3">1.3</span> Chalenges in Visual SLAM</h3>
 <div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Low-contrast; textureless image regions</li>
+<li>occlusions</li>
+<li>Violations of brightness constancy (e.g., specular reflections)</li>
+<li>Really large baselines (foreshortening adn appearance change)</li>
+<li>Camera calibration errors</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7f0a3a7" class="outline-2">
+<h2 id="org7f0a3a7"><span class="section-number-2">2</span> RGBD SLAM</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>yubaoliu/rgbdslam<sub>v2</sub>: git@github.com:yubaoliu/rgbdslam<sub>v2.git</sub></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbcb5781" class="outline-2">
+<h2 id="orgbcb5781"><span class="section-number-2">3</span> RTAB MAP</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><a href="https://blog.51cto.com/remyspot/1784914">SLAM: RtabMap中文解析</a></li>
+<li><a href="http://introlab.github.io/rtabmap/">RTAB-Map-gitio</a></li>
+<li><a href="http://introlab.github.io/rtabmap/">RTAB-Map</a></li>
+</ul>
+
+<div class="HTML">
+<p>
+&lt;iframe width="640" height="480" src="<a href="https://www.youtube.com/embed/AMLwjo80WzI">https://www.youtube.com/embed/AMLwjo80WzI</a>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf4ad62e" class="outline-2">
+<h2 id="orgf4ad62e"><span class="section-number-2">4</span> GSLAM</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="https://github.com/zdzhaoyong/GSLAM">zdzhaoyong/GSLAM</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org05a045d" class="outline-2">
+<h2 id="org05a045d"><span class="section-number-2">5</span> SFM</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>sfm-github: <a href="https://github.com/topics/sfm">https://github.com/topics/sfm</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5fbec3f" class="outline-2">
+<h2 id="org5fbec3f"><span class="section-number-2">6</span> DynaSLAM</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org10150d8" class="outline-3">
+<h3 id="org10150d8"><span class="section-number-3">6.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>Project: <a href="https://bertabescos.github.io/DynaSLAM/">https://bertabescos.github.io/DynaSLAM/</a></li>
+<li><a href="https://github.com/BertaBescos/DynaSLAM.git">BertaBescos/DynaSLAM</a></li>
+<li><a href="https://blog.csdn.net/qq_38589460/article/details/86549662">CSDN ORB-SLAM2到dynaSLAM编译</a></li>
+</ul>
+<p>
+&lt;iframe width="640" height="480" src="<a href="https://www.youtube.com/embed/EabI_goFmQs">https://www.youtube.com/embed/EabI_goFmQs</a>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+</p>
+</div>
+</div>
+<div id="outline-container-org275aac1" class="outline-3">
+<h3 id="org275aac1"><span class="section-number-3">6.2</span> Compile</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-bash"><code>git clone https://github.com/BertaBescos/DynaSLAM.git</code>
+<code><span style="color: #F92672;">cd</span> DynaSLAM</code>
+<code></code>
+<code>chmod +x build.sh</code>
+<code>./build.sh</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org35896cc" class="outline-3">
+<h3 id="org35896cc"><span class="section-number-3">6.3</span> Paper</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Bescos, B., Facil, J. M., Civera, J., &amp; Neira, J. (2018). DynaSLAM: Tracking, Mapping, and Inpainting in Dynamic Scenes. IEEE Robotics and Automation Letters, 3(4), 4076–4083. <a href="https://doi.org/10.1109/LRA.2018.2860039">https://doi.org/10.1109/LRA.2018.2860039</a> \cite{Bescos2018}
+<a href="https://youtu.be/EabI_goFmQs">Youtube-demo</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orge57d07e" class="outline-3">
+<h3 id="orge57d07e"><span class="section-number-3">6.4</span> Abstract</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+The assumption of scene rigidity is typical in SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service service robotics or autonomous vehicles.
+</p>
+
+<p>
+In this paper we present DynaSLAM, a visual SLAM system
+that, building on ORB-SLAM2, adds the capabilities of 
+</p>
+<ul class="org-ul">
+<li>dynamic object detection and</li>
+<li>background inpainting.</li>
+</ul>
+
+<p>
+DynaSLAM is robust in dynamic scenarios for monocular, stereo and RGB-D configurations. 
+</p>
+
+<p>
+We are capable of detecting the moving objects either by multi-view geometry, deep learning or both. 
+</p>
+
+<p>
+<b><b>Inpainting</b></b>: <b><b>Having a static map of the scene</b></b> allows inpainting the frame background that has been occluded by such dynamic objects.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2da1b53" class="outline-3">
+<h3 id="org2da1b53"><span class="section-number-3">6.5</span> Notes</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+第三部分我理解的是求基础矩阵用了ransac，所以基础矩阵更符合静态点的运动模型。当前点离这个基础矩阵计算出的极线越远就说明动态效果越大
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf3cdcc5" class="outline-2">
+<h2 id="orgf3cdcc5"><span class="section-number-2">7</span> RDSLAM</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><a href="http://www.zjucvg.net/rdslam/rdslam.html">RDSLAM: Robust Dynamic SLAM</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf740ee7" class="outline-2">
+<h2 id="orgf740ee7"><span class="section-number-2">8</span> Mask-SLAM</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org7064094" class="outline-3">
+<h3 id="org7064094"><span class="section-number-3">8.1</span> Paper</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Kaneko, M., Iwami, K., Ogawa, T., Yamasaki, T., &amp; Aizawa, K. (2018). Mask-SLAM: Robust feature-based monocular SLAM by masking using semantic segmentation. IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops, 2018-June, 371–379. <a href="https://doi.org/10.1109/CVPRW.2018.00063">https://doi.org/10.1109/CVPRW.2018.00063</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org06bf81b" class="outline-2">
+<h2 id="org06bf81b"><span class="section-number-2">9</span> SOURCE CODE</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>zssjh/semantic<sub>slam</sub>: <a href="https://github.com/zssjh/semantic_slam.git">https://github.com/zssjh/semantic_slam.git</a>
+ORB-SLAM2 combined with yolov3 object detection, considering the relationship among objects</li>
+<li></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5de96f1" class="outline-2">
+<h2 id="org5de96f1"><span class="section-number-2">10</span> ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li><a href="https://github.com/Ewenwan/ORB_SLAM2_SSD_Semantic">Ewenwan/ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org47efe7a" class="outline-2">
+<h2 id="org47efe7a"><span class="section-number-2">11</span> Visual-Inertial (VIO)</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orgd826298" class="outline-3">
+<h3 id="orgd826298"><span class="section-number-3">11.1</span> Common VIO Solutions</h3>
+<div class="outline-text-3" id="text-11-1">
+</div>
+</div>
+<div id="outline-container-org64f095f" class="outline-3">
+<h3 id="org64f095f"><span class="section-number-3">11.2</span> Variables of Interest and dynamical model</h3>
+</div>
+
+
+
+<div id="outline-container-orgcf740a8" class="outline-3">
+<h3 id="orgcf740a8"><span class="section-number-3">11.3</span> References</h3>
+<div class="outline-text-3" id="text-11-3">
 <ul class="org-ul">
 <li><a href="https://blog.csdn.net/wangshuailpp/article/details/78461171">VINS技术路线与代码详解</a></li>
 </ul>
@@ -67,14 +328,37 @@ export_file_name: 2019-09-03-kinect-camera.html
 </div>
 </div>
 
-<div id="outline-container-orgab742ac" class="outline-2">
-<h2 id="orgab742ac"><span class="section-number-2">2</span> <a href="http://introlab.github.io/rtabmap/">RTAB-Map</a></h2>
-<div class="outline-text-2" id="text-2">
-<div class="HTML">
-<p>
-&lt;iframe width="640" height="480" src="<a href="https://www.youtube.com/embed/AMLwjo80WzI">https://www.youtube.com/embed/AMLwjo80WzI</a>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;
-</p>
 
+<div id="outline-container-org3856754" class="outline-2">
+<h2 id="org3856754"><span class="section-number-2">12</span> Useful tools for the RGB-D benchmark</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li><a href="https://vision.in.tum.de/data/datasets/rgbd-dataset/tools#evaluation">https://vision.in.tum.de/data/datasets/rgbd-dataset/tools#evaluation</a></li>
+</ul>
+</div>
+<div id="outline-container-org2e639aa" class="outline-3">
+<h3 id="org2e639aa"><span class="section-number-3">12.1</span> ABSOLUTE TRAJECTORY ERROR (ATE)</h3>
+</div>
+<div id="outline-container-org4e00366" class="outline-3">
+<h3 id="org4e00366"><span class="section-number-3">12.2</span> RELATIVE POSE ERROR (RPE)</h3>
+</div>
+<div id="outline-container-org6809ab6" class="outline-3">
+<h3 id="org6809ab6"><span class="section-number-3">12.3</span> Generating a point cloud from images</h3>
+<div class="outline-text-3" id="text-12-3">
+<pre class="example">
+<code>usage: generate_pointcloud.py [-h] rgb_file depth_file ply_file</code>
+<code></code>
+<code>This script reads a registered pair of color and depth images and generates a</code>
+<code>colored 3D point cloud in the PLY format.</code>
+<code></code>
+<code>positional arguments:</code>
+<code>  rgb_file    input color image (format: png)</code>
+<code>  depth_file  input depth image (format: png)</code>
+<code>  ply_file    output PLY file (format: ply)</code>
+<code></code>
+<code>optional arguments:</code>
+<code>  -h, --help  show this help message and exit</code>
+</pre>
 </div>
 </div>
 </div>

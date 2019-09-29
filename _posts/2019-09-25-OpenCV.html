@@ -1,0 +1,594 @@
+---
+date: 2019-09-25
+tags: 
+- opencv
+author: Yubao Liu
+layout: post
+categories: 
+- Computer Vison
+title: OpenCV
+excerpt: post
+toc: tables
+export_file_name: 2019-09-25-OpenCV.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org88cf88c">1. Development</a>
+<ul>
+<li><a href="#org9d5e52b">1.1. Data type in Mat</a></li>
+</ul>
+</li>
+<li><a href="#org55df31b">2. Overview</a></li>
+<li><a href="#installing-opencv-python-from-pre-built-binaries">3. Installing OpenCV-Python from Pre-built Binaries</a></li>
+<li><a href="#building-opencv-from-source">4. Building OpenCV from source</a>
+<ul>
+<li><a href="#downloading-opencv">4.1. Downloading OpenCV</a></li>
+</ul>
+</li>
+<li><a href="#common-questions">5. Common Questions</a>
+<ul>
+<li><a href="#problom-gtk">5.1. problom: GTK+</a></li>
+<li><a href="#problem-with-robots">5.2. Problem with robots</a></li>
+</ul>
+</li>
+<li><a href="#org343843e">6. Reference</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org88cf88c" class="outline-2">
+<h2 id="org88cf88c"><span class="section-number-2">1</span> Development</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org9d5e52b" class="outline-3">
+<h3 id="org9d5e52b"><span class="section-number-3">1.1</span> Data type in Mat</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+For <i>rgb</i>, <i>depth</i> and pixel-wise segmentation <i>label</i> image:
+</p>
+<div class="org-src-container">
+<pre class="src src-cpp"><code><span style="color: #AE81FF;">rgb</span>: 480x640x3 type: 16</code>
+<code>depth: 480x640x1 type:2</code>
+<code>label: 480x640x1 type:0</code>
+</pre>
+</div>
+
+
+<p>
+A Mapping of Type to Numbers in OpenCV<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Type</td>
+<td class="org-right">C1</td>
+<td class="org-right">C2</td>
+<td class="org-right">C3</td>
+<td class="org-right">C4</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>8U</sub></td>
+<td class="org-right">0</td>
+<td class="org-right">8</td>
+<td class="org-right">16</td>
+<td class="org-right">24</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>8S</sub></td>
+<td class="org-right">1</td>
+<td class="org-right">9</td>
+<td class="org-right">17</td>
+<td class="org-right">25</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>16U</sub></td>
+<td class="org-right">2</td>
+<td class="org-right">10</td>
+<td class="org-right">18</td>
+<td class="org-right">26</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>16S</sub></td>
+<td class="org-right">3</td>
+<td class="org-right">11</td>
+<td class="org-right">19</td>
+<td class="org-right">27</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>32S</sub></td>
+<td class="org-right">4</td>
+<td class="org-right">12</td>
+<td class="org-right">20</td>
+<td class="org-right">28</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>32F</sub></td>
+<td class="org-right">5</td>
+<td class="org-right">13</td>
+<td class="org-right">21</td>
+<td class="org-right">29</td>
+</tr>
+
+<tr>
+<td class="org-left">CV<sub>64F</sub></td>
+<td class="org-right">6</td>
+<td class="org-right">14</td>
+<td class="org-right">22</td>
+<td class="org-right">30</td>
+</tr>
+</tbody>
+</table>
+
+<pre class="example">
+<code>Unsigned 8bits uchar 0~255</code>
+<code>IplImage: IPL_DEPTH_8U</code>
+<code>Mat: CV_8UC1, CV_8UC2, CV_8UC3, CV_8UC4</code>
+<code></code>
+<code>Signed 8bits char -128~127</code>
+<code>IplImage: IPL_DEPTH_8S</code>
+<code>Mat: CV_8SC1，CV_8SC2，CV_8SC3，CV_8SC4</code>
+<code></code>
+<code>Unsigned 16bits ushort 0~65535</code>
+<code>IplImage: IPL_DEPTH_16U</code>
+<code>Mat: CV_16UC1，CV_16UC2，CV_16UC3，CV_16UC4</code>
+<code></code>
+<code>Signed 16bits short -32768~32767</code>
+<code>IplImage: IPL_DEPTH_16S</code>
+<code>Mat: CV_16SC1，CV_16SC2，CV_16SC3，CV_16SC4</code>
+<code></code>
+<code>Signed 32bits int -2147483648~2147483647</code>
+<code>IplImage: IPL_DEPTH_32S</code>
+<code>Mat: CV_32SC1，CV_32SC2，CV_32SC3，CV_32SC4</code>
+<code></code>
+<code>Float 32bits float -1.18*10-38~3.40*10-38 </code>
+<code>IplImage: IPL_DEPTH_32F</code>
+<code>Mat: CV_32FC1，CV_32FC2，CV_32FC3，CV_32FC4</code>
+<code></code>
+<code>Double 64bits double </code>
+<code>Mat: CV_64FC1，CV_64FC2，CV_64FC3，CV_64FC4</code>
+<code></code>
+<code>Unsigned 1bit bool</code>
+<code>IplImage: IPL_DEPTH_1U</code>
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">type</td>
+<td class="org-left">C1</td>
+<td class="org-left">C2</td>
+<td class="org-left">C3</td>
+<td class="org-left">C4</td>
+<td class="org-left">C6</td>
+</tr>
+
+<tr>
+<td class="org-left">uchar</td>
+<td class="org-left">uchar</td>
+<td class="org-left">cv::Vec2b</td>
+<td class="org-left">cv::Vec3b</td>
+<td class="org-left">cv::Vec4b</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">short</td>
+<td class="org-left">short</td>
+<td class="org-left">cv::Vec2s</td>
+<td class="org-left">cv::Vec3s</td>
+<td class="org-left">cv::Vec4s</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">int</td>
+<td class="org-left">int</td>
+<td class="org-left">cv::Vec2i</td>
+<td class="org-left">cv::Vec3i</td>
+<td class="org-left">cv::Vec4i</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">float</td>
+<td class="org-left">float</td>
+<td class="org-left">cv::Vec2f</td>
+<td class="org-left">cv::Vec3f</td>
+<td class="org-left">cv::Vec4f</td>
+<td class="org-left">cv::Vec6f</td>
+</tr>
+
+<tr>
+<td class="org-left">double</td>
+<td class="org-left">double</td>
+<td class="org-left">cv::Vec2d</td>
+<td class="org-left">cv::Vec3d</td>
+<td class="org-left">cv::Vec4d</td>
+<td class="org-left">cv::Vec6d</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+How to use<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>:
+</p>
+<div class="org-src-container">
+<pre class="src src-cpp"><code><span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Vec3b</span> <span style="color: #FD971F;">vec3b</span> = img.at&lt;<span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Vec3b</span>&gt;(0,0);</code>
+<code>  <span style="color: #66D9EF;">uchar</span> <span style="color: #FD971F;">vec3b0</span> = img.at&lt;<span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Vec3b</span>&gt;(0,0)[0];</code>
+<code>  <span style="color: #66D9EF;">uchar</span> <span style="color: #FD971F;">vec3b1</span> = img.at&lt;<span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Vec3b</span>&gt;(0,0)[1];</code>
+<code>  <span style="color: #66D9EF;">uchar</span> <span style="color: #FD971F;">vec3b2</span> = img.at&lt;<span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Vec3b</span>&gt;(0,0)[2];</code>
+<code>  <span style="color: #AE81FF;">std</span>::cout&lt;&lt;<span style="color: #E6DB74;">"vec3b = "</span>&lt;&lt;vec3b&lt;&lt;<span style="color: #AE81FF;">std</span>::endl;</code>
+<code>  <span style="color: #AE81FF;">std</span>::cout&lt;&lt;<span style="color: #E6DB74;">"vec3b0 = "</span>&lt;&lt;(<span style="color: #66D9EF;">int</span>)vec3b0&lt;&lt;<span style="color: #AE81FF;">std</span>::endl;</code>
+<code>  <span style="color: #AE81FF;">std</span>::cout&lt;&lt;<span style="color: #E6DB74;">"vec3b1 = "</span>&lt;&lt;(<span style="color: #66D9EF;">int</span>)vec3b1&lt;&lt;<span style="color: #AE81FF;">std</span>::endl;</code>
+<code>  <span style="color: #AE81FF;">std</span>::cout&lt;&lt;<span style="color: #E6DB74;">"vec3b2 = "</span>&lt;&lt;(<span style="color: #66D9EF;">int</span>)vec3b2&lt;&lt;<span style="color: #AE81FF;">std</span>::endl;</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org55df31b" class="outline-2">
+<h2 id="org55df31b"><span class="section-number-2">2</span> Overview</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://opencv.org/">opencv<sub>org</sub></a>
+<a href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html">OpenCV-Python
+Tutorials</a>
+</p>
+
+<p>
+<b>Note</b>: Before compile OpenCV from source code, remove <i>/anaconda2/bin</i>
+from PATH under the current terminal
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f50f20" class="outline-2">
+<h2 id="installing-opencv-python-from-pre-built-binaries"><span class="section-number-2">3</span> Installing OpenCV-Python from Pre-built Binaries</h2>
+<div class="outline-text-2" id="text-installing-opencv-python-from-pre-built-binaries">
+<p>
+Install package
+<a href="https://packages.ubuntu.com/trusty/python-opencv">python-opencv</a> with
+following command in terminal (as root user).
+</p>
+
+<p>
+<code>$ sudo apt-get install python-opencv</code>
+</p>
+
+<p>
+if you are on linux you can do :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>pip install opencv-python</code>
+</pre>
+</div>
+
+<p>
+or
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>conda install opencv</code>
+</pre>
+</div>
+
+<p>
+Open Python IDLE (or IPython) and type following codes in Python
+terminal.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code>&gt;&gt;&gt; <span style="color: #F92672;">import</span> cv2</code>
+<code>&gt;&gt;&gt; <span style="color: #F92672;">print</span> cv2.__version__</code>
+<code>3.4.3</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org057f19d" class="outline-2">
+<h2 id="building-opencv-from-source"><span class="section-number-2">4</span> Building OpenCV from source</h2>
+<div class="outline-text-2" id="text-building-opencv-from-source">
+<p>
+##Required build dependencies We need CMake to configure the
+installation, GCC for compilation, Python-devel and Numpy for building
+Python bindings etc.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install cmake</code>
+<code>sudo apt-get install python-devel numpy</code>
+<code>sudo apt-get install gcc gcc-c++</code>
+</pre>
+</div>
+
+<p>
+Next we need GTK support for GUI features, Camera support (libv4l),
+Media Support (ffmpeg, gstreamer) etc.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install gtk2-devel</code>
+<code>sudo apt-get install libv4l-devel</code>
+<code>sudo apt-get install ffmpeg-devel</code>
+<code>sudo apt-get install gstreamer-plugins-base-devel</code>
+</pre>
+</div>
+
+<p>
+<b>Optional Dependencies</b>
+</p>
+
+<p>
+Above dependencies are sufficient to install OpenCV in your Ubuntu
+machine. But depending upon your requirements, you may need some extra
+dependencies. A list of such optional dependencies are given below. You
+can either leave it or install it, your call :)
+</p>
+
+<p>
+OpenCV comes with supporting files for image formats like PNG, JPEG,
+JPEG2000, TIFF, WebP etc. But it may be a little old. If you want to get
+latest libraries, you can install development files for system libraries
+of these formats.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>sudo apt-get install libpng-devel</code>
+<code>sudo apt-get install libjpeg-turbo-devel</code>
+<code>sudo apt-get install jasper-devel</code>
+<code>sudo apt-get install openexr-devel</code>
+<code>sudo apt-get install libtiff-devel</code>
+<code>sudo apt-get install libwebp-devel</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org90a342f" class="outline-3">
+<h3 id="downloading-opencv"><span class="section-number-3">4.1</span> Downloading OpenCV</h3>
+<div class="outline-text-3" id="text-downloading-opencv">
+<p>
+<b>Reference:</b>
+</p>
+
+<ul class="org-ul">
+<li><a href="https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html">https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html</a></li>
+</ul>
+
+<p>
+To download the latest source from OpenCV's
+<a href="https://github.com/opencv/opencv">GitHub Repository</a>. (If you want to
+contribute to OpenCV choose this. For that, you need to install <b>Git</b>
+first)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>$ sudo apt-get install git</code>
+<code>$ git clone https://github.com/opencv/opencv.git</code>
+</pre>
+</div>
+
+<p>
+It will create a folder "opencv" in current directory. The cloning may
+take some time depending upon your internet connection.
+</p>
+
+<p>
+##Configuring and Installing Now open a terminal window and navigate to
+the downloaded "opencv" folder. Create a new "build" folder and navigate
+to it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>$ mkdir build</code>
+<code>$ cd build</code>
+<code>$ cmake ../</code>
+</pre>
+</div>
+
+<p>
+Now you build the files using "make" command and install it using "make
+install" command.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>$ make</code>
+<code>$<span style="color: #FD971F;">sudo</span> make install</code>
+</pre>
+</div>
+
+<p>
+Installation is over. All files are installed in "<i>usr/local</i>" folder.
+Open a terminal and try import "cv2".
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><code>import cv2 as <span style="color: #66D9EF;">cv</span></code>
+<code><span style="color: #A6E22E;">print</span>(cv.__version__)</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc4f390e" class="outline-2">
+<h2 id="common-questions"><span class="section-number-2">5</span> Common Questions</h2>
+<div class="outline-text-2" id="text-common-questions">
+<ul class="org-ul">
+<li>Environment:
+
+<ul class="org-ul">
+<li>conda</li>
+<li>Jupyter</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-orga1d8fd0" class="outline-3">
+<h3 id="problom-gtk"><span class="section-number-3">5.1</span> problom: GTK+</h3>
+<div class="outline-text-3" id="text-problom-gtk">
+<ul class="org-ul">
+<li><b>Problem Description</b></li>
+</ul>
+
+<p>
+I encounterred this problom and it took me many days to solve it.
+</p>
+
+
+<div class="figure">
+<p><img src="images/Anaconda/Error_OpenCV_imshow_gtk2x.png" alt="Error_OpenCV_imshow_gtk2x.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>read image example use cv2</p>
+</div>
+
+<p>
+<i>This is the source code</i>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #F92672;">import</span> cv2</code>
+<code></code>
+<code><span style="color: #FD971F;">img</span> = cv2.imread(<span style="color: #E6DB74;">'test.png'</span>,0) <span style="color: #75715E;"># </span><span style="color: #75715E;">0: gray; 1: color</span></code>
+<code></code>
+<code>cv2.imshow(<span style="color: #E6DB74;">'Image'</span>,img) <span style="color: #75715E;"># </span><span style="color: #75715E;">para 1: window name</span></code>
+<code></code>
+<code>cv2.waitKey(0)</code>
+<code></code>
+<code>&#8203;**Results**:</code>
+<code>---------------------------------------------------------------------------</code>
+<code>error                                     Traceback (most recent call last)</code>
+<code>&lt;ipython-<span style="color: #F92672;">input</span>-2-55233ffdf5b9&gt; <span style="color: #F92672;">in</span> &lt;module&gt;</code>
+<code>          1 <span style="color: #F92672;">import</span> cv2</code>
+<code>          2 <span style="color: #FD971F;">img</span> = cv2.imread(<span style="color: #E6DB74;">'test.png'</span>,0) <span style="color: #75715E;"># </span><span style="color: #75715E;">0: gray; 1: color</span></code>
+<code>----&gt; 3 cv2.imshow(<span style="color: #E6DB74;">'Image'</span>,img) <span style="color: #75715E;"># </span><span style="color: #75715E;">para 1: window name</span></code>
+<code>          4 cv2.waitKey(0)</code>
+<code></code>
+<code>error: OpenCV(3.4.2) /tmp/build/80754af9/opencv-suite_1535558553474/work/modules/highgui/src/window.cpp:632: error: (-2:Unspecified error) The function <span style="color: #F92672;">is</span> <span style="color: #F92672;">not</span> implemented. Rebuild the library <span style="color: #F92672;">with</span> Windows, GTK+ 2.x <span style="color: #F92672;">or</span> Carbon support. If you are on Ubuntu <span style="color: #F92672;">or</span> Debian, install libgtk2.0-dev <span style="color: #F92672;">and</span> pkg-config, then re-run cmake <span style="color: #F92672;">or</span> configure script <span style="color: #F92672;">in</span> function <span style="color: #E6DB74;">'cvShowImage'</span></code>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><b>Solutions:</b></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>conda install -c menpo opencv3</code>
+</pre>
+</div>
+
+<p>
+These articles give a possible solution: 1.
+<a href="https://anaconda.org/menpo/opencv3">https://anaconda.org/menpo/opencv3</a> 1.
+<a href="https://blog.csdn.net/flyyufenfei/article/details/79192330">https://blog.csdn.net/flyyufenfei/article/details/79192330</a> 2.
+<a href="https://groups.google.com/a/continuum.io/forum/#!topic/anaconda/uHB2wYT29vU">https://groups.google.com/a/continuum.io/forum/#!topic/anaconda/uHB2wYT29vU</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3f27082" class="outline-3">
+<h3 id="problem-with-robots"><span class="section-number-3">5.2</span> Problem with robots</h3>
+<div class="outline-text-3" id="text-problem-with-robots">
+<ul class="org-ul">
+<li><b>*Problem Description</b></li>
+</ul>
+
+
+<div class="figure">
+<p><img src="images/2018/12/error-due-to-ros.png" alt="error-due-to-ros.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Error due to ROS</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>(TensorflowPy36) yubao@yubao-Z370M-S01:~/GitProject/AI/Source/Tensorflow$ python ImageRead.py</code>
+<code><span style="color: #A6E22E;">Traceback</span> (most recent call last):</code>
+<code>  File <span style="color: #E6DB74;">"ImageRead.py"</span>, line 2,<span style="color: #F92672;"> in</span> &lt;module&gt;</code>
+<code>    import cv2</code>
+<code>ImportError: /opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so: undefined symbol: PyCObject_Type</code>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><b>Solutions</b></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code>$ vim ~/.bashrc</code>
+</pre>
+</div>
+
+<p>
+comment this line:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #75715E;">#</span><span style="color: #75715E;">source /opt/ros/kinetic/setup.bash</span></code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org343843e" class="outline-2">
+<h2 id="org343843e"><span class="section-number-2">6</span> Reference</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>2015-04-30-确定 OpenCV 矩阵元素的数据类型, <a href="https://www.jianshu.com/p/204f292937bb">https://www.jianshu.com/p/204f292937bb</a></li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://ninghang.blogspot.com/">http://ninghang.blogspot.com/</a> 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.jianshu.com/p/204f292937bb">https://www.jianshu.com/p/204f292937bb</a> 
+</p></div></div>
+
+
+</div>
+</div>

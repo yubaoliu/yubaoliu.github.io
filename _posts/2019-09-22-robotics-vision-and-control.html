@@ -24,6 +24,8 @@ export_file_name: 2019-09-22-robotics-vision-and-control.html
 <li><a href="#org43945bc">3. Python Function</a>
 <ul>
 <li><a href="#org36dd9e6">3.1. se2</a></li>
+<li><a href="#org97eebee">3.2. skew</a></li>
+<li><a href="#orgfa89983">3.3. vex</a></li>
 </ul>
 </li>
 </ul>
@@ -76,6 +78,46 @@ export_file_name: 2019-09-22-robotics-vision-and-control.html
 <code>        <span style="color: #F92672;">return</span> R</code>
 <code></code>
 <code><span style="color: #F92672;">print</span>(se2(1, 2, math.pi/6))</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org97eebee" class="outline-3">
+<h3 id="org97eebee"><span class="section-number-3">3.2</span> skew</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #F92672;">import</span> numpy</code>
+<code><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">skew</span>(v):</code>
+<code>        <span style="color: #F92672;">if</span> <span style="color: #F92672;">len</span>(v) == 3:</code>
+<code>                <span style="color: #FD971F;">S</span> = numpy.array([[0, -v[2], v[1]],</code>
+<code>                                                 [v[2], 0, -v[0]],</code>
+<code>                                                 [-v[1], v[0], 0]])</code>
+<code>        <span style="color: #F92672;">elif</span> <span style="color: #F92672;">len</span>(v) == 1:</code>
+<code>                <span style="color: #FD971F;">S</span> = numpy.array([[0, -v[0]], [v[0], 0]])</code>
+<code>        <span style="color: #F92672;">else</span>:</code>
+<code>                <span style="color: #F92672;">return</span>(<span style="color: #E6DB74;">"argument must be a 1 or 3 vector"</span>)</code>
+<code>        <span style="color: #F92672;">return</span> S</code>
+<code></code>
+<code><span style="color: #F92672;">print</span>(skew([1, 2, 3]))</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfa89983" class="outline-3">
+<h3 id="orgfa89983"><span class="section-number-3">3.3</span> vex</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #F92672;">import</span> numpy <span style="color: #F92672;">as</span> np</code>
+<code><span style="color: #F92672;">def</span> <span style="color: #A6E22E;">vex</span>(L):</code>
+<code>        <span style="color: #FD971F;">S</span> = np.array(L)</code>
+<code>        <span style="color: #F92672;">if</span> S.shape[0] == 3 <span style="color: #F92672;">and</span> S.shape[1] == 3:</code>
+<code>                <span style="color: #FD971F;">v</span> = [0.5*(S[2, 1]-S[1, 2]), 0.5*(S[0, 2]-S[2, 0]), 0.5*(S[1, 0]-S[0, 1])]</code>
+<code>        <span style="color: #F92672;">elif</span> S.shape[0] == 2 <span style="color: #F92672;">and</span> S.shape[1] == 2:</code>
+<code>                <span style="color: #FD971F;">v</span> = 0.5*[S[1, 0]-S[0, 1]]</code>
+<code>        <span style="color: #F92672;">else</span>:</code>
+<code>                <span style="color: #F92672;">return</span>(<span style="color: #E6DB74;">"RTB:vex:badarg, argument must 2x2 or 3x3 matrix"</span>)</code>
+<code>        <span style="color: #F92672;">return</span> v</code>
+<code><span style="color: #F92672;">print</span>(vex([[0, -3, 2], [3, 0, -1], [-2, 1, 0]]))</code>
 </pre>
 </div>
 </div>
