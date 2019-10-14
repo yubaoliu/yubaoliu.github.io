@@ -16,24 +16,30 @@ export_file_name: 2019-09-28-ORB-SLAM.html
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgeb95617">1. Introduction</a></li>
-<li><a href="#orgd562e19">2. Build</a>
+<li><a href="#org374e4ab">2. Notes</a>
 <ul>
-<li><a href="#orgd99b448">2.1. ROS Wrapper</a></li>
+<li><a href="#orgd10d52a">2.1. Twc</a></li>
+<li><a href="#orgb35e121">2.2. Tcw</a></li>
 </ul>
 </li>
-<li><a href="#org98e98ec">3. Publish TF</a>
+<li><a href="#orgd562e19">3. Build</a>
 <ul>
-<li><a href="#org525fb33">3.1. Method 1</a></li>
-<li><a href="#orgef657db">3.2. Method 2</a></li>
+<li><a href="#orgd99b448">3.1. ROS Wrapper</a></li>
 </ul>
 </li>
-<li><a href="#orgcb6e2a8">4. ORB-SLAM: a Versatile and Accurate Monocular SLAM System</a>
+<li><a href="#org98e98ec">4. Publish TF</a>
 <ul>
-<li><a href="#org18ef1e5">4.1. Abstract</a></li>
+<li><a href="#org525fb33">4.1. Method 1</a></li>
+<li><a href="#orgc150bdc">4.2. Method2</a></li>
 </ul>
 </li>
-<li><a href="#org79fa5a2">5. orb-slam2<sub>with</sub><sub>semantic</sub><sub>label</sub></a></li>
-<li><a href="#orgfe7068e">6. Resources</a></li>
+<li><a href="#orgcb6e2a8">5. ORB-SLAM: a Versatile and Accurate Monocular SLAM System</a>
+<ul>
+<li><a href="#org18ef1e5">5.1. Abstract</a></li>
+</ul>
+</li>
+<li><a href="#org79fa5a2">6. orb-slam2<sub>with</sub><sub>semantic</sub><sub>label</sub></a></li>
+<li><a href="#orgfe7068e">7. Resources</a></li>
 </ul>
 </div>
 </div>
@@ -66,14 +72,42 @@ A survival of the fittest strategy that selects the points and keyframes of the 
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgd562e19" class="outline-2">
-<h2 id="orgd562e19"><span class="section-number-2">2</span> Build</h2>
+<div id="outline-container-org374e4ab" class="outline-2">
+<h2 id="org374e4ab"><span class="section-number-2">2</span> Notes</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd99b448" class="outline-3">
-<h3 id="orgd99b448"><span class="section-number-3">2.1</span> ROS Wrapper</h3>
+<div id="outline-container-orgd10d52a" class="outline-3">
+<h3 id="orgd10d52a"><span class="section-number-3">2.1</span> Twc</h3>
 <div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>表示当前相机光心在世界坐标系下的三维坐标</li>
+<li>表示从相机坐标系到世界坐标系的转化</li>
+</ul>
+<p>
+\[P_w = T_{wc} * P_c\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgb35e121" class="outline-3">
+<h3 id="orgb35e121"><span class="section-number-3">2.2</span> Tcw</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>表示从世界坐标系到相机坐标系的转化</li>
+</ul>
+<p>
+\[P_c = T_{cw} * P_w\]
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd562e19" class="outline-2">
+<h2 id="orgd562e19"><span class="section-number-2">3</span> Build</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgd99b448" class="outline-3">
+<h3 id="orgd99b448"><span class="section-number-3">3.1</span> ROS Wrapper</h3>
+<div class="outline-text-3" id="text-3-1">
 <pre class="example">
 <code>rosdep update</code>
 <code>cd ORB_SLAM2/Examples/ROS/YB_ORB_SLAM/build</code>
@@ -85,48 +119,15 @@ A survival of the fittest strategy that selects the points and keyframes of the 
 </div>
 
 <div id="outline-container-org98e98ec" class="outline-2">
-<h2 id="org98e98ec"><span class="section-number-2">3</span> Publish TF</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org98e98ec"><span class="section-number-2">4</span> Publish TF</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="https://github.com/raulmur/ORB_SLAM2/issues/597">Get Pose Information from ORBSLAM #597</a>
+</p>
 </div>
 <div id="outline-container-org525fb33" class="outline-3">
-<h3 id="org525fb33"><span class="section-number-3">3.1</span> Method 1</h3>
-<div class="outline-text-3" id="text-3-1">
-<div class="org-src-container">
-<pre class="src src-cpp"><code><span style="color: #75715E;">// </span><span style="color: #75715E;">For TF</span></code>
-<code><span style="color: #F92672;">#include</span><span style="color: #E6DB74;">"../../../include/System.h"</span></code>
-<code><span style="color: #F92672;">#include</span><span style="color: #E6DB74;">"../../../include/Converter.h"</span></code>
-<code><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;tf2_ros/transform_broadcaster.h&gt;</span></code>
-<code><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;geometry_msgs/TransformStamped.h&gt;</span></code>
-<code><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;tf2/LinearMath/Quaternion.h&gt;</span></code>
-<code></code>
-<code><span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Mat</span> <span style="color: #FD971F;">Tcw</span> = mpSLAM-&gt;TrackRGBD(cv_ptrRGB-&gt;image,cv_ptrD-&gt;image,cv_ptrRGB-&gt;header.stamp.toSec());</code>
-<code> <span style="color: #F92672;">if</span>(Tcw.empty())</code>
-<code>        <span style="color: #F92672;">return</span>;</code>
-<code>    <span style="color: #AE81FF;">cv</span>::<span style="color: #66D9EF;">Mat</span> <span style="color: #FD971F;">tcw</span> = Tcw.rowRange(0,3).col(3);</code>
-<code></code>
-<code><span style="color: #75715E;">// </span><span style="color: #75715E;">Publish tf transform</span></code>
-<code><span style="color: #F92672;">static</span> <span style="color: #AE81FF;">tf2_ros</span>::<span style="color: #66D9EF;">TransformBroadcaster</span> <span style="color: #FD971F;">br</span>;</code>
-<code><span style="color: #AE81FF;">geometry_msgs</span>::<span style="color: #66D9EF;">TransformStamped</span> <span style="color: #FD971F;">transformStamped</span>;</code>
-<code>transformStamped.header.stamp = cv_ptrRGB-&gt;header.stamp;</code>
-<code>transformStamped.header.frame_id = <span style="color: #E6DB74;">"camera_rgb_optical_frame"</span>; </code>
-<code>transformStamped.child_frame_id = <span style="color: #E6DB74;">"world"</span>;</code>
-<code>transformStamped.transform.translation.x = tcw.at&lt;<span style="color: #66D9EF;">float</span>&gt;(0);</code>
-<code>transformStamped.transform.translation.y = tcw.at&lt;<span style="color: #66D9EF;">float</span>&gt;(1);</code>
-<code>transformStamped.transform.translation.z = tcw.at&lt;<span style="color: #66D9EF;">float</span>&gt;(2);</code>
-<code><span style="color: #66D9EF;">vector</span>&lt;<span style="color: #66D9EF;">float</span>&gt; <span style="color: #FD971F;">q</span> = <span style="color: #AE81FF;">ORB_SLAM2</span>::<span style="color: #AE81FF;">Converter</span>::toQuaternion(Tcw.rowRange(0,3).colRange(0,3));</code>
-<code>transformStamped.transform.rotation.x = q[0];</code>
-<code>transformStamped.transform.rotation.y = q[1];</code>
-<code>transformStamped.transform.rotation.z = q[2];</code>
-<code>transformStamped.transform.rotation.w = q[3];</code>
-<code></code>
-<code>br.sendTransform(transformStamped);</code>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgef657db" class="outline-3">
-<h3 id="orgef657db"><span class="section-number-3">3.2</span> Method 2</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org525fb33"><span class="section-number-3">4.1</span> Method 1</h3>
+<div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-cpp"><code></code>
 <code><span style="color: #F92672;">#include</span><span style="color: #E6DB74;">"../../../include/System.h"</span></code>
@@ -169,15 +170,26 @@ A survival of the fittest strategy that selects the points and keyframes of the 
 </div>
 </div>
 </div>
-</div>
 
+<div id="outline-container-orgc150bdc" class="outline-3">
+<h3 id="orgc150bdc"><span class="section-number-3">4.2</span> Method2</h3>
+<div class="outline-text-3" id="text-4-2">
+<pre class="example">
+<code> cv::Mat Twc = Tcw.inv();</code>
+<code> cv::Mat Rwc = Twc.rowRange(0, 3).colRange(0, 3);</code>
+<code>cv::Mat twc = Twc.rowRange(0, 3).col(3);</code>
+<code></code>
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgcb6e2a8" class="outline-2">
-<h2 id="orgcb6e2a8"><span class="section-number-2">4</span> ORB-SLAM: a Versatile and Accurate Monocular SLAM System</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orgcb6e2a8"><span class="section-number-2">5</span> ORB-SLAM: a Versatile and Accurate Monocular SLAM System</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org18ef1e5" class="outline-3">
-<h3 id="org18ef1e5"><span class="section-number-3">4.1</span> Abstract</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org18ef1e5"><span class="section-number-3">5.1</span> Abstract</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 This paper presents ORB-SLAM, a feature-based monocular simultaneous
 localization and mapping (SLAM) system that operates in real time, in
@@ -216,8 +228,8 @@ source code public.
 </div>
 
 <div id="outline-container-org79fa5a2" class="outline-2">
-<h2 id="org79fa5a2"><span class="section-number-2">5</span> orb-slam2<sub>with</sub><sub>semantic</sub><sub>label</sub></h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org79fa5a2"><span class="section-number-2">6</span> orb-slam2<sub>with</sub><sub>semantic</sub><sub>label</sub></h2>
+<div class="outline-text-2" id="text-6">
 <p>
 <a href="https://github.com/yubaoliu/orb-slam2_with_semantic_label">Github</a>
 </p>
@@ -230,8 +242,8 @@ source code public.
 </div>
 </div>
 <div id="outline-container-orgfe7068e" class="outline-2">
-<h2 id="orgfe7068e"><span class="section-number-2">6</span> Resources</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="orgfe7068e"><span class="section-number-2">7</span> Resources</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="https://www.cnblogs.com/shang-slam/p/6733322.html">ORB-SLAM跑通笔记本摄像头</a>
 环境：Ubuntu 14.04 + ROS indigo + ORB-SLAM2 (Thinkpad T460s)</li>

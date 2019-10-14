@@ -1,6 +1,7 @@
 ---
-date: 2019-09-29
+date: 2019-10-14
 tags: 
+- 
 - 
 - 
 - 
@@ -18,59 +19,68 @@ export_file_name: 2019-09-03-kinect-camera.html
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd5910cf">1. Introduction</a>
+<li><a href="#org0547be1">1. Quick References</a></li>
+<li><a href="#org3bc265d">2. Introduction</a>
 <ul>
-<li><a href="#org49206e5">1.1. What is SLAM?</a></li>
-<li><a href="#org3b5c272">1.2. Rigid Assumption</a></li>
-<li><a href="#orge7661f6">1.3. Chalenges in Visual SLAM</a></li>
+<li><a href="#org4693e93">2.1. What is SLAM?</a></li>
+<li><a href="#orgdc9dda0">2.2. Rigid Assumption</a></li>
+<li><a href="#org5670038">2.3. Chalenges in Visual SLAM</a></li>
 </ul>
 </li>
-<li><a href="#org7f0a3a7">2. RGBD SLAM</a></li>
-<li><a href="#orgbcb5781">3. RTAB MAP</a></li>
-<li><a href="#orgf4ad62e">4. GSLAM</a></li>
-<li><a href="#org05a045d">5. SFM</a></li>
-<li><a href="#org5fbec3f">6. DynaSLAM</a>
+<li><a href="#org084697b">3. RGBD SLAM</a></li>
+<li><a href="#orgc22da40">4. RTAB MAP</a></li>
+<li><a href="#orga1ed31a">5. GSLAM</a></li>
+<li><a href="#orga05db56">6. SFM</a></li>
+<li><a href="#org2266220">7. DynaSLAM</a>
 <ul>
-<li><a href="#org10150d8">6.1. Introduction</a></li>
-<li><a href="#org275aac1">6.2. Compile</a></li>
-<li><a href="#org35896cc">6.3. Paper</a></li>
-<li><a href="#orge57d07e">6.4. Abstract</a></li>
-<li><a href="#org2da1b53">6.5. Notes</a></li>
+<li><a href="#orgc716271">7.1. Introduction</a></li>
+<li><a href="#org2e6b778">7.2. Compile</a></li>
+<li><a href="#org250ffa0">7.3. Paper</a></li>
+<li><a href="#org021990f">7.4. Abstract</a></li>
+<li><a href="#org220a7ac">7.5. Notes</a></li>
 </ul>
 </li>
-<li><a href="#orgf3cdcc5">7. RDSLAM</a></li>
-<li><a href="#orgf740ee7">8. Mask-SLAM</a>
+<li><a href="#org311c44c">8. RDSLAM</a></li>
+<li><a href="#orgeb26dd5">9. Mask-SLAM</a>
 <ul>
-<li><a href="#org7064094">8.1. Paper</a></li>
+<li><a href="#org0b64b08">9.1. Paper</a></li>
 </ul>
 </li>
-<li><a href="#org06bf81b">9. SOURCE CODE</a></li>
-<li><a href="#org5de96f1">10. ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
-<li><a href="#org47efe7a">11. Visual-Inertial (VIO)</a>
+<li><a href="#org94ff6ee">10. SOURCE CODE</a></li>
+<li><a href="#orgeea9799">11. ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
+<li><a href="#orgff93f4c">12. Visual-Inertial (VIO)</a>
 <ul>
-<li><a href="#orgd826298">11.1. Common VIO Solutions</a></li>
-<li><a href="#org64f095f">11.2. Variables of Interest and dynamical model</a></li>
-<li><a href="#orgcf740a8">11.3. References</a></li>
+<li><a href="#orgc6b77fd">12.1. Common VIO Solutions</a></li>
+<li><a href="#org1cb3dfa">12.2. Variables of Interest and dynamical model</a></li>
+<li><a href="#orgc964cfd">12.3. References</a></li>
 </ul>
 </li>
-<li><a href="#org3856754">12. Useful tools for the RGB-D benchmark</a>
+<li><a href="#orgba28ea2">13. Useful tools for the RGB-D benchmark</a>
 <ul>
-<li><a href="#org2e639aa">12.1. ABSOLUTE TRAJECTORY ERROR (ATE)</a></li>
-<li><a href="#org4e00366">12.2. RELATIVE POSE ERROR (RPE)</a></li>
-<li><a href="#org6809ab6">12.3. Generating a point cloud from images</a></li>
+<li><a href="#org5011320">13.1. ABSOLUTE TRAJECTORY ERROR (ATE)</a></li>
+<li><a href="#orgb59fd50">13.2. RELATIVE POSE ERROR (RPE)</a></li>
+<li><a href="#org27b0c72">13.3. Generating a point cloud from images</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd5910cf" class="outline-2">
-<h2 id="orgd5910cf"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org0547be1" class="outline-2">
+<h2 id="org0547be1"><span class="section-number-2">1</span> Quick References</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://fzheng.me/2016/05/30/slam-review/">Brief Review on Visual SLAM: A Historical Perspective</a></li>
+</ul>
 </div>
-<div id="outline-container-org49206e5" class="outline-3">
-<h3 id="org49206e5"><span class="section-number-3">1.1</span> What is SLAM?</h3>
-<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org3bc265d" class="outline-2">
+<h2 id="org3bc265d"><span class="section-number-2">2</span> Introduction</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org4693e93" class="outline-3">
+<h3 id="org4693e93"><span class="section-number-3">2.1</span> What is SLAM?</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 SLAM: Simultaneous Localization and Mapping
 </p>
@@ -120,18 +130,18 @@ SLAM Algorithms
 </div>
 </div>
 
-<div id="outline-container-org3b5c272" class="outline-3">
-<h3 id="org3b5c272"><span class="section-number-3">1.2</span> Rigid Assumption</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgdc9dda0" class="outline-3">
+<h3 id="orgdc9dda0"><span class="section-number-3">2.2</span> Rigid Assumption</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 The assumption of scene rigidity is typical in SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service service robotics or autonomous vehicles.\cite{Bescos2018}
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge7661f6" class="outline-3">
-<h3 id="orge7661f6"><span class="section-number-3">1.3</span> Chalenges in Visual SLAM</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org5670038" class="outline-3">
+<h3 id="org5670038"><span class="section-number-3">2.3</span> Chalenges in Visual SLAM</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Low-contrast; textureless image regions</li>
 <li>occlusions</li>
@@ -143,17 +153,17 @@ The assumption of scene rigidity is typical in SLAM algorithms. Such a strong as
 </div>
 </div>
 
-<div id="outline-container-org7f0a3a7" class="outline-2">
-<h2 id="org7f0a3a7"><span class="section-number-2">2</span> RGBD SLAM</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org084697b" class="outline-2">
+<h2 id="org084697b"><span class="section-number-2">3</span> RGBD SLAM</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>yubaoliu/rgbdslam<sub>v2</sub>: git@github.com:yubaoliu/rgbdslam<sub>v2.git</sub></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbcb5781" class="outline-2">
-<h2 id="orgbcb5781"><span class="section-number-2">3</span> RTAB MAP</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgc22da40" class="outline-2">
+<h2 id="orgc22da40"><span class="section-number-2">4</span> RTAB MAP</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://blog.51cto.com/remyspot/1784914">SLAM: RtabMap中文解析</a></li>
 <li><a href="http://introlab.github.io/rtabmap/">RTAB-Map-gitio</a></li>
@@ -169,29 +179,29 @@ The assumption of scene rigidity is typical in SLAM algorithms. Such a strong as
 </div>
 </div>
 
-<div id="outline-container-orgf4ad62e" class="outline-2">
-<h2 id="orgf4ad62e"><span class="section-number-2">4</span> GSLAM</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orga1ed31a" class="outline-2">
+<h2 id="orga1ed31a"><span class="section-number-2">5</span> GSLAM</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://github.com/zdzhaoyong/GSLAM">zdzhaoyong/GSLAM</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org05a045d" class="outline-2">
-<h2 id="org05a045d"><span class="section-number-2">5</span> SFM</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orga05db56" class="outline-2">
+<h2 id="orga05db56"><span class="section-number-2">6</span> SFM</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>sfm-github: <a href="https://github.com/topics/sfm">https://github.com/topics/sfm</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5fbec3f" class="outline-2">
-<h2 id="org5fbec3f"><span class="section-number-2">6</span> DynaSLAM</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org2266220" class="outline-2">
+<h2 id="org2266220"><span class="section-number-2">7</span> DynaSLAM</h2>
+<div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org10150d8" class="outline-3">
-<h3 id="org10150d8"><span class="section-number-3">6.1</span> Introduction</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgc716271" class="outline-3">
+<h3 id="orgc716271"><span class="section-number-3">7.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Project: <a href="https://bertabescos.github.io/DynaSLAM/">https://bertabescos.github.io/DynaSLAM/</a></li>
 <li><a href="https://github.com/BertaBescos/DynaSLAM.git">BertaBescos/DynaSLAM</a></li>
@@ -202,9 +212,9 @@ The assumption of scene rigidity is typical in SLAM algorithms. Such a strong as
 </p>
 </div>
 </div>
-<div id="outline-container-org275aac1" class="outline-3">
-<h3 id="org275aac1"><span class="section-number-3">6.2</span> Compile</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-org2e6b778" class="outline-3">
+<h3 id="org2e6b778"><span class="section-number-3">7.2</span> Compile</h3>
+<div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-bash"><code>git clone https://github.com/BertaBescos/DynaSLAM.git</code>
 <code><span style="color: #F92672;">cd</span> DynaSLAM</code>
@@ -215,18 +225,18 @@ The assumption of scene rigidity is typical in SLAM algorithms. Such a strong as
 </div>
 </div>
 </div>
-<div id="outline-container-org35896cc" class="outline-3">
-<h3 id="org35896cc"><span class="section-number-3">6.3</span> Paper</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-org250ffa0" class="outline-3">
+<h3 id="org250ffa0"><span class="section-number-3">7.3</span> Paper</h3>
+<div class="outline-text-3" id="text-7-3">
 <p>
 Bescos, B., Facil, J. M., Civera, J., &amp; Neira, J. (2018). DynaSLAM: Tracking, Mapping, and Inpainting in Dynamic Scenes. IEEE Robotics and Automation Letters, 3(4), 4076–4083. <a href="https://doi.org/10.1109/LRA.2018.2860039">https://doi.org/10.1109/LRA.2018.2860039</a> \cite{Bescos2018}
 <a href="https://youtu.be/EabI_goFmQs">Youtube-demo</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orge57d07e" class="outline-3">
-<h3 id="orge57d07e"><span class="section-number-3">6.4</span> Abstract</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-org021990f" class="outline-3">
+<h3 id="org021990f"><span class="section-number-3">7.4</span> Abstract</h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
 The assumption of scene rigidity is typical in SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service service robotics or autonomous vehicles.
 </p>
@@ -254,39 +264,39 @@ We are capable of detecting the moving objects either by multi-view geometry, de
 </div>
 </div>
 
-<div id="outline-container-org2da1b53" class="outline-3">
-<h3 id="org2da1b53"><span class="section-number-3">6.5</span> Notes</h3>
-<div class="outline-text-3" id="text-6-5">
+<div id="outline-container-org220a7ac" class="outline-3">
+<h3 id="org220a7ac"><span class="section-number-3">7.5</span> Notes</h3>
+<div class="outline-text-3" id="text-7-5">
 <p>
 第三部分我理解的是求基础矩阵用了ransac，所以基础矩阵更符合静态点的运动模型。当前点离这个基础矩阵计算出的极线越远就说明动态效果越大
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf3cdcc5" class="outline-2">
-<h2 id="orgf3cdcc5"><span class="section-number-2">7</span> RDSLAM</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org311c44c" class="outline-2">
+<h2 id="org311c44c"><span class="section-number-2">8</span> RDSLAM</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="http://www.zjucvg.net/rdslam/rdslam.html">RDSLAM: Robust Dynamic SLAM</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf740ee7" class="outline-2">
-<h2 id="orgf740ee7"><span class="section-number-2">8</span> Mask-SLAM</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgeb26dd5" class="outline-2">
+<h2 id="orgeb26dd5"><span class="section-number-2">9</span> Mask-SLAM</h2>
+<div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org7064094" class="outline-3">
-<h3 id="org7064094"><span class="section-number-3">8.1</span> Paper</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org0b64b08" class="outline-3">
+<h3 id="org0b64b08"><span class="section-number-3">9.1</span> Paper</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 Kaneko, M., Iwami, K., Ogawa, T., Yamasaki, T., &amp; Aizawa, K. (2018). Mask-SLAM: Robust feature-based monocular SLAM by masking using semantic segmentation. IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops, 2018-June, 371–379. <a href="https://doi.org/10.1109/CVPRW.2018.00063">https://doi.org/10.1109/CVPRW.2018.00063</a>
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org06bf81b" class="outline-2">
-<h2 id="org06bf81b"><span class="section-number-2">9</span> SOURCE CODE</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org94ff6ee" class="outline-2">
+<h2 id="org94ff6ee"><span class="section-number-2">10</span> SOURCE CODE</h2>
+<div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>zssjh/semantic<sub>slam</sub>: <a href="https://github.com/zssjh/semantic_slam.git">https://github.com/zssjh/semantic_slam.git</a>
 ORB-SLAM2 combined with yolov3 object detection, considering the relationship among objects</li>
@@ -295,32 +305,32 @@ ORB-SLAM2 combined with yolov3 object detection, considering the relationship am
 </div>
 </div>
 
-<div id="outline-container-org5de96f1" class="outline-2">
-<h2 id="org5de96f1"><span class="section-number-2">10</span> ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgeea9799" class="outline-2">
+<h2 id="orgeea9799"><span class="section-number-2">11</span> ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></h2>
+<div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li><a href="https://github.com/Ewenwan/ORB_SLAM2_SSD_Semantic">Ewenwan/ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org47efe7a" class="outline-2">
-<h2 id="org47efe7a"><span class="section-number-2">11</span> Visual-Inertial (VIO)</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-orgff93f4c" class="outline-2">
+<h2 id="orgff93f4c"><span class="section-number-2">12</span> Visual-Inertial (VIO)</h2>
+<div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-orgd826298" class="outline-3">
-<h3 id="orgd826298"><span class="section-number-3">11.1</span> Common VIO Solutions</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-orgc6b77fd" class="outline-3">
+<h3 id="orgc6b77fd"><span class="section-number-3">12.1</span> Common VIO Solutions</h3>
+<div class="outline-text-3" id="text-12-1">
 </div>
 </div>
-<div id="outline-container-org64f095f" class="outline-3">
-<h3 id="org64f095f"><span class="section-number-3">11.2</span> Variables of Interest and dynamical model</h3>
+<div id="outline-container-org1cb3dfa" class="outline-3">
+<h3 id="org1cb3dfa"><span class="section-number-3">12.2</span> Variables of Interest and dynamical model</h3>
 </div>
 
 
 
-<div id="outline-container-orgcf740a8" class="outline-3">
-<h3 id="orgcf740a8"><span class="section-number-3">11.3</span> References</h3>
-<div class="outline-text-3" id="text-11-3">
+<div id="outline-container-orgc964cfd" class="outline-3">
+<h3 id="orgc964cfd"><span class="section-number-3">12.3</span> References</h3>
+<div class="outline-text-3" id="text-12-3">
 <ul class="org-ul">
 <li><a href="https://blog.csdn.net/wangshuailpp/article/details/78461171">VINS技术路线与代码详解</a></li>
 </ul>
@@ -328,23 +338,22 @@ ORB-SLAM2 combined with yolov3 object detection, considering the relationship am
 </div>
 </div>
 
-
-<div id="outline-container-org3856754" class="outline-2">
-<h2 id="org3856754"><span class="section-number-2">12</span> Useful tools for the RGB-D benchmark</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-orgba28ea2" class="outline-2">
+<h2 id="orgba28ea2"><span class="section-number-2">13</span> Useful tools for the RGB-D benchmark</h2>
+<div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li><a href="https://vision.in.tum.de/data/datasets/rgbd-dataset/tools#evaluation">https://vision.in.tum.de/data/datasets/rgbd-dataset/tools#evaluation</a></li>
 </ul>
 </div>
-<div id="outline-container-org2e639aa" class="outline-3">
-<h3 id="org2e639aa"><span class="section-number-3">12.1</span> ABSOLUTE TRAJECTORY ERROR (ATE)</h3>
+<div id="outline-container-org5011320" class="outline-3">
+<h3 id="org5011320"><span class="section-number-3">13.1</span> ABSOLUTE TRAJECTORY ERROR (ATE)</h3>
 </div>
-<div id="outline-container-org4e00366" class="outline-3">
-<h3 id="org4e00366"><span class="section-number-3">12.2</span> RELATIVE POSE ERROR (RPE)</h3>
+<div id="outline-container-orgb59fd50" class="outline-3">
+<h3 id="orgb59fd50"><span class="section-number-3">13.2</span> RELATIVE POSE ERROR (RPE)</h3>
 </div>
-<div id="outline-container-org6809ab6" class="outline-3">
-<h3 id="org6809ab6"><span class="section-number-3">12.3</span> Generating a point cloud from images</h3>
-<div class="outline-text-3" id="text-12-3">
+<div id="outline-container-org27b0c72" class="outline-3">
+<h3 id="org27b0c72"><span class="section-number-3">13.3</span> Generating a point cloud from images</h3>
+<div class="outline-text-3" id="text-13-3">
 <pre class="example">
 <code>usage: generate_pointcloud.py [-h] rgb_file depth_file ply_file</code>
 <code></code>

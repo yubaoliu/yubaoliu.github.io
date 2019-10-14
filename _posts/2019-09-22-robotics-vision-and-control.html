@@ -19,6 +19,12 @@ export_file_name: 2019-09-22-robotics-vision-and-control.html
 <li><a href="#org463cd6f">2. Install</a>
 <ul>
 <li><a href="#org9f46bc1">2.1. Robotics Toolbox</a></li>
+<li><a href="#orgdd62e29">2.2. Install From Source Code: MVTB, RTB</a></li>
+<li><a href="#org296833a">2.3. Downloading the example images</a></li>
+<li><a href="#org6eb2b3f">2.4. vlfeat</a></li>
+<li><a href="#org929b3df">2.5. EPnP: Efficient Perspective-n-Point Camera Pose Estimation</a></li>
+<li><a href="#org013b7be">2.6. Camera Calibration Toolbox for Matlab</a></li>
+<li><a href="#orgbe087d4">2.7. Graph Based Image Segmentation</a></li>
 </ul>
 </li>
 <li><a href="#org43945bc">3. Python Function</a>
@@ -26,6 +32,11 @@ export_file_name: 2019-09-22-robotics-vision-and-control.html
 <li><a href="#org36dd9e6">3.1. se2</a></li>
 <li><a href="#org97eebee">3.2. skew</a></li>
 <li><a href="#orgfa89983">3.3. vex</a></li>
+</ul>
+</li>
+<li><a href="#orge9f0f95">4. Errors</a>
+<ul>
+<li><a href="#org56a2104">4.1. isurf-closest</a></li>
 </ul>
 </li>
 </ul>
@@ -51,8 +62,84 @@ export_file_name: 2019-09-22-robotics-vision-and-control.html
 <div id="outline-container-org9f46bc1" class="outline-3">
 <h3 id="org9f46bc1"><span class="section-number-3">2.1</span> Robotics Toolbox</h3>
 <div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><a href="http://petercorke.com/wordpress/toolboxes/robotics-toolbox">http://petercorke.com/wordpress/toolboxes/robotics-toolbox</a></li>
+<li><a href="https://github.com/petercorke/machinevision-toolbox-matlab">https://github.com/petercorke/machinevision-toolbox-matlab</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdd62e29" class="outline-3">
+<h3 id="orgdd62e29"><span class="section-number-3">2.2</span> Install From Source Code: MVTB, RTB</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>spatial-math</li>
+<li>toolbox-common-matlab</li>
+<li>Robot toolbox (RTB)</li>
+<li>Machine Vision Toolbox (MVTB)</li>
+</ul>
+
+<pre class="example">
+<code>mkdir rvctools</code>
+<code>cd rvctools</code>
+<code>git clone https://github.com/petercorke/robotics-toolbox-matlab.git robot</code>
+<code>git clone https://github.com/petercorke/machinevision-toolbox-matlab.git vision</code>
+<code>git clone https://github.com/petercorke/spatial-math.git smtb</code>
+<code>git clone https://github.com/petercorke/toolbox-common-matlab.git common</code>
+<code>make -C vision</code>
+<code>make -C robot</code>
+<code></code>
+</pre>
+
 <p>
-<a href="http://petercorke.com/wordpress/toolboxes/robotics-toolbox">http://petercorke.com/wordpress/toolboxes/robotics-toolbox</a>
+Build Mex file from Matlab
+</p>
+<pre class="example">
+<code>&gt;&gt; addpath rvctools/common  %  rvctools is the same folder as above</code>
+<code>&gt;&gt; startup_rvc</code>
+<code></code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org296833a" class="outline-3">
+<h3 id="org296833a"><span class="section-number-3">2.3</span> Downloading the example images</h3>
+<div class="outline-text-3" id="text-2-3">
+<pre class="example">
+<code>cd rvctools/vision</code>
+<code>wget petercorke.com/files/MVTB/images-RVC2b.zip</code>
+<code>unzip images-RVC2b</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org6eb2b3f" class="outline-3">
+<h3 id="org6eb2b3f"><span class="section-number-3">2.4</span> vlfeat</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<a href="http://www.vlfeat.org/install-matlab.html">http://www.vlfeat.org/install-matlab.html</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org929b3df" class="outline-3">
+<h3 id="org929b3df"><span class="section-number-3">2.5</span> EPnP: Efficient Perspective-n-Point Camera Pose Estimation</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<a href="https://www.epfl.ch/labs/cvlab/software/multi-view-stereo/epnp/">https://www.epfl.ch/labs/cvlab/software/multi-view-stereo/epnp/</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org013b7be" class="outline-3">
+<h3 id="org013b7be"><span class="section-number-3">2.6</span> Camera Calibration Toolbox for Matlab</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+<a href="http://www.vision.caltech.edu/bouguetj/calib_doc/">http://www.vision.caltech.edu/bouguetj/calib_doc/</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgbe087d4" class="outline-3">
+<h3 id="orgbe087d4"><span class="section-number-3">2.7</span> Graph Based Image Segmentation</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+<a href="http://cs.brown.edu/people/pfelzens/segment/">http://cs.brown.edu/people/pfelzens/segment/</a>
 </p>
 </div>
 </div>
@@ -120,6 +207,28 @@ export_file_name: 2019-09-22-robotics-vision-and-control.html
 <code><span style="color: #F92672;">print</span>(vex([[0, -3, 2], [3, 0, -1], [-2, 1, 0]]))</code>
 </pre>
 </div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge9f0f95" class="outline-2">
+<h2 id="orge9f0f95"><span class="section-number-2">4</span> Errors</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org56a2104" class="outline-3">
+<h3 id="org56a2104"><span class="section-number-3">4.1</span> isurf-closest</h3>
+<div class="outline-text-3" id="text-4-1">
+<pre class="example">
+<code>&gt;&gt; m = sf1.match(sf2);</code>
+<code>Attempt to execute SCRIPT closest as a function:</code>
+<code>/home/yubao/MATLAB Add-Ons/Toolboxes/Machine Vision Toolbox for MATLAB/vision/closest.m</code>
+<code></code>
+<code>Error in SurfPointFeature/match (line 122)</code>
+<code>            [cor2,err] = closest(D1, D2)</code>
+</pre>
+
+<p>
+If you have the MATLAB compiler available then this can be used to compile bottleneck functions.  Some particularly compute intensive functions are provided as mex-files and may need to be compiled for the particular platform.  
+</p>
 </div>
 </div>
 </div>

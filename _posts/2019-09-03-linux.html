@@ -49,7 +49,7 @@ export_file_name: 2019-09-03-linux.html
 <li><a href="#org2a13e14">6. RoboWare Studio</a>
 <ul>
 <li><a href="#org1074f3c">6.1. Reference</a></li>
-<li><a href="#orga296688">6.2. Install</a></li>
+<li><a href="#orgfa7e10c">6.2. Install</a></li>
 <li><a href="#org4aa9b68">6.3. Start</a></li>
 <li><a href="#orgc0a35f5">6.4. Remove</a></li>
 </ul>
@@ -256,7 +256,7 @@ yubao@yubao-Z370M-S01:~$ sudo lshw -C display
 </p>
 <p>
 <span class="timestamp-wrapper">
-<span class="timestamp-kwd">CLOCK:</span> <span class="timestamp"><11/30/01 火></span>nil
+<span class="timestamp-kwd">CLOCK:</span> <span class="timestamp"><11/30/01 Tue></span>nil
 </span>
 </p>
 <p>
@@ -335,13 +335,18 @@ grive -a
 echo "Install Dropbox"
 [安装 Dropbox 以最充分地利用您的帐户](<a href="https://www.dropbox.com/zh_CN/install-linux">https://www.dropbox.com/zh_CN/install-linux</a>)
 </p>
+<pre class="example">
+<code>cd ~/ &amp;&amp; wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -</code>
+</pre>
 
 <p>
-cd ~/ &amp;&amp; wget -O - "<a href="https://www.dropbox.com/download?plat=lnx.x86_64">https://www.dropbox.com/download?plat=lnx.x86_64</a>" | tar xzf -
+接着，从新建的 .dropbox-dist 文件夹运行 Dropbox 守护程序。
 </p>
+<pre class="example">
+<code>~/.dropbox-dist/dropboxd</code>
+</pre>
 </div>
 </div>
-
 <div id="outline-container-orga12f53e" class="outline-3">
 <h3 id="orga12f53e"><span class="section-number-3">1.6</span> Mendeley</h3>
 <div class="outline-text-3" id="text-1-6">
@@ -562,7 +567,7 @@ CUDA Version: 10.1
 <div class="outline-text-2" id="text-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgb338fde"></a>Install<br />
+<li><a id="orgdda6a94"></a>Install<br />
 <div class="outline-text-4" id="text-3-0-1">
 <p>
 echo "Install cudnn"
@@ -663,8 +668,8 @@ If you want to find where the library was installed you can update the locate in
 </div>
 </div>
 
-<div id="outline-container-orga296688" class="outline-3">
-<h3 id="orga296688"><span class="section-number-3">6.2</span> Install</h3>
+<div id="outline-container-orgfa7e10c" class="outline-3">
+<h3 id="orgfa7e10c"><span class="section-number-3">6.2</span> Install</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Install pylint

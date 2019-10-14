@@ -1,0 +1,351 @@
+---
+date: 2019-10-14
+tags: 
+- 
+- turtle bot
+- robot
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: cmake
+excerpt: post
+toc: tables
+export_file_name: 2019-09-04-turtlebot.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0541448">1. Example</a></li>
+<li><a href="#org26d3bd5">2. Boost</a></li>
+<li><a href="#org426432d">3. Cuda</a></li>
+<li><a href="#org7f5c426">4. Eigen</a></li>
+<li><a href="#orgfca7281">5. OpenCV</a></li>
+<li><a href="#orgeb46448">6. X11</a></li>
+<li><a href="#org183a2c9">7. Overview</a></li>
+<li><a href="#orgb8982b8">8. Install</a>
+<ul>
+<li><a href="#org91e7e8f">8.1. Homebrew</a></li>
+<li><a href="#org80454da">8.2. Ubuntu (Debian)</a></li>
+</ul>
+</li>
+<li><a href="#org29f7e77">9. Eigen</a></li>
+<li><a href="#org5565b21">10. PCL</a></li>
+<li><a href="#org964734e">11. OpenCV</a></li>
+<li><a href="#orgcebb659">12. How to</a>
+<ul>
+<li><a href="#orgf6a0b29">12.1. Upgrade Cmake</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0541448" class="outline-2">
+<h2 id="org0541448"><span class="section-number-2">1</span> Example</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION 3.0)</code>
+<code><span style="color: #A6E22E;">project</span>( DEMO )</code>
+<code></code>
+<code><span style="color: #A6E22E;">file</span>(GLOB sources <span style="color: #E6DB74;">"source/*.cpp"</span>)</code>
+<code><span style="color: #A6E22E;">file</span>(GLOB headers <span style="color: #E6DB74;">"header/*.h"</span>)</code>
+<code></code>
+<code><span style="color: #A6E22E;">include_directories</span>(header)</code>
+<code></code>
+<code><span style="color: #A6E22E;">add_library</span>(${<span style="color: #FD971F;">PROJECT_NAME</span>}  SHARED ${<span style="color: #FD971F;">sources</span>} )</code>
+<code></code>
+<code><span style="color: #A6E22E;">find_package</span>(Eigen3 REQUIRED NO_MODULE)</code>
+<code></code>
+<code></code>
+<code><span style="color: #A6E22E;">target_link_libraries</span>(${<span style="color: #FD971F;">PROJECT_NAME</span>} Eigen3::Eigen )</code>
+<code></code>
+<code></code>
+<code><span style="color: #A6E22E;">install</span>(TARGETS ${<span style="color: #FD971F;">PROJECT_NAME</span>} DESTINATION <span style="color: #E6DB74;">"${CMAKE_SOURCE_DIR}/../Assets/plugins"</span>)</code>
+<code></code>
+<code><span style="color: #A6E22E;">install</span>(FILES ${<span style="color: #FD971F;">headers</span>} DESTINATION  <span style="color: #E6DB74;">"${CMAKE_SOURCE_DIR}/../Assets/plugins/include"</span>)</code>
+<code></code>
+<code><span style="color: #F92672;">set</span>(CMAKE_CXX_FLAGS /bigobj)</code>
+<code></code>
+<code><span style="color: #A6E22E;">add_executable</span>(${<span style="color: #FD971F;">PROJECT_NAME</span>}  ${<span style="color: #FD971F;">sources</span>} ${<span style="color: #FD971F;">headers</span>})</code>
+<code></code>
+</pre>
+</div>
+<p>
+Use <b>C-c C-v t</b> or <b>M-x org-babel-tangle</b> to extract this file.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org26d3bd5" class="outline-2">
+<h2 id="org26d3bd5"><span class="section-number-2">2</span> Boost</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+<code>find_package(Boost REQUIRED COMPONENTS thread)</code>
+<code> ${Boost_INCLUDE_DIRS}</code>
+<code> ${Boost_LIBRARIES}</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org426432d" class="outline-2">
+<h2 id="org426432d"><span class="section-number-2">3</span> Cuda</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example">
+<code># Find CUDA</code>
+<code>find_package(CUDA QUIET)</code>
+<code>if (CUDA_FOUND)</code>
+<code>  find_package(CUDA REQUIRED)</code>
+<code>  message(STATUS "CUDA Version: ${CUDA_VERSION_STRINGS}")</code>
+<code>  message(STATUS "CUDA Libararies: ${CUDA_LIBRARIES}")</code>
+<code>  add_definitions(-DGPU)</code>
+<code>else()</code>
+<code>  list(APPEND LIBRARIES "m")</code>
+<code>endif()</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org7f5c426" class="outline-2">
+<h2 id="org7f5c426"><span class="section-number-2">4</span> Eigen</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Set Eigen3<sub>DIR</sub> in $PATH
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #A6E22E;">find_package</span>(Eigen3 REQUIRED NO_MODULE)</code>
+<code><span style="color: #A6E22E;">target_link_libraries</span>(${<span style="color: #FD971F;">PROJECT_NAME</span>} Eigen3::Eigen )</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfca7281" class="outline-2">
+<h2 id="orgfca7281"><span class="section-number-2">5</span> OpenCV</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #A6E22E;">find_package</span>( OpenCV REQUIRED )</code>
+<code><span style="color: #A6E22E;">target_link_libraries</span>(${<span style="color: #FD971F;">PROJECT_NAME</span>} ${<span style="color: #FD971F;">OpenCV_LIBS</span>})</code>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION 2.8)</code>
+<code><span style="color: #A6E22E;">project</span>( DisplayImage )</code>
+<code><span style="color: #A6E22E;">find_package</span>( OpenCV REQUIRED )</code>
+<code><span style="color: #A6E22E;">add_executable</span>( DisplayImage DisplayImage.cpp )</code>
+<code><span style="color: #A6E22E;">target_link_libraries</span>( DisplayImage ${<span style="color: #FD971F;">OpenCV_LIBS</span>} )</code>
+</pre>
+</div>
+
+<p>
+#+end<sub>example</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orgeb46448" class="outline-2">
+<h2 id="orgeb46448"><span class="section-number-2">6</span> X11</h2>
+<div class="outline-text-2" id="text-6">
+<pre class="example">
+<code># Find X11</code>
+<code>message ( STATUS "Searching for X11..." )</code>
+<code>find_package ( X11 REQUIRED )</code>
+<code>if ( X11_FOUND )</code>
+<code>  include_directories ( ${X11_INCLUDE_DIR} )</code>
+<code>  link_libraries ( ${X11_LIBRARIES} )</code>
+<code>  message ( STATUS " X11_INCLUDE_DIR: " ${X11_INCLUDE_DIR} )</code>
+<code>  message ( STATUS " X11_LIBRARIES: " ${X11_LIBRARIES} )</code>
+<code>endif ( X11_FOUND )</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org183a2c9" class="outline-2">
+<h2 id="org183a2c9"><span class="section-number-2">7</span> Overview</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><a href="https://www.johnlamp.net/cmake-tutorial-1-getting-started.html#DownloadAndInstall1">cmake-tutorial-1-getting-started</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb8982b8" class="outline-2">
+<h2 id="orgb8982b8"><span class="section-number-2">8</span> Install</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Download the disk image from the CMake
+<a href="http://www.cmake.org/cmake/resources/software.html">website</a>. Pick
+the correct download for whichever version of OS X you are using. Use
+the installer and follow its directions. It will ask if you want it to
+make the command line tools available in your path by creating symbolic
+links, have it do so.
+</p>
+
+<p>
+This provides the <code>cmake</code> command, the CMake GUI (<code>CMake.app</code>), and the
+curses interface (<code>ccmake</code>).
+</p>
+</div>
+
+<div id="outline-container-org91e7e8f" class="outline-3">
+<h3 id="org91e7e8f"><span class="section-number-3">8.1</span> Homebrew</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+If you already have homebrew installed you can simply install CMake with
+the command brew install cmake.
+</p>
+
+<p>
+This provides the <code>cmake</code> command and the curses interface (<code>ccmake</code>)
+but <b>not</b> the CMake GUI.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org80454da" class="outline-3">
+<h3 id="org80454da"><span class="section-number-3">8.2</span> Ubuntu (Debian)</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+The simplest way to install CMake is via the command line:
+</p>
+
+<p>
+​ <code>sudo apt-get install cmake cmake-qt-gui</code>
+</p>
+
+<p>
+If your Ubuntu install doesn't include X or you primarily use ssh
+sessions you will also want to install the <code>cmake-curses-gui</code> package.
+Again this is simplest with the command
+</p>
+
+<p>
+​ <code>sudo apt-get install cmake-curses-gui</code>,
+</p>
+
+<p>
+but either GUI interface can be used instead.
+</p>
+
+<p>
+This provides the <code>cmake</code> command and the CMake GUI (<code>cmake-gui</code>). The
+second, optional, package provides the curses interface (<code>ccmake</code>).
+</p>
+
+<p>
+<b>ccmake ncurses</b>
+</p>
+
+<pre class="example">
+<code>sudo apt-get install cmake-curses-gui</code>
+<code>ccmake ..</code>
+</pre>
+
+<p>
+<a href="https://stackoverflow.com/question/16851084/how-to-list-all-cmake-build-option-and-their-default-values">shows</a>:
+</p>
+
+
+<div class="figure">
+<p><img src="https://i.stack.imgur.com/ohmjl.png" alt="ohmjl.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>img</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29f7e77" class="outline-2">
+<h2 id="org29f7e77"><span class="section-number-2">9</span> Eigen</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #A6E22E;">find_package</span>(cmake_modules REQUIRED)</code>
+<code><span style="color: #A6E22E;">find_package</span>(Eigen3 REQUIRED)</code>
+<code><span style="color: #A6E22E;">include_directories</span>(${<span style="color: #FD971F;">EIGEN3_INCLUDE_DIR</span>})</code>
+<code><span style="color: #A6E22E;">add_definitions</span>(${<span style="color: #FD971F;">EIGEN_DEFINITIONS</span>})</code>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5565b21" class="outline-2">
+<h2 id="org5565b21"><span class="section-number-2">10</span> PCL</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION2.8 FATAL_ERROR)</code>
+<code><span style="color: #A6E22E;">project</span>(project_name)</code>
+<code><span style="color: #A6E22E;">find_package</span>(PCL 1.8 REQUIRED)</code>
+<code><span style="color: #A6E22E;">include_directories</span>(${<span style="color: #FD971F;">PCL_INCLUDE_DIRS</span>})</code>
+<code><span style="color: #A6E22E;">link_directories</span>(${<span style="color: #FD971F;">PCL_LIBRARY_DIRS</span>})</code>
+<code><span style="color: #A6E22E;">add_definitions</span>(${<span style="color: #FD971F;">PCL_DEFINITIONS</span>})</code>
+<code><span style="color: #A6E22E;">add_executable</span> (project_name&#160;cloud_viewer_PointXYZ.cpp) <span style="color: #75715E;">#</span><span style="color: #75715E;">&#27880;&#24847;&#36825;&#37324;&#19981;&#33021;&#26367;&#25442;</span></code>
+<code><span style="color: #A6E22E;">target_link_libraries</span>(project_name ${<span style="color: #FD971F;">PCL_LIBRARIES</span>})</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org964734e" class="outline-2">
+<h2 id="org964734e"><span class="section-number-2">11</span> OpenCV</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION 2.8)</code>
+<code><span style="color: #A6E22E;">project</span>(image)</code>
+<code><span style="color: #F92672;">set</span>(CMAKE_CXX_FLAGS&#160; &#160;<span style="color: #E6DB74;">"-std=c++11"</span>)</code>
+<code><span style="color: #A6E22E;">find_package</span>(OpenCV&#160; REQUIRED)</code>
+<code><span style="color: #A6E22E;">include_directories</span>(${<span style="color: #FD971F;">OpenCV_INCLUDE_DIRS</span>}) <span style="color: #75715E;">#</span><span style="color: #75715E;">not need if CMake &gt;=2.8.1</span></code>
+<code><span style="color: #A6E22E;">add_executable</span>(image image.cpp)</code>
+<code><span style="color: #A6E22E;">target_link_libraries</span>(image ${<span style="color: #FD971F;">OpenCV_LIBS</span>})</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcebb659" class="outline-2">
+<h2 id="orgcebb659"><span class="section-number-2">12</span> How to</h2>
+<div class="outline-text-2" id="text-12">
+</div>
+<div id="outline-container-orgf6a0b29" class="outline-3">
+<h3 id="orgf6a0b29"><span class="section-number-3">12.1</span> Upgrade Cmake</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+Refer: <a href="https://answers.ros.org/question/293119/how-can-i-updateremove-cmake-without-partially-deleting-my-ros-distribution/">How can I update/remove cmake without partially deleting my ROS distribution?</a>
+</p>
+
+<p>
+Solution in this link:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #F92672;">cd</span> ~/Downloads/cmake-3.12.0-rc3/   <span style="color: #75715E;"># </span><span style="color: #75715E;">or wherever you downloaded cmake</span></code>
+<code>./bootstrap --prefix=$<span style="color: #FD971F;">HOME</span>/cmake-install</code>
+<code>make </code>
+<code>make install</code>
+<code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">PATH</span>=$<span style="color: #FD971F;">HOME</span>/cmake-install/bin:$<span style="color: #FD971F;">PATH</span></code>
+<code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">CMAKE_PREFIX_PATH</span>=$<span style="color: #FD971F;">HOME</span>/cmake-install:$<span style="color: #FD971F;">CMAKE_PREFIX_PATH</span></code>
+</pre>
+</div>
+
+<p>
+My solution:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><code>git clone https://github.com/Kitware/CMake.git</code>
+<code>mkdir build</code>
+<code><span style="color: #F92672;">cd</span> build</code>
+<code>cmake ..</code>
+<code>sudo make install</code>
+</pre>
+</div>
+
+<p>
+And then modify the environment.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">PATH</span>=/usr/local/bin:$<span style="color: #FD971F;">PATH</span></code>
+<code><span style="color: #F92672;">export</span> <span style="color: #FD971F;">CMAKE_PREFIX_PATH</span>=/usr/local:$<span style="color: #FD971F;">CMAKE_PREFIX_PATH</span></code>
+</pre>
+</div>
+
+<p>
+Next use ``cmake &#x2013;version`` to test
+</p>
+</div>
+</div>
+</div>
