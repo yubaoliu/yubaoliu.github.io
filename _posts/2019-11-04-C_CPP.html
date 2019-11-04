@@ -1,0 +1,458 @@
+---
+date: 2019-11-04
+tags: 
+- c
+- cpp
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: C_CPP
+excerpt: post
+toc: tables
+export_file_name: 2019-11-04-C_CPP.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9fa2b47">1. DataType</a>
+<ul>
+<li><a href="#org624fdf3">1.1. DataType Convertion</a></li>
+</ul>
+</li>
+<li><a href="#org1154835">2. Smart Pointer</a>
+<ul>
+<li><a href="#org49d543c">2.1. Introduction</a></li>
+<li><a href="#org5b754d1">2.2. header</a></li>
+<li><a href="#orgeca0d1f">2.3. std::shared\<sub>ptr</sub></a></li>
+<li><a href="#org66eccff">2.4. std::unique\<sub>ptr</sub></a></li>
+<li><a href="#org16ab2c6">2.5. std::weak\<sub>ptr</sub></a></li>
+</ul>
+</li>
+<li><a href="#org3b438ef">3. reference</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9fa2b47" class="outline-2">
+<h2 id="org9fa2b47"><span class="section-number-2">1</span> DataType</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org624fdf3" class="outline-3">
+<h3 id="org624fdf3"><span class="section-number-3">1.1</span> DataType Convertion</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgbf0e843"></a>string to other datatypes<br />
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>atof : convert string to double</li>
+<li>atoi : convert string to integer</li>
+<li>atoll : convert string to long integger</li>
+<li>strtof : convert string to double</li>
+<li>strtof : convert string to float</li>
+<li>strtoll : convert sting to long integer</li>
+<li>strtoul : convert string to unsigned long integer</li>
+<li>strtoull : convert string to unsigned long long integer</li>
+</ul>
+</div>
+</li>
+<li><a id="orged09303"></a>convert to string<br />
+<div class="outline-text-4" id="text-1-1-2">
+<div class="org-src-container">
+<pre class="src src-C++"><code><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;string&gt;</span></code>
+<code><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;sstream&gt;</span>  </code>
+<code><span style="color: #F92672;">#include</span> <span style="color: #E6DB74;">&lt;iostream&gt;</span></code>
+<code><span style="color: #F92672;">using</span> <span style="color: #F92672;">namespace</span> <span style="color: #AE81FF;">std</span>;</code>
+<code><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">main</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">argc</span>, <span style="color: #66D9EF;">char</span> *<span style="color: #FD971F;">argv</span>[])</code>
+<code>{</code>
+<code>  <span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">int_val</span>=100;</code>
+<code>  <span style="color: #66D9EF;">stringstream</span> <span style="color: #FD971F;">strm</span>;</code>
+<code>  strm&lt;&lt;int_val;</code>
+<code>  <span style="color: #66D9EF;">string</span> <span style="color: #FD971F;">s</span>=strm.str();</code>
+<code>  cout&lt;&lt;s&lt;&lt;endl;</code>
+<code>  <span style="color: #F92672;">return</span> 0;</code>
+<code>}</code>
+</pre>
+</div>
+
+<pre class="example">
+<code>100</code>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org1154835" class="outline-2">
+<h2 id="org1154835"><span class="section-number-2">2</span> Smart Pointer</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org49d543c" class="outline-3">
+<h3 id="org49d543c"><span class="section-number-3">2.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+智能指针的原理是，接受一个申请好的内存地址，构造一个保存在栈上的智能指针对象，当程序退出栈的作用域范围后，由于栈上的变量自动被销毁，智能指针内部保存的内存也就被释放掉了（除非将智能指针保存起来）。
+C++11提供了三种智能指针：std::shared<sub>ptr</sub>, std::unique<sub>ptr</sub>, std::weak<sub>ptr</sub>，使用时需添加头文件&lt;memory&gt;。
+shared<sub>ptr使用引用计数</sub>，每一个shared<sub>ptr的拷贝都指向相同的内存</sub>。每使用他一次，内部的引用计数加1，每析构一次，内部的引用计数减1，减为0时，删除所指向的堆内存。shared<sub>ptr内部的引用计数是安全的</sub>，但是对象的读取需要加锁。<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5b754d1" class="outline-3">
+<h3 id="org5b754d1"><span class="section-number-3">2.2</span> header</h3>
+<div class="outline-text-3" id="text-2-2">
+<pre class="example">
+<code>#include &lt;memory&gt;</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgeca0d1f" class="outline-3">
+<h3 id="orgeca0d1f"><span class="section-number-3">2.3</span> std::shared\<sub>ptr</sub></h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgd851c64"></a>Introduction<br />
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+相比于普通指针，共享指针要占用多一倍的内存空间，其内部包含两个指针，一个指针指向它所管理的资源，第二个指针指向一个称为“Control Block”的控制块，如图所示： <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+<a href="https://img-blog.csdn.net/20170604133221130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">https://img-blog.csdn.net/20170604133221130?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a> <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<p>
+第二个字段：Weak Count，也是一个引用计数，它用来计数指向该Object的 <code>std::weak_ptr</code> 指针的数量
+</p>
+
+<p>
+<code>Std::shared_ptr</code> 的大小两倍于普通指针。
+</p>
+
+<p>
+没有 <code>std::shared_ptr&lt;T[]&gt;</code> .所以shared<sub>ptr只能管理单个对象</sub>，而不能管理对象数组。
+</p>
+</div>
+</li>
+
+<li><a id="org4f2d6c8"></a>Example<br />
+<div class="outline-text-4" id="text-2-3-2">
+<pre class="example">
+<code>#include "stdafx.h"</code>
+<code>#include &lt;iostream&gt;</code>
+<code>#include &lt;future&gt;</code>
+<code>#include &lt;thread&gt;</code>
+<code></code>
+<code>using namespace std;</code>
+<code>class Person</code>
+<code>{</code>
+<code>public:</code>
+<code>    Person(int v) {</code>
+<code>        value = v;</code>
+<code>        std::cout &lt;&lt; "Cons" &lt;&lt;value&lt;&lt; std::endl;</code>
+<code>    }</code>
+<code>    ~Person() {</code>
+<code>        std::cout &lt;&lt; "Des" &lt;&lt;value&lt;&lt; std::endl;</code>
+<code>    }</code>
+<code></code>
+<code>    int value;</code>
+<code></code>
+<code>};</code>
+<code></code>
+<code>int main()</code>
+<code>{</code>
+<code>    std::shared_ptr&lt;Person&gt; p1(new Person(1));// Person(1)的引用计数为1</code>
+<code></code>
+<code>    std::shared_ptr&lt;Person&gt; p2 = std::make_shared&lt;Person&gt;(2);</code>
+<code></code>
+<code>    p1.reset(new Person(3));// 首先生成新对象，然后引用计数减1，引用计数为0，故析构Person(1)</code>
+<code>                            // 最后将新对象的指针交给智能指针</code>
+<code></code>
+<code>    std::shared_ptr&lt;Person&gt; p3 = p1;//现在p1和p3同时指向Person(3)，Person(3)的引用计数为2</code>
+<code></code>
+<code>    p1.reset();//Person(3)的引用计数为1</code>
+<code>    p3.reset();//Person(3)的引用计数为0，析构Person(3)</code>
+<code>    return 0;</code>
+<code>}</code>
+</pre>
+</div>
+</li>
+
+<li><a id="org734b0e3"></a>How to construct <code>shared_ptr</code> object<br />
+<ol class="org-ol">
+<li><a id="org629504a"></a>New<br />
+<div class="outline-text-5" id="text-2-3-3-1">
+<p>
+Bare pointer:
+</p>
+
+<pre class="example">
+<code>std::shared_ptr&lt;int&gt; p4(new int(5));</code>
+<code>  int *pInt = p4.get();</code>
+</pre>
+
+<p>
+Class:<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+</p>
+<pre class="example">
+<code>shared_ptr&lt;Investment&gt; sp(newInvestment());</code>
+<code></code>
+<code>Investment * pInvestment =new Investment();</code>
+<code></code>
+<code>shared_ptr&lt;Investment&gt;sp(pInvestment);</code>
+</pre>
+</div>
+</li>
+
+<li><a id="org05a78ee"></a>make<sub>shared</sub><br />
+<div class="outline-text-5" id="text-2-3-3-2">
+<pre class="example">
+<code>auto sp1 = std::make_shared&lt;Investment&gt;();</code>
+</pre>
+</div>
+</li>
+
+<li><a id="org6ad09b2"></a>通过拷贝另一个智能指针 <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup><br />
+<div class="outline-text-5" id="text-2-3-3-3">
+<pre class="example">
+<code>shared_ptr&lt;Investment&gt; sp2(sp);</code>
+<code></code>
+<code>shared_ptr&lt;Investment&gt; sp3 = sp2;</code>
+</pre>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="orgb2d0e8e"></a>delete<br />
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+<code>shared_ptr</code> 默认情况下使用delete释放资源，但是用户也可以指定自己的资源释放函数，例如在下面这个例子中，pInvest用delete\<sub>Investment进行资源释放操作</sub>：<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<pre class="example">
+<code> auto delete_Investment = [](Investment*pInv)</code>
+<code>{</code>
+<code>      pInv-&gt;getObjectType();</code>
+<code>      deletepInv;</code>
+<code>};</code>
+<code>shared_ptr&lt;Investment&gt;pInvest(new Investment(),delete_Investment)</code>
+</pre>
+</div>
+</li>
+
+<li><a id="orgc3ddc60"></a>std::enable<sub>shared</sub><sub>from</sub><sub>this</sub><br />
+<div class="outline-text-4" id="text-2-3-5">
+<p>
+继承std::enable<sub>shared</sub><sub>from</sub><sub>this类</sub>，并将this指针用shared<sub>from</sub><sub>this</sub>()接口代替
+</p>
+<pre class="example">
+<code>classInvestment :public std::enable_shared_from_this&lt;Investment&gt;</code>
+<code>{</code>
+<code>public:</code>
+<code>      void Handler();</code>
+<code>};</code>
+<code></code>
+<code>voidInvestment::Handler()</code>
+<code>{</code>
+<code>      m_ptrVec.emplace_back(shared_from_this());</code>
+<code>}</code>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org66eccff" class="outline-3">
+<h3 id="org66eccff"><span class="section-number-3">2.4</span> std::unique\<sub>ptr</sub></h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<ol class="org-ol">
+<li><a id="org570db56"></a>Introduction<br />
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+<code>uniqut_ptr</code> 是一种对资源具有排他性拥有权的智能指针，即一个对象资源只能同时被一个unique\<sub>ptr指向</sub>。<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+</p>
+</div>
+</li>
+<li><a id="orgfff749c"></a>Constructor<br />
+<ol class="org-ol">
+<li><a id="org31cd5b8"></a>Example<br />
+<div class="outline-text-5" id="text-2-4-2-1">
+<pre class="example">
+<code>unique_ptr&lt;Investment&gt; pInvestment;     // 创建一个空的智能指针</code>
+<code>pInvestment.reset(new Investment());    //"绑定”动态对象 </code>
+<code>Investment *pI = pInvestment.release(); //释放所有权 </code>
+<code>pI= nullptr;                         //显式销毁所指对象，同时智能指针变为空指针</code>
+</pre>
+
+<p>
+管理动态数组:
+</p>
+
+<p>
+由于unique\<sub>ptr有</sub> <code>std::unique_ptr&lt;T[]&gt;</code> 的重载函数，所以它可以用来管理数组资源.
+</p>
+<pre class="example">
+<code>unique_ptr&lt;int[]&gt; pArray(new int[3]{1,3,3});</code>
+</pre>
+</div>
+</li>
+<li><a id="org49301e6"></a>New<br />
+<div class="outline-text-5" id="text-2-4-2-2">
+<pre class="example">
+<code>unique_ptr&lt;Investment&gt; up(new Investment());</code>
+<code></code>
+<code>Investment *pInv = new Investment();</code>
+<code>unique_ptr&lt;Investment&gt; up1(pInv);</code>
+</pre>
+</div>
+</li>
+<li><a id="org2e1a100"></a>make\<sub>unique</sub><br />
+<div class="outline-text-5" id="text-2-4-2-3">
+<pre class="example">
+<code>auto pInv = make_unique&lt;Investment&gt;();</code>
+</pre>
+</div>
+</li>
+<li><a id="org75969dc"></a>move()<br />
+<div class="outline-text-5" id="text-2-4-2-4">
+<pre class="example">
+<code>unique_ptr&lt;Investment&gt; up1 = std::move(up);</code>
+</pre>
+</div>
+</li>
+<li><a id="orga0905a6"></a>自定义释放器<br />
+<div class="outline-text-5" id="text-2-4-2-5">
+<pre class="example">
+<code>auto delete_Investment = [](Investment* pInv)</code>
+<code>{</code>
+<code>       pInv-&gt;getObjectType();</code>
+<code>       delete pInv;</code>
+<code>};</code>
+<code>unique_ptr&lt;Investment,decltype(delete_Investment)&gt; pInvest(nullptr,delete_Investment);</code>
+</pre>
+
+<p>
+或者也可以使用函数指针
+</p>
+<pre class="example">
+<code>void deleteInv(Investment* pInv) {}</code>
+<code>std::unique_ptr&lt;Investment,void(*)(Investment*)&gt;ptr(nullptr,deleteInv);</code>
+</pre>
+</div>
+</li>
+
+<li><a id="org77590fc"></a>Notice<br />
+<div class="outline-text-5" id="text-2-4-2-6">
+<p>
+注意：unique<sub>ptr不能被复制或者拷贝</sub>，下面的代码将出错：
+</p>
+<pre class="example">
+<code>unique_ptr&lt;Investment&gt; up(new Investment()); //ok</code>
+<code>unique_ptr&lt;Investment&gt; up1(up);              //error, can not be copy</code>
+<code>unique_ptr&lt;Investment&gt; up2 = up;            //error, can not be assigned</code>
+</pre>
+
+<p>
+但是，unique<sub>ptr可以作为函数的返回值</sub>：
+</p>
+
+<pre class="example">
+<code>unique_ptr&lt;Investment&gt; GetPtr();        //function getthe unique pointer</code>
+<code>unique_ptr&lt;Investment&gt; pInv = GetPtr(); // ok</code>
+</pre>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org16ab2c6" class="outline-3">
+<h3 id="org16ab2c6"><span class="section-number-3">2.5</span> std::weak\<sub>ptr</sub></h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+weak\<sub>ptr是一种弱智能指针</sub>，它具有类似shared\<sub>ptr的行为</sub>，但是却不会影响的它所指向的资源的引用计数。Weak\<sub>ptr不能被解引用</sub>，也不能被测试是否为null。
+</p>
+
+<p>
+weak\<sub>ptr之所以具备这些特点</sub>，是因为weak\<sub>ptr不是一个独立的指针</sub>，而是shared\<sub>ptr的一个附加物</sub>。Weak\<sub>ptr</sub> 是通过shared\<sub>ptr创建出来的</sub>，正像如下代码: <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<p>
+如果此时，将spw赋值为null，spw所管理的资源会被析构，那么wpw也就成为了悬空指针，也称为“过期”（expired），可以通过expired()判断weak<sub>ptr是否过期</sub>。
+</p>
+<pre class="example">
+<code>spw = nullptr;</code>
+<code>if (!wpw.expired()) {}</code>
+</pre>
+
+<p>
+当我们想要访问weak<sub>ptr所指向的资源时</sub>，应当将weak<sub>ptr转为一个shared</sub><sub>ptr</sub>，通过shared<sub>ptr来访问资源</sub>。这里有两种方法来做这件事：
+</p>
+
+<ol class="org-ol">
+<li>通过weak\<sub>ptr的lock</sub>()调用</li>
+</ol>
+<pre class="example">
+<code>std::shared_ptr&lt;Investment&gt;spw1 = wpw.lock();// 如果wpw过期，则返回null</code>
+</pre>
+
+<ol class="org-ol">
+<li>将weak\<sub>ptr作为shared</sub>\<sub>ptr构造函数的参数</sub></li>
+</ol>
+<pre class="example">
+<code>std::shared_ptr&lt;Investment&gt;spw2(wpw);</code>
+</pre>
+
+<p>
+weak\<sub>ptr的用处主要体现在两方面</sub>：
+</p>
+
+<ol class="org-ol">
+<li>需要获知所管理的资源是否过期</li>
+</ol>
+<p>
+观察者模式
+</p>
+<ol class="org-ol">
+<li>解决shared<sub>ptr的循环引用问题</sub></li>
+</ol>
+<p>
+<a href="https://img-blog.csdn.net/20170604153930487?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">https://img-blog.csdn.net/20170604153930487?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a>
+</p>
+
+<p>
+For detail information, please read the original blog: <sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<p>
+<a href="https://img-blog.csdn.net/20170604153953836?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">https://img-blog.csdn.net/20170604153953836?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSnhpYW54dQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b438ef" class="outline-2">
+<h2 id="org3b438ef"><span class="section-number-2">3</span> reference</h2>
+<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li><a href="http://boqian.weebly.com/">boqian's space</a></li>
+</ol>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.cnblogs.com/jiayayao/p/6128877.html">https://www.cnblogs.com/jiayayao/p/6128877.html</a>, Jia Yayao's Blog
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://blog.csdn.net/jxianxu/article/details/72858536">https://blog.csdn.net/jxianxu/article/details/72858536</a>, csdn-C++11智能指针之std::shared<sub>ptr</sub>, 云飞扬<sub>Dylan</sub>
+</p></div></div>
+
+
+</div>
+</div>

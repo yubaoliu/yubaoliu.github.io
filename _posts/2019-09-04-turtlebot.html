@@ -30,6 +30,20 @@ export_file_name: 2019-09-04-turtlebot.html
 <li><a href="#org23ea115">12. pocketsphinx: ksm (keyword spotting mode)</a></li>
 <li><a href="#org7b1daa8">13. 语音控制turtlrbot机器人移动</a></li>
 <li><a href="#org58777e5">14. 实现播放语音</a></li>
+<li><a href="#orgd54fdb9">15. Navigation using Movebase</a>
+<ul>
+<li><a href="#org45ee384">15.1. Mapping using gmapping</a></li>
+<li><a href="#org615ba72">15.2. Localization</a></li>
+</ul>
+</li>
+<li><a href="#orgf25e579">16. RTABMAP SLAM</a>
+<ul>
+<li><a href="#orgf7e78af">16.1. Requirements</a></li>
+<li><a href="#org7ed8c2a">16.2. Usage</a></li>
+<li><a href="#org584df76">16.3. Visualization</a></li>
+<li><a href="#orgdbe6f71">16.4. Gazebo</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -504,5 +518,106 @@ Change another person to read.
 <code>$ sudo apt-get install festvox-don  </code>
 <code>$ rosrun sound_play say.py "Welcome to the future" voice_don_diphone</code>
 </pre>
+</div>
+</div>
+<div id="outline-container-orgd54fdb9" class="outline-2">
+<h2 id="orgd54fdb9"><span class="section-number-2">15</span> Navigation using Movebase</h2>
+<div class="outline-text-2" id="text-15">
+<ul class="org-ul">
+<li><a href="http://ros-developer.com/2017/05/09/slam-using-gmapping-with-turtlebot-robot-and-gazbo/">SLAM using gmapping with TurtleBot robot and Gazbo</a></li>
+<li><a href="http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Make%20a%20map%20and%20navigate%20with%20it">Make a map and navigate with it</a></li>
+</ul>
+
+<p>
+This demo only use gazebo simulator.
+</p>
+</div>
+
+<div id="outline-container-org45ee384" class="outline-3">
+<h3 id="org45ee384"><span class="section-number-3">15.1</span> Mapping using gmapping</h3>
+<div class="outline-text-3" id="text-15-1">
+<pre class="example">
+<code>roscore</code>
+<code>rosparam  set /use_sim_time true</code>
+</pre>
+
+<pre class="example">
+<code>roslaunch turtlebot_gazebo turtlebot_world.launch</code>
+<code>roslaunch turtlebot_gazebo gmapping_demo.launch</code>
+<code>roslaunch turtlebot_rviz_launchers view_navigation.launch</code>
+<code>roslaunch turtlebot_teleop logitech.launch</code>
+<code></code>
+<code>rosrun map_server map_saver -f  /tmp/mymap</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org615ba72" class="outline-3">
+<h3 id="org615ba72"><span class="section-number-3">15.2</span> Localization</h3>
+<div class="outline-text-3" id="text-15-2">
+<p>
+quit all the terminals above
+</p>
+<pre class="example">
+<code>roslaunch turtlebot_gazebo turtlebot_world.launch</code>
+<code></code>
+<code>roslaunch chefbot_bringup amcl_demo.launch map_file:=/tmp/mymap.yaml</code>
+<code></code>
+<code>roslaunch turtlebot_rviz_launchers view_navigation.launch</code>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf25e579" class="outline-2">
+<h2 id="orgf25e579"><span class="section-number-2">16</span> RTABMAP SLAM</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+<a href="http://wiki.ros.org/rtabmap_ros/Tutorials/MappingAndNavigationOnTurtlebot">MappingAndNavigationOnTurtlebot</a>
+</p>
+
+<p>
+Use simulater rather than real robot.
+</p>
+</div>
+<div id="outline-container-orgf7e78af" class="outline-3">
+<h3 id="orgf7e78af"><span class="section-number-3">16.1</span> Requirements</h3>
+<div class="outline-text-3" id="text-16-1">
+<pre class="example">
+<code>sudo apt-get install ros-kinetic-turtlebot-bringup ros-kinetic-turtlebot-navigation ros-kinetic-rtabmap-ros</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7ed8c2a" class="outline-3">
+<h3 id="org7ed8c2a"><span class="section-number-3">16.2</span> Usage</h3>
+<div class="outline-text-3" id="text-16-2">
+<pre class="example">
+<code>$ roslaunch turtlebot_bringup minimal.launch</code>
+<code>$ roslaunch rtabmap_ros demo_turtlebot_mapping.launch</code>
+</pre>
+</div>
+</div>
+<div id="outline-container-org584df76" class="outline-3">
+<h3 id="org584df76"><span class="section-number-3">16.3</span> Visualization</h3>
+<div class="outline-text-3" id="text-16-3">
+<pre class="example">
+<code> $ roslaunch rtabmap_ros demo_turtlebot_rviz.launch</code>
+<code>or</code>
+<code> $ rosrun rviz rviz -d turtlebot_navigation.rviz</code>
+<code></code>
+<code>roslaunch rtabmap_ros demo_turtlebot_mapping.launch args:="--delete_db_on_start"</code>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdbe6f71" class="outline-3">
+<h3 id="orgdbe6f71"><span class="section-number-3">16.4</span> Gazebo</h3>
+<div class="outline-text-3" id="text-16-4">
+<pre class="example">
+<code>$ roslaunch turtlebot_gazebo turtlebot_world.launch</code>
+<code>$ roslaunch rtabmap_ros demo_turtlebot_mapping.launch simulation:=true</code>
+<code>$ roslaunch rtabmap_ros demo_turtlebot_rviz.launch</code>
+</pre>
+</div>
 </div>
 </div>

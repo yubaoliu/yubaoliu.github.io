@@ -1,0 +1,68 @@
+---
+date: 2019-11-04
+tags: 
+- 
+- 
+- 
+- 
+- ros
+author: Yubao Liu
+layout: post
+categories: 
+- default
+title: G2O
+excerpt: post
+toc: tables 
+export_file_name: 2019-09-03-kinect-camera.html
+---
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org33360cd">1. Error</a>
+<ul>
+<li><a href="#org12cbd95">1.1. Eigen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org33360cd" class="outline-2">
+<h2 id="org33360cd"><span class="section-number-2">1</span> Error</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org12cbd95" class="outline-3">
+<h3 id="org12cbd95"><span class="section-number-3">1.1</span> Eigen</h3>
+<div class="outline-text-3" id="text-1-1">
+<pre class="example">
+<code>DRM_IOCTL_I915_GEM_APERTURE failed: Invalid argument</code>
+<code>Assuming 131072kB available aperture size.</code>
+<code>May lead to reduced performance or incorrect rendering.</code>
+<code>get chip id failed: -1 [22]</code>
+<code>param: 4, val: 0</code>
+<code>beignet-opencl-icd: no supported GPU found, this is probably the wrong opencl-icd package for this hardware</code>
+<code>(If you have multiple ICDs installed and OpenCL works, you can ignore this message)</code>
+<code>vo_g2o: /usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:258: void Eigen::PlainObjectBase&lt;Derived&gt;::resize(Eigen::Index, Eigen::Index) [with Derived = Eigen::Matrix&lt;double, 3, 3&gt;; Eigen::Index = long int]: Assertion `(!(RowsAtCompileTime!=Dynamic) || (rows==RowsAtCompileTime)) &amp;&amp; (!(ColsAtCompileTime!=Dynamic) || (cols==ColsAtCompileTime)) &amp;&amp; (!(RowsAtCompileTime==Dynamic &amp;&amp; MaxRowsAtCompileTime!=Dynamic) || (rows&lt;=MaxRowsAtCompileTime)) &amp;&amp; (!(ColsAtCompileTime==Dynamic &amp;&amp; MaxColsAtCompileTime!=Dynamic) || (cols&lt;=MaxColsAtCompileTime)) &amp;&amp; rows&gt;=0 &amp;&amp; cols&gt;=0 &amp;&amp; "Invalid sizes when resizing a matrix or array."' failed.</code>
+<code>Aborted (core dumped)</code>
+</pre>
+
+<p>
+Solution:
+</p>
+
+<p>
+This is bug of Eigen of library
+</p>
+
+<p>
+How to solve:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/RainerKuemmerle/g2o/issues/109">https://github.com/RainerKuemmerle/g2o/issues/109</a></li>
+<li><a href="https://github.com/RainerKuemmerle/g2o/issues/165">https://github.com/RainerKuemmerle/g2o/issues/165</a></li>
+</ul>
+</div>
+</div>
+</div>

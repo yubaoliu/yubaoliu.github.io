@@ -1,12 +1,12 @@
 ---
-date: 2019-10-14
+date: 2019-11-04
 tags: 
 - 
 - 
 - 
 - 
 - 
-- opencv
+- ros
 author: Yubao Liu
 layout: post
 categories: 
@@ -20,31 +20,31 @@ export_file_name: 2019-09-03-kinect-camera.html
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc24732a">1. RUN</a>
+<li><a href="#org5341808">1. RUN</a>
 <ul>
-<li><a href="#org69f2d71">1.1. Modify model path</a></li>
-<li><a href="#org2dd2e72">1.2. Kinect Camera</a></li>
-<li><a href="#org06f3f81">1.3. USB Web Camera</a></li>
-<li><a href="#orgea9701b">1.4. TUM RGBD Dataset</a></li>
+<li><a href="#orgf14daf0">1.1. Modify model path</a></li>
+<li><a href="#org42a87bc">1.2. Kinect Camera</a></li>
+<li><a href="#org37fc0e9">1.3. USB Web Camera</a></li>
+<li><a href="#orge2786c3">1.4. TUM RGBD Dataset</a></li>
 </ul>
 </li>
-<li><a href="#org8f981ba">2. Build and Install</a>
+<li><a href="#orgefe4d1c">2. Build and Install</a>
 <ul>
-<li><a href="#org2d7ecc6">2.1. Compile Openpose</a></li>
-<li><a href="#org6992b75">2.2. Ros wrapper</a></li>
+<li><a href="#org262f202">2.1. Compile Openpose</a></li>
+<li><a href="#orgbc1092a">2.2. Ros wrapper</a></li>
 </ul>
 </li>
-<li><a href="#org5a24af0">3. Others</a></li>
+<li><a href="#org7705217">3. Others</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc24732a" class="outline-2">
-<h2 id="orgc24732a"><span class="section-number-2">1</span> RUN</h2>
+<div id="outline-container-org5341808" class="outline-2">
+<h2 id="org5341808"><span class="section-number-2">1</span> RUN</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org69f2d71" class="outline-3">
-<h3 id="org69f2d71"><span class="section-number-3">1.1</span> Modify model path</h3>
+<div id="outline-container-orgf14daf0" class="outline-3">
+<h3 id="orgf14daf0"><span class="section-number-3">1.1</span> Modify model path</h3>
 <div class="outline-text-3" id="text-1-1">
 <pre class="example">
 <code>vim _ros/src/gflags_options.cpp</code>
@@ -56,8 +56,8 @@ export_file_name: 2019-09-03-kinect-camera.html
 </div>
 </div>
 </div>
-<div id="outline-container-org2dd2e72" class="outline-3">
-<h3 id="org2dd2e72"><span class="section-number-3">1.2</span> Kinect Camera</h3>
+<div id="outline-container-org42a87bc" class="outline-3">
+<h3 id="org42a87bc"><span class="section-number-3">1.2</span> Kinect Camera</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>Modify launch file <i>openpose<sub>ros</sub><sub>kinect.launch</sub></i></li>
@@ -78,8 +78,8 @@ export_file_name: 2019-09-03-kinect-camera.html
 </div>
 </div>
 
-<div id="outline-container-org06f3f81" class="outline-3">
-<h3 id="org06f3f81"><span class="section-number-3">1.3</span> USB Web Camera</h3>
+<div id="outline-container-org37fc0e9" class="outline-3">
+<h3 id="org37fc0e9"><span class="section-number-3">1.3</span> USB Web Camera</h3>
 <div class="outline-text-3" id="text-1-3">
 <pre class="example">
 <code>&lt;param name="image_topic"                value="/usb_cam/image_raw" /&gt;</code>
@@ -91,8 +91,8 @@ export_file_name: 2019-09-03-kinect-camera.html
 </pre>
 </div>
 </div>
-<div id="outline-container-orgea9701b" class="outline-3">
-<h3 id="orgea9701b"><span class="section-number-3">1.4</span> TUM RGBD Dataset</h3>
+<div id="outline-container-orge2786c3" class="outline-3">
+<h3 id="orge2786c3"><span class="section-number-3">1.4</span> TUM RGBD Dataset</h3>
 <div class="outline-text-3" id="text-1-4">
 <pre class="example">
 <code>&lt;param name="image_topic"                value="/camera/rgb/image_color" /&gt;</code>
@@ -111,12 +111,12 @@ Demo:
 </div>
 </div>
 
-<div id="outline-container-org8f981ba" class="outline-2">
-<h2 id="org8f981ba"><span class="section-number-2">2</span> Build and Install</h2>
+<div id="outline-container-orgefe4d1c" class="outline-2">
+<h2 id="orgefe4d1c"><span class="section-number-2">2</span> Build and Install</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2d7ecc6" class="outline-3">
-<h3 id="org2d7ecc6"><span class="section-number-3">2.1</span> Compile Openpose</h3>
+<div id="outline-container-org262f202" class="outline-3">
+<h3 id="org262f202"><span class="section-number-3">2.1</span> Compile Openpose</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 <code>git clone https://github.com/yubaoliu/openpose.git</code>
@@ -125,8 +125,8 @@ Demo:
 </div>
 </div>
 
-<div id="outline-container-org6992b75" class="outline-3">
-<h3 id="org6992b75"><span class="section-number-3">2.2</span> Ros wrapper</h3>
+<div id="outline-container-orgbc1092a" class="outline-3">
+<h3 id="orgbc1092a"><span class="section-number-3">2.2</span> Ros wrapper</h3>
 <div class="outline-text-3" id="text-2-2">
 <pre class="example">
 <code>cd catkin_ws/</code>
@@ -135,8 +135,8 @@ Demo:
 </div>
 </div>
 </div>
-<div id="outline-container-org5a24af0" class="outline-2">
-<h2 id="org5a24af0"><span class="section-number-2">3</span> Others</h2>
+<div id="outline-container-org7705217" class="outline-2">
+<h2 id="org7705217"><span class="section-number-2">3</span> Others</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>reigngt09/Pose-Estimation,  <a href="https://github.com/reigngt09/Pose-Estimation.git">https://github.com/reigngt09/Pose-Estimation.git</a></li>

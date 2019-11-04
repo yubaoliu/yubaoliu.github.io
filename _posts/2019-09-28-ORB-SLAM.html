@@ -15,7 +15,11 @@ export_file_name: 2019-09-28-ORB-SLAM.html
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgeb95617">1. Introduction</a></li>
+<li><a href="#orgeb95617">1. Introduction</a>
+<ul>
+<li><a href="#org1cc2cf4">1.1. Play bag file bug no map</a></li>
+</ul>
+</li>
 <li><a href="#org374e4ab">2. Notes</a>
 <ul>
 <li><a href="#orgd10d52a">2.1. Twc</a></li>
@@ -46,6 +50,36 @@ export_file_name: 2019-09-28-ORB-SLAM.html
 <div id="outline-container-orgeb95617" class="outline-2">
 <h2 id="orgeb95617"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://github.com/gaoxiang12/ORBSLAM2_with_pointcloud_map.git">ORBSLAM2<sub>with</sub><sub>pointcloud</sub><sub>map</sub></a></li>
+<li>yubaoliu/YB<sub>ORB</sub><sub>SLAM</sub>: git@github.com:yubaoliu/YB<sub>ORB</sub><sub>SLAM.git</sub></li>
+</ul>
+</div>
+<div id="outline-container-org1cc2cf4" class="outline-3">
+<h3 id="org1cc2cf4"><span class="section-number-3">1.1</span> Play bag file bug no map</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Camera only rotates w/o translation and point clouds is not showing on Map Viewer</li>
+</ul>
+
+<p>
+Refer: <a href="https://github.com/raulmur/ORB_SLAM2/issues/534">Camera only rotates w/o translation and point clouds is not showing on Map Viewer</a>
+</p>
+
+<ul class="org-ul">
+<li>Solution</li>
+</ul>
+
+<p>
+Setting DepthMapFactor to 1 of TUM yalm file solved this problem
+</p>
+
+<pre class="example">
+<code>rosbag play --clock   rgbd_dataset_freiburg1_xyz.bag  /camera/rgb/image_color:=/camera/rgb/image_raw /camera/depth/image:=/camera/depth/image_raw</code>
+</pre>
+
+
+
 <p>
 This paper presents ORB-SLAM, a feature-based monocular simultaneous localization and mapping (SLAM) system that operates in real time, in small and large indoor and outdoor environments.
 </p>
@@ -70,6 +104,7 @@ and loop closing.
 A survival of the fittest strategy that selects the points and keyframes of the reconstruction leads to excellent robustness and generates a compact and trackable map that only grows if the scene content changes, allowing lifelong operation. We present an exhaustive evaluation in 27 sequences from the most popular datasets. ORB-SLAM achieves unprecedented performance with respect to other state-of-the-art monocular SLAM approaches. For the benefit of the community, we make the source code public. 
 </p></li>
 </ul>
+</div>
 </div>
 </div>
 <div id="outline-container-org374e4ab" class="outline-2">
