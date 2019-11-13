@@ -1,5 +1,5 @@
 ---
-date: 2019-11-04
+date: 2019-11-13
 tags: 
 - 
 - mvg
@@ -16,41 +16,41 @@ export_file_name: 2019-09-24-mvg.html
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org86dc393">1. Introduction</a></li>
-<li><a href="#org2c9b56f">2. Installation and Setup</a>
+<li><a href="#org8e9ca6d">1. Introduction</a></li>
+<li><a href="#org523e209">2. Installation and Setup</a>
 <ul>
-<li><a href="#org3406346">2.1. Install dependencies</a></li>
-<li><a href="#org47a9cd0">2.2. Install sphinxbase and pocketsphinx from source code</a></li>
-<li><a href="#orge63cc70">2.3. Indigo User</a></li>
-<li><a href="#org38d977c">2.4. Using PocketSphinx</a></li>
+<li><a href="#org4f8d6fc">2.1. Install dependencies</a></li>
+<li><a href="#org79835fa">2.2. Install sphinxbase and pocketsphinx from source code</a></li>
+<li><a href="#org0d6f3d7">2.3. Indigo User</a></li>
+<li><a href="#orgbec0151">2.4. Using PocketSphinx</a></li>
 </ul>
 </li>
-<li><a href="#orgf0452dc">3. Ros wrapper</a>
+<li><a href="#org5a712c3">3. Ros wrapper</a>
 <ul>
-<li><a href="#orgac8d1e1">3.1. Pankaj-Baranwal/pocketsphinx</a></li>
-<li><a href="#orgd081f13">3.2. UTNuclearRoboticsPublic/pocketsphinx</a></li>
-<li><a href="#orgf91af18">3.3. Pankaj-Baranwal/pocketsphinx</a></li>
+<li><a href="#org5ab2b76">3.1. Pankaj-Baranwal/pocketsphinx</a></li>
+<li><a href="#org762b27d">3.2. UTNuclearRoboticsPublic/pocketsphinx</a></li>
+<li><a href="#orgda088d5">3.3. Pankaj-Baranwal/pocketsphinx</a></li>
 </ul>
 </li>
-<li><a href="#orgf77e7b9">4. Run ROS Wrapper</a></li>
-<li><a href="#org6150a9b">5. Live Speech Demo</a></li>
-<li><a href="#org9f85586">6. Sphinx Knowledge Base Tool</a></li>
-<li><a href="#org623c138">7. Train Module</a></li>
-<li><a href="#org74243f6">8. JSGF</a></li>
-<li><a href="#org793ff39">9. Possible Errors</a>
+<li><a href="#org90f1b6d">4. Run ROS Wrapper</a></li>
+<li><a href="#org56bf861">5. Live Speech Demo</a></li>
+<li><a href="#org7bb0278">6. Sphinx Knowledge Base Tool</a></li>
+<li><a href="#org431751d">7. Train Module</a></li>
+<li><a href="#orga852bc7">8. JSGF</a></li>
+<li><a href="#orgb7aa02c">9. Possible Errors</a>
 <ul>
-<li><a href="#org3e761af">9.1. <code>exception_on_overflow</code></a></li>
-<li><a href="#org8940b1c">9.2. pyaudio is too old</a></li>
-<li><a href="#orgd1144a3">9.3. roslaunch pocketsphinx robocup.launch</a></li>
+<li><a href="#org6b80d15">9.1. <code>exception_on_overflow</code></a></li>
+<li><a href="#org27fa75a">9.2. pyaudio is too old</a></li>
+<li><a href="#orge48dc0c">9.3. roslaunch pocketsphinx robocup.launch</a></li>
 </ul>
 </li>
-<li><a href="#org08b9816">10. Reference</a></li>
+<li><a href="#org38da31f">10. Reference</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org86dc393" class="outline-2">
-<h2 id="org86dc393"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org8e9ca6d" class="outline-2">
+<h2 id="org8e9ca6d"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>ASR := Automatic Speech Recognition</li>
@@ -95,12 +95,12 @@ CMUSphinx语音识别工具包下载<sup><a id="fnr.1" class="footref" href="#fn
 </div>
 </div>
 
-<div id="outline-container-org2c9b56f" class="outline-2">
-<h2 id="org2c9b56f"><span class="section-number-2">2</span> Installation and Setup</h2>
+<div id="outline-container-org523e209" class="outline-2">
+<h2 id="org523e209"><span class="section-number-2">2</span> Installation and Setup</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org3406346" class="outline-3">
-<h3 id="org3406346"><span class="section-number-3">2.1</span> Install dependencies</h3>
+<div id="outline-container-org4f8d6fc" class="outline-3">
+<h3 id="org4f8d6fc"><span class="section-number-3">2.1</span> Install dependencies</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sh"><code>sudo apt-get install -y git  &amp; <span style="color: #E6DB74; font-weight: bold;">\</span></code>
@@ -116,8 +116,8 @@ CMUSphinx语音识别工具包下载<sup><a id="fnr.1" class="footref" href="#fn
 </div>
 </div>
 
-<div id="outline-container-org47a9cd0" class="outline-3">
-<h3 id="org47a9cd0"><span class="section-number-3">2.2</span> Install sphinxbase and pocketsphinx from source code</h3>
+<div id="outline-container-org79835fa" class="outline-3">
+<h3 id="org79835fa"><span class="section-number-3">2.2</span> Install sphinxbase and pocketsphinx from source code</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-sh"><code>git clone https://github.com/cmusphinx/sphinxbase.git</code>
@@ -147,16 +147,16 @@ Test Installation:
 </div>
 </div>
 
-<div id="outline-container-orge63cc70" class="outline-3">
-<h3 id="orge63cc70"><span class="section-number-3">2.3</span> Indigo User</h3>
+<div id="outline-container-org0d6f3d7" class="outline-3">
+<h3 id="org0d6f3d7"><span class="section-number-3">2.3</span> Indigo User</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Reafer: <a href="http://wiki.ros.org/pocketsphinx">http://wiki.ros.org/pocketsphinx</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org38d977c" class="outline-3">
-<h3 id="org38d977c"><span class="section-number-3">2.4</span> Using PocketSphinx</h3>
+<div id="outline-container-orgbec0151" class="outline-3">
+<h3 id="orgbec0151"><span class="section-number-3">2.4</span> Using PocketSphinx</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Note: Wave file needs to be mono channel, normalized, and 16000 sample rate.
@@ -185,12 +185,12 @@ With Timing
 </div>
 </div>
 
-<div id="outline-container-orgf0452dc" class="outline-2">
-<h2 id="orgf0452dc"><span class="section-number-2">3</span> Ros wrapper</h2>
+<div id="outline-container-org5a712c3" class="outline-2">
+<h2 id="org5a712c3"><span class="section-number-2">3</span> Ros wrapper</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgac8d1e1" class="outline-3">
-<h3 id="orgac8d1e1"><span class="section-number-3">3.1</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div id="outline-container-org5ab2b76" class="outline-3">
+<h3 id="org5ab2b76"><span class="section-number-3">3.1</span> Pankaj-Baranwal/pocketsphinx</h3>
 <div class="outline-text-3" id="text-3-1">
 <pre class="example">
 <code>cd ~/catkin_ws/src</code>
@@ -236,8 +236,8 @@ Use Synaptics package manager to install the unmet dependencies which would be m
 </div>
 
 
-<div id="outline-container-orgd081f13" class="outline-3">
-<h3 id="orgd081f13"><span class="section-number-3">3.2</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
+<div id="outline-container-org762b27d" class="outline-3">
+<h3 id="org762b27d"><span class="section-number-3">3.2</span> <a href="https://github.com/UTNuclearRoboticsPublic/pocketsphinx">UTNuclearRoboticsPublic/pocketsphinx</a></h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Updated ROS bindings to pocketsphinx
@@ -249,8 +249,8 @@ Updated ROS bindings to pocketsphinx
 </div>
 </div>
 
-<div id="outline-container-orgf91af18" class="outline-3">
-<h3 id="orgf91af18"><span class="section-number-3">3.3</span> Pankaj-Baranwal/pocketsphinx</h3>
+<div id="outline-container-orgda088d5" class="outline-3">
+<h3 id="orgda088d5"><span class="section-number-3">3.3</span> Pankaj-Baranwal/pocketsphinx</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Updated ROS bindings to pocketsphinx
@@ -262,8 +262,8 @@ Updated ROS bindings to pocketsphinx
 </div>
 </div>
 
-<div id="outline-container-orgf77e7b9" class="outline-2">
-<h2 id="orgf77e7b9"><span class="section-number-2">4</span> Run ROS Wrapper</h2>
+<div id="outline-container-org90f1b6d" class="outline-2">
+<h2 id="org90f1b6d"><span class="section-number-2">4</span> Run ROS Wrapper</h2>
 <div class="outline-text-2" id="text-4">
 <pre class="example">
 <code>roslaunch pocketsphinx kws.launch dict:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.dic kws:=/home/yubao/data/catkin_ws/src/pocketsphinx/demo/voice_cmd.kwlist</code>
@@ -279,8 +279,8 @@ Here is an example: <a href="https://medium.com/@PankajB96/pocketsphinx-in-ros-d
 </div>
 </div>
 
-<div id="outline-container-org6150a9b" class="outline-2">
-<h2 id="org6150a9b"><span class="section-number-2">5</span> Live Speech Demo</h2>
+<div id="outline-container-org56bf861" class="outline-2">
+<h2 id="org56bf861"><span class="section-number-2">5</span> Live Speech Demo</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Example:
@@ -319,8 +319,8 @@ put the source code into <code>pocketsphinx/model</code>.
 </div>
 </div>
 
-<div id="outline-container-org9f85586" class="outline-2">
-<h2 id="org9f85586"><span class="section-number-2">6</span> Sphinx Knowledge Base Tool</h2>
+<div id="outline-container-org7bb0278" class="outline-2">
+<h2 id="org7bb0278"><span class="section-number-2">6</span> Sphinx Knowledge Base Tool</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">Sphinx Knowledge Base Tool</a>
@@ -328,8 +328,8 @@ To use: Create a sentence corpus file, consisting of all sentences you would lik
 </p>
 </div>
 </div>
-<div id="outline-container-org623c138" class="outline-2">
-<h2 id="org623c138"><span class="section-number-2">7</span> Train Module</h2>
+<div id="outline-container-org431751d" class="outline-2">
+<h2 id="org431751d"><span class="section-number-2">7</span> Train Module</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Install:
@@ -358,8 +358,8 @@ Train:
 </div>
 </div>
 
-<div id="outline-container-org74243f6" class="outline-2">
-<h2 id="org74243f6"><span class="section-number-2">8</span> JSGF</h2>
+<div id="outline-container-orga852bc7" class="outline-2">
+<h2 id="orga852bc7"><span class="section-number-2">8</span> JSGF</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 <a href="https://homepages.abdn.ac.uk/k.vdeemter/pages/teaching/NLP/practicals/JSGFGrammar.html">JSGFGrammar</a>
@@ -430,12 +430,12 @@ using other grammar rules within a grammar rule.
 </div>
 </div>
 
-<div id="outline-container-org793ff39" class="outline-2">
-<h2 id="org793ff39"><span class="section-number-2">9</span> Possible Errors</h2>
+<div id="outline-container-orgb7aa02c" class="outline-2">
+<h2 id="orgb7aa02c"><span class="section-number-2">9</span> Possible Errors</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org3e761af" class="outline-3">
-<h3 id="org3e761af"><span class="section-number-3">9.1</span> <code>exception_on_overflow</code></h3>
+<div id="outline-container-org6b80d15" class="outline-3">
+<h3 id="org6b80d15"><span class="section-number-3">9.1</span> <code>exception_on_overflow</code></h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 Error description:
@@ -484,8 +484,8 @@ Please use <i>pip</i> to upgrade it.
 </div>
 </div>
 
-<div id="outline-container-org8940b1c" class="outline-3">
-<h3 id="org8940b1c"><span class="section-number-3">9.2</span> pyaudio is too old</h3>
+<div id="outline-container-org27fa75a" class="outline-3">
+<h3 id="org27fa75a"><span class="section-number-3">9.2</span> pyaudio is too old</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 Errors:
@@ -538,8 +538,8 @@ It works fun for me.
 </div>
 </div>
 
-<div id="outline-container-orgd1144a3" class="outline-3">
-<h3 id="orgd1144a3"><span class="section-number-3">9.3</span> roslaunch pocketsphinx robocup.launch</h3>
+<div id="outline-container-orge48dc0c" class="outline-3">
+<h3 id="orge48dc0c"><span class="section-number-3">9.3</span> roslaunch pocketsphinx robocup.launch</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 Errors:
@@ -592,8 +592,8 @@ okay-google mode for switching between the above mentioned modes smoothly etc.
 </div>
 </div>
 
-<div id="outline-container-org08b9816" class="outline-2">
-<h2 id="org08b9816"><span class="section-number-2">10</span> Reference</h2>
+<div id="outline-container-org38da31f" class="outline-2">
+<h2 id="org38da31f"><span class="section-number-2">10</span> Reference</h2>
 <div class="outline-text-2" id="text-10">
 <ol class="org-ol">
 <li><a href="https://bakerstreetsystems.com/blog/post/setting-cmu-sphinx-pocketsphinx-ubuntu-1404">Setting Up CMU Sphinx (PocketSphinx) on Ubuntu] 14.04</a></li>

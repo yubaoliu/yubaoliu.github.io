@@ -1,96 +1,148 @@
 ---
-date: 2019-11-04
+date: 2019-09-05
 tags: 
-- 
-- 
-- 
-- ros
+- slam
 author: Yubao Liu
 layout: post
 categories: 
 - blog
 title: SLAM Sumarry
 excerpt: post
-toc: tables 
-export_file_name: 2019-09-03-kinect-camera.html
+toc: tables
+export_file_name: 2019-09-05-slam.html
 ---
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0a298cd">1. Quick References</a></li>
-<li><a href="#orgc371827">2. Introduction</a>
+<li><a href="#orge98d129">1. Tutorial</a></li>
+<li><a href="#orgbb7caeb">2. Introduction</a>
 <ul>
-<li><a href="#org7539dd9">2.1. What is SLAM?</a></li>
-<li><a href="#orgd64ff88">2.2. Rigid Assumption</a></li>
-<li><a href="#org0a0b36f">2.3. Chalenges in Visual SLAM</a></li>
+<li><a href="#org140a586">2.1. What is SLAM?</a></li>
+<li><a href="#orgeebc169">2.2. Rigid Assumption</a></li>
+<li><a href="#org229d9fc">2.3. Chalenges in Visual SLAM</a></li>
 </ul>
 </li>
-<li><a href="#orgb40f46a">3. Kinect Fusion</a>
+<li><a href="#org9661525">3. Semantic SLAM</a>
 <ul>
-<li><a href="#org6a19029">3.1. Tutorial</a></li>
-<li><a href="#orga708dff">3.2. Volumetric Representation</a></li>
-<li><a href="#org39a899e">3.3. SDF 与 TSDF</a></li>
+<li><a href="#orgfe547d0">3.1. QuadricSLAM</a></li>
 </ul>
 </li>
-<li><a href="#orgc9b8fe3">4. RGBD SLAM</a></li>
-<li><a href="#orgcaa80a4">5. RTAB MAP</a>
+<li><a href="#org2288cb2">4. SLAM Algorithms</a>
 <ul>
-<li><a href="#org691e606">5.1. ROS version</a></li>
+<li><a href="#org8dfc104">4.1. RT-SLAM</a></li>
+<li><a href="#org803f963">4.2. SLAMTB</a></li>
+<li><a href="#orgbe55986">4.3. Openvslam</a></li>
+<li><a href="#orgcc34ecf">4.4. PTAM</a></li>
+<li><a href="#orgb36a5ec">4.5. RTAB Map</a></li>
+<li><a href="#org86577e8">4.6. Loop Closure</a></li>
+<li><a href="#org5539391">4.7. maskfusion</a></li>
+<li><a href="#orga6934c8">4.8. Openkarto</a></li>
+<li><a href="#orga1d7ace">4.9. Type Conversion Between Eigen, G2O, OpenCV</a></li>
+<li><a href="#org2579fcf">4.10. Loop Closure</a></li>
 </ul>
 </li>
-<li><a href="#org2b69dec">6. GSLAM</a></li>
-<li><a href="#org9fe154b">7. SFM</a></li>
-<li><a href="#org5704706">8. DynaSLAM</a>
+<li><a href="#org0623a5e">5. Challenges in Visual SLAM</a>
 <ul>
-<li><a href="#org06734a8">8.1. Introduction</a></li>
-<li><a href="#org191eeb5">8.2. Compile</a></li>
-<li><a href="#org9a629ea">8.3. Paper</a></li>
-<li><a href="#org2b15b89">8.4. Abstract</a></li>
-<li><a href="#org7a853e0">8.5. Notes</a></li>
+<li><a href="#orgf53f6ec">5.1. Initialization</a></li>
+<li><a href="#orgcb5e2f3">5.2. Data association</a></li>
+<li><a href="#orga489629">5.3. Optical Flow</a></li>
+<li><a href="#org9989d53">5.4. Depth Eistimation</a></li>
+<li><a href="#orgfa2f2ea">5.5. No semantic information</a></li>
+<li><a href="#orgf19d7df">5.6. Localization</a></li>
+<li><a href="#org9a701d2">5.7. Others</a></li>
 </ul>
 </li>
-<li><a href="#org3b52415">9. RDSLAM</a></li>
-<li><a href="#org186f7f7">10. Mask-SLAM</a>
+<li><a href="#org753cb1f">6. Kinect Fusion</a>
 <ul>
-<li><a href="#org4c5cfb2">10.1. Paper</a></li>
+<li><a href="#org4fc600d">6.1. Tutorial</a></li>
+<li><a href="#org7e97e17">6.2. Volumetric Representation</a></li>
+<li><a href="#org82f7aa5">6.3. SDF 与 TSDF</a></li>
 </ul>
 </li>
-<li><a href="#org5ff0e4b">11. SOURCE CODE</a></li>
-<li><a href="#org2c506e6">12. ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
-<li><a href="#orgfa5a298">13. Visual-Inertial (VIO)</a>
+<li><a href="#org4d94f03">7. RGBD SLAM</a></li>
+<li><a href="#org5d46643">8. RTAB MAP</a>
 <ul>
-<li><a href="#orgde33a16">13.1. Common VIO Solutions</a></li>
-<li><a href="#orgd49f125">13.2. Variables of Interest and dynamical model</a></li>
-<li><a href="#org501e91a">13.3. References</a></li>
+<li><a href="#orgcd897fe">8.1. Resource</a></li>
+<li><a href="#orge0a32fa">8.2. ROS version</a></li>
+<li><a href="#orgff2e80c">8.3. With ORB SLAM2</a></li>
 </ul>
 </li>
-<li><a href="#orga0b31c3">14. Useful tools for the RGB-D benchmark</a>
+<li><a href="#orgeae9e02">9. GSLAM</a></li>
+<li><a href="#org0e4f9a6">10. SFM</a></li>
+<li><a href="#org81bb182">11. DynaSLAM</a>
 <ul>
-<li><a href="#org21b5691">14.1. ABSOLUTE TRAJECTORY ERROR (ATE)</a></li>
-<li><a href="#orgc01dbc8">14.2. RELATIVE POSE ERROR (RPE)</a></li>
-<li><a href="#org5b2dc0d">14.3. Generating a point cloud from images</a></li>
+<li><a href="#org5124d91">11.1. Introduction</a></li>
+<li><a href="#orgdfde747">11.2. Compile</a></li>
+<li><a href="#orgec867e1">11.3. Paper</a></li>
+<li><a href="#org6e1e641">11.4. Abstract</a></li>
+<li><a href="#orgc0646f8">11.5. Notes</a></li>
 </ul>
 </li>
-<li><a href="#orgac2069a">15. References</a></li>
+<li><a href="#orgd97a289">12. RDSLAM</a></li>
+<li><a href="#org86af891">13. Mask-SLAM</a>
+<ul>
+<li><a href="#orgd91744c">13.1. Paper</a></li>
+</ul>
+</li>
+<li><a href="#org608bb08">14. SOURCE CODE</a></li>
+<li><a href="#org2522602">15. ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
+<li><a href="#orgd86c148">16. Visual-Inertial (VIO)</a>
+<ul>
+<li><a href="#org495d90e">16.1. Common VIO Solutions</a></li>
+<li><a href="#org9069bb7">16.2. Variables of Interest and dynamical model</a></li>
+<li><a href="#org3f2e4ba">16.3. References</a></li>
+</ul>
+</li>
+<li><a href="#orga28d857">17. Useful tools for the RGB-D benchmark</a>
+<ul>
+<li><a href="#orgdb142f5">17.1. ABSOLUTE TRAJECTORY ERROR (ATE)</a></li>
+<li><a href="#org5141584">17.2. RELATIVE POSE ERROR (RPE)</a></li>
+<li><a href="#org19bcb0e">17.3. Generating a point cloud from images</a></li>
+</ul>
+</li>
+<li><a href="#org5a18939">18. References</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0a298cd" class="outline-2">
-<h2 id="org0a298cd"><span class="section-number-2">1</span> Quick References</h2>
+<div id="outline-container-orge98d129" class="outline-2">
+<h2 id="orge98d129"><span class="section-number-2">1</span> Tutorial</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="https://fzheng.me/2016/05/30/slam-review/">Brief Review on Visual SLAM: A Historical Perspective</a></li>
+<li><a href="https://blog.csdn.net/heyijia0327">知行合一 [CSDN]​</a>
+<ul class="org-ul">
+<li>从零开始手写 VIO</li>
+</ul></li>
+<li>CMPUT631: Autonomous Robot Navigation: <a href="https://webdocs.cs.ualberta.ca/~zhang/c631/">https://webdocs.cs.ualberta.ca/~zhang/c631/</a>
+<ul class="org-ul">
+<li>Instructor: Dr. Hong Zhang, 407 Athabasca Hall, 492-7188, hzhang@ualberta.ca</li>
+<li>Course Page: <a href="http://www.cs.ualberta.ca/~zhang/c631">http://www.cs.ualberta.ca/~zhang/c631</a></li>
+<li><a href="https://webdocs.cs.ualberta.ca/~zhang/teaching.html">https://webdocs.cs.ualberta.ca/~zhang/teaching.html</a></li>
+</ul></li>
+
+<li>Module 1: Least Squares Estimation and SLAM, <a href="http://www.diag.uniroma1.it/grisetti/teaching/lectures-ls-slam-master_2014_15/web/">http://www.diag.uniroma1.it/grisetti/teaching/lectures-ls-slam-master_2014_15/web/</a></li>
+</ul>
+
+<p>
+Dip. Informatica e Sistemistica Sapienza Università di Roma
+</p>
+
+<ul class="org-ul">
+<li>Module 1: Least Squares Estimation and SLAM, <a href="http://www.diag.uniroma1.it/grisetti/teaching/lectures-ls-slam-master_2014_15/web/">http://www.diag.uniroma1.it/grisetti/teaching/lectures-ls-slam-master_2014_15/web/</a></li>
+
+<li><a href="http://paopaorobot.org/bbs/read.php?tid=117">【泡泡机器人】公开课链接</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLkcuHsB39IRLUxHvY89exXy3Y6xOxuHt_">George Hotz GeoHot Twitch Livecoding SLAM</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc371827" class="outline-2">
-<h2 id="orgc371827"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-orgbb7caeb" class="outline-2">
+<h2 id="orgbb7caeb"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org7539dd9" class="outline-3">
-<h3 id="org7539dd9"><span class="section-number-3">2.1</span> What is SLAM?</h3>
+<div id="outline-container-org140a586" class="outline-3">
+<h3 id="org140a586"><span class="section-number-3">2.1</span> What is SLAM?</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 SLAM: Simultaneous Localization and Mapping
@@ -141,8 +193,8 @@ SLAM Algorithms
 </div>
 </div>
 
-<div id="outline-container-orgd64ff88" class="outline-3">
-<h3 id="orgd64ff88"><span class="section-number-3">2.2</span> Rigid Assumption</h3>
+<div id="outline-container-orgeebc169" class="outline-3">
+<h3 id="orgeebc169"><span class="section-number-3">2.2</span> Rigid Assumption</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The assumption of scene rigidity is typical in SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service service robotics or autonomous vehicles.\cite{Bescos2018}
@@ -150,8 +202,8 @@ The assumption of scene rigidity is typical in SLAM algorithms. Such a strong as
 </div>
 </div>
 
-<div id="outline-container-org0a0b36f" class="outline-3">
-<h3 id="org0a0b36f"><span class="section-number-3">2.3</span> Chalenges in Visual SLAM</h3>
+<div id="outline-container-org229d9fc" class="outline-3">
+<h3 id="org229d9fc"><span class="section-number-3">2.3</span> Chalenges in Visual SLAM</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Low-contrast; textureless image regions</li>
@@ -164,13 +216,191 @@ The assumption of scene rigidity is typical in SLAM algorithms. Such a strong as
 </div>
 </div>
 
-<div id="outline-container-orgb40f46a" class="outline-2">
-<h2 id="orgb40f46a"><span class="section-number-2">3</span> Kinect Fusion</h2>
+<div id="outline-container-org9661525" class="outline-2">
+<h2 id="org9661525"><span class="section-number-2">3</span> Semantic SLAM</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org6a19029" class="outline-3">
-<h3 id="org6a19029"><span class="section-number-3">3.1</span> Tutorial</h3>
+<div id="outline-container-orgfe547d0" class="outline-3">
+<h3 id="orgfe547d0"><span class="section-number-3">3.1</span> QuadricSLAM</h3>
 <div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li><a href="http://www.semanticslam.ai/">SemanticSLAM.ai</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2288cb2" class="outline-2">
+<h2 id="org2288cb2"><span class="section-number-2">4</span> SLAM Algorithms</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org8dfc104" class="outline-3">
+<h3 id="org8dfc104"><span class="section-number-3">4.1</span> RT-SLAM</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li><a href="https://github.com/damarquezg/rtslam">RT-SLAM</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org803f963" class="outline-3">
+<h3 id="org803f963"><span class="section-number-3">4.2</span> SLAMTB</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li><a href="https://github.com/damarquezg/SLAMTB">SLAMTB</a></li>
+</ul>
+<p>
+EKF-SLAM TOOLBOX FOR MATLAB
+</p>
+</div>
+</div>
+<div id="outline-container-orgbe55986" class="outline-3">
+<h3 id="orgbe55986"><span class="section-number-3">4.3</span> Openvslam</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li><a href="https://github.com/xdspacelab/openvslam">xdspacelab/openvslam</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcc34ecf" class="outline-3">
+<h3 id="orgcc34ecf"><span class="section-number-3">4.4</span> PTAM</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li><a href="https://github.com/Oxford-PTAM/PTAM-GPL">PTAM</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb36a5ec" class="outline-3">
+<h3 id="orgb36a5ec"><span class="section-number-3">4.5</span> RTAB Map</h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li><a href="http://introlab.github.io/rtabmap/">RTAB-Map</a></li>
+<li><a href="https://github.com/introlab/rtabmap_ros.git">https://github.com/introlab/rtabmap_ros.git</a> ; <a href="http://wiki.ros.org/rtabmap_ros">http://wiki.ros.org/rtabmap_ros</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org86577e8" class="outline-3">
+<h3 id="org86577e8"><span class="section-number-3">4.6</span> Loop Closure</h3>
+<div class="outline-text-3" id="text-4-6">
+<ul class="org-ul">
+<li><a href="https://github.com/dorian3d/DLoopDetector">dorian3d/DLoopDetector</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5539391" class="outline-3">
+<h3 id="org5539391"><span class="section-number-3">4.7</span> maskfusion</h3>
+</div>
+
+<div id="outline-container-orga6934c8" class="outline-3">
+<h3 id="orga6934c8"><span class="section-number-3">4.8</span> Openkarto</h3>
+<div class="outline-text-3" id="text-4-8">
+<ul class="org-ul">
+<li><a href="https://github.com/skasperski/OpenKarto/tree/master/source">skasperski/OpenKarto</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga1d7ace" class="outline-3">
+<h3 id="orga1d7ace"><span class="section-number-3">4.9</span> Type Conversion Between Eigen, G2O, OpenCV</h3>
+<div class="outline-text-3" id="text-4-9">
+<ul class="org-ul">
+<li><a href="https://github.com/gaoxiang12/rgbd-slam-tutor2/blob/master/include/converter.h">https://github.com/gaoxiang12/rgbd-slam-tutor2/blob/master/include/converter.h</a></li>
+<li><a href="https://github.com/raulmur/ORB_SLAM2/blob/master/include/Converter.h">https://github.com/raulmur/ORB_SLAM2/blob/master/include/Converter.h</a></li>
+<li><a href="http://www.justlive.vip/blog/article/details/3136">Blog-g2o、Eigen、Mat矩阵类型转换-Just Live</a></li>
+<li><a href="https://blog.csdn.net/hzwwpgmwy/article/details/80712967">https://blog.csdn.net/hzwwpgmwy/article/details/80712967</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2579fcf" class="outline-3">
+<h3 id="org2579fcf"><span class="section-number-3">4.10</span> Loop Closure</h3>
+<div class="outline-text-3" id="text-4-10">
+<ul class="org-ul">
+<li><a href="https://github.com/craymichael/CNN_LCD">craymichael/CNN<sub>LCD</sub></a>
+CNNs for Loop-Closure Detection on the Oxford New College and City Centre Datasets</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0623a5e" class="outline-2">
+<h2 id="org0623a5e"><span class="section-number-2">5</span> Challenges in Visual SLAM</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgf53f6ec" class="outline-3">
+<h3 id="orgf53f6ec"><span class="section-number-3">5.1</span> Initialization</h3>
+</div>
+<div id="outline-container-orgcb5e2f3" class="outline-3">
+<h3 id="orgcb5e2f3"><span class="section-number-3">5.2</span> Data association</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Feature Matching</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga489629" class="outline-3">
+<h3 id="orga489629"><span class="section-number-3">5.3</span> Optical Flow</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+FlowNet FlowNetSimple, FlowNetCorr
+</p>
+
+<p>
+PWC-Net
+</p>
+</div>
+</div>
+<div id="outline-container-org9989d53" class="outline-3">
+<h3 id="org9989d53"><span class="section-number-3">5.4</span> Depth Eistimation</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>GC-Net</li>
+<li>MonoDepth</li>
+</ul>
+<p>
+Unsupervised Monocular Depth Estimation with &#x2026;
+</p>
+<ul class="org-ul">
+<li>SFMLearner - Unsupervised</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfa2f2ea" class="outline-3">
+<h3 id="orgfa2f2ea"><span class="section-number-3">5.5</span> No semantic information</h3>
+<div class="outline-text-3" id="text-5-5">
+<ul class="org-ul">
+<li>Mask R-CNN (Instance Segmentation)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf19d7df" class="outline-3">
+<h3 id="orgf19d7df"><span class="section-number-3">5.6</span> Localization</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+<a href="https://www.visuallocalization.net/">https://www.visuallocalization.net/</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org9a701d2" class="outline-3">
+<h3 id="org9a701d2"><span class="section-number-3">5.7</span> Others</h3>
+<div class="outline-text-3" id="text-5-7">
+<ul class="org-ul">
+<li>Deep TAM</li>
+<li>Code SLAM</li>
+<li>GN NET</li>
+<li>VI NET IMU</li>
+<li>NetVLAD</li>
+<li>VSO</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org753cb1f" class="outline-2">
+<h2 id="org753cb1f"><span class="section-number-2">6</span> Kinect Fusion</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org4fc600d" class="outline-3">
+<h3 id="org4fc600d"><span class="section-number-3">6.1</span> Tutorial</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li><a href="https://wlsdzyzl.top/2019/01/25/3D-Reconstruction%E2%80%94%E2%80%94TSDF-volume-reconstruction/">3D Reconstruction——TSDF volume reconstruction</a></li>
 <li><a href="https://courses.cs.washington.edu/courses/cse571/15au/slides/14-mapping-tsdf.pdf">CSE-571 Mapping	and	Modeling Using	Truncated	Signed	Distance Functions</a></li>
@@ -182,17 +412,17 @@ Signed Distance Functions
 </div>
 </div>
 
-<div id="outline-container-orga708dff" class="outline-3">
-<h3 id="orga708dff"><span class="section-number-3">3.2</span> Volumetric Representation</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org7e97e17" class="outline-3">
+<h3 id="org7e97e17"><span class="section-number-3">6.2</span> Volumetric Representation</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 Volume就是一个体空间。
 </p>
 </div>
 </div>
-<div id="outline-container-org39a899e" class="outline-3">
-<h3 id="org39a899e"><span class="section-number-3">3.3</span> SDF 与 TSDF</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org82f7aa5" class="outline-3">
+<h3 id="org82f7aa5"><span class="section-number-3">6.3</span> SDF 与 TSDF</h3>
+<div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>TSDF( Truncated Signed Distance Functions ) — 截断符号距离函数</li>
 <li>SDF （Signed Distance Functions）— 符号距离函数</li>
@@ -205,64 +435,83 @@ Volume就是一个体空间。
 </div>
 </div>
 
-<div id="outline-container-orgc9b8fe3" class="outline-2">
-<h2 id="orgc9b8fe3"><span class="section-number-2">4</span> RGBD SLAM</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org4d94f03" class="outline-2">
+<h2 id="org4d94f03"><span class="section-number-2">7</span> RGBD SLAM</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>yubaoliu/rgbdslam<sub>v2</sub>: git@github.com:yubaoliu/rgbdslam<sub>v2.git</sub></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcaa80a4" class="outline-2">
-<h2 id="orgcaa80a4"><span class="section-number-2">5</span> RTAB MAP</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org5d46643" class="outline-2">
+<h2 id="org5d46643"><span class="section-number-2">8</span> RTAB MAP</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-orgcd897fe" class="outline-3">
+<h3 id="orgcd897fe"><span class="section-number-3">8.1</span> Resource</h3>
+<div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li><a href="https://blog.51cto.com/remyspot/1784914">SLAM: RtabMap中文解析</a></li>
 <li><a href="http://introlab.github.io/rtabmap/">RTAB-Map-gitio</a></li>
-<li><a href="http://introlab.github.io/rtabmap/">RTAB-Map</a></li>
+<li><a href="http://introlab.github.io/rtabmap/">RTxAB-Map</a></li>
 <li><a href="http://wiki.ros.org/rtabmap_ros">http://wiki.ros.org/rtabmap_ros</a></li>
 </ul>
 
-<div class="HTML">
-<p>
-&lt;iframe width="640" height="480" src="<a href="https://www.youtube.com/embed/AMLwjo80WzI">https://www.youtube.com/embed/AMLwjo80WzI</a>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;
-</p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/AMLwjo80WzI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
+</div>
+</div>
 
-</div>
-</div>
-<div id="outline-container-org691e606" class="outline-3">
-<h3 id="org691e606"><span class="section-number-3">5.1</span> ROS version</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orge0a32fa" class="outline-3">
+<h3 id="orge0a32fa"><span class="section-number-3">8.2</span> ROS version</h3>
+<div class="outline-text-3" id="text-8-2">
 <pre class="example">
 <code>sudo apt-get install ros-kinetic-rtabmap-ros</code>
 </pre>
 </div>
 </div>
+
+<div id="outline-container-orgff2e80c" class="outline-3">
+<h3 id="orgff2e80c"><span class="section-number-3">8.3</span> With ORB SLAM2</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+I see this error:
+</p>
+<pre class="example">
+<code>/usr/bin/ld: cannot find -lpangolin</code>
+<code>collect2: error: ld returned 1 exit status</code>
+<code>rtabmap_ros/CMakeFiles/rtabmap_rgbd_sync.dir/build.make:1222: recipe for target '/home/yubao/data/catkin_ws/devel/lib/rtabmap_ros/rgbd_sync' failed</code>
+<code>make[2]: *** [/home/yubao/data/catkin_ws/devel/lib/rtabmap_ros/rgbd_sync] Error 1</code>
+<code>CMakeFiles/Makefile2:16659: recipe for target 'rtabmap_ros/CMakeFiles/rtabmap_rgbd_sync.dir/all' failed</code>
+<code>make[1]: *** [rtabmap_ros/CMakeFiles/rtabmap_rgbd_sync.dir/all] Error 2</code>
+<code>make[1]: *** Waiting for unfinished jobs....</code>
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org2b69dec" class="outline-2">
-<h2 id="org2b69dec"><span class="section-number-2">6</span> GSLAM</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgeae9e02" class="outline-2">
+<h2 id="orgeae9e02"><span class="section-number-2">9</span> GSLAM</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="https://github.com/zdzhaoyong/GSLAM">zdzhaoyong/GSLAM</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9fe154b" class="outline-2">
-<h2 id="org9fe154b"><span class="section-number-2">7</span> SFM</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org0e4f9a6" class="outline-2">
+<h2 id="org0e4f9a6"><span class="section-number-2">10</span> SFM</h2>
+<div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>sfm-github: <a href="https://github.com/topics/sfm">https://github.com/topics/sfm</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5704706" class="outline-2">
-<h2 id="org5704706"><span class="section-number-2">8</span> DynaSLAM</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org81bb182" class="outline-2">
+<h2 id="org81bb182"><span class="section-number-2">11</span> DynaSLAM</h2>
+<div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-org06734a8" class="outline-3">
-<h3 id="org06734a8"><span class="section-number-3">8.1</span> Introduction</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org5124d91" class="outline-3">
+<h3 id="org5124d91"><span class="section-number-3">11.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-11-1">
 <ul class="org-ul">
 <li>Project: <a href="https://bertabescos.github.io/DynaSLAM/">https://bertabescos.github.io/DynaSLAM/</a></li>
 <li><a href="https://github.com/BertaBescos/DynaSLAM.git">BertaBescos/DynaSLAM</a></li>
@@ -273,9 +522,9 @@ Volume就是一个体空间。
 </p>
 </div>
 </div>
-<div id="outline-container-org191eeb5" class="outline-3">
-<h3 id="org191eeb5"><span class="section-number-3">8.2</span> Compile</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-orgdfde747" class="outline-3">
+<h3 id="orgdfde747"><span class="section-number-3">11.2</span> Compile</h3>
+<div class="outline-text-3" id="text-11-2">
 <div class="org-src-container">
 <pre class="src src-bash"><code>git clone https://github.com/BertaBescos/DynaSLAM.git</code>
 <code><span style="color: #F92672;">cd</span> DynaSLAM</code>
@@ -286,18 +535,18 @@ Volume就是一个体空间。
 </div>
 </div>
 </div>
-<div id="outline-container-org9a629ea" class="outline-3">
-<h3 id="org9a629ea"><span class="section-number-3">8.3</span> Paper</h3>
-<div class="outline-text-3" id="text-8-3">
+<div id="outline-container-orgec867e1" class="outline-3">
+<h3 id="orgec867e1"><span class="section-number-3">11.3</span> Paper</h3>
+<div class="outline-text-3" id="text-11-3">
 <p>
 Bescos, B., Facil, J. M., Civera, J., &amp; Neira, J. (2018). DynaSLAM: Tracking, Mapping, and Inpainting in Dynamic Scenes. IEEE Robotics and Automation Letters, 3(4), 4076–4083. <a href="https://doi.org/10.1109/LRA.2018.2860039">https://doi.org/10.1109/LRA.2018.2860039</a> \cite{Bescos2018}
 <a href="https://youtu.be/EabI_goFmQs">Youtube-demo</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org2b15b89" class="outline-3">
-<h3 id="org2b15b89"><span class="section-number-3">8.4</span> Abstract</h3>
-<div class="outline-text-3" id="text-8-4">
+<div id="outline-container-org6e1e641" class="outline-3">
+<h3 id="org6e1e641"><span class="section-number-3">11.4</span> Abstract</h3>
+<div class="outline-text-3" id="text-11-4">
 <p>
 The assumption of scene rigidity is typical in SLAM algorithms. Such a strong assumption limits the use of most visual SLAM systems in populated real-world environ- ments, which are the target of several relevant applications like service service robotics or autonomous vehicles.
 </p>
@@ -325,39 +574,39 @@ We are capable of detecting the moving objects either by multi-view geometry, de
 </div>
 </div>
 
-<div id="outline-container-org7a853e0" class="outline-3">
-<h3 id="org7a853e0"><span class="section-number-3">8.5</span> Notes</h3>
-<div class="outline-text-3" id="text-8-5">
+<div id="outline-container-orgc0646f8" class="outline-3">
+<h3 id="orgc0646f8"><span class="section-number-3">11.5</span> Notes</h3>
+<div class="outline-text-3" id="text-11-5">
 <p>
 第三部分我理解的是求基础矩阵用了ransac，所以基础矩阵更符合静态点的运动模型。当前点离这个基础矩阵计算出的极线越远就说明动态效果越大
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org3b52415" class="outline-2">
-<h2 id="org3b52415"><span class="section-number-2">9</span> RDSLAM</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-orgd97a289" class="outline-2">
+<h2 id="orgd97a289"><span class="section-number-2">12</span> RDSLAM</h2>
+<div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li><a href="http://www.zjucvg.net/rdslam/rdslam.html">RDSLAM: Robust Dynamic SLAM</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org186f7f7" class="outline-2">
-<h2 id="org186f7f7"><span class="section-number-2">10</span> Mask-SLAM</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-org86af891" class="outline-2">
+<h2 id="org86af891"><span class="section-number-2">13</span> Mask-SLAM</h2>
+<div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org4c5cfb2" class="outline-3">
-<h3 id="org4c5cfb2"><span class="section-number-3">10.1</span> Paper</h3>
-<div class="outline-text-3" id="text-10-1">
+<div id="outline-container-orgd91744c" class="outline-3">
+<h3 id="orgd91744c"><span class="section-number-3">13.1</span> Paper</h3>
+<div class="outline-text-3" id="text-13-1">
 <p>
 Kaneko, M., Iwami, K., Ogawa, T., Yamasaki, T., &amp; Aizawa, K. (2018). Mask-SLAM: Robust feature-based monocular SLAM by masking using semantic segmentation. IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops, 2018-June, 371–379. <a href="https://doi.org/10.1109/CVPRW.2018.00063">https://doi.org/10.1109/CVPRW.2018.00063</a>
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5ff0e4b" class="outline-2">
-<h2 id="org5ff0e4b"><span class="section-number-2">11</span> SOURCE CODE</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-org608bb08" class="outline-2">
+<h2 id="org608bb08"><span class="section-number-2">14</span> SOURCE CODE</h2>
+<div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>zssjh/semantic<sub>slam</sub>: <a href="https://github.com/zssjh/semantic_slam.git">https://github.com/zssjh/semantic_slam.git</a>
 ORB-SLAM2 combined with yolov3 object detection, considering the relationship among objects</li>
@@ -366,32 +615,32 @@ ORB-SLAM2 combined with yolov3 object detection, considering the relationship am
 </div>
 </div>
 
-<div id="outline-container-org2c506e6" class="outline-2">
-<h2 id="org2c506e6"><span class="section-number-2">12</span> ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-org2522602" class="outline-2">
+<h2 id="org2522602"><span class="section-number-2">15</span> ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></h2>
+<div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li><a href="https://github.com/Ewenwan/ORB_SLAM2_SSD_Semantic">Ewenwan/ORB<sub>SLAM2</sub><sub>SSD</sub><sub>Semantic</sub></a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfa5a298" class="outline-2">
-<h2 id="orgfa5a298"><span class="section-number-2">13</span> Visual-Inertial (VIO)</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-orgd86c148" class="outline-2">
+<h2 id="orgd86c148"><span class="section-number-2">16</span> Visual-Inertial (VIO)</h2>
+<div class="outline-text-2" id="text-16">
 </div>
-<div id="outline-container-orgde33a16" class="outline-3">
-<h3 id="orgde33a16"><span class="section-number-3">13.1</span> Common VIO Solutions</h3>
-<div class="outline-text-3" id="text-13-1">
+<div id="outline-container-org495d90e" class="outline-3">
+<h3 id="org495d90e"><span class="section-number-3">16.1</span> Common VIO Solutions</h3>
+<div class="outline-text-3" id="text-16-1">
 </div>
 </div>
-<div id="outline-container-orgd49f125" class="outline-3">
-<h3 id="orgd49f125"><span class="section-number-3">13.2</span> Variables of Interest and dynamical model</h3>
+<div id="outline-container-org9069bb7" class="outline-3">
+<h3 id="org9069bb7"><span class="section-number-3">16.2</span> Variables of Interest and dynamical model</h3>
 </div>
 
 
 
-<div id="outline-container-org501e91a" class="outline-3">
-<h3 id="org501e91a"><span class="section-number-3">13.3</span> References</h3>
-<div class="outline-text-3" id="text-13-3">
+<div id="outline-container-org3f2e4ba" class="outline-3">
+<h3 id="org3f2e4ba"><span class="section-number-3">16.3</span> References</h3>
+<div class="outline-text-3" id="text-16-3">
 <ul class="org-ul">
 <li><a href="https://blog.csdn.net/wangshuailpp/article/details/78461171">VINS技术路线与代码详解</a></li>
 </ul>
@@ -399,22 +648,22 @@ ORB-SLAM2 combined with yolov3 object detection, considering the relationship am
 </div>
 </div>
 
-<div id="outline-container-orga0b31c3" class="outline-2">
-<h2 id="orga0b31c3"><span class="section-number-2">14</span> Useful tools for the RGB-D benchmark</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-orga28d857" class="outline-2">
+<h2 id="orga28d857"><span class="section-number-2">17</span> Useful tools for the RGB-D benchmark</h2>
+<div class="outline-text-2" id="text-17">
 <ul class="org-ul">
 <li><a href="https://vision.in.tum.de/data/datasets/rgbd-dataset/tools#evaluation">https://vision.in.tum.de/data/datasets/rgbd-dataset/tools#evaluation</a></li>
 </ul>
 </div>
-<div id="outline-container-org21b5691" class="outline-3">
-<h3 id="org21b5691"><span class="section-number-3">14.1</span> ABSOLUTE TRAJECTORY ERROR (ATE)</h3>
+<div id="outline-container-orgdb142f5" class="outline-3">
+<h3 id="orgdb142f5"><span class="section-number-3">17.1</span> ABSOLUTE TRAJECTORY ERROR (ATE)</h3>
 </div>
-<div id="outline-container-orgc01dbc8" class="outline-3">
-<h3 id="orgc01dbc8"><span class="section-number-3">14.2</span> RELATIVE POSE ERROR (RPE)</h3>
+<div id="outline-container-org5141584" class="outline-3">
+<h3 id="org5141584"><span class="section-number-3">17.2</span> RELATIVE POSE ERROR (RPE)</h3>
 </div>
-<div id="outline-container-org5b2dc0d" class="outline-3">
-<h3 id="org5b2dc0d"><span class="section-number-3">14.3</span> Generating a point cloud from images</h3>
-<div class="outline-text-3" id="text-14-3">
+<div id="outline-container-org19bcb0e" class="outline-3">
+<h3 id="org19bcb0e"><span class="section-number-3">17.3</span> Generating a point cloud from images</h3>
+<div class="outline-text-3" id="text-17-3">
 <pre class="example">
 <code>usage: generate_pointcloud.py [-h] rgb_file depth_file ply_file</code>
 <code></code>
@@ -433,9 +682,9 @@ ORB-SLAM2 combined with yolov3 object detection, considering the relationship am
 </div>
 </div>
 
-<div id="outline-container-orgac2069a" class="outline-2">
-<h2 id="orgac2069a"><span class="section-number-2">15</span> References</h2>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-org5a18939" class="outline-2">
+<h2 id="org5a18939"><span class="section-number-2">18</span> References</h2>
+<div class="outline-text-2" id="text-18">
 <ul class="org-ul">
 <li>Kinect Fusion 之 TSDF, <a href="http://adastaybrave.com/%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB/2018/09/02/Kinect-Fusion-%E4%B9%8B-TSDF/">http://adastaybrave.com/%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB/2018/09/02/Kinect-Fusion-%E4%B9%8B-TSDF/</a></li>
 </ul>

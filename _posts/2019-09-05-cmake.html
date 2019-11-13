@@ -1,5 +1,5 @@
 ---
-date: 2019-11-04
+date: 2019-11-13
 tags: 
 - 
 - turtle bot
@@ -17,34 +17,34 @@ export_file_name: 2019-09-04-turtlebot.html
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7882aff">1. Example</a></li>
-<li><a href="#orged9502d">2. Boost</a></li>
-<li><a href="#org1eca6bc">3. Cuda</a></li>
-<li><a href="#orgbbb6af4">4. Eigen</a></li>
-<li><a href="#orgca9aef7">5. OpenCV</a></li>
-<li><a href="#org03c4f5e">6. Glog</a></li>
-<li><a href="#org5b85bd5">7. X11</a></li>
-<li><a href="#orgf7ef2ed">8. Overview</a></li>
-<li><a href="#org4884184">9. Install</a>
+<li><a href="#org6d9ee02">1. Example</a></li>
+<li><a href="#org987aa3f">2. Boost</a></li>
+<li><a href="#orgce349ef">3. Cuda</a></li>
+<li><a href="#org53dc885">4. Eigen</a></li>
+<li><a href="#org35dc3b9">5. OpenCV</a></li>
+<li><a href="#org29f9f5f">6. Glog</a></li>
+<li><a href="#orga7ba84d">7. X11</a></li>
+<li><a href="#org71adf52">8. Overview</a></li>
+<li><a href="#org867692c">9. Install</a>
 <ul>
-<li><a href="#org1254a50">9.1. Homebrew</a></li>
-<li><a href="#org5e179c0">9.2. Ubuntu (Debian)</a></li>
+<li><a href="#org5272f09">9.1. Homebrew</a></li>
+<li><a href="#orgd9b293b">9.2. Ubuntu (Debian)</a></li>
 </ul>
 </li>
-<li><a href="#org6cb1887">10. Eigen</a></li>
-<li><a href="#org30c0bc8">11. PCL</a></li>
-<li><a href="#org2f776c4">12. OpenCV</a></li>
-<li><a href="#org34ec2de">13. How to</a>
+<li><a href="#orgd01d382">10. Eigen</a></li>
+<li><a href="#org6bc0045">11. PCL</a></li>
+<li><a href="#orga6d1390">12. OpenCV</a></li>
+<li><a href="#org31a5bb4">13. How to</a>
 <ul>
-<li><a href="#org90cf2f6">13.1. Upgrade Cmake</a></li>
+<li><a href="#org6b85364">13.1. Upgrade Cmake</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7882aff" class="outline-2">
-<h2 id="org7882aff"><span class="section-number-2">1</span> Example</h2>
+<div id="outline-container-org6d9ee02" class="outline-2">
+<h2 id="org6d9ee02"><span class="section-number-2">1</span> Example</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION 3.0)</code>
@@ -79,8 +79,8 @@ Use <b>C-c C-v t</b> or <b>M-x org-babel-tangle</b> to extract this file.
 </div>
 </div>
 
-<div id="outline-container-orged9502d" class="outline-2">
-<h2 id="orged9502d"><span class="section-number-2">2</span> Boost</h2>
+<div id="outline-container-org987aa3f" class="outline-2">
+<h2 id="org987aa3f"><span class="section-number-2">2</span> Boost</h2>
 <div class="outline-text-2" id="text-2">
 <pre class="example">
 <code>find_package(Boost REQUIRED COMPONENTS thread)</code>
@@ -89,8 +89,8 @@ Use <b>C-c C-v t</b> or <b>M-x org-babel-tangle</b> to extract this file.
 </pre>
 </div>
 </div>
-<div id="outline-container-org1eca6bc" class="outline-2">
-<h2 id="org1eca6bc"><span class="section-number-2">3</span> Cuda</h2>
+<div id="outline-container-orgce349ef" class="outline-2">
+<h2 id="orgce349ef"><span class="section-number-2">3</span> Cuda</h2>
 <div class="outline-text-2" id="text-3">
 <pre class="example">
 <code># Find CUDA</code>
@@ -106,8 +106,8 @@ Use <b>C-c C-v t</b> or <b>M-x org-babel-tangle</b> to extract this file.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbbb6af4" class="outline-2">
-<h2 id="orgbbb6af4"><span class="section-number-2">4</span> Eigen</h2>
+<div id="outline-container-org53dc885" class="outline-2">
+<h2 id="org53dc885"><span class="section-number-2">4</span> Eigen</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Set Eigen3<sub>DIR</sub> in $PATH
@@ -119,8 +119,8 @@ Set Eigen3<sub>DIR</sub> in $PATH
 </div>
 </div>
 </div>
-<div id="outline-container-orgca9aef7" class="outline-2">
-<h2 id="orgca9aef7"><span class="section-number-2">5</span> OpenCV</h2>
+<div id="outline-container-org35dc3b9" class="outline-2">
+<h2 id="org35dc3b9"><span class="section-number-2">5</span> OpenCV</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-sh"><code><span style="color: #A6E22E;">find_package</span>( OpenCV REQUIRED )</code>
@@ -141,8 +141,8 @@ Set Eigen3<sub>DIR</sub> in $PATH
 </p>
 </div>
 </div>
-<div id="outline-container-org03c4f5e" class="outline-2">
-<h2 id="org03c4f5e"><span class="section-number-2">6</span> Glog</h2>
+<div id="outline-container-org29f9f5f" class="outline-2">
+<h2 id="org29f9f5f"><span class="section-number-2">6</span> Glog</h2>
 <div class="outline-text-2" id="text-6">
 <pre class="example">
 <code>find_package(glog REQUIRED)</code>
@@ -159,8 +159,8 @@ How to use?
 </pre>
 </div>
 </div>
-<div id="outline-container-org5b85bd5" class="outline-2">
-<h2 id="org5b85bd5"><span class="section-number-2">7</span> X11</h2>
+<div id="outline-container-orga7ba84d" class="outline-2">
+<h2 id="orga7ba84d"><span class="section-number-2">7</span> X11</h2>
 <div class="outline-text-2" id="text-7">
 <pre class="example">
 <code># Find X11</code>
@@ -175,8 +175,8 @@ How to use?
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf7ef2ed" class="outline-2">
-<h2 id="orgf7ef2ed"><span class="section-number-2">8</span> Overview</h2>
+<div id="outline-container-org71adf52" class="outline-2">
+<h2 id="org71adf52"><span class="section-number-2">8</span> Overview</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="https://www.johnlamp.net/cmake-tutorial-1-getting-started.html#DownloadAndInstall1">cmake-tutorial-1-getting-started</a></li>
@@ -184,8 +184,8 @@ How to use?
 </div>
 </div>
 
-<div id="outline-container-org4884184" class="outline-2">
-<h2 id="org4884184"><span class="section-number-2">9</span> Install</h2>
+<div id="outline-container-org867692c" class="outline-2">
+<h2 id="org867692c"><span class="section-number-2">9</span> Install</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Download the disk image from the CMake
@@ -202,8 +202,8 @@ curses interface (<code>ccmake</code>).
 </p>
 </div>
 
-<div id="outline-container-org1254a50" class="outline-3">
-<h3 id="org1254a50"><span class="section-number-3">9.1</span> Homebrew</h3>
+<div id="outline-container-org5272f09" class="outline-3">
+<h3 id="org5272f09"><span class="section-number-3">9.1</span> Homebrew</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 If you already have homebrew installed you can simply install CMake with
@@ -218,8 +218,8 @@ but <b>not</b> the CMake GUI.
 </div>
 
 
-<div id="outline-container-org5e179c0" class="outline-3">
-<h3 id="org5e179c0"><span class="section-number-3">9.2</span> Ubuntu (Debian)</h3>
+<div id="outline-container-orgd9b293b" class="outline-3">
+<h3 id="orgd9b293b"><span class="section-number-3">9.2</span> Ubuntu (Debian)</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 The simplest way to install CMake is via the command line:
@@ -271,8 +271,8 @@ second, optional, package provides the curses interface (<code>ccmake</code>).
 </div>
 </div>
 
-<div id="outline-container-org6cb1887" class="outline-2">
-<h2 id="org6cb1887"><span class="section-number-2">10</span> Eigen</h2>
+<div id="outline-container-orgd01d382" class="outline-2">
+<h2 id="orgd01d382"><span class="section-number-2">10</span> Eigen</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-bash"><code><span style="color: #A6E22E;">find_package</span>(cmake_modules REQUIRED)</code>
@@ -283,8 +283,8 @@ second, optional, package provides the curses interface (<code>ccmake</code>).
 </div>
 </div>
 </div>
-<div id="outline-container-org30c0bc8" class="outline-2">
-<h2 id="org30c0bc8"><span class="section-number-2">11</span> PCL</h2>
+<div id="outline-container-org6bc0045" class="outline-2">
+<h2 id="org6bc0045"><span class="section-number-2">11</span> PCL</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <pre class="src src-bash"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION2.8 FATAL_ERROR)</code>
@@ -300,8 +300,8 @@ second, optional, package provides the curses interface (<code>ccmake</code>).
 </div>
 </div>
 
-<div id="outline-container-org2f776c4" class="outline-2">
-<h2 id="org2f776c4"><span class="section-number-2">12</span> OpenCV</h2>
+<div id="outline-container-orga6d1390" class="outline-2">
+<h2 id="orga6d1390"><span class="section-number-2">12</span> OpenCV</h2>
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-bash"><code><span style="color: #A6E22E;">cmake_minimum_required</span>(VERSION 2.8)</code>
@@ -316,12 +316,12 @@ second, optional, package provides the curses interface (<code>ccmake</code>).
 </div>
 </div>
 
-<div id="outline-container-org34ec2de" class="outline-2">
-<h2 id="org34ec2de"><span class="section-number-2">13</span> How to</h2>
+<div id="outline-container-org31a5bb4" class="outline-2">
+<h2 id="org31a5bb4"><span class="section-number-2">13</span> How to</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org90cf2f6" class="outline-3">
-<h3 id="org90cf2f6"><span class="section-number-3">13.1</span> Upgrade Cmake</h3>
+<div id="outline-container-org6b85364" class="outline-3">
+<h3 id="org6b85364"><span class="section-number-3">13.1</span> Upgrade Cmake</h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 Refer: <a href="https://answers.ros.org/question/293119/how-can-i-updateremove-cmake-without-partially-deleting-my-ros-distribution/">How can I update/remove cmake without partially deleting my ROS distribution?</a>
