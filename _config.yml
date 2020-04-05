@@ -49,6 +49,8 @@ locales:
       Contactme: "Contact Me"
       Guestbook: "Guestbook"
       Subscribe: "Subscribe"
+      Project: "Project"
+      Dailylife: "Daily Life"
     cn:
       Aboutme: "关于我"
       Archives: "存档"
@@ -67,6 +69,8 @@ locales:
       Contactme: "联系我"
       Guestbook: "留言"
       Subscribe: "订阅"
+      Project: "Project"
+      Dailylife: "Daily Life"
     jp:
       Aboutme: "著者"
       Archives: "アーカイブ"
@@ -85,6 +89,8 @@ locales:
       Contactme: "連絡先"
       Guestbook: "メッセージ"
       Subscribe: "購読"
+      Project: "Project"
+      Dailylife: "Daily Life"
 
 ### your Blogroll info, only name can shown on the page.
 
