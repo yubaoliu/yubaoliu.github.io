@@ -7,5 +7,4 @@ tags: [sample-post]
 comments: true
 ---
 
-# Image
 <!-- ![](/img/bj-flower.jpg) -->
