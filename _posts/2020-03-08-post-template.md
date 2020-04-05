@@ -8,4 +8,4 @@ comments: true
 ---
 
 # Image
-![](/img/bj-flower.jpg)
+<!-- ![](/img/bj-flower.jpg) -->

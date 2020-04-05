@@ -1,0 +1,36 @@
+<div class="sidebar-module about">
+    <!-- <h4>{{ site.locales[site.default_locale].Contactme}}</h4> -->
+    <img title="{{site.author}}" src="{{site.aboutme_photo}}" alt="{{site.author}}" />
+    <span>{{site.contactme}}</span>
+    <br />
+
+    {% if site.ShowContactInfo == "True" %}
+
+    {% if site.email != empty %}
+    <a href="mailto:{{site.email}}" title="mailto: {{site.email}}">Email</a> /
+    {% endif %}
+    {% if site.github_username != empty %}
+    <a href="https://github.com/{{site.github_username}}" title="GithubID: {{site.github_username}}">Github</a> /
+    {% endif %}
+
+    {% if site.BiliBili != empty %}
+    <a href="https://space.bilibili.com/{{site.BiliBili}}" title="BiliBili: {{site.BiliBili}}">BiliBili</a>
+    {% endif %}
+
+    <br/>
+
+    {% if site.linkedin != empty %}
+    <a href="https://www.linkedin.com/in/{{site.linkedin}}" title="Linkedin: {{site.linkedin}}">Linkedin</a>/
+    {% endif %}
+
+    {% if site.facebook_username != empty %}
+    <a href="https://www.facebook.com/{{site.facebook_username}}" title="facebook: {{site.facebook_username}}">Facebook</a>
+    {% endif %}
+
+    <!-- {% if site.twitter_username != empty %} -->
+    <!-- <a href="https://twitter.com/{{site.twitter_username}}" title="TwitterID: {{site.twitter_username}}">Twitter</a> -->
+    <!-- {% endif %} -->
+
+    {% endif %}
+
+</div>

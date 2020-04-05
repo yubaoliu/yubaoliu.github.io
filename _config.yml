@@ -10,11 +10,16 @@ url: "" # the base hostname & protocol for your site
 locale: en_US
 
 ### Personal info and site tools info:
+BiliBili: 52620240
 twitter_username:
+linkedin: yubao-liu-1022b7120
 github_username: yubaoliu
+facebook_username: yubaoliu89
 disqus_shortname: https-yubaoliu-github-io
-favicon:     "/img/favicon.ico"
-aboutme: Hi, this is Yubao Liu. # these are shown on aboutme-sidebar.
+# favicon:     "/img/favicon.ico"
+favicon: 
+# aboutme: Hi, this is Yubao Liu. # these are shown on aboutme-sidebar.
+contactme: 
 aboutme_photo: https://i.imgur.com/AiGLBPl.jpg# your photo.
 google_analytics_key: UA-131527698-1   # put YOUR key here to enable tracking! (blank to disable)
 
@@ -41,7 +46,7 @@ locales:
       PostDate: "on "
       Google_search: "Site Search"
       Home: "Home"
-      About: "About"
+      Contactme: "Contact Me"
       Guestbook: "Guestbook"
       Subscribe: "Subscribe"
     cn:
@@ -59,7 +64,7 @@ locales:
       PostDate: "| 发表时间: "
       Google_search: "站内搜索"
       Home: "首页"
-      About: "关于"
+      Contactme: "联系我"
       Guestbook: "留言"
       Subscribe: "订阅"
     jp:
@@ -77,106 +82,16 @@ locales:
       PostDate: "| 投稿日時: "
       Google_search: "サイト内検索"
       Home: "ホーム"
-      About: "このブログについて"
+      Contactme: "連絡先"
       Guestbook: "メッセージ"
       Subscribe: "購読"
-    pl:
-      Aboutme: "O mnie"
-      Archives: "Archiwum"
-      Blogroll: "Odnośniki"
-      Categories: "Kategorie"
-      Copyright_Notice: "Prawa autorskie"
-      Recent_Posts: "Najnowsze wpisy"
-      Tags: "Tagi"
-      Previous: "Starsze"
-      Next: "Nowsze"
-      PostedInCategories: "Kategoria"
-      Taggedwith: "tagi"
-      PostDate: "on "
-      Google_search: "Wyszukiwarka"
-      Home: "Strona główna"
-      About: "O mnie"
-      Guestbook: "Księga gości"
-      Subscribe: "Subskrypcja"
-    kr:
-      Aboutme: "저자 소개"
-      Archives: "모든 게시물"
-      Blogroll: "참조 링크"
-      Categories: "카테고리"
-      Copyright_Notice: "저작권"
-      Recent_Posts: "최근 게시물"
-      Tags: "태그"
-      Previous: "이전 게시물"
-      Next: "다음 게시물"
-      PostedInCategories: "카테고리: "
-      Taggedwith: "태그: "
-      PostDate: "작성일: "
-      Google_search: "게시물 검색"
-      Home: "홈"
-      About: "소개"
-      Guestbook: "방명록"
-      Subscribe: "구독하기"
-    ru:
-      Aboutme: "Обо мне" # = 'About me'
-      Archives: "Архив"
-      Blogroll: "Ссылки" # = 'Links'
-      Categories: "Разделы"
-      Copyright_Notice: "Авторские права"
-      Recent_Posts: "Свежие посты"
-      Tags: "Теги"
-      Previous: "Предыдущий пост"          # = 'Previous post'
-      Next: "Следующий пост"               # = 'Next post'
-      PostedInCategories: "Опубликовано в" # = 'Posted in'
-      Taggedwith: "с тегами"
-      PostDate: ""
-      Google_search: "Поиск на Google"
-      Home: "Домой"
-      About: "О блоге"            # = 'About blog'
-      Guestbook: "Гостевая книга"
-      Subscribe: "Подписаться"
-    tr:
-      Aboutme: "Hakkımda"
-      Archives: "Arşivler"
-      Blogroll: "Bağlantılar"
-      Categories: "Kategoriler"
-      Copyright_Notice: "Telif Hakkı Bildirimi"
-      Recent_Posts: "Son Yazılar"
-      Tags: "Etiketler"
-      Previous: "Daha Eski"
-      Next: "Daha Yeni"
-      PostedInCategories: "Şuraya gönderildi:"
-      Taggedwith: "ve şöyle etiketlendi:"
-      PostDate: "şu tarihte:"
-      Google_search: "Sitede Ara"
-      Home: "Anasayfa"
-      About: "Hakkında"
-      Guestbook: "Konuk Defteri"
-      Subscribe: "Abone Ol"
-    id:
-      Aboutme: "Tentang Saya"
-      Archives: "Arsip"
-      Blogroll: "Blog teman"
-      Categories: "Kategori"
-      Copyright_Notice: "Legal Formal"
-      Recent_Posts: "Post Terkini"
-      Tags: "Tag"
-      Previous: "Lebih lama"
-      Next: "Lebih baru"
-      PostedInCategories: "Diposting di"
-      Taggedwith: "dan ditag"
-      PostDate: "pada "
-      Google_search: "Pencarian Situs"
-      Home: "Beranda"
-      About: "Tentang"
-      Guestbook: "Buku tamu"
-      Subscribe: "Langganan"
 
 ### your Blogroll info, only name can shown on the page.
 
 Blogroll:
-      - name: Freshman
+      - name: Yubao 
         href:
-        title: Another Jekyll blog theme
+        title: blogroll
       - name: author's website
         href:
         title: Yubao Liu's website
