@@ -2,6 +2,10 @@
 layout: "post"
 title: "Down Sample"
 date: "2020-03-06 19:17"
+comments: true
+tags: [Computer Vision]
+categories: [Computer Vision]
+toc: true
 ---
 # Downsample
 

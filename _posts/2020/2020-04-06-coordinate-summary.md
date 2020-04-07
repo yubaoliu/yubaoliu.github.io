@@ -2,8 +2,8 @@
 layout: "post"
 title: "Coordinate Summary"
 date: "2020-04-06 14:52"
-categories: articles
-tags: [unsorted]
+categories: Robotics 
+tags: [Robotics]
 toc: true
 comments: true
 ---

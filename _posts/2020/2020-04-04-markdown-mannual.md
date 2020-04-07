@@ -2,7 +2,8 @@
 layout: "post"
 title: "Markdown Cheat Sheet"
 date: "2020-04-04 14:21"
-categories: articles
+categories: Tools
+tags: [Tools]
 toc: true
 comments: true
 ---

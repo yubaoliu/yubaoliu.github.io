@@ -2,8 +2,8 @@
 layout: "post"
 title: "How to build blog"
 date: "2020-04-07 14:49"
-categories: articles
-tags: [unsorted]
+categories: Tools
+tags: [Tools]
 toc: true
 comments: true
 ---

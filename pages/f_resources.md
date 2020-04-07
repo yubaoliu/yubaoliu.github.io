@@ -12,3 +12,9 @@ permalink: /resources/
 - [Latex Format](https://www.rsj.or.jp/pub/ar/submission.html)
 
 ![](/img/bj-flower.jpg)
+
+
+# Tools
+## PDF
+- evince
+- 
