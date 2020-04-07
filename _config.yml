@@ -17,10 +17,10 @@ github_username: yubaoliu
 facebook_username: yubaoliu89
 disqus_shortname: https-yubaoliu-github-io
 # favicon:     "/img/favicon.ico"
-favicon: 
+favicon:
 # aboutme: Hi, this is Yubao Liu. # these are shown on aboutme-sidebar.
-contactme: 
-aboutme_photo: https://i.imgur.com/AiGLBPl.jpg# your photo.
+contactme:
+aboutme_photo: http://qiniu.yubaoliu.cn/yubao_icon.JPG
 google_analytics_key: UA-131527698-1   # put YOUR key here to enable tracking! (blank to disable)
 
 
@@ -51,6 +51,7 @@ locales:
       Subscribe: "Subscribe"
       Project: "Project"
       Dailylife: "Daily Life"
+      Resources: "Resources"
     cn:
       Aboutme: "关于我"
       Archives: "存档"
@@ -71,6 +72,7 @@ locales:
       Subscribe: "订阅"
       Project: "Project"
       Dailylife: "Daily Life"
+      Resources: "Resources"
     jp:
       Aboutme: "著者"
       Archives: "アーカイブ"
@@ -91,11 +93,12 @@ locales:
       Subscribe: "購読"
       Project: "Project"
       Dailylife: "Daily Life"
+      Resources: "Resources"
 
 ### your Blogroll info, only name can shown on the page.
 
 Blogroll:
-      - name: Yubao 
+      - name: Yubao
         href:
         title: blogroll
       - name: author's website
@@ -115,6 +118,6 @@ paginate: 5
 
 defaults:
   - scope:
-      path: "img"
+      path: "assets/img"
     values:
       image: true
