@@ -14,3 +14,20 @@ rosrun tf view_frames
 ```
 Example:
 [tum1_freiburg1_room pdf](/assets/pdf/tum1_freiburg1_room_tf.pdf)
+
+# Parames
+
+```sh
+<rosparam command="load" file="FILENAME" />
+
+<param name="params_a" type="yaml" command="cat &quot;$(find roslaunch)/test/params.yaml&quot;" />
+```
+
+get parameters:
+
+```cpp
+ nh.param<std::string>("default_param", default_param, "default_value");
+
+ int i;
+ nh.param("my_num", i, 42);
+ ```

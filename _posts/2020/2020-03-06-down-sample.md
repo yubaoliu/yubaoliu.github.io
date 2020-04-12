@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "Down Sample"
+title: "Image Down Sample"
 date: "2020-03-06 19:17"
 comments: true
 tags: [Computer Vision]
