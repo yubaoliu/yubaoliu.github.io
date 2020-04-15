@@ -2,7 +2,7 @@
 layout: "post"
 title: "Linux Manual"
 date: "2020-04-11 10:09"
-categories: Tools
+categories: [Linux]
 tags: [Linux]
 toc: true
 comments: true

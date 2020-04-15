@@ -31,3 +31,19 @@ get parameters:
  int i;
  nh.param("my_num", i, 42);
  ```
+
+ # comment
+
+ ```sh
+ <!-- Parameters for dynamic elements -->
+
+ <launch>
+ 	<?ignore
+ 	<node name="mapper" type="dynamic_mapper" pkg="ethzasl_icp_mapper" output="screen">
+ 		<param name="eps_a" value="0.004"/><!--1 deg = 0.017rad-->
+ 	</node>
+ 	?>
+
+ 	<node pkg="tf" type="static_transform_publisher" name="correction_tf" args="0 0 0 0 0.2 0 /pointcloud /boat_level 100"/>
+ </launch>
+ ```
