@@ -8,6 +8,8 @@ toc: true
 comments: true
 ---
 
+[TOC]
+
 # Introduction
 
 本文將SLAM BOOK中的示例及博客中的示例自己復現並整理。
@@ -16,11 +18,6 @@ My source code:
 
 ```sh
 git clone https://github.com/yubaoliu/SLAMLib.git
-```
-
-References:
-```sh
-git clone https://github.com/yubaoliu/slambook2.git
 ```
 
 #  从图像到点云
@@ -47,7 +44,7 @@ git clone https://github.com/yubaoliu/slambook2.git
     ```
 ## Practice
 ### Create point cloud use depth and rgb image
-- Inpub image
+- Input image
 
 ![rgb](http://qiniu.yubaoliu.cn/markdown-img-paste-20200415155846883.png)
 
@@ -84,4 +81,9 @@ git clone https://github.com/yubaoliu/slambook2.git
 ```sh
 roslaunch turtlebot_bringup minimal.launch (启动底座)
 turtlebot_teleop keyboard_teleop.launch (启动遥控)
+```
+
+# References:
+```sh
+git clone https://github.com/yubaoliu/slambook2.git
 ```
