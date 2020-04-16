@@ -112,7 +112,10 @@ markdown: kramdown
 kramdown:
         input: GFM
         syntax_highlighter: rouge
-plugins: [jekyll-paginate]
+plugins: 
+    - jekyll-paginate
+    - jekyll-toc
+
 paginate: 20
 # excerpt_separator: <!-- more -->
 
