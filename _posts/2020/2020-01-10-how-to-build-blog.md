@@ -16,4 +16,4 @@ comments: true
 
 
 
-![flowers-left](../../assets/img/2020-01-10-how-to-build-blog/flowers-left-1587013105651.png)
+![flowers-left](/assets/img/2020-01-10-how-to-build-blog/flowers-left.png)
