@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+
+    <meta property="og:title" content="Yubao's Blog">
+    <title>Yubao's Blog</title>
+    <meta property="og:description" content="Developed using Freshman21 theme.">
+    <meta property="og:url" content="http://localhost:4000/">
+    <meta property="og:site_name" content="Yubao's Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Yubao's Blog">
+    <meta name="twitter:description" content="Developed using Freshman21 theme.">
+    <meta name="twitter:url" content="http://localhost:4000/">
+
+    <meta name="keywords" content="Jekyll, theme, Freshman21">
+
+    <link rel="icon" href="">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="alternate" type="application/atom+xml" title="Yubao's Blog" href="http://localhost:4000/feed.xml" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <header class="site-header">
+
+    <div class="wrapper">
+
+        <h1 class="site-title"><a href="/">Yubao's Blog</a></h1>
+        <h4 class="site-meta">努力してこそ合格できる</h4>
+
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z" />
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z" />
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z" />
+                </svg>
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/">Home</a>
+                
+                
+                
+                <a class="page-link" href="/aboutme/">About Me</a>
+                
+                
+                
+                <a class="page-link" href="/archives/">Archives</a>
+                
+                
+                
+                <a class="page-link" href="/categories/">Categories</a>
+                
+                
+                
+                <a class="page-link" href="/dailylife/">Daily Life</a>
+                
+                
+                
+                <a class="page-link" href="/tags/">Tags</a>
+                
+                
+                
+                
+                
+                <a class="page-link" href="/resources/">Resources</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a class="page-link" href="/project/">Project</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+
+
+        
+
+        <div class="page-content col-sm-8">
+            <div class="home">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/dataset/2020/04/15/dataset.html">dataset</a>
+            </h1>
+            <meta itemprop="keywords" content="Dataset" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Dataset">Dataset</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Dataset" title="Dataset">Dataset</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-15">
+                    on Apr 15, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <p>[toc]</p>
+
+<h1 id="tum">TUM</h1>
+
+<ul>
+  <li>https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats</li>
+</ul>
+
+<h2 id="ground-truth-trajectories">Ground-truth trajectories</h2>
+
+<ul>
+  <li>Each line in the text file contains a single pose.</li>
+  <li>The format of each line is ‘timestamp tx ty tz qx qy qz qw’</li>
+  <li>timestamp (float) gives the number of seconds since the Unix epoch.</li>
+  <li>tx ty tz (3 floats) give the position of the optical center of the color camera with respect to the world origin as defined by the motion capture system.</li>
+  <li>qx qy qz qw (4 floats) give the orientation of the optical center of the color camera in form of a unit quaternion with respect to the world origin as defined by the motion capture system.</li>
+  <li>The file may contain comments that have to start with “#”.</li>
+</ul>
+
+<h2 id="intrinsic-camera-calibration-of-the-kinect">Intrinsic Camera Calibration of the Kinect</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fx</span> <span class="o">=</span> <span class="mf">525.0</span>  <span class="c1"># focal length x
+</span><span class="n">fy</span> <span class="o">=</span> <span class="mf">525.0</span>  <span class="c1"># focal length y
+</span><span class="n">cx</span> <span class="o">=</span> <span class="mf">319.5</span>  <span class="c1"># optical center x
+</span><span class="n">cy</span> <span class="o">=</span> <span class="mf">239.5</span>  <span class="c1"># optical center y
+</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">5000</span> <span class="c1"># for the 16-bit PNG files
+# OR: factor = 1 # for the 32-bit float images in the ROS bag files
+</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth_image</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth_image</span><span class="o">.</span><span class="n">width</span><span class="p">):</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">depth_image</span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">]</span> <span class="o">/</span> <span class="n">factor</span><span class="p">;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">cx</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span> <span class="o">/</span> <span class="n">fx</span><span class="p">;</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">cy</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span> <span class="o">/</span> <span class="n">fy</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h1 id="nyu">NYU</h1>
+<ul>
+  <li><a href="https://cs.nyu.edu/~silberman/datasets/">NYU Dataset</a></li>
+</ul>
+  -->
+        <!--     <p>[toc]</p>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/slam/2020/04/15/slam-basics.html">SLAM Basics</a>
+            </h1>
+            <meta itemprop="keywords" content="SLAM" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#SLAM">SLAM</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#SLAM" title="SLAM">SLAM</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-15">
+                    on Apr 15, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <p>[TOC]</p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>本文將SLAM BOOK中的示例及博客中的示例自己復現並整理。</p>
+
+<p>My source code:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/yubaoliu/SLAMLib.git
+</code></pre></div></div>
+
+<h1 id="从图像到点云">从图像到点云</h1>
+
+<h2 id="prepare">Prepare:</h2>
+<ul>
+  <li>Kinect2 camera</li>
+  <li>
+    <p>Install Requirements</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install PCL</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
+ <span class="nb">sudo </span>apt-get update
+ <span class="nb">sudo </span>apt-get <span class="nb">install </span>libpcl-all
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>pcl_viewer</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get <span class="nb">install </span>libpcl-dev pcl-tools
+</code></pre></div>    </div>
+    <h2 id="practice">Practice</h2>
+    <h3 id="create-point-cloud-use-depth-and-rgb-image">Create point cloud use depth and rgb image</h3>
+  </li>
+  <li>Input image</li>
+</ul>
+
+<p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415155846883.png" alt="rgb" /></p>
+
+<p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415155923159.png" alt="depth" /></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./generate_pointcloud rgb.png depth.png
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>View Point Cloud</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pcl_viewer pointcloud.pcd
+</code></pre></div>    </div>
+    <p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415155533141.png" alt="pcd" /></p>
+  </li>
+</ul>
+
+<h3 id="start-kinect2">Start Kinect2</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```sh
+roslaunch kinect2_bridge kinect2_bridge.launch
+```
+</code></pre></div></div>
+
+<ul>
+  <li>View image
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  rosrun image_view image_view image:<span class="o">=</span>/kinect2/qhd/image_color
+</code></pre></div>    </div>
+
+    <p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415101312426.png" alt="" /></p>
+  </li>
+</ul>
+
+<h1 id="turtlebot">Turtlebot</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roslaunch turtlebot_bringup minimal.launch <span class="o">(</span>启动底座<span class="o">)</span>
+turtlebot_teleop keyboard_teleop.launch <span class="o">(</span>启动遥控<span class="o">)</span>
+</code></pre></div></div>
+
+<h1 id="references">References:</h1>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/yubaoliu/slambook2.git
+</code></pre></div></div>
+  -->
+        <!--     <p>[TOC]</p>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/computer%20vision/2020/04/11/camera.html">Camera</a>
+            </h1>
+            <meta itemprop="keywords" content="Computer Vision" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Computer Vision">Computer Vision</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Computer Vision" title="Computer Vision">Computer Vision</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-11">
+                    on Apr 11, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <p>[toc]</p>
+
+<h1 id="resources">Resources</h1>
+
+<ul>
+  <li><a href="https://www.comp.nus.edu.sg/~cs4243/lecture/camera.pdf">CS4243 Computer Vision and Pattern Recognition</a></li>
+</ul>
+
+<h1 id="imaging">Imaging</h1>
+
+<ul>
+  <li>Images are 2D projections of real world scene.</li>
+  <li>Images capture two kinds of information:
+    <ul>
+      <li>Geometric: positions, points, lines, curves, etc.</li>
+      <li>Photometric: intensity, colour.</li>
+    </ul>
+  </li>
+  <li>Complex 3D-2D relationships.</li>
+  <li>Camera models approximate relationships.</li>
+</ul>
+
+<h1 id="camera-models">Camera Models</h1>
+<ul>
+  <li>Pinhole camera model</li>
+  <li>Orthographic projection</li>
+  <li>Scaled orthographic projection</li>
+  <li>Paraperspective projection</li>
+  <li>Perspective projection</li>
+</ul>
+
+<h1 id="pinhole-camera-model">Pinhole Camera Model</h1>
+
+<p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415111548794.png" alt="" />
+<sup id="fnref:cs4243"><a href="#fn:cs4243" class="footnote">1</a></sup>
+<img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415110736455.png" alt="" />
+<sup id="fnref:cs4243:1"><a href="#fn:cs4243" class="footnote">1</a></sup>
+<img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415111341927.png" alt="" />
+<sup id="fnref:cs4243:2"><a href="#fn:cs4243" class="footnote">1</a></sup></p>
+
+<ul>
+  <li>3D point $P=(X, Y, Z)^T$ projects to 2D image point $p=(x,y)^T$</li>
+  <li>By symmetry
+<script type="math/tex">\frac{X}{Z} = \frac{x}{f},
+\frac{Y}{Z} = \frac{y}{f}</script>
+i.e.
+<script type="math/tex">x = f \frac{X}{Z},
+y = f \frac{Y}{Z}</script>
+一个空间点[𝑥,𝑦,𝑧]和它在图像中的像素坐标[𝑢,𝑣,𝑑] (𝑑指深度数据) 的对应关系是这样的：
+<script type="math/tex">u = \frac{ x \cdot f_x }{z} + c_x \\
+v = \frac{ y \cdot f_y }{z} + c_y \\
+d = z \cdot s</script></li>
+</ul>
+
+<p>其中，𝑓𝑥,𝑓𝑦指相机在𝑥,𝑦两个轴上的焦距，𝑐𝑥,𝑐𝑦指相机的光圈中心，𝑠指深度图的缩放因子。
+𝑠是scaling factor，即深度图里给的数据与实际距离的比例。由于深度图给的都是short (mm单位)，𝑠通常为1000。</p>
+
+<p>这个公式是从(x,y,z)推到(u,v,d)的。反之，我们也可以把它写成已知(u,v,d)，推导(x,y,z)的方式。</p>
+
+<script type="math/tex; mode=display">x = (u-c_x) \cdot z/f_x \\
+y = (v-c_y) \cdot z/ f_y \\
+z = d/s</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\left[ \begin{array}{l} u \\ v \\ 1 \end{array} \right]
+=
+\frac{1}{z}
+\left[ \begin{array}{lll}
+ f_x & 0 & c_x \\
+ 0 & f_y & c_y \\
+ 0 & 0 & 1
+\end{array} \right]
+\left[ \begin{array}{l} x \\ y \\ z \end{array} \right] %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+z \left[ \begin{array}{l} u \\ v \\ 1 \end{array} \right]
+=
+\left[ \begin{array}{lll}
+ f_x & 0 & c_x \\
+ 0 & f_y & c_y \\
+ 0 & 0 & 1
+\end{array} \right]
+\left[ \begin{array}{l} x \\ y \\ z \end{array} \right] %]]></script>
+
+<script type="math/tex; mode=display">z \cdot \left[ \begin{array}{l} u \\ v \\ 1 \end{array} \right] = K \cdot \left( R \cdot \left[ \begin{array}{l} x \\ y \\ z \end{array} \right] +t  \right)</script>
+
+<p>其中，𝑅和𝑡是相机的姿态。𝑅代表旋转矩阵，𝑡代表位移矢量。</p>
+
+<h1 id="perspective-projection">Perspective Projection</h1>
+
+<p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415115005680.png" alt="" /></p>
+
+<h1 id="orthographic-projection">Orthographic Projection</h1>
+<p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415114755821.png" alt="" /></p>
+
+<h1 id="scaled-orthographic-projection">Scaled Orthographic Projection</h1>
+<p><img src="http://qiniu.yubaoliu.cn/markdown-img-paste-20200415114917974.png" alt="" /></p>
+
+<h1 id="kinect2">Kinect2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roslaunch kinect2_bridge kinect2_bridge.launch <span class="o">[</span>options:<span class="o">=</span>value]
+base_name:<span class="o">=</span>&lt;string&gt;
+    default: kinect2
+    info:    <span class="nb">set </span>base name <span class="k">for </span>all topics
+sensor:<span class="o">=</span>&lt;string&gt;
+    default:
+    info:    serial of the sensor to use
+fps_limit:<span class="o">=</span>&lt;double&gt;
+    default: <span class="nt">-1</span>.0
+    info:    limit the frames per second
+calib_path:<span class="o">=</span>&lt;string&gt;
+    default: /home/wiedemeyer/work/src/iai_kinect2/kinect2_bridge/data/
+    info:    path to the calibration files
+use_png:<span class="o">=</span>&lt;bool&gt;
+    default: <span class="nb">false
+    </span>info:    Use PNG compression instead of TIFF
+jpeg_quality:<span class="o">=</span>&lt;int&gt;
+    default: 90
+    info:    JPEG quality level from 0 to 100
+png_level:<span class="o">=</span>&lt;int&gt;
+    default: 1
+    info:    PNG compression level from 0 to 9
+depth_method:<span class="o">=</span>&lt;string&gt;
+    default: cuda
+    info:    Use specific depth processing: default, cpu, opengl, opencl, cuda, clkde, cudakde
+depth_device:<span class="o">=</span>&lt;int&gt;
+    default: <span class="nt">-1</span>
+    info:    openCL device to use <span class="k">for </span>depth processing
+reg_method:<span class="o">=</span>&lt;string&gt;
+    default: opencl
+    info:    Use specific depth registration: default, cpu, opencl
+reg_device:<span class="o">=</span>&lt;int&gt;
+    default: <span class="nt">-1</span>
+    info:    openCL device to use <span class="k">for </span>depth registration
+max_depth:<span class="o">=</span>&lt;double&gt;
+    default: 12.0
+    info:    max depth value
+min_depth:<span class="o">=</span>&lt;double&gt;
+    default: 0.1
+    info:    min depth value
+queue_size:<span class="o">=</span>&lt;int&gt;
+    default: 2
+    info:    queue size of publisher
+bilateral_filter:<span class="o">=</span>&lt;bool&gt;
+    default: <span class="nb">true
+    </span>info:    <span class="nb">enable </span>bilateral filtering of depth images
+edge_aware_filter:<span class="o">=</span>&lt;bool&gt;
+    default: <span class="nb">true
+    </span>info:    <span class="nb">enable </span>edge aware filtering of depth images
+publish_tf:<span class="o">=</span>&lt;bool&gt;
+    default: <span class="nb">false
+    </span>info:    publish static tf transforms <span class="k">for </span>camera
+base_name_tf:<span class="o">=</span>&lt;string&gt;
+    default: as base_name
+    info:    base name <span class="k">for </span>the tf frames
+worker_threads:<span class="o">=</span>&lt;int&gt;
+    default: 4
+    info:    number of threads used <span class="k">for </span>processing the images
+</code></pre></div></div>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:cs4243">
+      <p>https://www.comp.nus.edu.sg/~cs4243 <a href="#fnref:cs4243" class="reversefootnote">&#8617;</a> <a href="#fnref:cs4243:1" class="reversefootnote">&#8617;<sup>2</sup></a> <a href="#fnref:cs4243:2" class="reversefootnote">&#8617;<sup>3</sup></a></p>
+    </li>
+  </ol>
+</div>
+  -->
+        <!--     <p>[toc]</p>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/slam/2020/04/11/orb-slam.html">ORB SLAM</a>
+            </h1>
+            <meta itemprop="keywords" content="SLAM" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#SLAM">SLAM</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#SLAM" title="SLAM">SLAM</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-11">
+                    on Apr 11, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <p>[toc]</p>
+
+<h1 id="get-orb-slam2">Get ORB SLAM2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:yubaoliu/ORB_SLAM2.git
+</code></pre></div></div>
+
+<p>Branches:</p>
+
+<ul>
+  <li>master - current customized release version</li>
+  <li>ORB_SLAM2 - original version, but can compile successfully</li>
+  <li>dev - current development version</li>
+</ul>
+
+<h1 id="dependency">dependency</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libxkbcommon-dev
+<span class="nb">sudo </span>apt <span class="nb">install </span>libglew-dev
+</code></pre></div></div>
+<h2 id="pangolin">Pangolin</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/stevenlovegrove/Pangolin.git
+<span class="nb">cd </span>Pangolin
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake ..
+make <span class="nt">-j</span>
+
+<span class="nb">export </span><span class="nv">Pangolin_DIR</span><span class="o">=</span>/home/yubao/data/software/Pangolin/build/src
+</code></pre></div></div>
+
+<h1 id="build-orb_slam2">BUild ORB_SLAM2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root/catkin_ws/src/ORB_SLAM2
+git checkout ORB_SLAM2
+./build.sh
+</code></pre></div></div>
+<h1 id="run-test">Run test</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Note: change the dataset path by yourself
+./test.sh
+</code></pre></div></div>
+
+<h1 id="build-ros-wrapper">Build ROS Wrapper</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /opt/ros/<span class="o">{</span>kinetic/melodic<span class="o">}</span>/setup.bash
+<span class="nb">export </span><span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">ROS_PACKAGE_PATH</span><span class="k">}</span>:/root/catkin_ws/src/ORB_SLAM2/Examples/ROS
+./buid_ros.sh
+</code></pre></div></div>
+
+<h1 id="use-docker">Use docker</h1>
+
+<h2 id="docker-enviornment">docker enviornment</h2>
+
+<ul>
+  <li>docker2</li>
+  <li>Ubuntu 18.04</li>
+  <li>OpenCV 3.2</li>
+  <li>Eigen 3.3.4</li>
+  <li>ROS melodic</li>
+  <li>Pangolin</li>
+  <li>boost: 1.58</li>
+</ul>
+
+<h2 id="run-docker">RUN Docker</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +local:root
+<span class="nb">cd </span>docker
+docker-compose build
+docker-compose up
+docker-compose start
+docker-compose run orb_slam2 bash
+</code></pre></div></div>
+
+<h2 id="switch-from-docker-to-host-development">Switch from docker to host development</h2>
+
+<p>You may see permission denied if you build your system in docker, 
+because docker is runing using root. You should change execute privilege or
+change folder owner using <code class="highlighter-rouge">chmod</code> or <code class="highlighter-rouge">chown</code>.</p>
+
+<p>E.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chown</span> <span class="nt">-R</span> yubao:yubao <span class="k">*</span>
+</code></pre></div></div>
+
+<h1 id="build-tips">BUild Tips</h1>
+
+<p>This is some tips to help you build the original ORB SLAM</p>
+
+<ul>
+  <li>Eigen</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$pkg</span><span class="nt">-config</span> <span class="nt">--modversion</span> eigen3
+3.3.4
+</code></pre></div></div>
+<ul>
+  <li>OpenCV</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dpkg -l | grep libopencv
+$pkg-config --modversion opencv
+3.2.0
+</code></pre></div></div>
+<ul>
+  <li>boost</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✗ locate boost_system
+/usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0
+</code></pre></div></div>
+
+<ul>
+  <li>Error: usleep
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORB_SLAM2/Examples/Stereo/stereo_kitti.cc:107:13: error: <span class="s1">'usleep'</span> was not declared <span class="k">in </span>this scope
+           usleep<span class="o">((</span>T-ttrack<span class="o">)</span><span class="k">*</span>1e6<span class="o">)</span><span class="p">;</span>
+</code></pre></div>    </div>
+    <p>Solution:</p>
+  </li>
+</ul>
+
+<p>Add this to the related files.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;unistd.h&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>error: <code class="highlighter-rouge">XDG_RUNTIME_DIR</code> not set in the environment.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: XDG_RUNTIME_DIR not <span class="nb">set </span><span class="k">in </span>the environment.
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+X11 Error: BadMatch <span class="o">(</span>invalid parameter attributes<span class="o">)</span>
+X11 Error: BadValue <span class="o">(</span>integer parameter out of range <span class="k">for </span>operation<span class="o">)</span>
+New map created with 718 points
+terminate called after throwing an instance of <span class="s1">'std::runtime_error'</span>
+what<span class="o">()</span>:  Pangolin X11: Failed to create an OpenGL context
+Aborted <span class="o">(</span>core dumped<span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Solution:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +local:root
+</code></pre></div></div>
+
+<ul>
+  <li>Error: boost
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MakeFiles/RGBD.dir/build.make:220: recipe <span class="k">for </span>target <span class="s1">'../RGBD'</span> failed
+make[2]: <span class="k">***</span> <span class="o">[</span>../RGBD] Error 1
+CMakeFiles/Makefile2:67: recipe <span class="k">for </span>target <span class="s1">'CMakeFiles/RGBD.dir/all'</span> failed
+make[1]: <span class="k">***</span> <span class="o">[</span>CMakeFiles/RGBD.dir/all] Error 2
+make[1]: <span class="k">***</span> Waiting <span class="k">for </span>unfinished jobs....
+<span class="o">[</span>100%] Linking CXX executable ../Stereo
+/usr/bin/ld: CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: undefined reference to symbol <span class="s1">'_ZN5boost6system15system_categoryEv'</span>
+/usr/lib/x86_64-linux-gnu/libboost_system.so: error adding symbols: DSO missing from <span class="nb">command </span>line
+collect2: error: ld returned 1 <span class="nb">exit </span>status
+CMakeFiles/Stereo.dir/build.make:220: recipe <span class="k">for </span>target <span class="s1">'../Stereo'</span> failed
+make[2]: <span class="k">***</span> <span class="o">[</span>../Stereo] Error 1
+CMakeFiles/Makefile2:104: recipe <span class="k">for </span>target <span class="s1">'CMakeFiles/Stereo.dir/all'</span> failed
+make[1]: <span class="k">***</span> <span class="o">[</span>CMakeFiles/Stereo.dir/all] Error 2
+Makefile:129: recipe <span class="k">for </span>target <span class="s1">'all'</span> failed
+make: <span class="k">***</span> <span class="o">[</span>all] Error 2
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Solution:
+Boost library is not found.</p>
+
+<p>Add this to library dependency or use find_pakage().</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-lboost_system</span>
+</code></pre></div></div>
+<p>Refer: https://github.com/raulmur/ORB_SLAM2/issues/494</p>
+
+  -->
+        <!--     <p>[toc]</p>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/linux/2020/04/11/linux-manual.html">Linux Manual</a>
+            </h1>
+            <meta itemprop="keywords" content="Linux" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Linux">Linux</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Linux" title="Linux">Linux</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-11">
+                    on Apr 11, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <p>[toc]</p>
+
+<h1 id="crontab">Crontab</h1>
+
+<p>Support multiple commands:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span>/20 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">command</span> <span class="nt">-v</span> bash<span class="si">)</span><span class="s2">"</span> <span class="nt">-c</span> <span class="s2">"cd /home/yubao/data/GoogleDrive &amp;&amp; grive"</span>
+</code></pre></div></div>
+
+<h1 id="tips">TIPS</h1>
+<h2 id="rename-files">rename files</h2>
+<p><a href="https://www.ostechnix.com/how-to-rename-multiple-files-at-once-in-linux/">6 Methods To Rename Multiple Files At Once In Linux</a></p>
+  -->
+        <!--     <p>[toc]</p>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/articles/2020/04/09/salm.html">SALM</a>
+            </h1>
+            <meta itemprop="keywords" content="unsorted" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#articles">articles</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#unsorted" title="unsorted">unsorted</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-09">
+                    on Apr 9, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="resources">Resources</h1>
+
+<ul>
+  <li><a href="https://www.comp.nus.edu.sg/~cs4243/">CS4243</a> Computer vision &amp; pattern recognition
+    <ul>
+      <li><a href="https://github.com/jials/CS4243-labs">jials/CS4243-labs</a></li>
+      <li><a href="https://github.com/CT15/CS4243_Tutorial">CT15/CS4243_Tutorial</a></li>
+      <li><a href="https://github.com/abdullacontractor/bookish-potato">abdullacontractor/bookish-potato</a></li>
+      <li><a href="https://www.comp.nus.edu.sg/~cs4243/lecture/camera.pdf">Camera Models and Imaging</a></li>
+      <li><a href="https://www.comp.nus.edu.sg/~cs4243/">Matrix diff</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="rgbd-demo">RGBD Demo</h1>
+<p><a href="https://github.com/tum-vision/rgbd_demo">TUM rgbd_demo</a></p>
+  -->
+        <!--     <h1 id="resources">Resources</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/ros/2020/04/07/ROS-development.html">ROS Development</a>
+            </h1>
+            <meta itemprop="keywords" content="ROS" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#ROS">ROS</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#ROS" title="ROS">ROS</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-07">
+                    on Apr 7, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="tf">TF</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rosrun tf view_frames
+</code></pre></div></div>
+<p>Example:
+<a href="/assets/pdf/tum1_freiburg1_room_tf.pdf">tum1_freiburg1_room pdf</a></p>
+
+<h1 id="parames">Parames</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;rosparam <span class="nb">command</span><span class="o">=</span><span class="s2">"load"</span> <span class="nv">file</span><span class="o">=</span><span class="s2">"FILENAME"</span> /&gt;
+
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">"params_a"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"yaml"</span> <span class="nb">command</span><span class="o">=</span><span class="s2">"cat &amp;quot;</span><span class="si">$(</span>find roslaunch<span class="si">)</span><span class="s2">/test/params.yaml&amp;quot;"</span> /&gt;
+</code></pre></div></div>
+
+<p>get parameters:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">nh</span><span class="p">.</span><span class="n">param</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"default_param"</span><span class="p">,</span> <span class="n">default_param</span><span class="p">,</span> <span class="s">"default_value"</span><span class="p">);</span>
+
+ <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+ <span class="n">nh</span><span class="p">.</span><span class="n">param</span><span class="p">(</span><span class="s">"my_num"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">42</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p># comment</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;<span class="o">!</span><span class="nt">--</span> Parameters <span class="k">for </span>dynamic elements <span class="nt">--</span><span class="o">&gt;</span>
+
+ &lt;launch&gt;
+ 	&lt;?ignore
+ 	&lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">"mapper"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"dynamic_mapper"</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">"ethzasl_icp_mapper"</span> <span class="nv">output</span><span class="o">=</span><span class="s2">"screen"</span><span class="o">&gt;</span>
+ 		&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">"eps_a"</span> <span class="nv">value</span><span class="o">=</span><span class="s2">"0.004"</span>/&gt;&lt;<span class="o">!</span><span class="nt">--1</span> deg <span class="o">=</span> 0.017rad--&gt;
+ 	&lt;/node&gt;
+ 	?&gt;
+
+ 	&lt;node <span class="nv">pkg</span><span class="o">=</span><span class="s2">"tf"</span> <span class="nb">type</span><span class="o">=</span><span class="s2">"static_transform_publisher"</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"correction_tf"</span> <span class="nv">args</span><span class="o">=</span><span class="s2">"0 0 0 0 0.2 0 /pointcloud /boat_level 100"</span>/&gt;
+ &lt;/launch&gt;
+</code></pre></div></div>
+  -->
+        <!--     <h1 id="tf">TF</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/robotics/2020/04/06/coordinate-summary.html">Coordinate Summary</a>
+            </h1>
+            <meta itemprop="keywords" content="Robotics" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Robotics">Robotics</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Robotics" title="Robotics">Robotics</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-06">
+                    on Apr 6, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="overview">Overview</h1>
+
+<p>在SLAM中世界坐標系與相機坐標系均爲右手坐標系，其Z軕的指向不同。相機坐標系中的Z軸始終指向前方;而世界坐標系中的Z軸始終指向上方。</p>
+
+<p>相機參考系的記憶方式：
+​	伸出左手，食指指向前方，那麼大母指指向爲X軸，朝下的手指即爲Y軸。</p>
+
+<p>機器人坐標系：
+​	類似的，如果伸出右手，做出手槍一樣的姿勢，那就是機器人的坐標系。</p>
+
+<p>這種方式是我們實驗室的同事經常用的，跟教材不一樣。這是實踐中非常實用的方法，通過手的運動可以模仿相機的運動。可見實際工程中使用的跟書上學的，面試裏的不是一回事。</p>
+  -->
+        <!--     <h1 id="overview">Overview</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/04/05/markdown-mannual.html">Markdown Cheat Sheet</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-04-05">
+                    on Apr 5, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="resources">Resources</h1>
+<ul>
+  <li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程-runoob</a></li>
+  <li><a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown</a></li>
+</ul>
+
+<h1 id="table-of-contents">Table of contents</h1>
+<p><code class="highlighter-rouge">[TOC]</code></p>
+
+<h1 id="image">image</h1>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">![]()</span>
+</code></pre></div></div>
+<p>http://qiniu.yubaoliu.cn/biwako.png</p>
+
+<h1 id="header">Header</h1>
+<p>This will be parsed as HTML format:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;pre</span> <span class="na">class=</span><span class="s">"markdown"</span><span class="nt">&gt;&lt;b&gt;</span># H1<span class="nt">&lt;/b&gt;&lt;/pre&gt;</span>
+</code></pre></div></div>
+
+<h1 id="math">Math</h1>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">$$</span><span class="nb">
+</span><span class="nv">\mathbf</span><span class="p">{</span><span class="nb">V</span><span class="p">}_</span><span class="m">1</span><span class="nb"> </span><span class="nv">\times</span><span class="nb"> </span><span class="nv">\mathbf</span><span class="p">{</span><span class="nb">V</span><span class="p">}_</span><span class="m">2</span><span class="nb"> </span><span class="o">=</span><span class="nb">  </span><span class="nv">\begin</span><span class="p">{</span><span class="nb">vmatrix</span><span class="p">}</span><span class="nb">
+</span><span class="nv">\mathbf</span><span class="p">{</span><span class="nb">i</span><span class="p">}</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="nv">\mathbf</span><span class="p">{</span><span class="nb">j</span><span class="p">}</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="nv">\mathbf</span><span class="p">{</span><span class="nb">k</span><span class="p">}</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+</span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\partial</span><span class="nb"> X</span><span class="p">}{</span><span class="nv">\partial</span><span class="nb"> u</span><span class="p">}</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb">  </span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\partial</span><span class="nb"> Y</span><span class="p">}{</span><span class="nv">\partial</span><span class="nb"> u</span><span class="p">}</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">0</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+</span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\partial</span><span class="nb"> X</span><span class="p">}{</span><span class="nv">\partial</span><span class="nb"> v</span><span class="p">}</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb">  </span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\partial</span><span class="nb"> Y</span><span class="p">}{</span><span class="nv">\partial</span><span class="nb"> v</span><span class="p">}</span><span class="nb"> </span><span class="p">&amp;</span><span class="nb"> </span><span class="m">0</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+</span><span class="nv">\end</span><span class="p">{</span><span class="nb">vmatrix</span><span class="p">}</span><span class="nb">
+</span><span class="p">$$</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+\frac{\partial X}{\partial u} &  \frac{\partial Y}{\partial u} & 0 \\
+\frac{\partial X}{\partial v} &  \frac{\partial Y}{\partial v} & 0 \\
+\end{vmatrix} %]]></script>
+
+<h1 id="task-lists">Task Lists</h1>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">-</span> <span class="p">[</span><span class="nv">x] @mentions, #refs, [links</span><span class="p">](</span><span class="sx">),</span> <span class="gs">**formatting**</span>, and <span class="nt">&lt;del&gt;</span>tags<span class="nt">&lt;/del&gt;</span> supported
+<span class="p">-</span> [x] list syntax required (any unordered or ordered list supported)
+<span class="p">-</span> [x] this is a complete item
+<span class="p">-</span> [ ] this is an incomplete item
+</code></pre></div></div>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />@mentions, #refs, <a href="">links</a>, <strong>formatting</strong>, and <del>tags</del> supported</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />list syntax required (any unordered or ordered list supported)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />this is a complete item</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />this is an incomplete item</li>
+</ul>
+
+<h1 id="锚点">锚点</h1>
+<p>Each header is an anchor.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Jump to <span class="p">[</span><span class="nv">Reference</span><span class="p">](</span><span class="sx">#Reference</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Jump to <a href="#Reference">Reference</a></p>
+
+<h1 id="font-style">Font Style</h1>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~delete~~
+<span class="ge">*斜体文本*</span>
+<span class="ge">_斜体文本_</span>
+<span class="gs">**粗体文本**</span>
+<span class="gs">__粗体文本__</span>
+<span class="gs">***粗斜体文本**</span><span class="err">*</span>
+<span class="gs">___粗斜体文本__</span>_
+<span class="nt">&lt;u&gt;</span>带下划线文本<span class="nt">&lt;/u&gt;</span>
+</code></pre></div></div>
+
+<p><del>delete</del>
+<em>斜体文本</em>
+<em>斜体文本</em>
+<strong>粗体文本</strong>
+<strong>粗体文本</strong>
+<strong><em>粗斜体文本</em></strong>
+<strong><em>粗斜体文本</em></strong>
+<u>带下划线文本</u></p>
+
+<h1 id="分隔符分割线">分隔符/分割线</h1>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">***</span>
+<span class="k">*</span> <span class="k">*</span> <span class="k">*</span>
+- - -
+<span class="nt">----------</span>
+</code></pre></div></div>
+
+<h1 id="转义字符">转义字符</h1>
+<pre><code class="language-#!/bin/sh">\&lt;br/&gt;
+</code></pre>
+<p>&lt;br/&gt;</p>
+
+<pre><code class="language-HTML">**文本加粗**
+\*\* 正常显示星号 \*\*
+</code></pre>
+
+<p><strong>文本加粗</strong>
+** 正常显示星号 **</p>
+
+<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<pre><code class="language-HTML">\   反斜线
+`   反引号
+*   星号
+_   下划线
+{}  花括号
+[]  方括号
+()  小括号
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   感叹号
+</code></pre>
+<h1 id="list">List</h1>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">1.</span> 第一项：
+<span class="p">    -</span> 第一项嵌套的第一个元素
+<span class="p">    -</span> 第一项嵌套的第二个元素
+<span class="p">2.</span> 第二项：
+<span class="p">    -</span> 第二项嵌套的第一个元素
+<span class="p">    -</span> 第二项嵌套的第二个元素
+</code></pre></div></div>
+
+<ol>
+  <li>第一项：
+    <ul>
+      <li>第一项嵌套的第一个元素</li>
+      <li>第一项嵌套的第二个元素</li>
+    </ul>
+  </li>
+  <li>第二项：
+    <ul>
+      <li>第二项嵌套的第一个元素</li>
+      <li>第二项嵌套的第二个元素</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="链接">链接</h1>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>这个链接用 1 作为网址变量 <span class="p">[</span><span class="nv">Google</span><span class="p">][</span><span class="ss">1</span><span class="p">]</span>
+这个链接用 runoob 作为网址变量 <span class="p">[</span><span class="nv">Runoob</span><span class="p">][</span><span class="ss">runoob</span><span class="p">]</span>
+然后在文档的结尾为变量赋值（网址）
+
+  <span class="p">[</span><span class="ss">1</span><span class="p">]:</span> <span class="sx">http://www.google.com/</span>
+  <span class="p">[</span><span class="ss">runoob</span><span class="p">]:</span> <span class="sx">http://www.runoob.com/</span>
+</code></pre></div></div>
+
+<p>这是一个链接 <a href="https://www.runoob.com">菜鸟教程</a></p>
+
+<p>直接使用链接地址：
+<a href="https://www.runoob.com">https://www.runoob.com</a></p>
+
+<ul>
+  <li>这个链接用 1 作为网址变量 <a href="http://www.google.com/">Google</a></li>
+  <li>这个链接用 runoob 作为网址变量 <a href="http://www.runoob.com/">Runoob</a></li>
+  <li>然后在文档的结尾为变量赋值（网址）</li>
+</ul>
+
+<h1 id="表格">表格</h1>
+<ul>
+  <li>-: 设置内容和标题栏居右对齐。</li>
+  <li>:- 设置内容和标题栏居左对齐。</li>
+  <li>:-: 设置内容和标题栏居中对齐。</li>
+</ul>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">左对齐</th>
+      <th style="text-align: right">右对齐</th>
+      <th style="text-align: center">居中对齐</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">单元格</td>
+      <td style="text-align: right">单元格</td>
+      <td style="text-align: center">单元格</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">单元格</td>
+      <td style="text-align: right">单元格</td>
+      <td style="text-align: center">单元格</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="脚注">脚注</h1>
+<p><code class="highlighter-rouge">创建脚注格式类似这样 [^RUNOOB]</code></p>
+
+<p>创建脚注格式类似这样 <sup id="fnref:RUNOOB"><a href="#fn:RUNOOB" class="footnote">1</a></sup></p>
+
+<h1 id="html">html</h1>
+<p>目前支持的 HTML 元素有：<code class="highlighter-rouge">&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等</p>
+
+<pre><code class="language-HTML">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑
+</code></pre>
+
+<p>使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑</p>
+
+<h1 id="引用">引用</h1>
+<blockquote>
+  <p>这是引用的内容</p>
+
+  <blockquote>
+    <p>这是引用的内容</p>
+  </blockquote>
+</blockquote>
+
+<h1 id="reference">Reference</h1>
+<ul>
+  <li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程-runoob</a></li>
+</ul>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:RUNOOB">
+      <p>菜鸟教程 – 学的不仅是技术，更是梦想！！！ <a href="#fnref:RUNOOB" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+  -->
+        <!--     <h1 id="resources">Resources</h1>
+<ul>
+  <li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程-runoob</a></li>
+  <li>
+    <p><a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown</a></p>
+
+  </li>
+</ul>
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/slam/2020/03/09/dynaslam.html">DynaSLAM</a>
+            </h1>
+            <meta itemprop="keywords" content="slam" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#slam">slam</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#slam" title="slam">slam</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-03-09">
+                    on Mar 9, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="video">Video</h1>
+
+<iframe src="//player.bilibili.com/player.html?aid=77344939&amp;bvid=BV1XJ411D7Qs&amp;cid=132304894&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+  -->
+        <!--     <h1 id="video">Video</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/computer%20vision/2020/03/06/down-sample.html">Image Down Sample</a>
+            </h1>
+            <meta itemprop="keywords" content="Computer Vision" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Computer Vision">Computer Vision</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Computer Vision" title="Computer Vision">Computer Vision</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-03-06">
+                    on Mar 6, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="downsample">Downsample</h1>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Downsample an image</span>
+<span class="n">img</span> <span class="o">=</span> <span class="nb">imread</span><span class="p">(</span><span class="s1">'img/penny-farthing.png'</span><span class="p">);</span>
+<span class="nb">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+
+<span class="n">img_d</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>    <span class="c1">% 1/2 size</span>
+<span class="n">img_d</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">img_d</span><span class="p">);</span>  <span class="c1">% 1/4 size</span>
+<span class="n">img_d</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">img_d</span><span class="p">);</span>  <span class="c1">% 1/8 size</span>
+
+<span class="n">img_bd</span> <span class="o">=</span> <span class="n">blur_downsample</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>     <span class="c1">% 1/2 size</span>
+<span class="n">img_bd</span> <span class="o">=</span> <span class="n">blur_downsample</span><span class="p">(</span><span class="n">img_bd</span><span class="p">);</span>  <span class="c1">% 1/4 size</span>
+<span class="n">img_bd</span> <span class="o">=</span> <span class="n">blur_downsample</span><span class="p">(</span><span class="n">img_bd</span><span class="p">);</span>  <span class="c1">% 1/8 size</span>
+
+<span class="nb">imshow</span><span class="p">(</span><span class="nb">imresize</span><span class="p">(</span><span class="n">img_d</span><span class="p">,</span> <span class="nb">size</span><span class="p">(</span><span class="n">img</span><span class="p">)));</span>   <span class="c1">% view downsampled image in original size</span>
+<span class="nb">imshow</span><span class="p">(</span><span class="nb">imresize</span><span class="p">(</span><span class="n">img_bd</span><span class="p">,</span> <span class="nb">size</span><span class="p">(</span><span class="n">img</span><span class="p">)));</span>  <span class="c1">% compare with blurred &amp; downsampled</span>
+
+<span class="k">function</span> <span class="n">img_d</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">img_d</span> <span class="o">=</span> <span class="n">img</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">);</span> <span class="c1">% selects rows, cols: 1,3,5, ....</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">img_bd</span><span class="o">=</span><span class="n">blur_downsample</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="c1">% TODO: img_bd = ? (blur by 5x5 gaussian, then downsample)</span>
+    <span class="n">img_bd</span> <span class="o">=</span> <span class="n">imfilter</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">fspecial</span><span class="p">(</span><span class="s1">'gaussian'</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span> <span class="mi">5</span><span class="p">]));</span>
+    <span class="n">img_bd</span> <span class="o">=</span> <span class="n">img_bd</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">);</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Result after downsample:</p>
+
+<p><img src="/img/image-20200304110246285.png" alt="image-20200304110246285" /></p>
+
+<p>result of downsample after blur:</p>
+
+<p><img src="/img/image-20200304110319797.png" alt="image-20200304110319797" /></p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li>
+    <h2 id="motion-models-httpsclassroomudacitycomcoursesud810lessons3232568787concepts31898394400923">Motion models, https://classroom.udacity.com/courses/ud810/lessons/3232568787/concepts/31898394400923</h2>
+  </li>
+</ul>
+  -->
+        <!--     <h1 id="downsample">Downsample</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/cpp/2020/02/12/boost.html">boost</a>
+            </h1>
+            <meta itemprop="keywords" content="CPP" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#CPP">CPP</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#CPP" title="CPP">CPP</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-02-12">
+                    on Feb 12, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="bind">bind</h1>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">boost</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f2</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">myclass</span><span class="o">::</span><span class="n">fun2</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">_1</span> <span class="p">)</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h1 id="threads">threads</h1>
+
+<pre><code class="language-CPP">void Foo::func1()
+{
+  boost::thread* thr = new boost::thread(boost::bind(&amp;Foo::some_function, this));
+}
+</code></pre>
+  -->
+        <!--     <h1 id="bind">bind</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/01/11/git.html">GIT</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-01-11">
+                    on Jan 11, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="checkout-file">Checkout file</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git fetch
+git checkout &lt;branch from which file needs to be fetched&gt; &lt;filepath&gt;
+</code></pre></div></div>
+
+<p><a href="https://www.freecodecamp.org/forum/t/git-pull-how-to-override-local-files-with-git-pull/13216">Git Pull - How to Override Local files with Git Pull</a></p>
+  -->
+        <!--     <h1 id="checkout-file">Checkout file</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/01/10/how-to-build-blog.html">How to build blog</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-01-10">
+                    on Jan 10, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#upload-image" id="markdown-toc-upload-image">Upload image</a></li>
+  <li><a href="#toc" id="markdown-toc-toc">TOC</a>    <ul>
+      <li><a href="#plugin-jekyll-toc" id="markdown-toc-plugin-jekyll-toc">Plugin: Jekyll-toc</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="introduction">Introduction</h1>
+
+<p><a href="https://help.github.com/en/github/working-with-github-pages/about-github-pages-and-jekyll#plugins">About GitHub Pages and Jekyll</a></p>
+
+<h1 id="upload-image">Upload image</h1>
+
+<ul>
+  <li><a href="https://github.com/Molunerfinn/PicGo/releases">PicGo</a></li>
+</ul>
+
+<p><img src="/assets/img/2020-01-10-how-to-build-blog/flowers-left.png" alt="flowers-left" /></p>
+
+<h1 id="toc">TOC</h1>
+
+<h2 id="plugin-jekyll-toc">Plugin: Jekyll-toc</h2>
+
+<ul>
+  <li>Issue:  TOC on GitHub Pages <a href="https://github.com/toshimaru/jekyll-toc/issues/29">#29</a></li>
+</ul>
+
+<p>Description:</p>
+
+<blockquote>
+  <p>The plugin works fine locally, but when I push the website to the GitHub pages, it doesn’t work there. Is there any way to make it work on GitHub beside producing a static version of the website in gh-pages branch and pushing that to the GitHub?</p>
+</blockquote>
+
+<p>Answer:</p>
+
+<blockquote>
+  <p>You’re right, you can NOT use jekyll-toc powered by official GitHub Pages gem because available plugins are limited.
+To use jekyll-toc plugin, build your site locally and push it onto the gh-pages branch. I deployed my personal blog site in that way. The source code is open, so you can see how it works. https://github.com/toshimaru/blog.toshimaru.net</p>
+</blockquote>
+
+  -->
+        <!--     
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/01/09/docker.html">docker</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-01-09">
+                    on Jan 9, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="docker-compose">Docker Compose</h1>
+
+<p>Docker Compose 常用命令</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> build              Build or rebuild services
+ config             Validate and view the Compose file
+ create             Create services
+ down               Stop and remove containers, networks, images, and volumes
+ events             Receive real time events from containers
+ exec               Execute a command in a running container
+ help               Get help on a command
+ images             List images
+ kill               Kill containers
+ logs               View output from containers
+ pause              Pause services
+ port               Print the public port for a port binding
+ ps                 List containers
+ pull               Pull service images
+ push               Push service images
+ restart            Restart services
+ rm                 Remove stopped containers
+ run                Run a one-off command
+ scale              Set number of containers for a service
+ start              Start services
+ stop               Stop services
+ top                Display the running processes
+ unpause            Unpause services
+ up                 Create and start containers
+ version            Show the Docker-Compose version information
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://www.jianshu.com/p/658911a8cff3">Docker：Docker Compose 详解</a></li>
+  <li><a href="https://www.jianshu.com/p/ca1623ac7723">Docker及Docker-Compose的使用</a></li>
+</ul>
+  -->
+        <!--     <h1 id="docker-compose">Docker Compose</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/01/08/vim.html">VIM</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-01-08">
+                    on Jan 8, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="resources">Resources</h1>
+
+<ul>
+  <li><a href="http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html">Graphical vi-vim Cheat Sheet and Tutorial</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2018/09/vimrc.html">Vim 配置入门</a></li>
+  <li><a href="chrome-extension://gfbliohnnapiefjpjlpjnehglfpaknnc/pages/pdf_viewer.html?r=https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf">vim-cheatsheet online doc</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/25946307">VIM学习笔记</a></li>
+</ul>
+
+<h1 id="graphical-cheat-sheet">Graphical Cheat Sheet</h1>
+
+<p><img src="http://www.viemu.com/vi-vim-cheat-sheet.gif" alt="vi-vim-tutorial-gif" /></p>
+
+<p><img src="/assets/img/vi-vim-tutorial-gif/vi-vim-tutorial-1.gif" alt="vi-vim-tutorial-gif" />
+<img src="/assets//img/vi-vim-tutorial-gif/vi-vim-tutorial-2.gif" alt="vi-vim-tutorial-gif" />
+<img src="/assets//img/vi-vim-tutorial-gif/vi-vim-tutorial-3.gif" alt="vi-vim-tutorial-gif" />
+<img src="/assets/img/vi-vim-tutorial-gif/vi-vim-tutorial-4.gif" alt="vi-vim-tutorial-gif" />
+<img src="/assets/img/vi-vim-tutorial-gif/vi-vim-tutorial-5.gif" alt="vi-vim-tutorial-gif" />
+<img src="/assets/img/vi-vim-tutorial-gif/vi-vim-tutorial-6.gif" alt="vi-vim-tutorial-gif" />
+<img src="/assets/img/vi-vim-tutorial-gif/vi-vim-tutorial-7.gif" alt="vi-vim-tutorial-gif" /></p>
+
+<h1 id="tabedit">tabedit</h1>
+<h2 id="help">Help</h2>
+<ul>
+  <li>:help tab-page-intro</li>
+  <li>:help table ， help -p</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:-tabnext   <span class="s2">" go to the previous tab page
+:+tabnext   "</span> go to the next tab page
+:+2tabnext  <span class="s2">" go to the two next tab page
+:1tabnext   "</span> go to the first tab page
+:<span class="nv">$tabnext</span>   <span class="s2">" go to the last tab page
+:tabnext </span><span class="nv">$ </span><span class="s2"> "</span> as above
+:tabnext -  <span class="s2">" go to the previous tab page
+:tabnext -1 "</span> as above
+:tabnext +  <span class="s2">" go to the next tab page
+:tabnext +1 "</span> as above
+
+<span class="o">{</span>count<span class="o">}</span>&lt;C-PageDown&gt;
+<span class="o">{</span>count<span class="o">}</span>gt       Go to tab page <span class="o">{</span>count<span class="o">}</span><span class="nb">.</span>  The first tab page has number one.
+
+
+:tabp[revious]                          :tabp :tabprevious gT :tabN
+:tabN[ext]                              :tabNext CTRL-&lt;PageUp&gt;
+&lt;C-PageUp&gt;                       &lt;C-PageUp&gt; i_CTRL-&lt;PageUp&gt; i_&lt;C-PageUp&gt;
+gT              Go to the previous tab page.  Wraps around from the first one
+                to the last one.
+
+:tabp[revious] <span class="o">{</span>count<span class="o">}</span>
+:tabN[ext] <span class="o">{</span>count<span class="o">}</span>
+<span class="o">{</span>count<span class="o">}</span>&lt;C-PageUp&gt;
+<span class="o">{</span>count<span class="o">}</span>gT       Go <span class="o">{</span>count<span class="o">}</span> tab pages back.  Wraps around from the first one
+                to the last one.
+
+</code></pre></div></div>
+
+<h2 id="common-used-commands">Common used commands</h2>
+<ul>
+  <li>Open and close tabedit
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:tabe[dit] <span class="o">{</span>file<span class="o">}</span>   edit specified file <span class="k">in </span>a new tab
+:tabf[ind] <span class="o">{</span>file<span class="o">}</span>   open a new tab with filename given, searching the <span class="s1">'path'</span> to find it
+:tabc[lose]         close current tab
+:tabc[lose] <span class="o">{</span>i<span class="o">}</span>     close i-th tab
+:tabo[nly]          close all other tabs <span class="o">(</span>show only the current tab<span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>move</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:tabs         list all tabs including their displayed window
+:tabm 0       move current tab to first
+:tabm         move current tab to last
+:tabm <span class="o">{</span>i<span class="o">}</span>     move current tab to position i+1
+</code></pre></div></div>
+
+<ul>
+  <li>swith</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:tabn         go to next tab
+:tabp         go to previous tab
+:tabfirst     go to first tab
+:tablast      go to last tab
+</code></pre></div></div>
+
+<p>normal mode:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gt            go to next tab
+gT            go to previous tab
+<span class="o">{</span>i<span class="o">}</span>gt         go to tab <span class="k">in </span>position i
+</code></pre></div></div>
+
+<ul>
+  <li>costomize</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>noremap &lt;C-L&gt; &lt;Esc&gt;:tabnext&lt;CR&gt;
+noremap &lt;C-H&gt; &lt;Esc&gt;:tabprevious&lt;CR&gt;
+</code></pre></div></div>
+
+<h1 id="plugins">Plugins</h1>
+<h2 id="cawvim">caw.vim</h2>
+<ul>
+  <li>
+    <prefix> + c: comment before the first word,  行の最初の文字の前にコメント文字をトグル
+</prefix>
+  </li>
+  <li>
+    <prefix> + ,: comment on the head of the line, 行頭にコメントをトグル
+
+</prefix>
+  </li>
+</ul>
+<h1 id="cheat-sheet">Cheat Sheet</h1>
+
+<h2 id="scrolling-relative-to-cursor">Scrolling relative to cursor</h2>
+<ul>
+  <li>zz</li>
+  <li>z.</li>
+</ul>
+
+<h2 id="motions">motions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>motion</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>h</td>
+      <td>Count characters left</td>
+    </tr>
+    <tr>
+      <td>l</td>
+      <td>Count characters right</td>
+    </tr>
+    <tr>
+      <td>^</td>
+      <td>To the first character of the line</td>
+    </tr>
+    <tr>
+      <td>$</td>
+      <td>To the last character of the line</td>
+    </tr>
+    <tr>
+      <td>f&lt;char&gt;</td>
+      <td>To the counth character occurrence to the right.  F&lt;char&gt; to the counth character occurrence to the left</td>
+    </tr>
+    <tr>
+      <td>t&lt;char&gt;</td>
+      <td>To 1 character just before the counth character occurrence to the right</td>
+    </tr>
+    <tr>
+      <td>T&lt;char&gt;</td>
+      <td>To 1 character just before the counth character occurrence to the left</td>
+    </tr>
+    <tr>
+      <td>w</td>
+      <td>Count words forward</td>
+    </tr>
+    <tr>
+      <td>W</td>
+      <td>Count words forward (different definition for what a word is, includes special characters and such)</td>
+    </tr>
+    <tr>
+      <td>e</td>
+      <td>Count forward to the end of word</td>
+    </tr>
+    <tr>
+      <td>b</td>
+      <td>Count words backward</td>
+    </tr>
+    <tr>
+      <td>i&lt;{&lt;”‘&gt;</td>
+      <td>Inside something like inside brackets or parenthesis for example</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>trigger</th>
+      <th>effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>c{motion}</td>
+      <td>Change</td>
+    </tr>
+    <tr>
+      <td>d{motion}</td>
+      <td>Delete</td>
+    </tr>
+    <tr>
+      <td>y{motion}</td>
+      <td>Yank into register</td>
+    </tr>
+    <tr>
+      <td>g~{motion}</td>
+      <td>Toggle case</td>
+    </tr>
+    <tr>
+      <td>gu{motion}</td>
+      <td>Make lowercase</td>
+    </tr>
+    <tr>
+      <td>gU{motion}</td>
+      <td>Make uppercase</td>
+    </tr>
+    <tr>
+      <td>&gt;{motion}</td>
+      <td>Shift right</td>
+    </tr>
+    <tr>
+      <td>&lt;{motion}</td>
+      <td>Shift left</td>
+    </tr>
+    <tr>
+      <td>={motion}</td>
+      <td>Auto-indent</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="buffer-management">buffer management</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;C-\^&gt; or &lt;C-6&gt;</td>
+      <td>Switch to the buffer you just left</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="split-windows">split windows</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;C-w&gt;s or :sp[lit] &lt;file&gt;</td>
+      <td>Split file horizontally.</td>
+    </tr>
+    <tr>
+      <td>&lt;C-w&gt;v or :vsp[lit] &lt;file&gt;</td>
+      <td>Split file vertically</td>
+    </tr>
+    <tr>
+      <td>&lt;C-w&gt;w</td>
+      <td>cycle between open windows</td>
+    </tr>
+    <tr>
+      <td>&lt;C-w&gt;h</td>
+      <td>focus the window to the left</td>
+    </tr>
+    <tr>
+      <td>&lt;C-w&gt;j</td>
+      <td>focus the window below</td>
+    </tr>
+    <tr>
+      <td>&lt;C-w&gt;k</td>
+      <td>focus the window above</td>
+    </tr>
+    <tr>
+      <td>&lt;C-w&gt;l</td>
+      <td>focus the window to the right</td>
+    </tr>
+    <tr>
+      <td>:cl[ose]	&lt;C-w&gt;c</td>
+      <td>close the active window</td>
+    </tr>
+    <tr>
+      <td>:on[ly] &lt;C-w&gt;o</td>
+      <td>keep only the active window, closing all others</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="spelling">spelling</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>]s</td>
+      <td>Jump to next spelling error</td>
+    </tr>
+    <tr>
+      <td>[s</td>
+      <td>Jump to previous spelling error</td>
+    </tr>
+    <tr>
+      <td>z=</td>
+      <td>Suggest corrections for current word</td>
+    </tr>
+    <tr>
+      <td>zg</td>
+      <td>Add the current word to spell file</td>
+    </tr>
+    <tr>
+      <td>zw</td>
+      <td>Remove the current word from spell file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="code-folding">code folding</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>zf{motion}</td>
+      <td>folds code when “foldmethod” set to manual or “marker”</td>
+    </tr>
+    <tr>
+      <td>za</td>
+      <td>toggle fold at cursor</td>
+    </tr>
+    <tr>
+      <td>zo</td>
+      <td>opens fold at cursor</td>
+    </tr>
+    <tr>
+      <td>zc</td>
+      <td>close fold at cursor</td>
+    </tr>
+    <tr>
+      <td>zR</td>
+      <td>open all</td>
+    </tr>
+    <tr>
+      <td>zM</td>
+      <td>close all</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="search-and-replace">search and replace</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:args **/*.txt</td>
+      <td>Multi-file Step 1) populate the argument list with the files you want to search</td>
+    </tr>
+    <tr>
+      <td>:argdo %s/search/replace/gc</td>
+      <td>Mult-file Step 2) replace all occurrences of search with replace but prompt before doing so</td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>search for the word under the cursor</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="jumps">jumps</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:jumps</td>
+      <td>display the jump list</td>
+    </tr>
+    <tr>
+      <td>&lt;C-o&gt;</td>
+      <td>jump backwards through the jump list</td>
+    </tr>
+    <tr>
+      <td>&lt;C-i&gt;</td>
+      <td>jump forwards through the jump list</td>
+    </tr>
+    <tr>
+      <td>:changes</td>
+      <td>display the change list</td>
+    </tr>
+    <tr>
+      <td>g;</td>
+      <td>jump backwards through the changes list</td>
+    </tr>
+    <tr>
+      <td>g,</td>
+      <td>jump forwards through the changes list</td>
+    </tr>
+    <tr>
+      <td>gf</td>
+      <td>jump to the file name under the cursor</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="changes">changes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:changes</td>
+      <td>display the change list</td>
+    </tr>
+    <tr>
+      <td>g;</td>
+      <td>jump backwards through the changes list</td>
+    </tr>
+    <tr>
+      <td>g,</td>
+      <td>jump forwards through the changes list</td>
+    </tr>
+    <tr>
+      <td>gf</td>
+      <td>jump to the file name under the cursor</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="marks">marks</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:marks</td>
+      <td>display the marks list</td>
+    </tr>
+    <tr>
+      <td>m&lt;upper case&gt;</td>
+      <td>set a file bookmark</td>
+    </tr>
+    <tr>
+      <td>m&lt;lower case&gt;</td>
+      <td>set a buffer bookmark</td>
+    </tr>
+    <tr>
+      <td>‘&lt;character&gt;</td>
+      <td>jump to the mark</td>
+    </tr>
+    <tr>
+      <td>’’</td>
+      <td>jump to the line in the current buffer where jumped from</td>
+    </tr>
+    <tr>
+      <td>:delmarks &lt;character&gt;</td>
+      <td>delete specified mark</td>
+    </tr>
+    <tr>
+      <td>:delmarks a-d</td>
+      <td>delete marks a through d</td>
+    </tr>
+    <tr>
+      <td>:delmarks a,b,x,y</td>
+      <td>delete only marks a,b,x and y</td>
+    </tr>
+    <tr>
+      <td>:delmarks!</td>
+      <td>delete all lower case marks</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="registers">registers</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:registers</td>
+      <td>display the register list</td>
+    </tr>
+    <tr>
+      <td>"&lt;lower case register&gt;{motion}</td>
+      <td>overwrite or use contents of register</td>
+    </tr>
+    <tr>
+      <td>"&lt;upper case register&gt;{motion}</td>
+      <td>append or use contents of register</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>populated with last yanked text</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="macros">macros</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>q{register}</td>
+      <td>start recording and store it in the specified register</td>
+    </tr>
+    <tr>
+      <td>q</td>
+      <td>stop recording</td>
+    </tr>
+    <tr>
+      <td>{count}@{register}</td>
+      <td>execute specified macro count times</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ctags">ctags</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:tags</td>
+      <td>display the tags stack</td>
+    </tr>
+    <tr>
+      <td>&lt;C-]&gt;</td>
+      <td>goto definition</td>
+    </tr>
+    <tr>
+      <td>&lt;C-t&gt;</td>
+      <td>goto previous</td>
+    </tr>
+    <tr>
+      <td>:ta&lt;method&gt;</td>
+      <td>takes you to the method definition where method definition could be a regex that produces a list</td>
+    </tr>
+    <tr>
+      <td>:tn:</td>
+      <td>goes to next in list</td>
+    </tr>
+    <tr>
+      <td>:tp</td>
+      <td>goes to previous in list</td>
+    </tr>
+    <tr>
+      <td>:tf</td>
+      <td>goes to first in list</td>
+    </tr>
+    <tr>
+      <td>:tl</td>
+      <td>goes to last in list</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="quickfix-window">quickfix window</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:copen</td>
+      <td>Open the quickfix window</td>
+    </tr>
+    <tr>
+      <td>:ccl</td>
+      <td>Close it</td>
+    </tr>
+    <tr>
+      <td>:cw</td>
+      <td>Open it if there are “errors”, close it otherwise (some people prefer this)</td>
+    </tr>
+    <tr>
+      <td>:cn</td>
+      <td>Go to the next error in the window</td>
+    </tr>
+    <tr>
+      <td>:cnf</td>
+      <td>Go to the first error in the next file</td>
+    </tr>
+    <tr>
+      <td>:cc{num}</td>
+      <td>Go to the error by number</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="navigation">Navigation</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>key</th>
+      <th>move to</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>%</td>
+      <td>End of construct</td>
+    </tr>
+    <tr>
+      <td>[[</td>
+      <td>Backwards to the beginning of the current function.</td>
+    </tr>
+    <tr>
+      <td>][</td>
+      <td>Forwards to the beginning of the current function.</td>
+    </tr>
+    <tr>
+      <td>]}</td>
+      <td>Beginning of the current block.</td>
+    </tr>
+    <tr>
+      <td>[{</td>
+      <td>End of the current block.</td>
+    </tr>
+    <tr>
+      <td>}[</td>
+      <td>Beginning of the current comment block.</td>
+    </tr>
+    <tr>
+      <td>}]</td>
+      <td>End of the current comment block.</td>
+    </tr>
+    <tr>
+      <td>gd</td>
+      <td>First usage of the current variable name. (Mnemonic: go to definition).</td>
+    </tr>
+    <tr>
+      <td>gD</td>
+      <td>Go to the first global usage of the current variable name.</td>
+    </tr>
+    <tr>
+      <td>gg</td>
+      <td>beginning of file</td>
+    </tr>
+    <tr>
+      <td>G</td>
+      <td>end of file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="addon-references">Addon References</h2>
+
+<h3 id="vim-surround-httpsgithubcomtpopevim-surround">vim-surround <a href="https://github.com/tpope/vim-surround">https://github.com/tpope/vim-surround</a></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>cs&lt;current&gt;&lt;new&gt;</td>
+      <td>change old delimeter to new</td>
+    </tr>
+    <tr>
+      <td>ds</td>
+      <td>remove delimeters</td>
+    </tr>
+    <tr>
+      <td>ysiw&lt;delimiter&gt;</td>
+      <td>wrap current word</td>
+    </tr>
+    <tr>
+      <td>S&lt;delimiter&gt;</td>
+      <td>while in visual mode</td>
+    </tr>
+    <tr>
+      <td>S=</td>
+      <td>in visual mode, rails ERB tag (requires vim-rails)</td>
+    </tr>
+    <tr>
+      <td>S-</td>
+      <td>in visual mode, rails ERB tag (requires vim-rails)</td>
+    </tr>
+    <tr>
+      <td>S#</td>
+      <td>in visual mode, rails ERB tag (requires vim-rails)</td>
+    </tr>
+    <tr>
+      <td>&lt;C-s&gt;=</td>
+      <td>rails ERB tag (requires vim-rails)</td>
+    </tr>
+    <tr>
+      <td>&lt;C-s&gt;-</td>
+      <td>rails ERB tag (requires vim-rails)</td>
+    </tr>
+    <tr>
+      <td>&lt;C-s&gt;#</td>
+      <td>rails ERB tag (requires vim-rails)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="miscellaneous">miscellaneous</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>command</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v</td>
+      <td>enable characterwise Visual mode</td>
+    </tr>
+    <tr>
+      <td>V</td>
+      <td>enable linewise Visual mode</td>
+    </tr>
+    <tr>
+      <td>&lt;C-v&gt;</td>
+      <td>enable blockwise Visual mode</td>
+    </tr>
+    <tr>
+      <td>gv</td>
+      <td>reselect the last visual selection</td>
+    </tr>
+    <tr>
+      <td>o</td>
+      <td>go to other end of highlighted text</td>
+    </tr>
+    <tr>
+      <td>“+p</td>
+      <td>paste from system clipboard</td>
+    </tr>
+    <tr>
+      <td>:0,$d</td>
+      <td>delete every line in a file</td>
+    </tr>
+    <tr>
+      <td>&lt;C-a&gt;</td>
+      <td>increment number</td>
+    </tr>
+    <tr>
+      <td>&lt;C-x&gt;</td>
+      <td>decrement number</td>
+    </tr>
+    <tr>
+      <td>vit</td>
+      <td>select contents inside of an HTML tag</td>
+    </tr>
+    <tr>
+      <td>:map</td>
+      <td>List all currently define mappings</td>
+    </tr>
+    <tr>
+      <td>:verbose map</td>
+      <td>Display where mapping was defined</td>
+    </tr>
+    <tr>
+      <td>g/{pattern}/d</td>
+      <td>Delete every line matching pattern.</td>
+    </tr>
+    <tr>
+      <td>v/{pattern}/d</td>
+      <td>Delete every line <em>not</em> matching pattern.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="reference">Reference</h1>
+<ul>
+  <li><a href="https://gist.github.com/socketwiz/2645891">socketwiz/vim.markdown</a></li>
+</ul>
+  -->
+        <!--     <h1 id="resources">Resources</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/01/07/tmux.html">TMUX</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-01-07">
+                    on Jan 7, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="commands">Commands</h1>
+<h2 id="managing-tmux-sessions">Managing tmux sessions</h2>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tmux      <span class="c"># start tmux server</span>
+<span class="nv">$ </span>tmux at   <span class="c"># attach running sessions to a terminal</span>
+<span class="nv">$ </span>tmux <span class="nb">ls</span>   <span class="c"># list running tmux sessions</span>
+<span class="nv">$ </span><span class="nb">exit</span>      <span class="c"># close tmux session</span>
+</code></pre></div></div>
+
+<h2 id="sharing-sessions-between-terminals">Sharing sessions between terminals</h2>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tmux new <span class="nt">-s</span> session_name <span class="c"># make new named session</span>
+<span class="nv">$ </span>tmux at <span class="nt">-t</span> session_name  <span class="c"># attach to exist session (allowing shared sessions)</span>
+<span class="nv">$ </span>tmux kill-session <span class="nt">-t</span> session_name  <span class="c"># kill named session</span>
+</code></pre></div></div>
+
+<h2 id="commands-used-within-a-running-tmux-session">Commands (used within a running tmux session):</h2>
+
+<p>NOTE: All commands need to be prefixed with the action key. By default, this is <code class="highlighter-rouge">CTRL-b</code></p>
+
+<ul>
+  <li>c  - create new window</li>
+  <li>n/p - move to next/previous window</li>
+  <li>0-9 - move to window number 0-9</li>
+  <li>l  - move to previously selected window</li>
+  <li>f  - find window by name</li>
+  <li>w  - menu with all windows</li>
+  <li>&amp;  - kill current window</li>
+  <li>,  - rename window</li>
+  <li>%  - split window, adding a vertical pane to the right</li>
+  <li>”  - split window, adding an horizontal pane below</li>
+  <li>q  - show pane numbers (used to switch between panes)</li>
+  <li>o  - switch to the next pane</li>
+  <li>?/? - move focus to left/right pane</li>
+  <li>
+    <p>?/? - move focus to upper/lower pane</p>
+  </li>
+  <li>!  - Break current pane into new window</li>
+  <li>x  - Kill the current pane.</li>
+  <li>d  - detach the current client</li>
+  <li>
+    <p>?  - list all keybindings</p>
+  </li>
+  <li>[  - enter copy mode (then use emacs select/yank keys)
+    <ul>
+      <li>press CTRL-SPACE or CTRL-@ to start selecting text</li>
+      <li>move cursor to end of desired text</li>
+      <li>press ALT-w to copy selected text</li>
+    </ul>
+  </li>
+  <li>
+    <p>]  - paste copied text</p>
+  </li>
+  <li>?  - show tmux key bindings</li>
+</ul>
+
+<h1 id="reference">Reference</h1>
+<ul>
+  <li><a href="https://gist.github.com/mloskot/4285396">mloskot/cheat-tmux.markdown</a></li>
+</ul>
+  -->
+        <!--     <h1 id="commands">Commands</h1>
+<h2 id="managing-tmux-sessions">Managing tmux sessions</h2>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tmux      <span class="c"># start tmux server</span>
+<span class="nv">$ </span>tmux at   <span class="c"># attach running sessions to a terminal</span>
+<span class="nv">$ </span>tmux <span class="nb">ls</span>   <span class="c"># list running tmux sessions</span>
+<span class="nv">$ </span><span class="nb">exit</span>      <span class="c"># close tmux session</span>
+</code></pre></div></div>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+        <header class="post-header">
+            <h1 itemprop="name" class="post-title">
+                <a itemprop="url" class="post-link" href="/tools/2020/01/01/glog.html">GLOG</a>
+            </h1>
+            <meta itemprop="keywords" content="Tools" />
+            <p class="post-meta">
+                Posted in
+                
+                <a href="/categories/#Tools">Tools</a>
+                
+
+                
+                and tagged
+                
+                <a href="/tags/#Tools" title="Tools">Tools</a>
+                
+                
+
+                <time itemprop="datePublished" datetime="2020-01-01">
+                    on Jan 1, 2020
+                </time>
+            </p>
+        </header>
+
+        <!-- <article class="post-content" itemprop="articleBody"> -->
+        <!--      <h1 id="config">Config</h1>
+
+<ul>
+  <li>CMakeLists.txt
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find_package<span class="o">(</span>Glog REQUIRED<span class="o">)</span>
+include_directories<span class="o">(</span>BEFORE <span class="k">${</span><span class="nv">GLOG_INCLUDE_DIRS</span><span class="k">}</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Include header
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;glog/logging.h&gt;
+</span><span class="n">google</span><span class="o">::</span><span class="n">InitGoogleLogging</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Example:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">DLOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">"This is Dlog"</span><span class="p">;</span>
+ <span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">"This is LOG"</span><span class="p">;</span>
+</code></pre></div></div>
+  -->
+        <!--     <h1 id="config">Config</h1>
+
+ -->
+        <!-- </article> -->
+        <!-- <hr /> -->
+
+        
+
+    </div>
+    <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+
+</div>
+
+            <section class="pager">
+  
+  
+</section>
+
+
+        </div>
+        <div class="col-sm-2">
+    <div class="sidebar-module about">
+    <!-- <h4>Contact Me</h4> -->
+    <img title="Yubao Liu" src="http://qiniu.yubaoliu.cn/yubao_icon.JPG" alt="Yubao Liu" />
+    <span></span>
+    <br />
+
+    
+
+    
+    <a href="mailto:yubaoliu89@gmail.com" title="mailto: yubaoliu89@gmail.com">Email</a> /
+    
+    
+    <a href="https://github.com/yubaoliu" title="GithubID: yubaoliu">Github</a> /
+    
+
+    
+    <a href="https://space.bilibili.com/52620240" title="BiliBili: 52620240">BiliBili</a>
+    
+
+    <br/>
+
+    
+    <a href="https://www.linkedin.com/in/yubao-liu-1022b7120" title="Linkedin: yubao-liu-1022b7120">Linkedin</a>/
+    
+
+    
+    <a href="https://www.facebook.com/yubaoliu89" title="facebook: yubaoliu89">Facebook</a>
+    
+
+    <!--  -->
+    <!-- <a href="https://twitter.com/" title="TwitterID: ">Twitter</a> -->
+    <!--  -->
+
+    
+
+</div>
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+  <li><a href="/categories/#Tools" title="Tools" rel="7">Tools (7)</a></li>
+  
+  <li><a href="/categories/#CPP" title="CPP" rel="1">CPP (1)</a></li>
+  
+  <li><a href="/categories/#Computer Vision" title="Computer Vision" rel="2">Computer Vision (2)</a></li>
+  
+  <li><a href="/categories/#slam" title="slam" rel="1">slam (1)</a></li>
+  
+  <li><a href="/categories/#Robotics" title="Robotics" rel="1">Robotics (1)</a></li>
+  
+  <li><a href="/categories/#ROS" title="ROS" rel="1">ROS (1)</a></li>
+  
+  <li><a href="/categories/#articles" title="articles" rel="1">articles (1)</a></li>
+  
+  <li><a href="/categories/#Linux" title="Linux" rel="1">Linux (1)</a></li>
+  
+  <li><a href="/categories/#SLAM" title="SLAM" rel="2">SLAM (2)</a></li>
+  
+  <li><a href="/categories/#Dataset" title="Dataset" rel="1">Dataset (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#Tools" title="Tools" rel="7">Tools</a> &nbsp;
+  
+    <a href="/tags/#CPP" title="CPP" rel="1">CPP</a> &nbsp;
+  
+    <a href="/tags/#Computer Vision" title="Computer Vision" rel="2">Computer Vision</a> &nbsp;
+  
+    <a href="/tags/#slam" title="slam" rel="1">slam</a> &nbsp;
+  
+    <a href="/tags/#Robotics" title="Robotics" rel="1">Robotics</a> &nbsp;
+  
+    <a href="/tags/#ROS" title="ROS" rel="1">ROS</a> &nbsp;
+  
+    <a href="/tags/#unsorted" title="unsorted" rel="1">unsorted</a> &nbsp;
+  
+    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a> &nbsp;
+  
+    <a href="/tags/#SLAM" title="SLAM" rel="2">SLAM</a> &nbsp;
+  
+    <a href="/tags/#Dataset" title="Dataset" rel="1">Dataset</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archives</h4>
+
+  
+  
+  
+  
+  
+  <li id="2020" > <a href="/archives/#2020">2020</a></li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/dataset/2020/04/15/dataset.html" title="dataset" rel="bookmark">dataset</a>
+  </li>
+  
+  <li>
+  <a href="/slam/2020/04/15/slam-basics.html" title="SLAM Basics" rel="bookmark">SLAM Basics</a>
+  </li>
+  
+  <li>
+  <a href="/computer%20vision/2020/04/11/camera.html" title="Camera" rel="bookmark">Camera</a>
+  </li>
+  
+  <li>
+  <a href="/slam/2020/04/11/orb-slam.html" title="ORB SLAM" rel="bookmark">ORB SLAM</a>
+  </li>
+  
+  <li>
+  <a href="/linux/2020/04/11/linux-manual.html" title="Linux Manual" rel="bookmark">Linux Manual</a>
+  </li>
+  
+</div>
+
+
+    <!-- <div class="sidebar-module">
+  <h4>Blogroll</h4>
+  
+  <li><a href="" title="blogroll">Yubao</a></li>
+  
+  <li><a href="" title="Yubao Liu's website">author's website</a></li>
+  
+</div>
+
+ -->
+    <div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>Copyright Notice</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
+
+  
+
+</div>
+
+
+</div>
+
+
+        
+
+        <footer class="site-footer">
+    <div>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+        <p>Copyright &copy; <a href="/">Yubao's Blog</a></p>
+    </div>
+    <!-- <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a>  -->
+    <!-- on  -->
+    <!-- <a href="https://github.com/">Github</a> -->
+    <!-- | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>   -->
+
+</footer>
+
+
+    </div>
+
+</body>
+
+</html>

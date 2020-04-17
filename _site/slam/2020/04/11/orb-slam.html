@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+
+    <meta property="og:title" content="ORB SLAM">
+    <title>ORB SLAM</title>
+    <meta property="og:description" content="[toc]">
+    <meta property="og:url" content="http://localhost:4000/slam/2020/04/11/orb-slam.html">
+    <meta property="og:site_name" content="Yubao's Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="ORB SLAM">
+    <meta name="twitter:description" content="[toc]">
+    <meta name="twitter:url" content="http://localhost:4000/slam/2020/04/11/orb-slam.html">
+
+    <meta name="keywords" content="Jekyll, theme, Freshman21">
+
+    <link rel="icon" href="">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/slam/2020/04/11/orb-slam.html">
+    <link rel="alternate" type="application/atom+xml" title="Yubao's Blog" href="http://localhost:4000/feed.xml" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <header class="site-header">
+
+    <div class="wrapper">
+
+        <h1 class="site-title"><a href="/">Yubao's Blog</a></h1>
+        <h4 class="site-meta">努力してこそ合格できる</h4>
+
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z" />
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z" />
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z" />
+                </svg>
+            </a>
+            <div class="trigger">
+                
+                
+                <a class="page-link" href="/">Home</a>
+                
+                
+                
+                <a class="page-link" href="/aboutme/">About Me</a>
+                
+                
+                
+                <a class="page-link" href="/archives/">Archives</a>
+                
+                
+                
+                <a class="page-link" href="/categories/">Categories</a>
+                
+                
+                
+                <a class="page-link" href="/dailylife/">Daily Life</a>
+                
+                
+                
+                <a class="page-link" href="/tags/">Tags</a>
+                
+                
+                
+                
+                
+                <a class="page-link" href="/resources/">Resources</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a class="page-link" href="/project/">Project</a>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+
+
+        
+
+        <div class="page-content col-sm-8">
+            <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <!--     <header class="post-header">
+        <h1 itemprop="name" class="post-title">ORB SLAM</h1>
+        <meta itemprop="keywords" content="SLAM" />
+        <p class="post-meta">
+            Posted in
+            
+            <a href="/categories/#SLAM">SLAM</a>
+            
+            
+            and tagged
+            
+            <a href="/tags/#SLAM" title="SLAM">SLAM</a>
+            
+            
+            <time itemprop="datePublished" datetime="2020-04-11">
+                on Apr 11, 2020
+            </time>
+        </p>
+     </header>
+-->
+
+    <article class="post-content" itemprop="articleBody">
+        
+        <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#get-orb-slam2">Get ORB SLAM2</a></li>
+<li class="toc-entry toc-h1"><a href="#dependency">dependency</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#pangolin">Pangolin</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#build-orb_slam2">BUild ORB_SLAM2</a></li>
+<li class="toc-entry toc-h1"><a href="#run-test">Run test</a></li>
+<li class="toc-entry toc-h1"><a href="#build-ros-wrapper">Build ROS Wrapper</a></li>
+<li class="toc-entry toc-h1"><a href="#use-docker">Use docker</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#docker-enviornment">docker enviornment</a></li>
+<li class="toc-entry toc-h2"><a href="#run-docker">RUN Docker</a></li>
+<li class="toc-entry toc-h2"><a href="#switch-from-docker-to-host-development">Switch from docker to host development</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#build-tips">BUild Tips</a></li>
+</ul><p>[toc]</p>
+
+<h1 id="get-orb-slam2">
+<a class="anchor" href="#get-orb-slam2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get ORB SLAM2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:yubaoliu/ORB_SLAM2.git
+</code></pre></div></div>
+
+<p>Branches:</p>
+
+<ul>
+  <li>master - current customized release version</li>
+  <li>ORB_SLAM2 - original version, but can compile successfully</li>
+  <li>dev - current development version</li>
+</ul>
+
+<h1 id="dependency">
+<a class="anchor" href="#dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>dependency</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libxkbcommon-dev
+<span class="nb">sudo </span>apt <span class="nb">install </span>libglew-dev
+</code></pre></div></div>
+<h2 id="pangolin">
+<a class="anchor" href="#pangolin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pangolin</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/stevenlovegrove/Pangolin.git
+<span class="nb">cd </span>Pangolin
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake ..
+make <span class="nt">-j</span>
+
+<span class="nb">export </span><span class="nv">Pangolin_DIR</span><span class="o">=</span>/home/yubao/data/software/Pangolin/build/src
+</code></pre></div></div>
+
+<h1 id="build-orb_slam2">
+<a class="anchor" href="#build-orb_slam2" aria-hidden="true"><span class="octicon octicon-link"></span></a>BUild ORB_SLAM2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root/catkin_ws/src/ORB_SLAM2
+git checkout ORB_SLAM2
+./build.sh
+</code></pre></div></div>
+<h1 id="run-test">
+<a class="anchor" href="#run-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run test</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Note: change the dataset path by yourself
+./test.sh
+</code></pre></div></div>
+
+<h1 id="build-ros-wrapper">
+<a class="anchor" href="#build-ros-wrapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build ROS Wrapper</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /opt/ros/<span class="o">{</span>kinetic/melodic<span class="o">}</span>/setup.bash
+<span class="nb">export </span><span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">ROS_PACKAGE_PATH</span><span class="k">}</span>:/root/catkin_ws/src/ORB_SLAM2/Examples/ROS
+./buid_ros.sh
+</code></pre></div></div>
+
+<h1 id="use-docker">
+<a class="anchor" href="#use-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use docker</h1>
+
+<h2 id="docker-enviornment">
+<a class="anchor" href="#docker-enviornment" aria-hidden="true"><span class="octicon octicon-link"></span></a>docker enviornment</h2>
+
+<ul>
+  <li>docker2</li>
+  <li>Ubuntu 18.04</li>
+  <li>OpenCV 3.2</li>
+  <li>Eigen 3.3.4</li>
+  <li>ROS melodic</li>
+  <li>Pangolin</li>
+  <li>boost: 1.58</li>
+</ul>
+
+<h2 id="run-docker">
+<a class="anchor" href="#run-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>RUN Docker</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +local:root
+<span class="nb">cd </span>docker
+docker-compose build
+docker-compose up
+docker-compose start
+docker-compose run orb_slam2 bash
+</code></pre></div></div>
+
+<h2 id="switch-from-docker-to-host-development">
+<a class="anchor" href="#switch-from-docker-to-host-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Switch from docker to host development</h2>
+
+<p>You may see permission denied if you build your system in docker, 
+because docker is runing using root. You should change execute privilege or
+change folder owner using <code class="highlighter-rouge">chmod</code> or <code class="highlighter-rouge">chown</code>.</p>
+
+<p>E.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chown</span> <span class="nt">-R</span> yubao:yubao <span class="k">*</span>
+</code></pre></div></div>
+
+<h1 id="build-tips">
+<a class="anchor" href="#build-tips" aria-hidden="true"><span class="octicon octicon-link"></span></a>BUild Tips</h1>
+
+<p>This is some tips to help you build the original ORB SLAM</p>
+
+<ul>
+  <li>Eigen</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$pkg</span><span class="nt">-config</span> <span class="nt">--modversion</span> eigen3
+3.3.4
+</code></pre></div></div>
+<ul>
+  <li>OpenCV</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dpkg -l | grep libopencv
+$pkg-config --modversion opencv
+3.2.0
+</code></pre></div></div>
+<ul>
+  <li>boost</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✗ locate boost_system
+/usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0
+</code></pre></div></div>
+
+<ul>
+  <li>Error: usleep
+    <div class="language-sh highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>ORB_SLAM2/Examples/Stereo/stereo_kitti.cc:107:13: error: <span class="s1">'usleep'</span> was not declared <span class="k">in </span>this scope
+           usleep<span class="o">((</span>T-ttrack<span class="o">)</span><span class="k">*</span>1e6<span class="o">)</span><span class="p">;</span>
+</code></pre></div>    </div>
+    <p>Solution:</p>
+  </li>
+</ul>
+
+<p>Add this to the related files.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;unistd.h&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>error: <code class="highlighter-rouge">XDG_RUNTIME_DIR</code> not set in the environment.
+    <div class="language-sh highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>error: XDG_RUNTIME_DIR not <span class="nb">set </span><span class="k">in </span>the environment.
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+X11 Error: BadMatch <span class="o">(</span>invalid parameter attributes<span class="o">)</span>
+X11 Error: BadValue <span class="o">(</span>integer parameter out of range <span class="k">for </span>operation<span class="o">)</span>
+New map created with 718 points
+terminate called after throwing an instance of <span class="s1">'std::runtime_error'</span>
+what<span class="o">()</span>:  Pangolin X11: Failed to create an OpenGL context
+Aborted <span class="o">(</span>core dumped<span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Solution:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +local:root
+</code></pre></div></div>
+
+<ul>
+  <li>Error: boost
+    <div class="language-sh highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>MakeFiles/RGBD.dir/build.make:220: recipe <span class="k">for </span>target <span class="s1">'../RGBD'</span> failed
+make[2]: <span class="k">***</span> <span class="o">[</span>../RGBD] Error 1
+CMakeFiles/Makefile2:67: recipe <span class="k">for </span>target <span class="s1">'CMakeFiles/RGBD.dir/all'</span> failed
+make[1]: <span class="k">***</span> <span class="o">[</span>CMakeFiles/RGBD.dir/all] Error 2
+make[1]: <span class="k">***</span> Waiting <span class="k">for </span>unfinished jobs....
+<span class="o">[</span>100%] Linking CXX executable ../Stereo
+/usr/bin/ld: CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: undefined reference to symbol <span class="s1">'_ZN5boost6system15system_categoryEv'</span>
+/usr/lib/x86_64-linux-gnu/libboost_system.so: error adding symbols: DSO missing from <span class="nb">command </span>line
+collect2: error: ld returned 1 <span class="nb">exit </span>status
+CMakeFiles/Stereo.dir/build.make:220: recipe <span class="k">for </span>target <span class="s1">'../Stereo'</span> failed
+make[2]: <span class="k">***</span> <span class="o">[</span>../Stereo] Error 1
+CMakeFiles/Makefile2:104: recipe <span class="k">for </span>target <span class="s1">'CMakeFiles/Stereo.dir/all'</span> failed
+make[1]: <span class="k">***</span> <span class="o">[</span>CMakeFiles/Stereo.dir/all] Error 2
+Makefile:129: recipe <span class="k">for </span>target <span class="s1">'all'</span> failed
+make: <span class="k">***</span> <span class="o">[</span>all] Error 2
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Solution:
+Boost library is not found.</p>
+
+<p>Add this to library dependency or use find_pakage().</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-lboost_system</span>
+</code></pre></div></div>
+<p>Refer: https://github.com/raulmur/ORB_SLAM2/issues/494</p>
+
+
+    </article>
+
+    <!-- <article class="post-content" itemprop="articleBody">
+    <p>[toc]</p>
+
+<h1 id="get-orb-slam2">Get ORB SLAM2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:yubaoliu/ORB_SLAM2.git
+</code></pre></div></div>
+
+<p>Branches:</p>
+
+<ul>
+  <li>master - current customized release version</li>
+  <li>ORB_SLAM2 - original version, but can compile successfully</li>
+  <li>dev - current development version</li>
+</ul>
+
+<h1 id="dependency">dependency</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>libxkbcommon-dev
+<span class="nb">sudo </span>apt <span class="nb">install </span>libglew-dev
+</code></pre></div></div>
+<h2 id="pangolin">Pangolin</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/stevenlovegrove/Pangolin.git
+<span class="nb">cd </span>Pangolin
+<span class="nb">mkdir </span>build
+<span class="nb">cd </span>build
+cmake ..
+make <span class="nt">-j</span>
+
+<span class="nb">export </span><span class="nv">Pangolin_DIR</span><span class="o">=</span>/home/yubao/data/software/Pangolin/build/src
+</code></pre></div></div>
+
+<h1 id="build-orb_slam2">BUild ORB_SLAM2</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root/catkin_ws/src/ORB_SLAM2
+git checkout ORB_SLAM2
+./build.sh
+</code></pre></div></div>
+<h1 id="run-test">Run test</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Note: change the dataset path by yourself
+./test.sh
+</code></pre></div></div>
+
+<h1 id="build-ros-wrapper">Build ROS Wrapper</h1>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /opt/ros/<span class="o">{</span>kinetic/melodic<span class="o">}</span>/setup.bash
+<span class="nb">export </span><span class="nv">ROS_PACKAGE_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">ROS_PACKAGE_PATH</span><span class="k">}</span>:/root/catkin_ws/src/ORB_SLAM2/Examples/ROS
+./buid_ros.sh
+</code></pre></div></div>
+
+<h1 id="use-docker">Use docker</h1>
+
+<h2 id="docker-enviornment">docker enviornment</h2>
+
+<ul>
+  <li>docker2</li>
+  <li>Ubuntu 18.04</li>
+  <li>OpenCV 3.2</li>
+  <li>Eigen 3.3.4</li>
+  <li>ROS melodic</li>
+  <li>Pangolin</li>
+  <li>boost: 1.58</li>
+</ul>
+
+<h2 id="run-docker">RUN Docker</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +local:root
+<span class="nb">cd </span>docker
+docker-compose build
+docker-compose up
+docker-compose start
+docker-compose run orb_slam2 bash
+</code></pre></div></div>
+
+<h2 id="switch-from-docker-to-host-development">Switch from docker to host development</h2>
+
+<p>You may see permission denied if you build your system in docker, 
+because docker is runing using root. You should change execute privilege or
+change folder owner using <code class="highlighter-rouge">chmod</code> or <code class="highlighter-rouge">chown</code>.</p>
+
+<p>E.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chown</span> <span class="nt">-R</span> yubao:yubao <span class="k">*</span>
+</code></pre></div></div>
+
+<h1 id="build-tips">BUild Tips</h1>
+
+<p>This is some tips to help you build the original ORB SLAM</p>
+
+<ul>
+  <li>Eigen</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$pkg</span><span class="nt">-config</span> <span class="nt">--modversion</span> eigen3
+3.3.4
+</code></pre></div></div>
+<ul>
+  <li>OpenCV</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dpkg -l | grep libopencv
+$pkg-config --modversion opencv
+3.2.0
+</code></pre></div></div>
+<ul>
+  <li>boost</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>✗ locate boost_system
+/usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0
+</code></pre></div></div>
+
+<ul>
+  <li>Error: usleep
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORB_SLAM2/Examples/Stereo/stereo_kitti.cc:107:13: error: <span class="s1">'usleep'</span> was not declared <span class="k">in </span>this scope
+           usleep<span class="o">((</span>T-ttrack<span class="o">)</span><span class="k">*</span>1e6<span class="o">)</span><span class="p">;</span>
+</code></pre></div>    </div>
+    <p>Solution:</p>
+  </li>
+</ul>
+
+<p>Add this to the related files.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;unistd.h&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>error: <code class="highlighter-rouge">XDG_RUNTIME_DIR</code> not set in the environment.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: XDG_RUNTIME_DIR not <span class="nb">set </span><span class="k">in </span>the environment.
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+X11 Error: BadMatch <span class="o">(</span>invalid parameter attributes<span class="o">)</span>
+X11 Error: BadValue <span class="o">(</span>integer parameter out of range <span class="k">for </span>operation<span class="o">)</span>
+New map created with 718 points
+terminate called after throwing an instance of <span class="s1">'std::runtime_error'</span>
+what<span class="o">()</span>:  Pangolin X11: Failed to create an OpenGL context
+Aborted <span class="o">(</span>core dumped<span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Solution:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xhost +local:root
+</code></pre></div></div>
+
+<ul>
+  <li>Error: boost
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MakeFiles/RGBD.dir/build.make:220: recipe <span class="k">for </span>target <span class="s1">'../RGBD'</span> failed
+make[2]: <span class="k">***</span> <span class="o">[</span>../RGBD] Error 1
+CMakeFiles/Makefile2:67: recipe <span class="k">for </span>target <span class="s1">'CMakeFiles/RGBD.dir/all'</span> failed
+make[1]: <span class="k">***</span> <span class="o">[</span>CMakeFiles/RGBD.dir/all] Error 2
+make[1]: <span class="k">***</span> Waiting <span class="k">for </span>unfinished jobs....
+<span class="o">[</span>100%] Linking CXX executable ../Stereo
+/usr/bin/ld: CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: undefined reference to symbol <span class="s1">'_ZN5boost6system15system_categoryEv'</span>
+/usr/lib/x86_64-linux-gnu/libboost_system.so: error adding symbols: DSO missing from <span class="nb">command </span>line
+collect2: error: ld returned 1 <span class="nb">exit </span>status
+CMakeFiles/Stereo.dir/build.make:220: recipe <span class="k">for </span>target <span class="s1">'../Stereo'</span> failed
+make[2]: <span class="k">***</span> <span class="o">[</span>../Stereo] Error 1
+CMakeFiles/Makefile2:104: recipe <span class="k">for </span>target <span class="s1">'CMakeFiles/Stereo.dir/all'</span> failed
+make[1]: <span class="k">***</span> <span class="o">[</span>CMakeFiles/Stereo.dir/all] Error 2
+Makefile:129: recipe <span class="k">for </span>target <span class="s1">'all'</span> failed
+make: <span class="k">***</span> <span class="o">[</span>all] Error 2
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Solution:
+Boost library is not found.</p>
+
+<p>Add this to library dependency or use find_pakage().</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-lboost_system</span>
+</code></pre></div></div>
+<p>Refer: https://github.com/raulmur/ORB_SLAM2/issues/494</p>
+
+
+  </article>
+ -->
+    <hr />
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+
+<section class="pager">
+    <ul>
+        
+        <li class="previous"><a href="/linux/2020/04/11/linux-manual.html" title="Linux Manual">&larr; Older</a></li>
+        
+        
+        <li class="next"><a href="/computer%20vision/2020/04/11/camera.html" title="Camera">Newer &rarr;</a></li>
+        
+    </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='https-yubaoliu-github-io';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <section class="pager">
+  
+  
+</section>
+
+
+        </div>
+        <div class="col-sm-2">
+    <div class="sidebar-module about">
+    <!-- <h4>Contact Me</h4> -->
+    <img title="Yubao Liu" src="http://qiniu.yubaoliu.cn/yubao_icon.JPG" alt="Yubao Liu" />
+    <span></span>
+    <br />
+
+    
+
+    
+    <a href="mailto:yubaoliu89@gmail.com" title="mailto: yubaoliu89@gmail.com">Email</a> /
+    
+    
+    <a href="https://github.com/yubaoliu" title="GithubID: yubaoliu">Github</a> /
+    
+
+    
+    <a href="https://space.bilibili.com/52620240" title="BiliBili: 52620240">BiliBili</a>
+    
+
+    <br/>
+
+    
+    <a href="https://www.linkedin.com/in/yubao-liu-1022b7120" title="Linkedin: yubao-liu-1022b7120">Linkedin</a>/
+    
+
+    
+    <a href="https://www.facebook.com/yubaoliu89" title="facebook: yubaoliu89">Facebook</a>
+    
+
+    <!--  -->
+    <!-- <a href="https://twitter.com/" title="TwitterID: ">Twitter</a> -->
+    <!--  -->
+
+    
+
+</div>
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+  <li><a href="/categories/#Tools" title="Tools" rel="7">Tools (7)</a></li>
+  
+  <li><a href="/categories/#CPP" title="CPP" rel="1">CPP (1)</a></li>
+  
+  <li><a href="/categories/#Computer Vision" title="Computer Vision" rel="2">Computer Vision (2)</a></li>
+  
+  <li><a href="/categories/#slam" title="slam" rel="1">slam (1)</a></li>
+  
+  <li><a href="/categories/#Robotics" title="Robotics" rel="1">Robotics (1)</a></li>
+  
+  <li><a href="/categories/#ROS" title="ROS" rel="1">ROS (1)</a></li>
+  
+  <li><a href="/categories/#articles" title="articles" rel="1">articles (1)</a></li>
+  
+  <li><a href="/categories/#Linux" title="Linux" rel="1">Linux (1)</a></li>
+  
+  <li><a href="/categories/#SLAM" title="SLAM" rel="2">SLAM (2)</a></li>
+  
+  <li><a href="/categories/#Dataset" title="Dataset" rel="1">Dataset (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#Tools" title="Tools" rel="7">Tools</a> &nbsp;
+  
+    <a href="/tags/#CPP" title="CPP" rel="1">CPP</a> &nbsp;
+  
+    <a href="/tags/#Computer Vision" title="Computer Vision" rel="2">Computer Vision</a> &nbsp;
+  
+    <a href="/tags/#slam" title="slam" rel="1">slam</a> &nbsp;
+  
+    <a href="/tags/#Robotics" title="Robotics" rel="1">Robotics</a> &nbsp;
+  
+    <a href="/tags/#ROS" title="ROS" rel="1">ROS</a> &nbsp;
+  
+    <a href="/tags/#unsorted" title="unsorted" rel="1">unsorted</a> &nbsp;
+  
+    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a> &nbsp;
+  
+    <a href="/tags/#SLAM" title="SLAM" rel="2">SLAM</a> &nbsp;
+  
+    <a href="/tags/#Dataset" title="Dataset" rel="1">Dataset</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archives</h4>
+
+  
+  
+  
+  
+  
+  <li id="2020" > <a href="/archives/#2020">2020</a></li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/dataset/2020/04/15/dataset.html" title="dataset" rel="bookmark">dataset</a>
+  </li>
+  
+  <li>
+  <a href="/slam/2020/04/15/slam-basics.html" title="SLAM Basics" rel="bookmark">SLAM Basics</a>
+  </li>
+  
+  <li>
+  <a href="/computer%20vision/2020/04/11/camera.html" title="Camera" rel="bookmark">Camera</a>
+  </li>
+  
+  <li>
+  <a href="/slam/2020/04/11/orb-slam.html" title="ORB SLAM" rel="bookmark">ORB SLAM</a>
+  </li>
+  
+  <li>
+  <a href="/linux/2020/04/11/linux-manual.html" title="Linux Manual" rel="bookmark">Linux Manual</a>
+  </li>
+  
+</div>
+
+
+    <!-- <div class="sidebar-module">
+  <h4>Blogroll</h4>
+  
+  <li><a href="" title="blogroll">Yubao</a></li>
+  
+  <li><a href="" title="Yubao Liu's website">author's website</a></li>
+  
+</div>
+
+ -->
+    <div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>Copyright Notice</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
+
+  
+
+</div>
+
+
+</div>
+
+
+        
+
+        <footer class="site-footer">
+    <div>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+        <p>Copyright &copy; <a href="/">Yubao's Blog</a></p>
+    </div>
+    <!-- <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a>  -->
+    <!-- on  -->
+    <!-- <a href="https://github.com/">Github</a> -->
+    <!-- | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>   -->
+
+</footer>
+
+
+    </div>
+
+</body>
+
+</html>
