@@ -18,7 +18,6 @@ group :jekyll_plugins do
     gem "rails"
     gem 'jekyll-toc'
     gem "minima", "~> 2.0"
-    gem "classic-jekyll-theme"
     gem "jekyll-admin"
     gem "jekyll-seo-tag"
     gem "jekyll-sitemap"

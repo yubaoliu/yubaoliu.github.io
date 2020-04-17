@@ -112,10 +112,21 @@ markdown: kramdown
 kramdown:
         input: GFM
         syntax_highlighter: rouge
+        parse_block_html: true
 plugins: 
     - jekyll-paginate
     - jekyll-toc
-
+    - sass
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jekyll-admin
+    - jekyll-seo-tag
+    - jekyll-figure
+    - jekyll-feed
+    - jekyll-gist
+    - jekyll-coffeescript
+    - jemoji
+    - jekyll-redirect-from
 toc:
     min_level: 1
     max_level: 3
