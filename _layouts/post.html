@@ -24,8 +24,9 @@ layout: default
      </header>
 -->
 
+{% include toc.html html=content %}
+
     <article class="post-content" itemprop="articleBody">
-        {{ toc }}
         {{ content | toc }}
     </article>
 
