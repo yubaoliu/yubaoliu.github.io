@@ -113,6 +113,8 @@ kramdown:
         input: GFM
         syntax_highlighter: rouge
         parse_block_html: true
+toc: true
+toc_levels: 1..2
 plugins: 
     - jekyll-paginate
     - jekyll-toc
