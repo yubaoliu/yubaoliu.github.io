@@ -8,8 +8,6 @@ toc: true
 comments: true
 ---
 
-[toc]
-
 # TF
 
 ```sh

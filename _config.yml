@@ -113,6 +113,11 @@ kramdown:
         input: GFM
         syntax_highlighter: rouge
         parse_block_html: true
+        enable_coderay: true
+        Extensions:
+           - autolink
+           - footnotes
+           - smart
 toc: true
 toc_levels: 1..2
 plugins: 

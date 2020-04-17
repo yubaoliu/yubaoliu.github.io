@@ -8,8 +8,6 @@ toc: true
 comments: true
 ---
 
-[toc]
-
 # Overview
 
 在SLAM中世界坐標系與相機坐標系均爲右手坐標系，其Z軕的指向不同。相機坐標系中的Z軸始終指向前方;而世界坐標系中的Z軸始終指向上方。

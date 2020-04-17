@@ -8,7 +8,6 @@ toc: true
 comments: true
 ---
 
-[toc]
 
 # Resources
 - [Markdown 教程-runoob](https://www.runoob.com/markdown/md-tutorial.html)

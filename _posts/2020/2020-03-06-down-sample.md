@@ -6,8 +6,8 @@ comments: true
 tags: [Computer Vision]
 categories: [Computer Vision]
 toc: true
+
 ---
-[toc]
 
 # Downsample
 
