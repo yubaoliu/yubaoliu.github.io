@@ -134,6 +134,7 @@ plugins:
     - jekyll-coffeescript
     - jemoji
     - jekyll-redirect-from
+    - jekyll-relative-links
 toc:
     min_level: 1
     max_level: 3

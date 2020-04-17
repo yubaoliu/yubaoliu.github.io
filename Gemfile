@@ -30,6 +30,7 @@ group :jekyll_plugins do
     gem 'sass'
     gem 'jekyll-paginate'
     gem "jekyll-feed", "~> 0.6"
+    gem "jekyll-relative-links"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
