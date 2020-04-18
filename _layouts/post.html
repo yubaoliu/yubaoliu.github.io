@@ -23,11 +23,12 @@ layout: default
         </p>
      </header>
 -->
-
-{% include toc.html html=content %}
+    <div id="table-of-contents">
+        {% include toc.html html=content %}
+    </div>
 
     <article class="post-content" itemprop="articleBody">
-        {{ content | toc }}
+        {{ content }}
     </article>
 
     <!-- <article class="post-content" itemprop="articleBody">

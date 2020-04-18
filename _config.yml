@@ -118,8 +118,6 @@ kramdown:
            - autolink
            - footnotes
            - smart
-toc: true
-toc_levels: 1..2
 plugins: 
     - jekyll-paginate
     - jekyll-toc
@@ -135,14 +133,6 @@ plugins:
     - jemoji
     - jekyll-redirect-from
     - jekyll-relative-links
-toc:
-    min_level: 1
-    max_level: 3
-    no_toc_section_class: no_toc_section
-    list_class: section-nav
-    sublist_class: ''
-    item_class: toc-entry
-    item_prefix: toc-
 
 paginate: 20
 # excerpt_separator: <!-- more -->

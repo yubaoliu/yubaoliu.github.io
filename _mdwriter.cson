@@ -13,9 +13,9 @@
 
 # Static engine of your blog
 # - One of: general, html, jekyll, octopress, hexo
-siteEngine: "general"
+siteEngine: "jekyll"
 # Website URL of your blog
-siteUrl: ""
+siteUrl: "blog.yubaoliu.cn"
 
 # Root directory to your blog
 # - Leave it empty to use the current project path (recommended)
