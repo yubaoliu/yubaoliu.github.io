@@ -25,7 +25,6 @@ group :jekyll_plugins do
     gem 'jekyll-gist'
     gem 'jekyll-coffeescript'
     gem 'jekyll-assets'
-    gem 'jemoji'
     gem 'jekyll-redirect-from'
     gem 'sass'
     gem 'jekyll-paginate'

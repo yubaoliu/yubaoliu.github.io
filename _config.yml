@@ -130,7 +130,6 @@ plugins:
     - jekyll-feed
     - jekyll-gist
     - jekyll-coffeescript
-    - jemoji
     - jekyll-redirect-from
     - jekyll-relative-links
 
