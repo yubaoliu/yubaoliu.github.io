@@ -1,0 +1,16 @@
+---
+layout: page
+title: Random
+comments: yes
+permalink: /random/
+---
+
+
+# ご利用可能な決済サービス
+[Family mart](https://www.family.co.jp/services/payment.html)
+
+# 科学上网
+1. https://fanqiang.network/
+
+# Tools
+- youlikehits: https://www.youlikehits.com/stats.php

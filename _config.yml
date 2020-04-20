@@ -52,6 +52,7 @@ locales:
       Project: "Project"
       Dailylife: "Daily Life"
       Resources: "Resources"
+      Random: "Random"
     cn:
       Aboutme: "关于我"
       Archives: "存档"
@@ -73,6 +74,7 @@ locales:
       Project: "Project"
       Dailylife: "Daily Life"
       Resources: "Resources"
+      Random: "Random"
     jp:
       Aboutme: "著者"
       Archives: "アーカイブ"
@@ -94,6 +96,7 @@ locales:
       Project: "Project"
       Dailylife: "Daily Life"
       Resources: "Resources"
+      Random: "Random"
 
 ### your Blogroll info, only name can shown on the page.
 
