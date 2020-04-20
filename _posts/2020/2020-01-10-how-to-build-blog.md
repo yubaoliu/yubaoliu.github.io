@@ -61,9 +61,15 @@ Alright, so how do you use it?
 ## Reference
 - [jekyll GitHub Pagesでも目次(ToC)は作れる](https://blog.kotet.jp/2018/04/toc-on-github-pages/)
 
-# BiliBili 专栏写作
+# BiliBili
+## Insert Video
 
-## Use Markdown
+Add $$width="640" height="480"$$ is needed.
+
+<iframe width="640" height="480" src="//player.bilibili.com/player.html?aid=76942715&bvid=BV1gJ411R7GM&cid=131520361&page=1" scrolling="no" border="0" frameborder="yes" framespacing="0" allowfullscreen="true">
+</iframe>
+
+## 专栏写作 Use Markdown
 
 BiliBili的富文本编辑器,用起来很不方便. 现在大家都用Markdown方式来编辑.
 
