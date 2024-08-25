@@ -1,11 +1,11 @@
 <img src="img/yubao-resume.jpg" align="right" />
 
-## [Yubao Liu](http://blog.yubaoliu.cn/resume/) 刘玉宝
+## [Yubao Liu](http://blog.yubaoliu.cn/resume/) 劉玉宝
 
 |      |      |      |      |      |      |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| Tel:    | (+1)570 362-6085 | We-chat:  | yubao_liu | Japnese: | JLPT-N1 (120) |
-| E-mail: | yubaoliu@outlook.com | Birthday: | 19891028  | English: | CET-6 (456) |
+| Tel:    | (+1)570 362-6085 | Birthday: | 19891028 | Japnese: | JLPT-N1 (120) |
+| E-mail: | yubaoliu@outlook.com |           |          | English: | CET-6 (456) |
 
 ## Education & Training
 
