@@ -1,21 +1,51 @@
 <img src="img/yubao-resume.jpg" align="right" />
 
-## [Yubao Liu](http://blog.yubaoliu.cn/resume/) 劉玉宝
 
-|      |      |      |      |      |      |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| Tel:    | (+1)570 362-6085 | Birthday: | 19891028 | Japnese: | JLPT-N1 (120) |
-| E-mail: | yubaoliu@outlook.com |           |          | English: | CET-6 (456) |
+
+| 劉玉宝 |  |  |  |
+| ---- | ---- | ---- | ---- |
+| E-mail: | yubaoliu@outlook.com | Japanese: | JLPT-N1 (120) |
+|  |                      | English: | CET-6 (456) TOEIC-IP（650) |
+
+## Academic
+
+[**Journals**]
+
+[1] Y. Liu and J. Miura, “RDS-SLAM: Real-Time Dynamic SLAM Using Semantic Segmentation Methods, ” IEEE Access, vol. 9, pp. 23772–23785, Jan. 2021, cited (190+), SCI, [pdf](https://ieeexplore.ieee.org/document/9318990), [demo](https://youtu.be/P-dew4M5Un0), [code](https://github.com/yubaoliu/RDS-SLAM)
+
+[2] Y. Liu and J. Miura, “RDMO-SLAM: Real-Time Visual SLAM for Dynamic Environments Using Semantic Label Prediction With Optical Flow, ” IEEE Access, vol. 9, pp. 106981–106997, Jan. 2021, cited (58+),  SCI, [pdf](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9497091)
+
+[3] W. Chen, Y. Liu, and H. Wang, “On storage partitioning of internet routing tables: A P2P-based enhancement for scalable routers, ” Peer-to-Peer Netw. Appl., vol. 8, no. 6, pp. 952–964, 2015, SCI
+
+[**Conferences**]
+
+[1] Y. Liu and J. Miura, “KMOP-vSLAM: Dynamic Visual SLAM for RGB-D Cameras using K-means and OpenPose, ”in 2021 IEEE/SICE International Symposium on System Integration (SII), Jan. 2021, pp. 415–420, cited (14+), EI, [pdf](https://ieeexplore.ieee.org/document/9382724)
+
+[2] Y. Liu and J. Miura, “RTS-vSLAM : Real-time Visual Semantic Tracking and Mapping under Dynamic Environments, ” in Proc. the 16th Int. Symp. on Intelligent Autonomous Systems (IAS-16), 2021, pp. 1–12. Scopus, [pdf](https://www.youtube.com/watch?v=IP_A_mhHP7Q)
+
+[3] Y. Liu and W. Chen, “Multicast storage and forwarding method for distributed router, Frontiers in Internet Technologies, ICoC 2014, 2015, vol. 502, pp. 106–117, EI
+
+[**Contests**]
+
+202408, [2024全国 SLAM技术论坛视觉惯性 SLAM挑战赛](https://www.csig.org.cn/21/202406/51933.html), 中国图像图形学, 季军, [ChinaSLAM24](http://zjucvg.net/eval-vislam/ChinaSLAM24/overview.html)
+
+2019, [Robo Cup Japan Open 2019](http://www.robocup.org/), Nagaoka, Japan
+
+201107, “第七届博创杯全国大学生嵌入式设计大赛”, 中国电子学会, 全国总决赛三等奖
+
+201106, “第七届博创杯全国大学生嵌入式设计大赛”, 中国电子学会, 山东赛区一等奖
+
+201012, “高教社 XILINUX杯”全国电子设计竞赛, 山东省教育厅, 山东赛区二等奖
 
 ## Education & Training
 
 ---
 
-201810-202110, **Doctor Degree Candidate**, **Computer Science and Engineering**, **Toyohashi University of Technology**, [Active Intelligent Systems Laboratory](http://www.aisl.cs.tut.ac.jp/), Aichi, Japan 
+201810-202110, **PHD**, **Computer Science and Engineering**, **Toyohashi University of Technology**, [Active Intelligent Systems Laboratory](http://www.aisl.cs.tut.ac.jp/),  GPA 3.46/4.0, Japan 
 
 201710-201808, **Professional Japanese Language Training**, **Northeast Normal University**, **the Training Center of Ministry of Education For Studying Overseas**,  Jilin, China
 
-201209-201506, **Master of engineering, College of Information Engineering, Capital Normal University**,  Highly Reliable Embedded System, GPA3.4/4.0, Beijing, China
+201209-201506, **Master of engineering, College of Information Engineering, Capital Normal University**,  Highly Reliable Embedded System, GPA 3.4/4.0, Beijing, China
 
 200809-201206, **Bachelor of Science, College of Computer Science, Qufu Normal University**, Computer Science and Technology, GPA 3.4/4.0, Shandong, China
 
@@ -23,18 +53,24 @@
 
 ---
 
+202112-202412, **Staff Engineer, Samsung Research**, Beijing, China
+
+XR VST HMD development, SLAM, Loop Closure and re-localization,  Nerf with SLAM, 3D Gaussian Splatting with SLAM, RAG and Robotics
+
+[XR CES Demo](https://semiconductor.samsung.com/cn/events/ces-2024)
+
 201608-201809, **Senior Software Engineer, iSoftStone Information Technology(Group)Co.,Ltd.**, Beijing, China
 
-Cooperate with Lenovo Research Center, and proceed project development and academic research.
+Cooperate with Lenovo Research Center, develop PC AR OST HMD
 
-**Project**: **Personal Computing Augmented Reality(AR) Glass Development**, 1.5 years
+**Project**: **Personal Computing Augmented Reality (AR) Glass Development**, 1.5 years
 
 Develop lightweight AR glass (small size, light weight, suitable for personal PCs), which is for office use. It is more competitive than others. The prototype of it has completed. What I am responsibled mainly includes:
-* **(Inertial Measurement Unit) IMU**: use IMU to estimate the pose of AR glass, evaluate and make decision for IMU algorithms：IMU and magnetic sensor calibration, data fusion. Design tracking demo use IMU in Unity3D.
+* **IMU**: use IMU to estimate the pose of AR glass, evaluate and make decision for IMU algorithms：IMU and magnetic sensor calibration, data fusion. Design tracking demo use IMU in Unity3D.
 
 * **Tracking**: in order to locate the original poit of 3D world, proceed target recognition or marker tracking using OpenCV, EasyAR, Kudan, Wikitude, and Vuforia
 
-* **(Simultaneous Localization and Mapping)SLAM**: SLAM solution selection and application development using ORBSlam, DSO, Vuforia extended tracking, EasyAR, and Kudan SLAM
+* **SLAM**: SLAM solution selection and application development using ORB Slam, DSO, Vuforia extended tracking, EasyAR, and Kudan SLAM
 
 * **Native SDK**: firmware on STM32 MCU is programed with C and the SDK（talk with firmware）on Windows is programed with CPP, and the SDK offers API called by Unity3D C#.
 
@@ -100,19 +136,3 @@ WiFi, STM MCU driver programming, WSN and ARM Linux
 
 Program robot teaching device to control Industrial Robots using ARM
 
-## Academic
-
-[1] RTS-vSLAM: Real-time Visual Semantic Tracking and Mapping under Dynamic Environments, 2020,  under review, [demo](https://www.youtube.com/watch?v=IP_A_mhHP7Q)
-
-[2\] Chen, W., Liu, Y. & Wang, H.  **[On Storage Partitioning of Internet Routing Tables: A P2P-based Enhancement for Scalable Routers](http://link.springer.com/article/10.1007%2Fs12083-014-0303-1)**[J]. SCI, Peer-to-Peer Networking and Applications, 2015, 8(6):952-964
-
-\[3\] Liu Y., Chen W.  **[Multicast Storage and Forwarding Method for Distributed Router](https://link.springer.com/chapter/10.1007/978-3-662-46826-5_9)**  [C]. EI, Internet Conference of China. Springer, Berlin, Heidelberg, ICoC 2014:Frontiers in Internet Technologies pp106-117
-
-\[3\] 刘玉宝, 陈文龙. [分布式组播路由器存储与转发优化模型](http://www.shcas.net/jsjyup/pdf/2015/8/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BB%84%E6%92%AD%E8%B7%AF%E7%94%B1%E5%99%A8%E5%AD%98%E5%82%A8%E4%B8%8E%E8%BD%AC%E5%8F%91%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B.pdf)[J],  计算机应用与软件，2015, 32(8)
-
-## Others
-
-- Facebook:  [https://facebook.com/yubaoliu89](https://facebook.com/yubaoliu89)  
-- BiliBili:  [https://space.bilibili.com/52620240](https://space.bilibili.com/52620240)
-- Youtube: [https://www.youtube.com/channel/UCqZrQadBvV7-gbt5cc6yCtQ](https://www.youtube.com/channel/UCqZrQadBvV7-gbt5cc6yCtQ)
-- Blog:  [blogger.yubaoliu.cn](http://blogger.yubaoliu.cn) 
